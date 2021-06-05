@@ -1,0 +1,17 @@
+#+title: Blog
+#+setupfile: index.setup
+
+* DONE [[file:posts/cross-section-properties.org][Cross section properties]] 5 June 2021
+* DONE [[file:posts/rc-beam.org][RC Beam]] X June 2021
+
+* Todos                                                            :noexport:
+** TODO Page: second moment of area
+** TODO Page: Geo properties
+** TODO Page: beam bending formulae
+** TODO Page: Beam moment capacity (+ drawing)
+
+** TODO Update favicon
+** TODO Check on post.setup
+** TODO Update CSS
+- Navbar as sidebar
+- Search/filter navbar
