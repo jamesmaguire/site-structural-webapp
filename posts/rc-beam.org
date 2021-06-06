@@ -1,2 +1,19 @@
 #+title: RC beam
 #+setupfile: post.setup
+#+HTML_HEAD: <body onload="draw_beam();">
+
+* Image
+
+#+begin_export html
+<canvas id="rc-beam" width="500" height="300" draggable="true"></canvas>
+#+end_export
+
+#+begin_export html
+<p>Beam width: <input id="B" type=number value="300" oninput="draw_beam()"></input></p>
+<p>Beam depth: <input id="D" type=number value="400" oninput="draw_beam()"></input></p>
+<p>Cover: <input id="cover" type=number value="40" oninput="draw_beam()"></input></p>
+<p>Bottom bar size: <input id="dbb" type=number value="12" oninput="draw_beam()"></input></p>
+<p>Bottom bars: <input id="btmBars" type=number value="2" oninput="draw_beam()"></input></p>
+<p>Top bar size: <input id="dbt" type=number value="12" oninput="draw_beam()"></input></p>
+<p>Top bars: <input id="topBars" type=number value="2" oninput="draw_beam()"></input></p>
+#+end_export

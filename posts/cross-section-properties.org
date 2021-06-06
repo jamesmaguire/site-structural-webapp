@@ -1,2 +1,16 @@
 #+title: Cross section properties
 #+setupfile: post.setup
+#+HTML_HEAD: <body onload="draw();">
+
+* Circle
+$$ I = \frac{\pi}{4}r^4 $$
+
+#+begin_export html
+<canvas id="cs-circle" width="150" height="150"></canvas>
+#+end_export
+
+* Rectangle
+$$ I = \frac{bh^3}{12} $$
+
+* Parallel axis theorem
+$$ I' = I + Ad^2 $$

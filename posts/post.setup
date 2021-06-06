@@ -4,6 +4,7 @@
 #+OPTIONS: html-postamble:nil
 #+OPTIONS: html-style:nil
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../static/common.css" />
+#+HTML_HEAD: <script type="text/javascript" src="../static/drawing.js"></script>
 #+HTML_HEAD: <link rel="icon" type="image/ico" href="../static/icon/favicon.svg" />
 #+HTML_HEAD: <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
