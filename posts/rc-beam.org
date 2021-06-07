@@ -17,3 +17,44 @@
 <p>Top bar size: <input id="dbt" type=number value="12" oninput="draw_beam()"></input></p>
 <p>Top bars: <input id="topBars" type=number value="2" oninput="draw_beam()"></input></p>
 #+end_export
+
+#+begin_export html
+<p>Concrete strength: <input id="fc" type=number value="32" oninput="beam_calcs()"></input></p>
+<p>ɑ_2: <input id="alpha2" type=number value="0" oninput="beam_calcs()"></input></p>
+<p>γ: <input id="gamma" type=number value="0" oninput="beam_calcs()"></input></p>
+#+end_export
+
+* Determination of dn
+** Strains
+Concrete strain: $ \varepsilon_c = 0.003 $
+Strain at depth $y$: $ \varepsilon_{y} = \frac{\varepsilon_c}{k_ud}(k_ud - y) $
+
+** Assume tension and compression steel has yielded
+$$ k_u = \frac{(A_{st} - A_{sc})f_{sy}}{\alpha_2 f'_c b \gamma d} $$
+
+Then check $ 0.0025 \le \varepsilon_{st} \le 0.05 $
+
+** Assume tension steel has yielded and compression has not
+$$ k_u = \frac{-B \plusminus \sqrt{B^2 - 4AC}}{2A} $$
+$$ A = \alpha_2 f'_c b \gamma d $$
+$$ B = -A_{st}f_{sy} + A_{sc}\varepsilon_cE_s $$
+$$ C = -A_{sc} \frac{\varepsilon_c(c+d_b/2)}{d} E_s $$
+
+Check assumptions
+
+** Assume tension steel has not yielded and compression has
+$$ k_u = \frac{-B \plusminus \sqrt{B^2 - 4AC}}{2A} $$
+$$ A = \alpha_2 f'_c b \gamma d $$
+$$ B = -A_{st}\varepsilon_cE_s + A_{sc}f_{sy} $$
+$$ C = -A_{st}\varepsilon_cE_s $$
+
+Check assumptions
+
+** Assume that steel has not yielded
+
+$$ k_u = \frac{-B \plusminus \sqrt{B^2 - 4AC}}{2A} $$
+$$ A = \alpha_2 f'_c b \gamma d $$
+$$ B = -A_{st}\varepsilon_cE_s + -A_{sc}\varepsilon_cE_s $$
+$$ C = -A_{st}\varepsilon_cE_s - A_{sc} \frac{\varepsilon_c(c+d_b/2)}{d} E_s $$
+
+Check assumptions
