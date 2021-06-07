@@ -35,7 +35,7 @@ $$ k_u = \frac{(A_{st} - A_{sc})f_{sy}}{\alpha_2 f'_c b \gamma d} $$
 Then check $ 0.0025 \le \varepsilon_{st} \le 0.05 $
 
 ** Assume tension steel has yielded and compression has not
-$$ k_u = \frac{-B \plusminus \sqrt{B^2 - 4AC}}{2A} $$
+$$ k_u = \frac{-B \pm \sqrt{B^2 - 4AC}}{2A} $$
 $$ A = \alpha_2 f'_c b \gamma d $$
 $$ B = -A_{st}f_{sy} + A_{sc}\varepsilon_cE_s $$
 $$ C = -A_{sc} \frac{\varepsilon_c(c+d_b/2)}{d} E_s $$
@@ -43,7 +43,7 @@ $$ C = -A_{sc} \frac{\varepsilon_c(c+d_b/2)}{d} E_s $$
 Check assumptions
 
 ** Assume tension steel has not yielded and compression has
-$$ k_u = \frac{-B \plusminus \sqrt{B^2 - 4AC}}{2A} $$
+$$ k_u = \frac{-B \pm \sqrt{B^2 - 4AC}}{2A} $$
 $$ A = \alpha_2 f'_c b \gamma d $$
 $$ B = -A_{st}\varepsilon_cE_s + A_{sc}f_{sy} $$
 $$ C = -A_{st}\varepsilon_cE_s $$
