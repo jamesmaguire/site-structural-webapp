@@ -1,3 +1,0 @@
-#+begin_metadata
-Written by /{{{author}}}/ on /{{{date}}}/ | [[file:../index.org][Other blog posts]]
-#+end_metadata

@@ -1,0 +1,11 @@
+#+begin_sidebar-sliver
+@@html:<button onclick="sidebarToggle()">☰</button>@@
+#+end_sidebar-sliver
+
+* Applications
+:PROPERTIES:
+:HTML_CONTAINER_CLASS: sidebar
+:END:
+** TODO [[file:posts/cross-section-properties.org][Cross section properties]]
+** TODO [[file:posts/rc-beam.org][RC Beam]]
+** TODO [[file:posts/pad-footing.org][Pad footings]]

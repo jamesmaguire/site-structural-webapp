@@ -1,0 +1,64 @@
+#+title: Pad footings
+#+setupfile: post.setup
+#+HTML_HEAD: <body onload="update_page();">
+#+HTML_HEAD: <script type="text/javascript" src="../static/pad-footing.js"></script>
+#+include: "../sidebar.org"
+
+* Figure
+@@html:<canvas id="padFootingFigure" width="250" height="250" draggable="true"></canvas>@@
+
+* Footing parameters
+
+Footing height = @@html:<input id="footingHeight" type="number" value="500" oninput="update_page()"></input>@@ mm
+
+Footing length (x) = @@html:<input id="Lx" type="number" value="2400" oninput="update_page()"></input>@@ mm
+
+Footing length (y) = @@html:<input id="Ly" type="number" value="2400" oninput="update_page()"></input>@@ mm
+
+Footing area = @@html:<input id="footingArea" type="number" value="0" oninput="update_page()" readonly></input>@@ m^2
+
+Concrete strength = @@html:<input id="concreteStrength" type="number" value="25" oninput="update_page()"></input>@@ MPa
+
+Concrete unit weight = @@html:<input id="gammac" type="number" value="25" oninput="update_page()"></input>@@ kN/m^3
+
+* Column parameters
+
+Column length (x) = @@html:<input id="Lcx" type="number" value="300" oninput="update_page()"></input>@@ mm
+
+Column length (y) = @@html:<input id="Lcy" type="number" value="1000" oninput="update_page()"></input>@@ mm
+
+Eccentricity (x) = @@html:<input id="eccentricityX" type="number" value="0" oninput="update_page()"></input>@@ mm
+
+Eccentricity (y) = @@html:<input id="eccentricityY" type="number" value="0" oninput="update_page()"></input>@@ mm
+
+* Steel parameters
+
+Steel strength = @@html:<input id="fsy" type="number" value="500" oninput="update_page()"></input>@@ MPa
+
+Bar diameter = @@html:<input id="barDiameter" type="number" value="12" oninput="update_page()"></input>@@ mm
+
+Cover = @@html:<input id="cover" type="number" value="50" oninput="update_page()"></input>@@ mm
+
+Min fitments = @@html:<input id="fitments" type="checkbox" value="false" oninput="update_page()"></input>@@
+
+* Loading
+
+Dead load = @@html:<input id="deadLoad" type="number" value="800" oninput="update_page()"></input>@@ kN
+
+Live load = @@html:<input id="liveLoad" type="number" value="200" oninput="update_page()"></input>@@ kN
+
+* Bearing
+
+Soil bearing capacity = @@html: <input id="qs" type="number" value="250" oninput="update_page()"></input>@@ kPa
+
+Design pressure, q* = @@html:<input id="qstar" type="number" value="0" oninput="update_page()" readonly></input>@@ kPa
+
+Bearing check = @@html:<input id="bearingCheck" type="number" value="0" oninput="update_page()" readonly></input>@@
+
+* Punching shear
+
+Shear load, V* = @@html:<input id="shearLoad" type="number" value="0" oninput="update_page()" readonly></input>@@ kN
+
+Shear capacity, ΦV_{uo} = @@html:<input id="punchingCapacity" type="number" value="0" oninput="update_page()" readonly></input>@@ kN
+
+Punching shear check = @@html:<input id="punchingCheck" type="number" value="0" oninput="update_page()" readonly></input>@@
