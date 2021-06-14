@@ -1,11 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+
 #org-div-home-and-up {
   display: none;
 }
 
 body {
   background: white;
-  font-family: mono;
-  font-size: 0.8rem;
+  font-family: 'Roboto Mono',mono;
+  font-size: 10pt;
   line-height: 1.1;
 }
 
