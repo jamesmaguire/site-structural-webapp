@@ -7,3 +7,17 @@ function sidebarToggle()
         sidebarObj.style.display = "block";
     }
 }
+
+function setStatusOutofdate()
+{
+    var status = document.getElementsByClassName("status")[0];
+    status.textContent = "▶ Run analysis";
+    status.style.color = "darkred";
+}
+
+function setStatusUptodate()
+{
+    var status = document.getElementsByClassName("status")[0];
+    status.textContent = "👍 Up to date"; // (Thumbs up unicode)
+    status.style.color = "darkgreen";
+}

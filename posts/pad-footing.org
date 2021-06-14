@@ -1,6 +1,6 @@
 #+title: Pad footings
 #+setupfile: post.setup
-#+HTML_HEAD: <body onload="update_page();">
+#+HTML_HEAD: <body onload="updatePage();">
 #+HTML_HEAD: <script type="text/javascript" src="../static/pad-footing.js"></script>
 #+include: "../sidebar.org"
 
@@ -9,56 +9,82 @@
 
 * Footing parameters
 
-Footing height = @@html:<input id="footingHeight" type="number" value="500" oninput="update_page()"></input>@@ mm
+Footing height = @@html:<input id="footingHeight" type="number" value="500" onkeypress="eventHandler(event)"></input>@@ mm
 
-Footing length (x) = @@html:<input id="Lx" type="number" value="2400" oninput="update_page()"></input>@@ mm
+Footing length (x) = @@html:<input id="Lx" type="number" value="2400" onkeypress="eventHandler(event)"></input>@@ mm
 
-Footing length (y) = @@html:<input id="Ly" type="number" value="2400" oninput="update_page()"></input>@@ mm
+Footing length (y) = @@html:<input id="Ly" type="number" value="2400" onkeypress="eventHandler(event)"></input>@@ mm
 
-Footing area = @@html:<input id="footingArea" type="number" value="0" oninput="update_page()" readonly></input>@@ m^2
+Footing area = @@html:<input id="footingArea" type="number" value="0" readonly></input>@@ m^2
 
-Concrete strength = @@html:<input id="concreteStrength" type="number" value="25" oninput="update_page()"></input>@@ MPa
+Concrete strength = @@html:<input id="concreteStrength" type="number" value="25" onkeypress="eventHandler(event)"></input>@@ MPa
 
-Concrete unit weight = @@html:<input id="gammac" type="number" value="25" oninput="update_page()"></input>@@ kN/m^3
+Concrete unit weight = @@html:<input id="gammac" type="number" value="25" onkeypress="eventHandler(event)"></input>@@ kN/m^3
 
 * Column parameters
 
-Column length (x) = @@html:<input id="Lcx" type="number" value="300" oninput="update_page()"></input>@@ mm
+Column length (x) = @@html:<input id="Lcx" type="number" value="300" onkeypress="eventHandler(event)"></input>@@ mm
 
-Column length (y) = @@html:<input id="Lcy" type="number" value="1000" oninput="update_page()"></input>@@ mm
+Column length (y) = @@html:<input id="Lcy" type="number" value="1000" onkeypress="eventHandler(event)"></input>@@ mm
 
-Eccentricity (x) = @@html:<input id="eccentricityX" type="number" value="0" oninput="update_page()"></input>@@ mm
+Eccentricity (x) = @@html:<input id="eccentricityX" type="number" value="0" onkeypress="eventHandler(event)"></input>@@ mm
 
-Eccentricity (y) = @@html:<input id="eccentricityY" type="number" value="0" oninput="update_page()"></input>@@ mm
+Eccentricity (y) = @@html:<input id="eccentricityY" type="number" value="0" onkeypress="eventHandler(event)"></input>@@ mm
 
 * Steel parameters
 
-Steel strength = @@html:<input id="fsy" type="number" value="500" oninput="update_page()"></input>@@ MPa
+Steel strength = @@html:<input id="fsy" type="number" value="500" onkeypress="eventHandler(event)"></input>@@ MPa
 
-Bar diameter = @@html:<input id="barDiameter" type="number" value="12" oninput="update_page()"></input>@@ mm
+Bar diameter = @@html:<input id="barDiameter" type="number" value="12" onkeypress="eventHandler(event)"></input>@@ mm
 
-Cover = @@html:<input id="cover" type="number" value="50" oninput="update_page()"></input>@@ mm
+Cover = @@html:<input id="cover" type="number" value="50" onkeypress="eventHandler(event)"></input>@@ mm
 
-Min fitments = @@html:<input id="fitments" type="checkbox" value="false" oninput="update_page()"></input>@@
+Min fitments = @@html:<input id="fitments" type="checkbox" value="false" oninput="updatePage()"></input>@@
 
 * Loading
 
-Dead load = @@html:<input id="deadLoad" type="number" value="800" oninput="update_page()"></input>@@ kN
+Dead load = @@html:<input id="deadLoad" type="number" value="800" onkeypress="eventHandler(event)"></input>@@ kN
 
-Live load = @@html:<input id="liveLoad" type="number" value="200" oninput="update_page()"></input>@@ kN
+Live load = @@html:<input id="liveLoad" type="number" value="200" onkeypress="eventHandler(event)"></input>@@ kN
+
+Dead load factor, Ψ_G = @@html:<input id="psiG" type="number" value="1.2"  onkeypress="eventHandler(event)"></input>@@
+
+Live load factor, Ψ_Q = @@html:<input id="psiQ" type="number" value="1.5" onkeypress="eventHandler(event)"></input>@@
+
+Pressure (ULS) = @@html:<input id="pressureULS" type="number" value="0" readonly></input>@@ kPa
 
 * Bearing
 
-Soil bearing capacity = @@html: <input id="qs" type="number" value="250" oninput="update_page()"></input>@@ kPa
+Soil bearing capacity = @@html: <input id="qs" type="number" value="250" onkeypress="eventHandler(event)"></input>@@ kPa
 
-Design pressure, q* = @@html:<input id="qstar" type="number" value="0" oninput="update_page()" readonly></input>@@ kPa
+Pressure applied, q* = @@html:<input id="qstar" type="number" value="0" readonly></input>@@ kPa
 
-Bearing check = @@html:<input id="bearingCheck" type="number" value="0" oninput="update_page()" readonly></input>@@
+Bearing check = @@html:<input id="bearingCheck" type="number" value="0" readonly></input>@@
 
 * Punching shear
 
-Shear load, V* = @@html:<input id="shearLoad" type="number" value="0" oninput="update_page()" readonly></input>@@ kN
+Shear applied, V* = @@html:<input id="shearLoad" type="number" value="0" readonly></input>@@ kN
 
-Shear capacity, ΦV_{uo} = @@html:<input id="punchingCapacity" type="number" value="0" oninput="update_page()" readonly></input>@@ kN
+Shear capacity, ΦV_{uo} = @@html:<input id="punchingCapacity" type="number" value="0" readonly></input>@@ kN
 
-Punching shear check = @@html:<input id="punchingCheck" type="number" value="0" oninput="update_page()" readonly></input>@@
+Punching shear check = @@html:<input id="punchingCheck" type="number" value="0" readonly></input>@@
+
+* Moment check
+
+Moment applied, M*_x = @@html:<input id="momentX" type="number" value="0" readonly></input>@@,
+                M*_y = @@html:<input id="momentY" type="number" value="0" readonly></input>@@ kNm
+                
+Bars in X = @@html:<input id="barsX" type="text" value="0" readonly></input>@@
+
+Bars in Y = @@html:<input id="barsY" type="text" value="0" readonly></input>@@
+
+* Shear check
+
+Shear applied, V*_x = @@html:<input id="shearX" type="number" value="0" readonly></input>@@,
+               V*_y = @@html:<input id="shearY" type="number" value="0" readonly></input>@@ kN
+
+Shear capacity, ΦV_{ucx} = @@html:<input id="shearCapacityX" type="number" value="0" readonly></input>@@,
+                ΦV_{uc,y} = @@html:<input id="shearCapacityY" type="number" value="0" readonly></input>@@ kN
+
+Shear check, V*_x/ΦV_{ucx} = @@html:<input id="shearCheckX" type="number" value="0" readonly></input>@@,
+             V*_y/ΦV_{uc,y} = @@html:<input id="shearCheckY" type="number" value="0" readonly></input>@@ kN

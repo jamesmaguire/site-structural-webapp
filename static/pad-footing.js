@@ -1,8 +1,29 @@
-function update_page()
+function eventHandler(event)
+{
+    console.log(event);
+    if (event.keyCode == 13) {
+        updatePage();
+    } else {
+        setStatusOutofdate();
+    }
+}
+
+
+function setPassFail (obj) {
+    if (obj.valueAsNumber < 1) {
+        obj.className = 'PASS';
+    } else {
+        obj.className = 'FAIL';
+    }
+}
+function updatePage()
 {
     draw_footing(0.05);
     check_bearing();
     check_punching();
+    check_shear();
+    check_bending();
+    setStatusUptodate();
 }
 
 function draw_footing(scale)
