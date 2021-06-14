@@ -1,0 +1,66 @@
+#+title: Strip footings
+#+setupfile: post.setup
+#+HTML_HEAD: <body onload="updatePage();">
+#+HTML_HEAD: <script type="text/javascript" src="../static/strip-footing.js"></script>
+#+include: "../sidebar.org"
+
+* Figure
+@@html:<canvas id="stripFootingFigure" width="250" height="250" draggable="true"></canvas>@@
+
+* Footing parameters
+
+Footing height = @@html:<input id="footingHeight" type="number" value="500" onkeypress="eventHandler(event)"></input>@@ mm
+
+Footing width = @@html:<input id="footingWidth" type="number" value="2400" onkeypress="eventHandler(event)"></input>@@ mm
+
+Concrete strength = @@html:<input id="concreteStrength" type="number" value="32" onkeypress="eventHandler(event)"></input>@@ MPa
+
+Concrete unit weight = @@html:<input id="gammac" type="number" value="25" onkeypress="eventHandler(event)"></input>@@ kN/m^3
+
+* Wall parameters
+
+Wall width = @@html:<input id="wallWidth" type="number" value="300" onkeypress="eventHandler(event)"></input>@@ mm
+
+Eccentricity = @@html:<input id="eccentricity" type="number" value="0" onkeypress="eventHandler(event)"></input>@@ mm
+
+* Steel parameters
+
+Steel strength = @@html:<input id="fsy" type="number" value="500" onkeypress="eventHandler(event)"></input>@@ MPa
+
+Bar diameter = @@html:<input id="barDiameter" type="number" value="12" onkeypress="eventHandler(event)"></input>@@ mm
+
+Cover = @@html:<input id="cover" type="number" value="50" onkeypress="eventHandler(event)"></input>@@ mm
+
+* Loading
+
+Dead load = @@html:<input id="deadLoad" type="number" value="250" onkeypress="eventHandler(event)"></input>@@ kN/m
+
+Live load = @@html:<input id="liveLoad" type="number" value="50" onkeypress="eventHandler(event)"></input>@@ kN/m
+
+Dead load factor, Ψ_G = @@html:<input id="psiG" type="number" value="1.2"  onkeypress="eventHandler(event)"></input>@@
+
+Live load factor, Ψ_Q = @@html:<input id="psiQ" type="number" value="1.5" onkeypress="eventHandler(event)"></input>@@
+
+Pressure (ULS) = @@html:<input id="pressureULS" type="number" value="0" readonly></input>@@ kPa
+
+* Bearing
+
+Soil bearing capacity = @@html: <input id="qs" type="number" value="250" onkeypress="eventHandler(event)"></input>@@ kPa
+
+Pressure applied, q* = @@html:<input id="qstar" type="number" value="0" readonly></input>@@ kPa
+
+Bearing check = @@html:<input id="bearingCheck" type="number" value="0" readonly></input>@@
+
+* Moment check
+
+Moment applied, M*_x = @@html:<input id="momentX" type="number" value="0" readonly></input>@@ kNm/m
+
+Reinforcement bars = @@html:<input id="bars" type="text" value="0" readonly></input>@@
+
+* Shear check
+
+Shear applied, V* = @@html:<input id="shearLoad" type="number" value="0" readonly></input>@@ kN/m
+
+Shear capacity, ΦV_{uc} = @@html:<input id="shearCapacity" type="number" value="0" readonly></input>@@ kN/m
+
+Shear check, V*/ΦV_{uc} = @@html:<input id="shearCheck" type="number" value="0" readonly></input>@@

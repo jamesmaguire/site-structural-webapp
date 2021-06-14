@@ -8,7 +8,8 @@
 :END:
 ** TODO [[file:posts/cross-section-properties.org][Cross section properties]]
 ** TODO [[file:posts/rc-beam.org][RC Beam]]
-** TODO [[file:posts/pad-footing.org][Pad footings]]
+** [[file:posts/pad-footing.org][Pad footings]]
+** [[file:posts/strip-footing.org][Strip footings]]
 
 * Status
 :PROPERTIES:
