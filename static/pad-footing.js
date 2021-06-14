@@ -1,21 +1,3 @@
-function eventHandler(event)
-{
-    console.log(event);
-    if (event.keyCode == 13) {
-        updatePage();
-    } else {
-        setStatusOutofdate();
-    }
-}
-
-
-function setPassFail (obj) {
-    if (obj.valueAsNumber < 1) {
-        obj.className = 'PASS';
-    } else {
-        obj.className = 'FAIL';
-    }
-}
 function updatePage()
 {
     draw_footing(0.05);
@@ -141,7 +123,7 @@ function qULS()
     var A = Lx.valueAsNumber * Ly.valueAsNumber / 1e6;
     var qULS = (psiG.valueAsNumber*(deadLoad.valueAsNumber+A*footingHeight.valueAsNumber/1000*gammac.valueAsNumber)
                 + psiQ.valueAsNumber*liveLoad.valueAsNumber)/A;
-    pressureULS.value = qULS;
+    pressureULS.value = qULS.toFixed();
     return qULS;
 }
 
