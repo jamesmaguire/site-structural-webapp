@@ -1,19 +1,177 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+
+#org-div-home-and-up {
+  display: none;
+}
+
+body {
+  background: white;
+  font-family: 'Roboto Mono',mono;
+  font-size: 10pt;
+  line-height: 1.1;
+}
+
+#content {
+  margin: auto;
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+  margin-bottom: 10%;
+  margin-left: 6rem;
+}
+
+.outline-2 {
+  vertical-align: top;
+  min-width: 25rem;
+  max-width: 65ch;
+  border-top: 2px solid #ddd;
+  margin: 1rem;
+  margin-top: 3rem;
+  padding: 0.5rem;
+  padding-left: 1rem;
+}
+
+input {
+  border: 1px solid orange;
+  border-radius: 3px;
+  background: cornsilk;
+  width: 7ch;
+  text-align: center;
+  font-family: mono;
+  padding: 0.05rem;
+}
+
+.sidebar-sliver {
+  display: none;
+}
+
+.title p, .author p, .date p {
+  margin: 0;
+  padding: 0;
+}
+
 .title {
-  margin-bottom: 2rem;
+  text-transform: capitalize;
+  text-decoration: underline;
+  font-size: 150%;
+  font-weight: normal;
+  text-align: left;
+  margin-top: 3rem;
+  margin-bottom: 0.2rem;
+}
+
+.subtitle {
+  font-size: 80%;
+  color: #444;
+  font-weight: normal;
+}
+
+.metadata p {
+  font-size: 80%;
+  margin-top: 0.5rem;
+  margin-bottom: 3rem;
+  color: #777;
+}
+
+p {
+  line-height: 1.5;
 }
 
 h2 {
-  list-style-type: none;
-  padding: 0;
-  font-size: 70%;
-  font-weight: normal;
+  font-size: 110%;
+  font-weight: bold;
+  margin-bottom: 1rem;
   margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
 }
 
-h2 a {
-  font-size: 130%;
+h3 {
+  font-size: 100%;
+  font-weight: bold;
+  margin-bottom: 0.7rem;
+  margin-top: 0.7rem;
 }
-h2 a::after {
-  content: " · "
+
+a {
+  color: steelblue;
+  text-decoration: none;
+}
+a:hover {
+  color: #0162bc;
+}
+
+blockquote {
+  font-size: 90%;
+  padding-left: 0.5rem;
+  margin: 0;
+  font-style: italic;
+}
+
+img {
+  width: 100%;
+}
+.figure {
+  width: 90%;
+  margin: auto;
+  margin-top: 1rem;
+  padding: 0.1rem;
+  font-size: 90%;
+  text-align: center;
+}
+.figure p {
+  margin-bottom: 0.5rem;
+}
+.figure-number {
+  color: #777;
+  font-weight: normal;
+}
+
+table {
+  margin-top: 2rem;
+  margin-left: 0.5rem;
+  font-size: 90%;
+  border-collapse: none;
+}
+caption{
+  font-weight: normal;
+  text-align: left;
+  padding-bottom: 1rem;
+}
+.table-number {
+  color: #777;
+  font-weight: normal;
+}
+th, td, th.org-left {
+  padding: 0.2rem;
+  padding-right: 0.6rem;
+  text-align: left;
+}
+
+.footnotes {
+  border-top: 1px solid lightgrey;
+  padding-top: 2rem;
+  margin-top: 3rem;
+}
+.footdef {
+  margin-bottom: 1rem;
+}
+.footpara {
+  display: inline;
+}
+
+.todo {
+  font-family: sans;
+  font-size: 10pt;
+  font-weight: normal;
+  color: seagreen;
+  padding-right: 0.2rem;
+  text-transform: lowercase;
+}
+.todo::before {
+  content: "(";
+}
+.todo::after{
+  content: ")";
+}
+
+.done {
+  display: none;
 }

@@ -2,15 +2,11 @@
 
 #+OPTIONS: toc:nil creator:nil timestamp:nil html-postamble:nil num:nil
 #+OPTIONS: html-style:nil
-#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="static/common.css" />
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="static/index.css" />
+#+HTML_HEAD: <script type="text/javascript" src="static/general.js"></script>
 #+HTML_HEAD: <link rel="icon" type="image/ico" href="static/icon/favicon.svg" />
 #+HTML_HEAD: <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 # Navigation
 #+HTML_LINK_HOME: index.html
 #+HTML_LINK_UP: index.html
-
-# # PWA files
-# #+HTML_HEAD: <script type="text/javascript" src="static/pwa.js"></script>
-# #+HTML_HEAD: <link rel="manifest" href="static/manifest.webmanifest" />

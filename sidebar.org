@@ -6,12 +6,9 @@
 :PROPERTIES:
 :HTML_CONTAINER_CLASS: sidebar
 :END:
-** TODO [[file:posts/cross-section-properties.org][Cross section properties]]
-** TODO [[file:posts/rc-beam.org][RC Beam]]
+** [[file:index.org][Home]]
 ** [[file:posts/pad-footing.org][Pad footings]]
 ** [[file:posts/strip-footing.org][Strip footings]]
 
-* Status
-:PROPERTIES:
-:HTML_CONTAINER_CLASS: status
-:END:
+** TODO [[file:posts/cross-section-properties.org][Cross section properties]]
+** TODO [[file:posts/rc-beam.org][RC Beam]]

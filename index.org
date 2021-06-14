@@ -1,6 +1,13 @@
-* TODO [[file:posts/cross-section-properties.org][Cross section properties]]
-* TODO [[file:posts/rc-beam.org][RC Beam]]
-* TODO [[file:posts/pad-footing.org][Pad footings]]
+#+title: Structural design applications
+#+setupfile: index.setup
+#+include: "sidebar.org"
+
+* Description
+This is a website created by James Maguire to solve simple structural engineering design problems. There is no warranty of correctness of these applications and results must be checked by other methods by an experienced engineer if they are to be used for design purposes.
+
+* Usage
+Input boxes with an @@html:<input value="orange" readonly></input>@@ background are design inputs. Once an input is changed, the indicator on the top right of the page will show that the analysis must be re-run. To run the analysis press =ENTER= in any of the input fields.
+
 
 * Todos                                                            :noexport:
 ** TODO Page: second moment of area
@@ -11,5 +18,4 @@
 ** TODO Update favicon
 ** TODO Check on post.setup
 ** TODO Update CSS
-- Navbar as sidebar
 - Search/filter navbar
