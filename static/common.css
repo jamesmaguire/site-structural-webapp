@@ -27,15 +27,34 @@ body {
   padding-left: 1rem;
 }
 
+.status {
+  position: fixed;
+  top: 1.5rem;
+  right: 2rem;
+  border: none;
+  width: 20ch;
+  min-width: 0;
+  padding: 0;
+  text-align: right;
+  margin: 0;
+  color: darkgreen;
+  font-weight: bold;
+  font-size: 120%;
+}
+.status h2 {
+  padding: 0;
+  margin: 0;
+}
+
 .sidebar {
   display: none;
   position: fixed;
-  left: 2rem;
+  left: 1rem;
   top: 0;
   background: white;
   z-index: 1;
   padding: 2rem;
-  padding-top: 0rem;
+  padding-top: 1.4rem;
   margin-top: -0.7rem;
   height: 100%;
   box-shadow: 0 0 1rem 0 lightgrey;
@@ -137,9 +156,6 @@ input[readonly] {
 .PASS {
   background: honeydew !important;
   color: darkgreen !important;
-}
-.PASS::after {
-  content: "PASS" !important;
 }
 .FAIL {
   background: lightpink !important;
