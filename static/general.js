@@ -1,6 +1,5 @@
 function eventHandler(event)
 {
-    console.log(event);
     if (event.keyCode == 13) {
         updatePage();
     } else {
@@ -28,14 +27,12 @@ function sidebarToggle()
 
 function setStatusOutofdate()
 {
-    var status = document.getElementsByClassName("status")[0];
-    status.textContent = "▶ Run analysis";
-    status.style.color = "darkred";
+    statusbutton.textContent = "▶ Run analysis";
+    statusbutton.className = "status-red";
 }
 
 function setStatusUptodate()
 {
-    var status = document.getElementsByClassName("status")[0];
-    status.textContent = "👍 Up to date"; // (Thumbs up unicode)
-    status.style.color = "darkgreen";
+    statusbutton.textContent = "👍 Up to date"; // (Thumbs up unicode);
+    statusbutton.className = "status-green";
 }

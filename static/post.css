@@ -30,10 +30,10 @@ body {
   padding-left: 1rem;
 }
 
-.status {
+/* .status {
   position: fixed;
-  top: 1.5rem;
-  right: 2rem;
+  top: 1.0rem;
+  right: 1.5rem;
   border: none;
   width: 20ch;
   min-width: 0;
@@ -47,6 +47,33 @@ body {
 .status h2 {
   padding: 0;
   margin: 0;
+} */
+#statusbutton {
+  position: fixed;
+  top: 1.0rem;
+  right: 1.5rem;
+  padding: 0.7rem;
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
+  font-size: 100%;
+  border-radius: 2px;
+}
+.status-red {
+  color: darkred;
+  background: #fee;
+  border: 1px solid darkred;
+  transition-duration: 0.2s;
+}
+.status-red:hover {
+  background: white;
+  transition-duration: 0.2s;
+  cursor: pointer;
+}
+.status-green {
+  color: darkgreen;
+  background: ivory;
+  border: 1px solid darkgreen;
+  transition-duration: 0.2s;
 }
 
 .sidebar {

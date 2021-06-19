@@ -2,8 +2,8 @@
 #+setupfile: post.setup
 #+HTML_HEAD: <body onload="updatePage();">
 #+HTML_HEAD: <script type="text/javascript" src="../static/bored-pile.js"></script>
-#+include: "../sidebar.org"
 #+include: "../statusicon.org"
+#+include: "../sidebar.org"
 
 * Figure
 @@html:<canvas id="boredPileFigure" width="250" height="250" draggable="true"></canvas>@@

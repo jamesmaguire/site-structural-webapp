@@ -1,4 +1,1 @@
-* Status
-:PROPERTIES:
-:HTML_CONTAINER_CLASS: status
-:END:
+@@html:<button id='statusbutton' onclick='updatePage();'>▶ Run analysis</button>@@
