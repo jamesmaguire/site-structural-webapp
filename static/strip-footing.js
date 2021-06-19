@@ -1,13 +1,13 @@
 function updatePage()
 {
-    draw_footing(0.05);
-    check_bearing();
-    check_shear();
-    check_bending();
+    drawFooting(0.05);
+    checkBearing();
+    checkShear();
+    checkBending();
     setStatusUptodate();
 }
 
-function draw_footing(scale)
+function drawFooting(scale)
 {
     var canvas = document.getElementById('stripFootingFigure');
     if (canvas.getContext)
@@ -84,7 +84,7 @@ function shearPlaneRHS()
         - d0();
 }
 
-function check_bearing()
+function checkBearing()
 {
     var A = footingWidth.valueAsNumber * 1000 / 1e6; // Take 1000mm length
     var design_pressure = (deadLoad.valueAsNumber
@@ -95,7 +95,7 @@ function check_bearing()
     setPassFail(bearingCheck);
 }
 
-function check_shear()
+function checkShear()
 {
     // Effective depth
     var fc = concreteStrength.valueAsNumber;
@@ -120,7 +120,7 @@ function qULS()
     return qULS;
 }
 
-function check_bending()
+function checkBending()
 {
     // Variables
     var h = footingHeight.valueAsNumber;

@@ -1,14 +1,14 @@
 function updatePage()
 {
-    draw_footing(0.05);
-    check_bearing();
-    check_punching();
-    check_shear();
-    check_bending();
+    drawFooting(0.05);
+    checkBearing();
+    checkPunching();
+    checkShear();
+    checkBending();
     setStatusUptodate();
 }
 
-function draw_footing(scale)
+function drawFooting(scale)
 {
     var canvas = document.getElementById('padFootingFigure');
     if (canvas.getContext)
@@ -47,7 +47,7 @@ function draw_footing(scale)
     }
 }
 
-function check_bearing()
+function checkBearing()
 {
     var A = Lx.valueAsNumber * Ly.valueAsNumber / 1e6;
     footingArea.value = A.toFixed(2);
@@ -57,7 +57,7 @@ function check_bearing()
     setPassFail(bearingCheck);
 }
 
-function check_punching()
+function checkPunching()
 {
     var fc = concreteStrength.valueAsNumber;
     var betah = Math.max(Lcx.valueAsNumber,Lcy.valueAsNumber)/Math.min(Lcx.valueAsNumber,Lcy.valueAsNumber);
@@ -82,7 +82,7 @@ function check_punching()
     setPassFail(punchingCheck);
 }
 
-function check_shear()
+function checkShear()
 {
     // Effective depth
     var fc = concreteStrength.valueAsNumber;
@@ -127,7 +127,7 @@ function qULS()
     return qULS;
 }
 
-function check_bending()
+function checkBending()
 {
     var h = footingHeight.valueAsNumber;
     var d0 = footingHeight.valueAsNumber - cover.valueAsNumber - barDiameter.valueAsNumber;
