@@ -9,17 +9,17 @@ function updatePage()
 
 function drawFooting(scale)
 {
-    var canvas = document.getElementById('stripFootingFigure');
+    let canvas = document.getElementById('stripFootingFigure');
     if (canvas.getContext)
     {
-        var ctx = canvas.getContext('2d');
+        let ctx = canvas.getContext('2d');
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        var Ww = wallWidth.valueAsNumber;
-        var Hw = 1500;
-        var Wf = footingWidth.valueAsNumber;
-        var Hf = footingHeight.valueAsNumber;
-        var e = eccentricity.valueAsNumber;
+        let Ww = wallWidth.valueAsNumber;
+        let Hw = 1500;
+        let Wf = footingWidth.valueAsNumber;
+        let Hf = footingHeight.valueAsNumber;
+        let e = eccentricity.valueAsNumber;
 
         // Footing
         ctx.fillStyle = 'lightgray';
@@ -39,8 +39,8 @@ function drawFooting(scale)
         ctx.stroke();
 
         // Shear planes
-        var x1 = shearPlaneLHS();
-        var x2 = Wf-shearPlaneRHS();
+        let x1 = shearPlaneLHS();
+        let x2 = Wf-shearPlaneRHS();
         ctx.lineStyle = 'grey';
         ctx.setLineDash([5, 5]);
         ctx.beginPath();
@@ -51,7 +51,7 @@ function drawFooting(scale)
         ctx.stroke();
 
         // Reo
-        var c = cover.valueAsNumber;
+        let c = cover.valueAsNumber;
         ctx.lineStyle = 'black';
         ctx.setLineDash([]);
         ctx.beginPath();
@@ -86,8 +86,8 @@ function shearPlaneRHS()
 
 function checkBearing()
 {
-    var A = footingWidth.valueAsNumber * 1000 / 1e6; // Take 1000mm length
-    var design_pressure = (deadLoad.valueAsNumber
+    let A = footingWidth.valueAsNumber * 1000 / 1e6; // Take 1000mm length
+    let design_pressure = (deadLoad.valueAsNumber
                            +liveLoad.valueAsNumber
                            +(A*footingHeight.valueAsNumber/1000*gammac.valueAsNumber))/A;
     qstar.value = design_pressure.toFixed();
@@ -98,13 +98,13 @@ function checkBearing()
 function checkShear()
 {
     // Effective depth
-    var fc = concreteStrength.valueAsNumber;
-    var dv = Math.max(0.72*footingHeight.valueAsNumber, 0.9*d0());
-    var kv = 0.1; // No fitments in strip footing
+    let fc = concreteStrength.valueAsNumber;
+    let dv = Math.max(0.72*footingHeight.valueAsNumber, 0.9*d0());
+    let kv = 0.1; // No fitments in strip footing
 
     // Shear
-    var phiVucx = 0.7*kv*dv*Math.min(Math.sqrt(fc), 8);
-    var Vstar = qULS()*Math.max(shearPlaneLHS(), shearPlaneRHS())/1e3;
+    let phiVucx = 0.7*kv*dv*Math.min(Math.sqrt(fc), 8);
+    let Vstar = qULS()*Math.max(shearPlaneLHS(), shearPlaneRHS())/1e3;
     shearLoad.value = Vstar.toFixed();
     shearCapacity.value = phiVucx.toFixed();
     shearCheck.value = (Vstar/phiVucx).toFixed(2);
@@ -113,8 +113,8 @@ function checkShear()
 
 function qULS()
 {
-    var A = footingWidth.valueAsNumber * 1000 / 1e6; // 1000mm length
-    var qULS = (psiG.valueAsNumber*(deadLoad.valueAsNumber+A*footingHeight.valueAsNumber/1000*gammac.valueAsNumber)
+    let A = footingWidth.valueAsNumber * 1000 / 1e6; // 1000mm length
+    let qULS = (psiG.valueAsNumber*(deadLoad.valueAsNumber+A*footingHeight.valueAsNumber/1000*gammac.valueAsNumber)
                 + psiQ.valueAsNumber*liveLoad.valueAsNumber)/A;
     pressureULS.value = qULS.toFixed();
     return qULS;
@@ -123,21 +123,21 @@ function qULS()
 function checkBending()
 {
     // Variables
-    var h = footingHeight.valueAsNumber;
-    var Wf = footingWidth.valueAsNumber;
-    var fctf = 0.6*Math.sqrt(concreteStrength.valueAsNumber);
-    var db = barDiameter.valueAsNumber;
+    let h = footingHeight.valueAsNumber;
+    let Wf = footingWidth.valueAsNumber;
+    let fctf = 0.6*Math.sqrt(concreteStrength.valueAsNumber);
+    let db = barDiameter.valueAsNumber;
 
     // Moment 
-    var lever = Wf/2;
-    var bendingForce = qULS()*lever/1000; // kN/m
-    var Mstar = bendingForce*lever/2/1000; // kNm/m
+    let lever = Wf/2;
+    let bendingForce = qULS()*lever/1000; // kN/m
+    let Mstar = bendingForce*lever/2/1000; // kNm/m
     momentX.value = Mstar.toFixed();
 
-    var steelArea = Mstar/(0.85*fsy.valueAsNumber*d0())*1e6;
-    var minSteelArea = 0.20*(h/d0())**2 * (fctf/fsy.valueAsNumber) * 1000*h;
-    var nBars = Math.max(steelArea,minSteelArea)/(Math.PI*db**2/4);
-    var spacing = 1000/nBars;
+    let steelArea = Mstar/(0.85*fsy.valueAsNumber*d0())*1e6;
+    let minSteelArea = 0.20*(h/d0())**2 * (fctf/fsy.valueAsNumber) * 1000*h;
+    let nBars = Math.max(steelArea,minSteelArea)/(Math.PI*db**2/4);
+    let spacing = 1000/nBars;
     bars.value = "N" + db + " @ " + spacing.toFixed() + "mm";
     bars.style.width = "12ch";
 
