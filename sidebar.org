@@ -9,6 +9,6 @@
 ** [[file:index.org][Home]]
 ** [[file:posts/pad-footing.org][Pad footings]]
 ** [[file:posts/strip-footing.org][Strip footings]]
-
-** TODO [[file:posts/cross-section-properties.org][Cross section properties]]
-** TODO [[file:posts/rc-beam.org][RC Beam]]
+** [[file:posts/bored-piles.org][Bored piles]]
+** TODO [[file:posts/cross-section-properties.org][Cross section properties]] :noexport:
+** TODO [[file:posts/rc-beam.org][RC Beam]]                        :noexport:
