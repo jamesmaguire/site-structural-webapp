@@ -10,5 +10,5 @@
 ** [[file:posts/pad-footing.org][Pad footings]]
 ** [[file:posts/strip-footing.org][Strip footings]]
 ** [[file:posts/bored-piles.org][Bored piles]]
-# ** TODO [[file:posts/cross-section-properties.org][Cross section properties]]
+** [[file:posts/cross-section-properties.org][Cross section properties]]
 # ** TODO [[file:posts/rc-beam.org][RC Beam]]

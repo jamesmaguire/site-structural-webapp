@@ -1,16 +1,33 @@
 #+title: Cross section properties
 #+setupfile: post.setup
-#+HTML_HEAD: <body onload="draw();">
+#+HTML_HEAD: <body onload="updatePage();">
+#+HTML_HEAD: <script type="text/javascript" src="../static/cross-section-properties.js"></script>
+#+include: "../statusicon.org"
+#+include: "../sidebar.org"
 
 * Circle
-$$ I = \frac{\pi}{4}r^4 $$
 
-#+begin_export html
-<canvas id="cs-circle" width="150" height="150"></canvas>
-#+end_export
+@@html:<canvas id="circleFig" width="150" height="150" draggable="true"></canvas>@@
+
+Radius, r = @@html:<input id="circleR" type="number" value="16" onkeypress="eventHandler(event)"></input>@@ mm
+
+** Second moment of area
+\( I_x = \frac{\pi}{4}r^4 \)
+= @@html:<input id="circleImm4" type="number" value="0" readonly></input>@@ mm^4
+= @@html:<input id="circleIm4" type="number" value="0" readonly></input>@@ m^4
 
 * Rectangle
-$$ I = \frac{bh^3}{12} $$
+
+@@html:<canvas id="rectangleFig" width="150" height="150" draggable="true"></canvas>@@
+
+Width, b = @@html:<input id="rectangleb" type="number" value="200" onkeypress="eventHandler(event)"></input>@@ mm
+
+Height, h = @@html:<input id="rectangleh" type="number" value="300" onkeypress="eventHandler(event)"></input>@@ mm
+
+** Second moment of area
+\( I_x = \frac{bh^3}{12} \)
+= @@html:<input id="rectImm4" type="text" value="0" readonly></input>@@ mm^4
+= @@html:<input id="rectIm4" type="text" value="0" readonly></input>@@ m^4
 
 * Parallel axis theorem
-$$ I' = I + Ad^2 $$
+\( I' = I + Ad^2 \)
