@@ -36,11 +36,11 @@ Design load = @@html:<input id="load" type="number" value="250" onkeypress="even
 
 Axial capacity = @@html:<input id="axialCapacity" type="number" value="0" readonly></input>@@ kN
 
-Axial check = @@html:<input id="axialCheck" type="number" value="0" readonly></input>@@ kN
+Axial check = @@html:<input id="axialCheck" type="number" value="0" readonly></input>@@
 
 Unreinforced capacity = @@html:<input id="noreoAxialCapacity" type="number" value="0" readonly></input>@@ kN
 
-Unreinforced axial check = @@html:<input id="noreoAxialCheck" type="number" value="0" readonly></input>@@ kN
+Unreinforced axial check = @@html:<input id="noreoAxialCheck" type="number" value="0" readonly></input>@@
 * Soil capacity
 
 Bearing capacity = @@html:<input id="bearingCapacity" type="number" value="0" readonly></input>@@ kN
