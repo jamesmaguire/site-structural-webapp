@@ -1,0 +1,70 @@
+#+title: RC columns
+#+setupfile: post.setup
+#+HTML_HEAD: <body onload="updatePage();">
+#+HTML_HEAD: <script type="text/javascript" src="../static/rc-column.js"></script>
+#+include: "../statusicon.org"
+#+include: "../sidebar.org"
+
+* Tasks [0/2]                                                      :noexport:
+** TODO Implement circular columns
+- [ ] In figure
+- [ ] In calculations
+** TODO Design for shear?
+
+* Figure
+@@html:<canvas id="columnFigure" width="250" height="250" draggable="true"></canvas>@@
+
+* Column geometry
+
+Section type = @@html:
+<select id="colShape" value="Rectangle" onkeypress="eventHandler(event)">
+<option value="rect">Rectangle</option>
+<option value="circ">Circle</option>
+</select>
+@@
+
+Height = @@html:<input id="colHeight" type="number" value="3000" onkeypress="eventHandler(event)"></input>@@ mm
+
+Eff length factor, k_X = @@html:<input id="colkX" type="number" value="1.0" onkeypress="eventHandler(event)"></input>@@, k_Y = @@html:<input id="colkY" type="number" value="1.0" onkeypress="eventHandler(event)"></input>@@
+
+Dimension X = @@html:<input id="colDx" type="number" value="600" onkeypress="eventHandler(event)"></input>@@ mm
+
+Dimension Y = @@html:<input id="colDy" type="number" value="250" onkeypress="eventHandler(event)"></input>@@ mm
+
+Diameter = @@html:<input id="colDia" type="number" value="500" onkeypress="eventHandler(event)"></input>@@ mm
+
+* Concrete
+
+Concrete strength = @@html:<input id="concreteStrength" type="number" value="32" onkeypress="eventHandler(event)"></input>@@ MPa
+
+Concrete cover = @@html:<input id="cover" type="number" value="40" onkeypress="eventHandler(event)"></input>@@ mm
+
+* Longitudinal steel
+
+Bar diameter = @@html:<input id="bardb" type="number" value="16" onkeypress="eventHandler(event)"></input>@@ mm
+
+Yield stress = @@html:<input id="barYield" type="number" value="500" onkeypress="eventHandler(event)"></input>@@ MPa
+
+Bars - top/btm = @@html:<input id="nbarsTB" type="number" value="3" onkeypress="eventHandler(event)"></input>@@ (Space: @@html:<input id="barSpcX" type="number" value="0" readonly></input>@@ mm)
+
+Bars - side = @@html:<input id="nbarsSide" type="number" value="2" onkeypress="eventHandler(event)"></input>@@ (Space: @@html:<input id="barSpcY" type="number" value="0" readonly></input>@@ mm)
+
+Bars - total = @@html:<input id="nbars" type="number" value="0" readonly></input>@@
+
+* Steel ties
+
+Bar diameter = @@html:<input id="tiedb" type="number" value="12" onkeypress="eventHandler(event)"></input>@@ mm
+
+Yield stress = @@html:<input id="tieYield" type="number" value="500" onkeypress="eventHandler(event)"></input>@@ MPa
+
+* Design load
+
+Dead load, G = @@html:<input id="deadLoad" type="number" value="1000" onkeypress="eventHandler(event)"></input>@@ kN
+
+Live load, Q = @@html:<input id="liveLoad" type="number" value="500" onkeypress="eventHandler(event)"></input>@@ kN
+
+Ultimate N* = @@html:<input id="loadULS" type="number" value="0" readonly></input>@@ kN
+
+Fire N*_f = @@html:<input id="loadFire" type="number" value="0" readonly></input>@@ kN
+
+\beta_d = @@html:<input id="beta" type="number" value="0" readonly></input>@@
