@@ -71,8 +71,8 @@ body {
 }
 .status-green {
   color: darkgreen;
-  background: ivory;
-  border: 1px solid darkgreen;
+  background: none;
+  border: 1px solid #eeeef3;
   transition-duration: 0.2s;
 }
 

@@ -27,12 +27,13 @@ function sidebarToggle()
 
 function setStatusOutofdate()
 {
-    statusbutton.textContent = "▶ Run analysis";
+    document.getElementById('text-results-window').innerHTML = "";
+    statusbutton.innerHTML = "▶ &nbsp Run analysis";
     statusbutton.className = "status-red";
 }
 
 function setStatusUptodate()
 {
-    statusbutton.textContent = "👍 Up to date"; // (Thumbs up unicode);
+    statusbutton.innerHTML = "👍 &nbsp Up to date"; // (Thumbs up unicode);
     statusbutton.className = "status-green";
 }
