@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
 
 #org-div-home-and-up {
   display: none;
@@ -7,7 +6,7 @@
 
 body {
   background: #eeeef2;
-  font-family: sans-serif;
+  font-family: "Roboto Mono", sans-serif;
   font-size: 10pt;
   line-height: 1;
 }
@@ -86,10 +85,6 @@ p {
   margin: 0;
   padding: 0;
 }
-/* .navbar::before {
-  font-weight: bold;
-  content: "\00B7  ";  
-} */
 .navbar .org-svg {
   height: 2rem;
   margin: 0;
@@ -104,7 +99,7 @@ p {
   padding-left: 0.5rem;
 }
 .navbar h3 {
-  font-weight: normal;
+  font-weight: bold;
   font-size: 100%;
   padding: 0.2rem;
 }
@@ -115,12 +110,11 @@ p {
 }
 
 .title {
-  text-transform: capitalize;
-  text-decoration: underline;
-  font-size: 150%;
-  font-weight: normal;
+  text-transform: uppercase;
+  font-size: 130%;
+  font-weight: bold;
   text-align: left;
-  margin-top: 4rem;
+  margin-top: 5rem;
   margin-bottom: 0.2rem;
 }
 

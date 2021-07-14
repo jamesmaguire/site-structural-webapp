@@ -5,10 +5,15 @@
 }
 
 body {
-  background: white;
+  background: #eeeef3;
   font-family: 'Roboto Mono',mono;
   font-size: 10pt;
   line-height: 1.1;
+}
+
+.org-svg {
+  height: 10rem;
+  margin-bottom: 2rem;
 }
 
 #content {
@@ -31,9 +36,8 @@ body {
 }
 
 input {
-  border: 1px solid orange;
-  border-radius: 3px;
-  background: cornsilk;
+  border: 1px solid grey;
+  background: white;
   width: 7ch;
   text-align: center;
   font-family: mono;

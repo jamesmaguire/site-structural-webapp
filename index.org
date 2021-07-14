@@ -3,10 +3,10 @@
 #+include: "navbar.org"
 
 * Description
-This is a website created by James Maguire to solve simple structural engineering design problems. There is no warranty of correctness of these applications and results must be checked by other methods by an experienced engineer if they are to be used for design purposes.
+This is a website created by JM to solve simple structural engineering design problems. There is no warranty of correctness of these applications and results must be checked by other methods by an experienced engineer if they are to be used for design purposes.
 
 * Usage
-Input boxes with an @@html:<input value="orange" readonly></input>@@ background are design inputs. Once an input is changed, the indicator on the top right of the page will show that the analysis must be re-run. To run the analysis press =ENTER= in any of the input fields.
+Input boxes that look like @@html:<input value="this" readonly></input>@@ are design inputs. Once an input is changed, the indicator on the top right of the page will show that the analysis must be re-run. To run the analysis press =ENTER= in any of the input fields.
 
 
 * Todos                                                            :noexport:
