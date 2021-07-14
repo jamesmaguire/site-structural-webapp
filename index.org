@@ -15,7 +15,8 @@ Input boxes with an @@html:<input value="orange" readonly></input>@@ background 
 ** TODO Page: beam bending formulae
 ** TODO Page: Beam moment capacity (+ drawing)
 
-** TODO Update favicon
-** TODO Check on post.setup
-** TODO Update CSS
-- Search/filter navbar
+** TODO Search/filter navbar
+** TODO Update Up to date icon css
+** TODO Fix sub/super scripts
+** TODO Update navbar css
+** TODO Create output textbox
