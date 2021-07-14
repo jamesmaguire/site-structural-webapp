@@ -6,7 +6,7 @@
 
 body {
   background: #eeeef2;
-  font-family: "Roboto Mono", sans-serif;
+  font-family: "Roboto Mono",monospace;
   font-size: 10pt;
   line-height: 1;
 }
