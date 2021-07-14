@@ -164,10 +164,10 @@ function calculateULS()
         guess = forces['Cc'] + forces['Cs'] + forces['Ts'];
     }
 
-    ulsku.value = ku.toPrecision(4);
+    ulsku.value = ku.toFixed(2);
     setPassFail(ulsku, 0.36);
     let dn = ku*effectiveD.valueAsNumber;
-    ulsdn.value = dn.toPrecision(4);
+    ulsdn.value = dn.toFixed(1);
 
     let gamma = calcGamma(concreteStrength.valueAsNumber);
     let leverCc = gamma*dn/2;
@@ -178,4 +178,7 @@ function calculateULS()
         + Math.abs(forces['Ts'])*leverTs;
     let phi = Math.max(Math.min(1.24 - 13*ku/12, 0.85), 0.65); // Check
     phiMu.value = (phi*Mu/1e6).toFixed();
+
+    momentCheck.value = (Mstar.valueAsNumber/(phi*Mu/1e6)).toFixed(2);
+    setPassFail(momentCheck);
 }
