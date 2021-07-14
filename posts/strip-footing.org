@@ -3,7 +3,7 @@
 #+HTML_HEAD: <body onload="updatePage();">
 #+HTML_HEAD: <script type="text/javascript" src="../static/strip-footing.js"></script>
 #+include: "../statusicon.org"
-#+include: "../sidebar.org"
+#+include: "../navbar.org"
 
 * Figure
 @@html:<canvas id="stripFootingFigure" width="250" height="250" draggable="true"></canvas>@@

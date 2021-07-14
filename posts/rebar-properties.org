@@ -3,7 +3,7 @@
 #+HTML_HEAD: <body onload="updatePage();">
 #+HTML_HEAD: <script type="text/javascript" src="../static/rebar-properties.js"></script>
 #+include: "../statusicon.org"
-#+include: "../sidebar.org"
+#+include: "../navbar.org"
 
 * Rebar properties
 

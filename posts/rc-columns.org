@@ -3,7 +3,7 @@
 #+HTML_HEAD: <body onload="updatePage();">
 #+HTML_HEAD: <script type="text/javascript" src="../static/rc-column.js"></script>
 #+include: "../statusicon.org"
-#+include: "../sidebar.org"
+#+include: "../navbar.org"
 
 * Tasks [0/2]                                                      :noexport:
 ** TODO Implement circular columns

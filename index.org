@@ -1,6 +1,6 @@
 #+title: Structural design applications
 #+setupfile: index.setup
-#+include: "sidebar.org"
+#+include: "navbar.org"
 
 * Description
 This is a website created by James Maguire to solve simple structural engineering design problems. There is no warranty of correctness of these applications and results must be checked by other methods by an experienced engineer if they are to be used for design purposes.

@@ -15,16 +15,6 @@ function setPassFail (obj, threshold = 1) {
     }
 }
 
-function sidebarToggle()
-{
-    var sidebarObj = document.getElementsByClassName("sidebar")[0];
-    if (sidebarObj.style.display == "block") {
-        sidebarObj.style.display = "none";
-    } else {
-        sidebarObj.style.display = "block";
-    }
-}
-
 function setStatusOutofdate()
 {
     if (document.getElementById('text-results-window') != null) {

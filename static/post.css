@@ -39,7 +39,7 @@ p {
 
 #statusbutton {
   position: fixed;
-  top: 1.0rem;
+  bottom: 1.0rem;
   right: 1.5rem;
   padding: 0.7rem;
   padding-top: 0.4rem;
@@ -51,51 +51,62 @@ p {
   color: darkred;
   background: #fee;
   border: 1px solid darkred;
-  transition-duration: 0.2s;
+  transition-duration: 0.4s;
 }
 .status-red:hover {
   background: white;
-  transition-duration: 0.2s;
+  transition-duration: 0.4s;
   cursor: pointer;
 }
 .status-green {
   color: darkgreen;
   background: none;
   border: 1px solid #eeeef300;
-  transition-duration: 0.2s;
+  transition-duration: 0.4s;
 }
 
-.sidebar {
-  display: none;
-  position: fixed;
-  left: 1rem;
-  top: 0;
-  background: white;
-  z-index: 1;
-  padding: 2rem;
-  padding-top: 1.4rem;
-  margin-top: -0.7rem;
-  height: 100%;
-  box-shadow: 0 0 1rem 0 lightgrey;
-}
-.sidebar-sliver {
-  position: fixed;
+.navbar {
+  position: absolute;
   left: 0;
   top: 0;
-  width: 2rem;
-  box-shadow: 0 0 1rem 0 #ddd;
-  height: 110%;
-  padding: 0.2rem;
-  margin-top: -1rem;
-  background: white;
-  z-index: 2;
-}
-button {
-  margin: 0;
-  padding: 0.5rem;
+  width: calc(100% - 1.5rem);
   background: none;
+  margin: 0;
+  padding: 0.1rem;
+  padding-left: 1rem;
   border: none;
-  font-size: 200%;
+  border-bottom: 1px solid lightgrey;
+}
+.navbar .outline-3 {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+}
+.navbar h2 {
+  margin: 0;
+  padding: 0;
+}
+/* .navbar::before {
+  font-weight: bold;
+  content: "\00B7  ";  
+} */
+.navbar .org-svg {
+  height: 2rem;
+  margin: 0;
+  padding: 0;
+  margin-right: 0.5rem;
+  margin-bottom: -0.7rem;
+  margin-top: -1rem;
+}
+.navbar h3::after {
+  font-weight: bold;
+  content: "\00B7  ";
+  padding-left: 0.5rem;
+}
+.navbar h3 {
+  font-weight: normal;
+  font-size: 100%;
+  padding: 0.2rem;
 }
 
 .title p, .author p, .date p {
@@ -109,7 +120,7 @@ button {
   font-size: 150%;
   font-weight: normal;
   text-align: left;
-  margin-top: 3rem;
+  margin-top: 4rem;
   margin-bottom: 0.2rem;
 }
 
@@ -145,22 +156,6 @@ canvas {
   background: white;
   border: 1px solid darkgrey;
 }
-
-label {
-  display: inline-block;
-  float: left;
-  clear: left;
-  min-width: 20ch;
-  text-align: left;
-  margin-right: 1rem;
-}
-#units {
-  display: inline-block;
-  float: left;
-  margin-left: 0.5rem;
-  width: 6ch;
-}
-
 
 input {
   border: none;
