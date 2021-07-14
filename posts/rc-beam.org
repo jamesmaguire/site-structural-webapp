@@ -13,43 +13,45 @@
 
 * Beam design
 
-{{{input(Beam width,beamWidth,300,mm)}}}
+Beam width {{{input(beamWidth,300,mm)}}}
 
-{{{input(Beam depth,beamDepth,400,mm)}}}
+Beam depth {{{input(beamDepth,400,mm)}}}
 
-{{{input(Tension bars,nbarsTension,2,)}}}
-{{{input(d_b,dbTension,16,mm)}}}
+Tension bars {{{input(nbarsTension,2,)}}} {{{barinput(dbTension,16)}}}
 
-{{{input(Compression bars,nbarsCompression,0,,)}}}
-{{{input(d_b,dbCompression,12,mm)}}}
+Compression bars {{{input(nbarsCompression,0,)}}} {{{barinput(dbCompression,12)}}}
 
-{{{input(Cover,cover,40,mm)}}}
+Cover {{{input(cover,40,mm)}}}
 
-{{{output(Effective depth,effectiveD,0,mm)}}}
+Effective depth {{{output(effectiveD,mm)}}}
 
 * Material properties
 
-{{{input(Concrete strength,concreteStrength,40,MPa)}}}
+Concrete strength {{{input(concreteStrength,40,MPa)}}}
 
-{{{output(Concrete strain,epsilonc,0.003,)}}}
+Concrete strain {{{output(epsilonc,)}}}
 
-{{{input(Steel strength,steelStrength,500,MPa)}}}
+Steel strength {{{input(steelStrength,500,MPa)}}}
 
-{{{input(Steel modulus,steelModulus,200,GPa)}}}
+Steel modulus {{{input(steelModulus,200,GPa)}}}
 
-{{{output(\alpha_2,alpha2,0,)}}}
+\alpha_2 {{{output(alpha2,)}}}
 
-{{{output(\gamma,gamma,0,)}}}
+\gamma {{{output(gamma,)}}}
 
 * Ultimate limit state
 
-{{{output(k_u,ulsku,0,)}}}
+Design moment, M* {{{input(Mstar,50,kNm)}}}
 
-{{{output(d_n,ulsdn,0,mm)}}}
+k_u {{{output(ulsku,)}}}
 
-{{{output(Moment capacity \Phi.M_u,phiMu,0,kNm)}}}
+d_n {{{output(ulsdn,mm)}}}
 
-* Determination of dn
+Moment capacity \Phi{}M_u {{{output(phiMu,kNm)}}}
+
+Moment check {{{output(momentCheck,)}}}
+
+* Determination of dn                                              :noexport:
 ** Strains
 Concrete strain: \varepsilon_c = 0.003
 

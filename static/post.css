@@ -37,24 +37,6 @@ p {
   padding-left: 0.8rem;
 }
 
-/* .status {
-  position: fixed;
-  top: 1.0rem;
-  right: 1.5rem;
-  border: none;
-  width: 20ch;
-  min-width: 0;
-  padding: 0;
-  text-align: right;
-  margin: 0;
-  color: darkgreen;
-  font-weight: bold;
-  font-size: 120%;
-}
-.status h2 {
-  padding: 0;
-  margin: 0;
-} */
 #statusbutton {
   position: fixed;
   top: 1.0rem;
@@ -79,7 +61,7 @@ p {
 .status-green {
   color: darkgreen;
   background: none;
-  border: 1px solid #eeeef3;
+  border: 1px solid #eeeef300;
   transition-duration: 0.2s;
 }
 
@@ -179,16 +161,30 @@ label {
   width: 6ch;
 }
 
+
 input {
-  display: inline-block;
-  float: left;
-  border: 1px solid darkgrey;
-  background: white;
-  width: 8ch;
-  padding: 0.1rem;
-  margin-top: -0.3rem;
-  margin-bottom: 0.4rem;
+  border: none;
+  background: none;
+  width: 6ch;
+  padding-right: 0;
+  padding-left: 0;
+  margin-bottom: 0.2rem;
+  margin-top: 0.2rem;
 }
+.inputspan {
+  border: 1px solid grey;
+  padding: 0.1rem;
+  padding-right: 0.2rem;
+  padding-left: 0.2rem;
+  background: white;
+}
+.right {
+  text-align: right;
+}
+.left {
+  text-align: left;
+}
+
 /* Hide spinners */
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
@@ -208,10 +204,12 @@ input[readonly] {
 .PASS {
   background: honeydew !important;
   color: darkgreen !important;
+  padding-right: 0.2rem;
 }
 .FAIL {
   background: lightpink !important;
   color: darkred !important;
+  padding-right: 0.2rem;
 }
 
 .results-window {

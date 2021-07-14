@@ -10,82 +10,78 @@
 
 * Footing parameters
 
-{{{input(Footing height,footingHeight,500,mm)}}}
+Footing height {{{input(footingHeight,500,mm)}}}
 
-{{{input(Footing length (x),Lx,2400,mm)}}}
+Footing length (x) {{{input(Lx,2400,mm)}}}
 
-{{{input(Footing length (y),Ly,2400,mm)}}}
+Footing length (y) {{{input(Ly,2400,mm)}}}
 
-{{{output(Footing area,footingArea,0,m^2)}}}
+Footing area {{{output(footingArea,m^2)}}}
 
-{{{input(Concrete strength,concreteStrength,25,MPa)}}}
+Concrete strength {{{input(concreteStrength,25,MPa)}}}
 
-{{{input(Concrete unit weight,gammac,25,kN/m^3)}}}
+Concrete unit weight {{{input(gammac,25,kN/m^3)}}}
 
 * Column parameters
 
-{{{input(Column length (x),Lcx,300,mm)}}}
+Column length (x) {{{input(Lcx,300,mm)}}}
 
-{{{input(Column length (y),Lcy,1000,mm)}}}
+Column length (y) {{{input(Lcy,1000,mm)}}}
 
-{{{input(Eccentricity (x),eccentricityX,0,mm)}}}
+Eccentricity (x) {{{input(eccentricityX,0,mm)}}}
 
-{{{input(Eccentricity (y),eccentricityY,0,mm)}}}
+Eccentricity (y) {{{input(eccentricityY,0,mm)}}}
 
 * Steel parameters
 
-{{{input(Steel strength,fsy,500,MPa)}}}
+Steel strength {{{input(fsy,500,MPa)}}}
 
-{{{input(Bar diameter,barDiameter,12,mm)}}}
+Bar diameter {{{barinput(barDiameter,12)}}}
 
-{{{input(Cover,cover,50,mm)}}}
+Cover {{{input(cover,50,mm)}}}
 
 @@html:<label>Min fitments = </label><input id="fitments" type="checkbox" value="false" oninput="updatePage()"></input>@@
 
 * Loading
 
-{{{input(Dead load,deadLoad,800,kN)}}}
+Dead load {{{input(deadLoad,800,kN)}}}
 
-{{{input(Live load,liveLoad,200,kN)}}}
+Live load {{{input(liveLoad,200,kN)}}}
 
-{{{input(Dead load factor Ψ_G,psiG,1.2,)}}}
+Dead load factor Ψ_G {{{input(psiG,1.2,)}}}
 
-{{{input(Live load factor Ψ_Q,psiQ,1.5,)}}}
+Live load factor Ψ_Q {{{input(psiQ,1.5,)}}}
 
-{{{output(Pressure (ULS),pressureULS,0,kPa)}}}
+Pressure (ULS) {{{output(pressureULS,kPa)}}}
 
 * Bearing
 
-{{{input(Soil bearing capacity,qs,250,kPa)}}}
+Soil bearing capacity {{{input(qs,250,kPa)}}}
 
-{{{output(Pressure applied q*,qstar,0,kPa)}}}
+Pressure applied q* {{{output(qstar,kPa)}}}
 
-{{{output(Bearing check,bearingCheck,0,)}}}
+Bearing check {{{output(bearingCheck,)}}}
 
 * Punching shear
 
-{{{output(Shear applied V*,shearLoad,0,kN)}}}
+Shear applied V* {{{output(shearLoad,kN)}}}
 
-{{{output(Shear capacity ΦV_{uo},punchingCapacity,0,kN)}}}
+Shear capacity ΦV_{uo} {{{output(punchingCapacity,kN)}}}
 
-{{{output(Punching shear check,punchingCheck,0,)}}}
+Punching shear check {{{output(punchingCheck,)}}}
 
 * Moment check
 
-{{{output(Moment applied M*_x,momentX,0,kNm)}}}
-{{{output(Moment applied M*_y,momentY,0,kNm)}}}
+Moment applied, M*_x {{{output(momentX,kNm)}}}, M*_y {{{output(momentY,kNm)}}}
                 
-{{{output(Bars in X,barsX,0,)}}}
+Bars in X {{{textoutput(barsX)}}}
 
-{{{output(Bars in Y,barsY,0,)}}}
+Bars in Y {{{textoutput(barsY)}}}
 
 * Shear check
 
-{{{output(Shear applied V*_x,shearX,0,kN)}}}
-{{{output(Shear applied V*_y,shearY,0,kN)}}}
+Shear applied, V*_x {{{output(shearX,kN)}}}, V*_y {{{output(shearY,kN)}}}
 
-{{{output(Shear capacity ΦV_{ucx},shearCapacityX,0,kN)}}}
-{{{output(Shear capacity ΦV_{ucy},shearCapacityY,0,kN)}}}
+Shear capacity, ΦV_{ucx} {{{output(shearCapacityX,kN)}}}, ΦV_{ucy} {{{output(shearCapacityY,kN)}}}
 
-{{{output(Shear check V*_x/ΦV_{ucx},shearCheckX,0,)}}}
-{{{output(Shear check V*_y/ΦV_{ucy},shearCheckY,0,)}}}
+Shear check, V*_x/ΦV_{ucx} {{{output(shearCheckX,)}}}, V*_y/ΦV_{ucy} {{{output(shearCheckY,)}}}

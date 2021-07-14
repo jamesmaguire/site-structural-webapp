@@ -10,58 +10,58 @@
 
 * Footing parameters
 
-{{{input(Footing height,footingHeight,500,mm)}}}
+Footing height {{{input(footingHeight,500,mm)}}}
 
-{{{input(Footing width,footingWidth,2400,mm)}}}
+Footing width {{{input(footingWidth,2400,mm)}}}
 
-{{{input(Concrete strength,concreteStrength,32,MPa)}}}
+Concrete strength {{{input(concreteStrength,32,MPa)}}}
 
-{{{input(Concrete unit weight,gammac,25,kN/m^3)}}}
+Concrete unit weight {{{input(gammac,25,kN/m^3)}}}
 
 * Wall parameters
 
-{{{input(Wall width,wallWidth,300,mm)}}}
+Wall width {{{input(wallWidth,300,mm)}}}
 
-{{{input(Eccentricity,eccentricity,0,mm)}}}
+Eccentricity {{{input(eccentricity,0,mm)}}}
 
 * Steel parameters
 
-{{{input(Steel strength,fsy,500,MPa)}}}
+Steel strength {{{input(fsy,500,MPa)}}}
 
-{{{input(Bar diameter,barDiameter,12,mm)}}}
+Bar diameter {{{input(barDiameter,12,mm)}}}
 
-{{{input(Cover,cover,50,mm)}}}
+Cover {{{input(cover,50,mm)}}}
 
 * Loading
 
-{{{input(Dead load,deadLoad,250,kN/m)}}}
+Dead load {{{input(deadLoad,250,kN/m)}}}
 
-{{{input(Live load,liveLoad,50,kN/m)}}}
+Live load {{{input(liveLoad,50,kN/m)}}}
 
-{{{input(Dead load factor Ψ_G,psiG,1.2,)}}}
+Dead load factor Ψ_G {{{input(psiG,1.2,)}}}
 
-{{{input(Live load factor Ψ_Q,psiQ,1.5,)}}}
+Live load factor Ψ_Q {{{input(psiQ,1.5,)}}}
 
-{{{output(Pressure (ULS),pressureULS,0,kPa)}}}
+Pressure (ULS) {{{output(pressureULS,kPa)}}}
 
 * Bearing
 
-{{{output(Soil bearing capacity,qs,250,kPa)}}}
+Soil bearing capacity {{{input(qs,250,kPa)}}}
 
-{{{output(Pressure applied q*,qstar,0,kPa)}}}
+Pressure applied q* {{{output(qstar,kPa)}}}
 
-{{{output(Bearing check,bearingCheck,0,)}}}
+Bearing check {{{output(bearingCheck,)}}}
 
 * Moment check
 
-{{{output(Moment applied M*_x,momentX,0,kNm/m)}}}
+Moment applied M*_x {{{output(momentX,kNm/m)}}}
 
-{{{textoutput(Reinforcement bars,bars,0,)}}}
+Reinforcement bars {{{textoutput(bars,0,)}}}
 
 * Shear check
 
-{{{output(Shear applied V*,shearLoad,0,kN/m)}}}
+Shear applied V* {{{output(shearLoad,kN/m)}}}
 
-{{{output(Shear capacity ΦV_{uc},shearCapacity,0,kN/m)}}}
+Shear capacity ΦV_{uc} {{{output(shearCapacity,kN/m)}}}
 
-{{{output(Shear check V*/ΦV_{uc},shearCheck,0,)}}}
+Shear check V*/ΦV_{uc} {{{output(shearCheck,)}}}

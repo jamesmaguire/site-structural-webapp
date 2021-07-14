@@ -13,6 +13,10 @@
 #+HTML_LINK_UP: ../index.html
 
 # Macros
-#+macro: input @@html:<label>$1 </label><input id="$2" type="number" value="$3" onkeypress="eventHandler(event)"></input><div id=units>$4</div>@@
-#+macro: output @@html:<label>$1 </label><input id="$2" type="number" value="$3" onkeypress="eventHandler(event)" readonly></input><div id=units>$4</div>@@
-#+macro: textoutput @@html:<label>$1 </label><input id="$2" type="text" value="$3" onkeypress="eventHandler(event)" readonly></input><div id=units>$4</div>@@
+#+macro: input @@html:<span class="inputspan"><input id="$1" class="right" type="number" value="$2" onkeypress="eventHandler(event)"> $3</span>@@
+
+#+macro: barinput @@html:<span class="inputspan">N<input id="$1" class="left" type="number" value="$2" onkeypress="eventHandler(event)"></span>@@
+
+#+macro: output @@html:<span class="outputspan"><input id="$1" class="right" type="number" value="0" readonly> $2</span>@@
+
+#+macro: textoutput @@html:<span class="outputspan"><input id="$1" class="right" type="text" value="0" readonly></span>@@

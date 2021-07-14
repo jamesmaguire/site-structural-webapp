@@ -7,9 +7,9 @@
 
 * Rebar properties
 
-{{{input(Rebar diameter d_b,diameter,16,mm)}}}
+Rebar diameter, d_b {{{barinput(diameter,16)}}}
 
-{{{input(Yield strength,yieldStrength,500,MPa)}}}
+Yield strength, f_sy {{{input(yieldStrength,500,MPa)}}}
 
 * Results
 :PROPERTIES:

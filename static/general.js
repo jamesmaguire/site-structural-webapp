@@ -7,11 +7,11 @@ function eventHandler(event)
     }
 }
 
-        obj.className = 'PASS';
 function setPassFail (obj, threshold = 1) {
     if (obj.valueAsNumber < threshold) {
+        obj.className = 'PASS right';
     } else {
-        obj.className = 'FAIL';
+        obj.className = 'FAIL right';
     }
 }
 

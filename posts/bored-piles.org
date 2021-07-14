@@ -10,51 +10,52 @@
 
 * Pile parameters
 
-{{{input(Concrete strength,concreteStrength,32,MPa)}}}
+Concrete strength {{{input(concreteStrength,32,MPa)}}}
 
-{{{input(Pile diameter,diameter,600,mm)}}}
+Pile diameter {{{input(diameter,600,mm)}}}
 
-{{{input(Longitudinal bar diameter,barDiameter,16,mm)}}}
+Longitudinal bar diameter {{{input(barDiameter,16,mm)}}}
 
-{{{input(Tie diameter,tieDiameter,10,mm)}}}
+Tie diameter {{{input(tieDiameter,10,mm)}}}
 
-{{{input(Concrete cover,cover,50,mm)}}}
+Concrete cover {{{input(cover,50,mm)}}}
 
-{{{input(Concrete placement factor k,placementFactor,0.75,)}}}
+Concrete placement factor k {{{input(placementFactor,0.75,)}}}
 
 * Loading parameters
 
-{{{input(Soil bearing capacity,endBearing,1000,kPa)}}}
+Soil bearing capacity {{{input(endBearing,1000,kPa)}}}
 
-{{{input(Shaft adhesion,shaftAdhesion,0,kPa)}}}
+Shaft adhesion {{{input(shaftAdhesion,0,kPa)}}}
 
-{{{input(Embedment depth,embedment,0,m)}}}
+Embedment depth {{{input(embedment,0,m)}}}
 
-{{{input(Design load,load,250,kN)}}}
+Design load {{{input(load,250,kN)}}}
 
 * Axial strength
 
-{{{output(Axial capacity,axialCapacity,0,kN)}}}
+Axial capacity {{{output(axialCapacity,kN)}}}
 
-{{{output(Axial check,axialCheck,0,)}}}
+Axial check {{{output(axialCheck,)}}}
 
-{{{output(Unreinforced capacity,noreoAxialCapacity,0,kN)}}}
+Unreinforced capacity {{{output(noreoAxialCapacity,kN)}}}
 
-{{{output(Unreinforced axial check,noreoAxialCheck,0,)}}}
+Unreinforced axial check {{{output(noreoAxialCheck,)}}}
+
 * Soil capacity
 
-{{{output(Bearing capacity,bearingCapacity,0,kN)}}}
+Bearing capacity {{{output(bearingCapacity,kN)}}}
 
-{{{output(Skin friction capacity,frictionCapacity,0,kN)}}}
+Skin friction capacity {{{output(frictionCapacity,kN)}}}
 
-{{{output(Total soil capacity,soilCapacity,0,kN)}}}
+Total soil capacity {{{output(soilCapacity,kN)}}}
 
-{{{output(Soil check,soilCheck,0,)}}}
+Soil check {{{output(soilCheck,)}}}
 
 * Reinforcement
 
-{{{textoutput(Longitudinal bars (min),longBars,0,)}}}
+Longitudinal bars (min) {{{textoutput(longBars)}}}
 
-{{{output(Bar spacing,spacing,0,mm)}}}
+Bar spacing {{{output(spacing,mm)}}}
 
-{{{textoutput(Ties,tieBars,0,)}}}
+Ties {{{textoutput(tieBars)}}}

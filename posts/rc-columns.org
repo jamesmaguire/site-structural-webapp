@@ -23,52 +23,48 @@ Section type = @@html:
 </select>
 @@
 
-{{{input(Height,colHeight,3000,mm)}}}
+Height {{{input(colHeight,3000,mm)}}}
 
-{{{input(Eff length factor k_X,colkX,1.0,)}}}
-{{{input(k_Y,colkY,1.0,)}}}
+Eff length factor, k_X {{{input(colkX,1.0,)}}}, k_Y {{{input(colkY,1.0,)}}}
 
-{{{input(Dimension X,colDx,600,mm)}}}
+Dimension X {{{input(colDx,600,mm)}}}
 
-{{{input(Dimension Y,colDy,250,mm)}}}
+Dimension Y {{{input(colDy,250,mm)}}}
 
-{{{input(Diameter,colDia,500,mm)}}}
+Diameter {{{input(colDia,500,mm)}}}
 
 * Concrete
 
-{{{input(Concrete strength,concreteStrength,32,MPa)}}}
+Concrete strength {{{input(concreteStrength,32,MPa)}}}
 
-{{{input(Concrete cover,cover,40,mm)}}}
+Concrete cover {{{input(cover,40,mm)}}}
 
 * Longitudinal steel
 
-{{{input(Bar diameter,bardb,16,mm)}}}
+Bar diameter {{{input(bardb,16,mm)}}}
 
-{{{input(Yield stress,barYield,500,MPa)}}}
+Yield stress {{{input(barYield,500,MPa)}}}
 
-{{{input(Bars - top/btm,nbarsTB,3,)}}}
+Bars - top/btm {{{input(nbarsTB,3,)}}} (Space: {{{output(barSpcX,mm)}}})
 
-(Space: @@html:<input id="barSpcX" type="number" value="0" readonly></input>@@ mm)
+Bars - side {{{input(nbarsSide,2,)}}} (Space: {{{output(barSpcY,mm)}}})
 
-{{{input(Bars - side,nbarsSide,2,)}}}
-(Space: @@html:<input id="barSpcY" type="number" value="0" readonly></input>@@ mm)
-
-{{{output(Bars - total,nbars,0,)}}}
+Bars - total {{{output(nbars,)}}}
 
 * Steel ties
 
-{{{input(Bar diameter,tiedb,12,mm)}}}
+Bar diameter {{{barinput(tiedb,12)}}}
 
-{{{input(Yield stress,tieYield,500,MPa)}}}
+Yield stress {{{input(tieYield,500,MPa)}}}
 
 * Design load
 
-{{{input(Dead load G,deadLoad,1000,kN)}}}
+Dead load G {{{input(deadLoad,1000,kN)}}}
 
-{{{input(Live load Q,liveLoad,500,kN)}}}
+Live load Q {{{input(liveLoad,500,kN)}}}
 
-{{{output(Ultimate N*,loadULS,0,kN)}}}
+Ultimate, N* {{{output(loadULS,kN)}}}
 
-{{{output(Fire N*_f,loadFire,0,kN)}}}
+Fire, N*_f {{{output(loadFire,kN)}}}
 
-{{{input(\beta_d,beta,0,)}}}
+\beta_d {{{output(beta,)}}}
