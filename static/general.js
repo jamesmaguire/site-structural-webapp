@@ -27,7 +27,9 @@ function sidebarToggle()
 
 function setStatusOutofdate()
 {
-    document.getElementById('text-results-window').innerHTML = "";
+    if (document.getElementById('text-results-window') != null) {
+        document.getElementById('text-results-window').innerHTML = "";
+    }
     statusbutton.innerHTML = "▶ &nbsp Run analysis";
     statusbutton.className = "status-red";
 }
