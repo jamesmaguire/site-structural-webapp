@@ -11,11 +11,28 @@ Rebar diameter, d_b {{{barinput(diameter,16)}}}
 
 Yield strength, f_sy {{{input(yieldStrength,500,MPa)}}}
 
-* Results
-:PROPERTIES:
-:HTML_CONTAINER_CLASS: results-window
-:CUSTOM_ID: results-window
-:END:
+* Cross section properties
+
+Area, A_{st} {{{output(area,mm<sup>2</sup>)}}},
+             {{{output(aream,m<sup>2</sup>)}}}
+
+Section modulus, Z {{{output(sectionmodulus,mm<sup>3</sup>)}}},
+                   {{{output(sectionmodulusm,m<sup>3</sup>)}}}
+             
+Second moment, I {{{output(secondmoment,mm<sup>4</sup>)}}},
+                 {{{output(secondmomentm,m<sup>4</sup>)}}}
+
+* Capacity
+
+Moment capacity, M_u {{{output(Mcapacity,kNm)}}}
+
+(Apply \Phi of 0.65 for bending as part of singly reinforced wall)
+
+Axial capacity, \Phi{}N_u {{{output(Ncapacity,kN)}}}
+
+(Apply \Phi of 0.85 for tension of Class N reo)
+
+* TODO Development length
 
 * Export on save                                                   :noexport:
 ;; Local Variables:
