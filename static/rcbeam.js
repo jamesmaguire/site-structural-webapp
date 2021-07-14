@@ -165,6 +165,7 @@ function calculateULS()
     }
 
     ulsku.value = ku.toPrecision(4);
+    setPassFail(ulsku, 0.36);
     let dn = ku*effectiveD.valueAsNumber;
     ulsdn.value = dn.toPrecision(4);
 
