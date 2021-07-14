@@ -8,4 +8,6 @@
 ** [[file:posts/strip-footing.org][Strip footings]]
 ** [[file:posts/bored-piles.org][Bored piles]]
 ** [[file:posts/cross-section-properties.org][Cross section properties]]
-# ** TODO [[file:posts/rc-beam.org][RC Beam]]
+** [[file:posts/rebar-properties.org][Rebar properties]]
+** TODO [[file:posts/rc-beam.org][RC Beam]]
+# ** TODO [[file:posts/rc-columns.org][RC Column]]
