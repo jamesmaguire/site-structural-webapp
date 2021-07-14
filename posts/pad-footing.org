@@ -16,11 +16,11 @@ Footing length (x) {{{input(Lx,2400,mm)}}}
 
 Footing length (y) {{{input(Ly,2400,mm)}}}
 
-Footing area {{{output(footingArea,m^2)}}}
+Footing area {{{output(footingArea,m<sup>2</sup>)}}}
 
 Concrete strength {{{input(concreteStrength,25,MPa)}}}
 
-Concrete unit weight {{{input(gammac,25,kN/m^3)}}}
+Concrete unit weight {{{input(gammac,25,kN/m<sup>3</sup>)}}}
 
 * Column parameters
 
