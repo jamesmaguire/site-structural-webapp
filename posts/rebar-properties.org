@@ -16,3 +16,8 @@ Yield strength, f_sy {{{input(yieldStrength,500,MPa)}}}
 :HTML_CONTAINER_CLASS: results-window
 :CUSTOM_ID: results-window
 :END:
+
+* Export on save                                                   :noexport:
+;; Local Variables:
+;; eval: (add-hook 'after-save-hook 'org-html-export-to-html nil t)
+;; End:

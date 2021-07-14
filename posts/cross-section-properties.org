@@ -29,3 +29,8 @@ I_x = {{{output(rectImm4,mm<sup>4</sup>)}}} = {{{output(rectIm4,m<sup>4</sup>)}}
 
 * Parallel axis theorem
 \( I' = I + Ad^2 \)
+
+* Export on save                                                   :noexport:
+;; Local Variables:
+;; eval: (add-hook 'after-save-hook 'org-html-export-to-html nil t)
+;; End:

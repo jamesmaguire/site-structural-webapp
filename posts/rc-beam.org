@@ -86,3 +86,8 @@ $$ B = -A_{st}\varepsilon_cE_s + -A_{sc}\varepsilon_cE_s $$
 $$ C = -A_{st}\varepsilon_cE_s - A_{sc} \frac{\varepsilon_c(c+d_b/2)}{d} E_s $$
 
 Check assumptions
+
+* Export on save                                                   :noexport:
+;; Local Variables:
+;; eval: (add-hook 'after-save-hook 'org-html-export-to-html nil t)
+;; End:

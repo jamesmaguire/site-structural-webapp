@@ -59,3 +59,8 @@ Longitudinal bars (min) {{{textoutput(longBars)}}}
 Bar spacing {{{output(spacing,mm)}}}
 
 Ties {{{textoutput(tieBars)}}}
+
+* Export on save                                                   :noexport:
+;; Local Variables:
+;; eval: (add-hook 'after-save-hook 'org-html-export-to-html nil t)
+;; End:

@@ -68,3 +68,8 @@ Ultimate, N* {{{output(loadULS,kN)}}}
 Fire, N*_f {{{output(loadFire,kN)}}}
 
 \beta_d {{{output(beta,)}}}
+
+* Export on save                                                   :noexport:
+;; Local Variables:
+;; eval: (add-hook 'after-save-hook 'org-html-export-to-html nil t)
+;; End:

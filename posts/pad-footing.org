@@ -85,3 +85,8 @@ Shear applied, V*_x {{{output(shearX,kN)}}}, V*_y {{{output(shearY,kN)}}}
 Shear capacity, ΦV_{ucx} {{{output(shearCapacityX,kN)}}}, ΦV_{ucy} {{{output(shearCapacityY,kN)}}}
 
 Shear check, V*_x/ΦV_{ucx} {{{output(shearCheckX,)}}}, V*_y/ΦV_{ucy} {{{output(shearCheckY,)}}}
+
+* Export on save                                                   :noexport:
+;; Local Variables:
+;; eval: (add-hook 'after-save-hook 'org-html-export-to-html nil t)
+;; End:

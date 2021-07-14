@@ -65,3 +65,8 @@ Shear applied V* {{{output(shearLoad,kN/m)}}}
 Shear capacity ΦV_{uc} {{{output(shearCapacity,kN/m)}}}
 
 Shear check V*/ΦV_{uc} {{{output(shearCheck,)}}}
+
+* Export on save                                                   :noexport:
+;; Local Variables:
+;; eval: (add-hook 'after-save-hook 'org-html-export-to-html nil t)
+;; End:
