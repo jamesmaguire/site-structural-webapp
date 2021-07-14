@@ -1,0 +1,11 @@
+* 
+:PROPERTIES:
+:HTML_CONTAINER_CLASS: navbar
+:END:
+** [[file:./static/icon/favicon.svg]]
+** [[file:index.org][Home]]
+** [[file:posts/pad-footing.org][Pad footings]]
+** [[file:posts/strip-footing.org][Strip footings]]
+** [[file:posts/bored-piles.org][Bored piles]]
+** [[file:posts/cross-section-properties.org][Cross section properties]]
+# ** TODO [[file:posts/rc-beam.org][RC Beam]]
