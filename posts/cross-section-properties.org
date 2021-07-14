@@ -9,25 +9,23 @@
 
 @@html:<canvas id="circleFig" width="150" height="150" draggable="true"></canvas>@@
 
-Radius, r = @@html:<input id="circleR" type="number" value="16" onkeypress="eventHandler(event)"></input>@@ mm
+Diameter, d = {{{input(circleD,16,mm)}}}
 
-** Second moment of area
-\( I_x = \frac{\pi}{4}r^4 \)
-= @@html:<input id="circleImm4" type="number" value="0" readonly></input>@@ mm^4
-= @@html:<input id="circleIm4" type="number" value="0" readonly></input>@@ m^4
+Second moment of area, \( I = \frac{\pi d^4}{64}\)
+
+I = {{{output(circleImm4,mm<sup>4</sup>)}}} = {{{output(circleIm4,m<sup>4</sup>)}}}
 
 * Rectangle
 
 @@html:<canvas id="rectangleFig" width="150" height="150" draggable="true"></canvas>@@
 
-Width, b = @@html:<input id="rectangleb" type="number" value="200" onkeypress="eventHandler(event)"></input>@@ mm
+Width, b = {{{input(rectangleb,200,mm)}}}
 
-Height, h = @@html:<input id="rectangleh" type="number" value="300" onkeypress="eventHandler(event)"></input>@@ mm
+Height, h = {{{input(rectangleh,300,mm)}}}
 
-** Second moment of area
-\( I_x = \frac{bh^3}{12} \)
-= @@html:<input id="rectImm4" type="text" value="0" readonly></input>@@ mm^4
-= @@html:<input id="rectIm4" type="text" value="0" readonly></input>@@ m^4
+Second moment of area \( I_x = \frac{bh^3}{12} \)
+
+I_x = {{{output(rectImm4,mm<sup>4</sup>)}}} = {{{output(rectIm4,m<sup>4</sup>)}}}
 
 * Parallel axis theorem
 \( I' = I + Ad^2 \)

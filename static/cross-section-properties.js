@@ -58,7 +58,7 @@ function circleFigure()
 
 function circleCalcs ()
 {
-    let I = Math.PI*circleR.valueAsNumber**4/4;
+    let I = Math.PI*circleD.valueAsNumber**4/64;
     circleImm4.value = engineeringNotation(I);
     circleIm4.value = engineeringNotation(I/1e12);
 }
