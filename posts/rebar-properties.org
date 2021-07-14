@@ -5,9 +5,6 @@
 #+include: "../statusicon.org"
 #+include: "../sidebar.org"
 
-#+macro: input @@html:<label>$1 </label><input id="$2" type="number" value="$3" onkeypress="eventHandler(event)"></input><div id=units>$4</div>@@
-#+macro: output @@html:<label>$1 </label><input id="$2" type="number" value="$3" onkeypress="eventHandler(event)" readonly></input><div id=units>$4</div>@@
-
 * Rebar properties
 
 {{{input(Rebar diameter d_b,diameter,16,mm)}}}

@@ -10,51 +10,51 @@
 
 * Pile parameters
 
-Concrete strength = @@html:<input id="concreteStrength" type="number" value="32" onkeypress="eventHandler(event)"></input>@@ MPa
+{{{input(Concrete strength,concreteStrength,32,MPa)}}}
 
-Pile diameter = @@html:<input id="diameter" type="number" value="600" onkeypress="eventHandler(event)"></input>@@ mm
+{{{input(Pile diameter,diameter,600,mm)}}}
 
-Longitudinal bar diameter = @@html:<input id="barDiameter" type="number" value="16" onkeypress="eventHandler(event)"></input>@@ mm
+{{{input(Longitudinal bar diameter,barDiameter,16,mm)}}}
 
-Tie diameter = @@html:<input id="tieDiameter" type="number" value="10" onkeypress="eventHandler(event)"></input>@@ mm
+{{{input(Tie diameter,tieDiameter,10,mm)}}}
 
-Concrete cover = @@html:<input id="cover" type="number" value="50" onkeypress="eventHandler(event)"></input>@@ mm
+{{{input(Concrete cover,cover,50,mm)}}}
 
-Concrete placement factor, k = @@html:<input id="placementFactor" type="number" value="0.75" onkeypress="eventHandler(event)"></input>@@
+{{{input(Concrete placement factor k,placementFactor,0.75,)}}}
 
 * Loading parameters
 
-Soil bearing capacity = @@html: <input id="endBearing" type="number" value="1000" onkeypress="eventHandler(event)"></input>@@ kPa
+{{{input(Soil bearing capacity,endBearing,1000,kPa)}}}
 
-Shaft adhesion = @@html:<input id="shaftAdhesion" type="number" value="0" onkeypress="eventHandler(event)"></input>@@ kPa
+{{{input(Shaft adhesion,shaftAdhesion,0,kPa)}}}
 
-Embedment depth = @@html:<input id="embedment" type="number" value="0" onkeypress="eventHandler(event)"></input>@@ m
+{{{input(Embedment depth,embedment,0,m)}}}
 
-Design load = @@html:<input id="load" type="number" value="250" onkeypress="eventHandler(event)"></input>@@ kN
+{{{input(Design load,load,250,kN)}}}
 
 * Axial strength
 
-Axial capacity = @@html:<input id="axialCapacity" type="number" value="0" readonly></input>@@ kN
+{{{output(Axial capacity,axialCapacity,0,kN)}}}
 
-Axial check = @@html:<input id="axialCheck" type="number" value="0" readonly></input>@@
+{{{output(Axial check,axialCheck,0,)}}}
 
-Unreinforced capacity = @@html:<input id="noreoAxialCapacity" type="number" value="0" readonly></input>@@ kN
+{{{output(Unreinforced capacity,noreoAxialCapacity,0,kN)}}}
 
-Unreinforced axial check = @@html:<input id="noreoAxialCheck" type="number" value="0" readonly></input>@@
+{{{output(Unreinforced axial check,noreoAxialCheck,0,)}}}
 * Soil capacity
 
-Bearing capacity = @@html:<input id="bearingCapacity" type="number" value="0" readonly></input>@@ kN
+{{{output(Bearing capacity,bearingCapacity,0,kN)}}}
 
-Skin friction capacity = @@html:<input id="frictionCapacity" type="number" value="0" readonly></input>@@ kN
+{{{output(Skin friction capacity,frictionCapacity,0,kN)}}}
 
-Total soil capacity = @@html:<input id="soilCapacity" type="number" value="0" readonly></input>@@ kN
+{{{output(Total soil capacity,soilCapacity,0,kN)}}}
 
-Soil check = @@html:<input id="soilCheck" type="number" value="0" readonly></input>@@
+{{{output(Soil check,soilCheck,0,)}}}
 
 * Reinforcement
 
-Longitudinal bars (min) = @@html:<input id="longBars" type="text" value="0" readonly></input>@@
+{{{textoutput(Longitudinal bars (min),longBars,0,)}}}
 
-Bar spacing = @@html:<input id="spacing" type="number" value="0" readonly></input>@@ mm
+{{{output(Bar spacing,spacing,0,mm)}}}
 
-Ties = @@html:<input id="tieBars" type="text" value="0" readonly></input>@@
+{{{textoutput(Ties,tieBars,0,)}}}

@@ -13,41 +13,41 @@
 
 * Beam design
 
-Beam width = @@html:<input id="beamWidth" type="number" value="300" onkeypress="eventHandler(event)"></input>@@ mm
+{{{input(Beam width,beamWidth,300,mm)}}}
 
-Beam depth = @@html:<input id="beamDepth" type="number" value="400" onkeypress="eventHandler(event)"></input>@@ mm
+{{{input(Beam depth,beamDepth,400,mm)}}}
 
-Tension bars = @@html:<input id="nbarsTension" type="number" value="2" onkeypress="eventHandler(event)"></input>@@,
-d_b = @@html:<input id="dbTension" type="number" value="16" onkeypress="eventHandler(event)"></input>@@ mm
+{{{input(Tension bars,nbarsTension,2,)}}}
+{{{input(d_b,dbTension,16,mm)}}}
 
-Compression bars = @@html:<input id="nbarsCompression" type="number" value="0" onkeypress="eventHandler(event)"></input>@@,
-d_b = @@html:<input id="dbCompression" type="number" value="12" onkeypress="eventHandler(event)"></input>@@ mm
+{{{input(Compression bars,nbarsCompression,0,,)}}}
+{{{input(d_b,dbCompression,12,mm)}}}
 
-Cover = @@html:<input id="cover" type="number" value="40" onkeypress="eventHandler(event)"></input>@@ mm
+{{{input(Cover,cover,40,mm)}}}
 
-Effective depth = @@html:<input id="effectiveD" type="number" value="0" readonly></input>@@ mm
+{{{output(Effective depth,effectiveD,0,mm)}}}
 
 * Material properties
 
-Concrete strength = @@html:<input id="concreteStrength" type="number" value="40" onkeypress="eventHandler(event)"></input>@@ MPa
+{{{input(Concrete strength,concreteStrength,40,MPa)}}}
 
-Concrete strain = @@html:<input id="epsilonc" type="number" value="0.003" readonly></input>@@
+{{{output(Concrete strain,epsilonc,0.003,)}}}
 
-Steel strength = @@html:<input id="steelStrength" type="number" value="500" onkeypress="eventHandler(event)"></input>@@ MPa
+{{{input(Steel strength,steelStrength,500,MPa)}}}
 
-Steel modulus = @@html:<input id="steelModulus" type="number" value="200"></input>@@ GPa
+{{{input(Steel modulus,steelModulus,200,GPa)}}}
 
-\alpha_2 = @@html:<input id="alpha2" type="number" value="0" readonly></input>@@
+{{{output(\alpha_2,alpha2,0,)}}}
 
-\gamma = @@html:<input id="gamma" type="number" value="0" readonly></input>@@
+{{{output(\gamma,gamma,0,)}}}
 
 * Ultimate limit state
 
-k_u = @@html:<input id="ulsku" type="number" value="0" readonly></input>@@
+{{{output(k_u,ulsku,0,)}}}
 
-d_n = @@html:<input id="ulsdn" type="number" value="0" readonly></input>@@ mm
+{{{output(d_n,ulsdn,0,mm)}}}
 
-Moment capacity, \Phi.M_u = @@html:<input id="phiMu" type="number" value="0" readonly></input>@@ kNm
+{{{output(Moment capacity \Phi.M_u,phiMu,0,kNm)}}}
 
 * Determination of dn
 ** Strains

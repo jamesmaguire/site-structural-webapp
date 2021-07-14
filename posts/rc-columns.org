@@ -23,48 +23,52 @@ Section type = @@html:
 </select>
 @@
 
-Height = @@html:<input id="colHeight" type="number" value="3000" onkeypress="eventHandler(event)"></input>@@ mm
+{{{input(Height,colHeight,3000,mm)}}}
 
-Eff length factor, k_X = @@html:<input id="colkX" type="number" value="1.0" onkeypress="eventHandler(event)"></input>@@, k_Y = @@html:<input id="colkY" type="number" value="1.0" onkeypress="eventHandler(event)"></input>@@
+{{{input(Eff length factor k_X,colkX,1.0,)}}}
+{{{input(k_Y,colkY,1.0,)}}}
 
-Dimension X = @@html:<input id="colDx" type="number" value="600" onkeypress="eventHandler(event)"></input>@@ mm
+{{{input(Dimension X,colDx,600,mm)}}}
 
-Dimension Y = @@html:<input id="colDy" type="number" value="250" onkeypress="eventHandler(event)"></input>@@ mm
+{{{input(Dimension Y,colDy,250,mm)}}}
 
-Diameter = @@html:<input id="colDia" type="number" value="500" onkeypress="eventHandler(event)"></input>@@ mm
+{{{input(Diameter,colDia,500,mm)}}}
 
 * Concrete
 
-Concrete strength = @@html:<input id="concreteStrength" type="number" value="32" onkeypress="eventHandler(event)"></input>@@ MPa
+{{{input(Concrete strength,concreteStrength,32,MPa)}}}
 
-Concrete cover = @@html:<input id="cover" type="number" value="40" onkeypress="eventHandler(event)"></input>@@ mm
+{{{input(Concrete cover,cover,40,mm)}}}
 
 * Longitudinal steel
 
-Bar diameter = @@html:<input id="bardb" type="number" value="16" onkeypress="eventHandler(event)"></input>@@ mm
+{{{input(Bar diameter,bardb,16,mm)}}}
 
-Yield stress = @@html:<input id="barYield" type="number" value="500" onkeypress="eventHandler(event)"></input>@@ MPa
+{{{input(Yield stress,barYield,500,MPa)}}}
 
-Bars - top/btm = @@html:<input id="nbarsTB" type="number" value="3" onkeypress="eventHandler(event)"></input>@@ (Space: @@html:<input id="barSpcX" type="number" value="0" readonly></input>@@ mm)
+{{{input(Bars - top/btm,nbarsTB,3,)}}}
 
-Bars - side = @@html:<input id="nbarsSide" type="number" value="2" onkeypress="eventHandler(event)"></input>@@ (Space: @@html:<input id="barSpcY" type="number" value="0" readonly></input>@@ mm)
+(Space: @@html:<input id="barSpcX" type="number" value="0" readonly></input>@@ mm)
 
-Bars - total = @@html:<input id="nbars" type="number" value="0" readonly></input>@@
+{{{input(Bars - side,nbarsSide,2,)}}}
+(Space: @@html:<input id="barSpcY" type="number" value="0" readonly></input>@@ mm)
+
+{{{output(Bars - total,nbars,0,)}}}
 
 * Steel ties
 
-Bar diameter = @@html:<input id="tiedb" type="number" value="12" onkeypress="eventHandler(event)"></input>@@ mm
+{{{input(Bar diameter,tiedb,12,mm)}}}
 
-Yield stress = @@html:<input id="tieYield" type="number" value="500" onkeypress="eventHandler(event)"></input>@@ MPa
+{{{input(Yield stress,tieYield,500,MPa)}}}
 
 * Design load
 
-Dead load, G = @@html:<input id="deadLoad" type="number" value="1000" onkeypress="eventHandler(event)"></input>@@ kN
+{{{input(Dead load G,deadLoad,1000,kN)}}}
 
-Live load, Q = @@html:<input id="liveLoad" type="number" value="500" onkeypress="eventHandler(event)"></input>@@ kN
+{{{input(Live load Q,liveLoad,500,kN)}}}
 
-Ultimate N* = @@html:<input id="loadULS" type="number" value="0" readonly></input>@@ kN
+{{{output(Ultimate N*,loadULS,0,kN)}}}
 
-Fire N*_f = @@html:<input id="loadFire" type="number" value="0" readonly></input>@@ kN
+{{{output(Fire N*_f,loadFire,0,kN)}}}
 
-\beta_d = @@html:<input id="beta" type="number" value="0" readonly></input>@@
+{{{input(\beta_d,beta,0,)}}}

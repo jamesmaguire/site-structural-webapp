@@ -10,58 +10,58 @@
 
 * Footing parameters
 
-Footing height = @@html:<input id="footingHeight" type="number" value="500" onkeypress="eventHandler(event)"></input>@@ mm
+{{{input(Footing height,footingHeight,500,mm)}}}
 
-Footing width = @@html:<input id="footingWidth" type="number" value="2400" onkeypress="eventHandler(event)"></input>@@ mm
+{{{input(Footing width,footingWidth,2400,mm)}}}
 
-Concrete strength = @@html:<input id="concreteStrength" type="number" value="32" onkeypress="eventHandler(event)"></input>@@ MPa
+{{{input(Concrete strength,concreteStrength,32,MPa)}}}
 
-Concrete unit weight = @@html:<input id="gammac" type="number" value="25" onkeypress="eventHandler(event)"></input>@@ kN/m^3
+{{{input(Concrete unit weight,gammac,25,kN/m^3)}}}
 
 * Wall parameters
 
-Wall width = @@html:<input id="wallWidth" type="number" value="300" onkeypress="eventHandler(event)"></input>@@ mm
+{{{input(Wall width,wallWidth,300,mm)}}}
 
-Eccentricity = @@html:<input id="eccentricity" type="number" value="0" onkeypress="eventHandler(event)"></input>@@ mm
+{{{input(Eccentricity,eccentricity,0,mm)}}}
 
 * Steel parameters
 
-Steel strength = @@html:<input id="fsy" type="number" value="500" onkeypress="eventHandler(event)"></input>@@ MPa
+{{{input(Steel strength,fsy,500,MPa)}}}
 
-Bar diameter = @@html:<input id="barDiameter" type="number" value="12" onkeypress="eventHandler(event)"></input>@@ mm
+{{{input(Bar diameter,barDiameter,12,mm)}}}
 
-Cover = @@html:<input id="cover" type="number" value="50" onkeypress="eventHandler(event)"></input>@@ mm
+{{{input(Cover,cover,50,mm)}}}
 
 * Loading
 
-Dead load = @@html:<input id="deadLoad" type="number" value="250" onkeypress="eventHandler(event)"></input>@@ kN/m
+{{{input(Dead load,deadLoad,250,kN/m)}}}
 
-Live load = @@html:<input id="liveLoad" type="number" value="50" onkeypress="eventHandler(event)"></input>@@ kN/m
+{{{input(Live load,liveLoad,50,kN/m)}}}
 
-Dead load factor, Ψ_G = @@html:<input id="psiG" type="number" value="1.2"  onkeypress="eventHandler(event)"></input>@@
+{{{input(Dead load factor Ψ_G,psiG,1.2,)}}}
 
-Live load factor, Ψ_Q = @@html:<input id="psiQ" type="number" value="1.5" onkeypress="eventHandler(event)"></input>@@
+{{{input(Live load factor Ψ_Q,psiQ,1.5,)}}}
 
-Pressure (ULS) = @@html:<input id="pressureULS" type="number" value="0" readonly></input>@@ kPa
+{{{output(Pressure (ULS),pressureULS,0,kPa)}}}
 
 * Bearing
 
-Soil bearing capacity = @@html: <input id="qs" type="number" value="250" onkeypress="eventHandler(event)"></input>@@ kPa
+{{{output(Soil bearing capacity,qs,250,kPa)}}}
 
-Pressure applied, q* = @@html:<input id="qstar" type="number" value="0" readonly></input>@@ kPa
+{{{output(Pressure applied q*,qstar,0,kPa)}}}
 
-Bearing check = @@html:<input id="bearingCheck" type="number" value="0" readonly></input>@@
+{{{output(Bearing check,bearingCheck,0,)}}}
 
 * Moment check
 
-Moment applied, M*_x = @@html:<input id="momentX" type="number" value="0" readonly></input>@@ kNm/m
+{{{output(Moment applied M*_x,momentX,0,kNm/m)}}}
 
-Reinforcement bars = @@html:<input id="bars" type="text" value="0" readonly></input>@@
+{{{textoutput(Reinforcement bars,bars,0,)}}}
 
 * Shear check
 
-Shear applied, V* = @@html:<input id="shearLoad" type="number" value="0" readonly></input>@@ kN/m
+{{{output(Shear applied V*,shearLoad,0,kN/m)}}}
 
-Shear capacity, ΦV_{uc} = @@html:<input id="shearCapacity" type="number" value="0" readonly></input>@@ kN/m
+{{{output(Shear capacity ΦV_{uc},shearCapacity,0,kN/m)}}}
 
-Shear check, V*/ΦV_{uc} = @@html:<input id="shearCheck" type="number" value="0" readonly></input>@@
+{{{output(Shear check V*/ΦV_{uc},shearCheck,0,)}}}
