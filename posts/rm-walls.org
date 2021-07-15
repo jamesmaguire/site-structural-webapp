@@ -1,0 +1,59 @@
+#+title: Reinforced masonry walls
+#+setupfile: post.setup
+#+HTML_HEAD: <body onload="updatePage();">
+#+HTML_HEAD: <script type="text/javascript" src="../static/rm-walls.js"></script>
+#+include: "../statusicon.org"
+#+include: "../navbar.org"
+
+* Wall properties
+
+Wall height {{{input(height,1.2,m)}}}
+
+Wall length {{{input(walllength,3.0,m)}}}
+
+Wall thickness {{{input(thickness,0.23,m)}}}
+
+Compressive strength, f'_m {{{input(compressivestrength,5.5,MPa)}}}
+
+* Reinforcement
+
+Vertical reinforcement {{{barinput(vbarsize,16)}}} @ {{{input(vbarspc,400,mm)}}}
+
+Horizontal reinforcement {{{barinput(hbarsize,16)}}} @ {{{input(hbarspc,400,mm)}}}
+
+Yield strength {{{input(yieldstrength,500,MPa)}}}
+
+* 8.4 General reinforcement requirement
+
+* 8.5 Design of members in compression
+
+* 8.6 Design of members in bending
+
+\[ M_d \le \phi f_{sy}A_{sd}d \left[ 1- \frac{0.6f_{sy}A_{sd}}{(1.3f'_m)bd} \right] \]
+
+Design bending moment, M_d {{{input(designMoment,0,kNm/m)}}}
+
+Capacity reduction factor, \Phi {{{output(bendingphi,)}}}
+
+Wall capacity, M_u {{{output(Mcapacity,kNm/m)}}}
+
+Moment check, M_d/M_u {{{output(momentcheck,)}}}
+
+* 8.7 Design of walls for in-plane shear
+
+Design in-plane shear, V_d {{{input(designipshear,0,kN/m)}}}
+
+Long wall check, H/L < 2.3 {{{textoutput(longwallp,)}}}
+
+Capacity reduction factor, \Phi {{{output(shearphi,)}}}
+
+Effective shear strength, f_{vr} {{{output(effshearstrength,MPa)}}}
+
+Wall capacity, V_u {{{output(ipshearCapacity,kN/m)}}}
+
+In-plane shear check, V_d/V_u {{{output(ipshearcheck,)}}}
+
+* Export on save                                                   :noexport:
+;; Local Variables:
+;; eval: (add-hook 'after-save-hook 'org-html-export-to-html nil t)
+;; End:
