@@ -23,6 +23,18 @@ Horizontal reinforcement {{{barinput(hbarsize,16)}}} @ {{{input(hbarspc,400,mm)}
 
 Yield strength {{{input(yieldstrength,500,MPa)}}}
 
+* Loading
+
+Design bending moment, M_d/L {{{input(designMoment,0,kNm/m)}}}
+
+Design out-of-plane shear, V_{d,op}/L {{{input(designopshear,0,kN/m)}}}
+
+Design in-plane shear, V_{d,ip}/L {{{input(designipshear,0,kN/m)}}}
+
+Design vertical load, F_v/L {{{input(designvertload,0,kN/m)}}}
+
+Applied vertical load, P_v/L {{{input(vertload,0,kN/m)}}}
+
 * 8.4 General reinforcement requirement
 
 * 8.5 Design of members in compression
@@ -31,27 +43,48 @@ Yield strength {{{input(yieldstrength,500,MPa)}}}
 
 \[ M_d \le \phi f_{sy}A_{sd}d \left[ 1- \frac{0.6f_{sy}A_{sd}}{(1.3f'_m)bd} \right] \]
 
-Design bending moment, M_d {{{input(designMoment,0,kNm/m)}}}
-
 Capacity reduction factor, \Phi {{{output(bendingphi,)}}}
 
-Wall capacity, M_u {{{output(Mcapacity,kNm/m)}}}
+Design load, M_d {{{output(Mapplied,kNm)}}}
+
+Wall capacity, M_u {{{output(Mcapacity,kNm)}}}
 
 Moment check, M_d/M_u {{{output(momentcheck,)}}}
 
 * 8.7 Design of walls for in-plane shear
 
-Design in-plane shear, V_d {{{input(designipshear,0,kN/m)}}}
-
 Long wall check, H/L < 2.3 {{{textoutput(longwallp,)}}}
 
-Capacity reduction factor, \Phi {{{output(shearphi,)}}}
+Capacity reduction factor, \Phi {{{output(shearphiip,)}}}
 
 Effective shear strength, f_{vr} {{{output(effshearstrength,MPa)}}}
 
-Wall capacity, V_u {{{output(ipshearCapacity,kN/m)}}}
+Design load, V_d {{{output(ipvApplied,kN)}}}
 
-In-plane shear check, V_d/V_u {{{output(ipshearcheck,)}}}
+Wall capacity, V_u {{{output(ipshearCapacity,kN)}}}
+
+In-plane shear check, V_{d,ip}/V_u {{{output(ipshearcheck,)}}}
+
+*Stability check* - required for long wall not externally supported against overturning (8.7.4):
+
+Wall stability, V_{u,stable} {{{output(ipstabilityCapacity,kN)}}}
+
+In-plane stability check, V_{d,ip}/V_{u,stable} {{{output(ipstabilitycheck,)}}}
+
+* 8.8 Design of walls for out-of-plane shear
+
+Capacity reduction factor, \Phi {{{output(shearphiop,)}}}
+
+Characteristic shear strength, f'_{vm} {{{output(strengthvm,MPa)}}}
+
+Design shear strength main reo, f_{vs} {{{output(strengthvs,MPa)}}}
+
+Design load, V_d {{{output(opvApplied,kN)}}}
+
+Wall capacity, V_u {{{output(opshearCapacity,kN)}}}
+
+In-plane shear check, V_{d,op}/V_u {{{output(opshearcheck,)}}}
+
 
 * Export on save                                                   :noexport:
 ;; Local Variables:
