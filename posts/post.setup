@@ -13,9 +13,9 @@
 #+HTML_LINK_UP: ../index.html
 
 # Macros
-#+macro: input @@html:<span class="inputspan"><input id="$1" class="right" type="number" value="$2" onkeypress="eventHandler(event)"> $3</span>@@
+#+macro: input @@html:<span class="inputspan"><input id="$1" class="right" type="number" value="$2" onkeypress="eventHandler(event)" onblur="updatePage()"> $3</span>@@
 
-#+macro: barinput @@html:<span class="inputspan">N<input id="$1" class="left" type="number" value="$2" onkeypress="eventHandler(event)"></span>@@
+#+macro: barinput @@html:<span class="inputspan">N<input id="$1" class="left" type="number" value="$2" onkeypress="eventHandler(event)" onblur="updatePage()"></span>@@
 
 #+macro: output @@html:<span class="outputspan"><input id="$1" class="right" type="number" value="0" readonly> $2</span>@@
 
