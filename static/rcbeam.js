@@ -1,184 +1,182 @@
 function updatePage()
 {
-    calculateProperties();
-    calculateULS();
-    drawFigure(0.4);
+    runCalcs();
+    // drawFigure(0.4);
     setStatusUptodate();
 }
 
-function drawFigure(scale)
-{
-    let canvas = document.getElementById('beamFigure');
-    if (canvas.getContext)
-    {
-        let ctx = canvas.getContext('2d');
-        let X = canvas.width;
-        let Y = canvas.height;
-        ctx.clearRect(0, 0, X, Y);
+function runCalcs() {
+    let beam = {
+        B:i_B.valueAsNumber,
+        D:i_D.valueAsNumber,
+        nbc:i_nbc.valueAsNumber,
+        dbc:i_dbc.valueAsNumber,
+        nbt:i_nbt.valueAsNumber,
+        dbt:i_dbt.valueAsNumber,
+        dbs:i_dbs.valueAsNumber,
+        dbspc:i_dbspc.valueAsNumber,
+        c:i_c.valueAsNumber
+    };
 
-        // Variables
-        let B = beamWidth.valueAsNumber;
-        let D = beamDepth.valueAsNumber;
-        let dbt = dbTension.valueAsNumber;
-        let dbc = dbCompression.valueAsNumber;
-        let axist = cover.valueAsNumber + dbt/2;
-        let axisc = cover.valueAsNumber + dbc/2;
-        let btmBars = nbarsTension.valueAsNumber;
-        let topBars = nbarsCompression.valueAsNumber;
+    // Beam parameters
+    beam.d = beam.D - beam.c - beam.dbs - beam.dbt/2;
+    beam.a = beam.c + beam.dbs + beam.dbc/2;
+    beam.Ast = beam.nbt*Math.PI*beam.dbt**2/4;
+    beam.Asc = beam.nbc*Math.PI*beam.dbc**2/4;
+    o_d.value = beam.d;
+    o_a.value = beam.a;
+    o_Ast.value = (beam.Ast).toFixed(0);
+    o_Asc.value = (beam.Asc).toFixed(0);
 
-        // Concrete mass
-        ctx.fillStyle = 'lightgray';
-        ctx.fillRect(0,0,scale*B,scale*D);
+    // Material properties
+    let concrete = {
+        fc:i_fc.valueAsNumber,
+        ecu:0.003,
+    };
+    concrete.alpha2 = Math.max(0.85-0.0015*concrete.fc, 0.67);
+    concrete.gamma = Math.max(0.97-0.0025*concrete.fc, 0.67);
+    i_ecu.value = concrete.ecu;
+    o_alpha2.value = concrete.alpha2;
+    o_gamma.value = concrete.gamma;
 
-        // Bottom bars
-        ctx.lineStyle = 'black';
-        ctx.lineWidth = 1;
-        ctx.fillStyle = 'black';
-        let barSpace = (B-2*axist)/(btmBars-1);
-        for (i = 0; i < btmBars; i++) {
-            rebar(ctx, scale*(axist+(i*barSpace)), scale*(D-axist), scale*dbt);
-        }
-        // Top bars
-        barSpace = (B-2*axisc)/(topBars-1);
-        for (i = 0; i < topBars; i++) {
-            rebar(ctx, scale*(axisc+(i*barSpace)), scale*axisc, scale*dbc);
-        }
+    let steel = {
+        fsy:i_fsy.valueAsNumber,
+        Es:i_Es.valueAsNumber,
+    };
+    steel.esu = steel.fsy/(steel.Es*1000);
+    o_esu.value = steel.esu;
 
-        // ULS N.A.
-        let dn = ulsdn.valueAsNumber;
-        ctx.lineStyle = 'black';
-        ctx.setLineDash([5,5]);
-        ctx.beginPath();
-        ctx.moveTo(0,scale*dn);
-        ctx.lineTo(scale*B,scale*dn);
-        ctx.stroke();
-        ctx.fillStyle = '#bbb';
-        ctx.fillRect(0,0,scale*B,scale*dn);
-
-    }
-}
-
-function rebar(ctx, x, y, db)
-{
-    ctx.beginPath();
-    ctx.arc(x, y, db/2, 0, 2*Math.PI, false);
-    ctx.fill();
-    ctx.stroke();
-}
-
-function checkAxial()
-{
-    let phi = 0.65;
-    let k = placementFactor.valueAsNumber;
-    let fc = concreteStrength.valueAsNumber;
-    // Reinforced
-    let phiNus = phi*k*fc*Ag()*1000;
-    axialCapacity.value = phiNus.toFixed();
-    axialCheck.value = (load.valueAsNumber/phiNus).toFixed(2);
-    setPassFail(axialCheck);
-    // Unreinforced
-    phiNus = 0.45*phiNus;
-    noreoAxialCapacity.value = phiNus.toFixed();
-    noreoAxialCheck.value = (load.valueAsNumber/phiNus).toFixed(2);
-    setPassFail(noreoAxialCheck);
-}
-
-
-function calcAlpha2(fc)
-{
-    return Math.max(0.85 - (0.0015*fc), 0.67);
-}
-
-function calcGamma(fc)
-{
-    return Math.max(0.97 - (0.0025*fc), 0.67);
-}
-
-function calculateProperties()
-{
-    alpha2.value = calcAlpha2(concreteStrength.valueAsNumber).toFixed(2);
-    gamma.value = calcGamma(concreteStrength.valueAsNumber).toFixed(2);
-    effectiveD.value = (beamDepth.valueAsNumber - cover.valueAsNumber
-                        - dbTension.valueAsNumber/2).toFixed();
-    epsilonc.value = 0.003;
-}
-
-function equillibriumForces(ku)
-{
-    let fc = concreteStrength.valueAsNumber;
-    let fsy = steelStrength.valueAsNumber;
-    let alpha2 = calcAlpha2(fc);
-    let gamma = calcGamma(fc);
-    let b = beamWidth.valueAsNumber;
-    let ec = epsilonc.valueAsNumber;
-    let dbc = dbCompression.valueAsNumber;
-    let dbt = dbTension.valueAsNumber;
-    let c = cover.valueAsNumber;
-    let d = effectiveD.valueAsNumber;
-
-    let Cc = alpha2*fc*gamma*ku*d*b; // units: N
-
-    // Compression steel
-    let y = c + dbc/2;
-    let Asc = nbarsCompression.valueAsNumber * Math.PI * dbc**2 / 4;
-    let esc = (ec/(ku*d))*(ku*d - y);
-    let Cs = Asc*Math.min(fsy,esc*steelModulus.valueAsNumber/1000);
-
-    // Tension steel
-    y = d;
-    let Ast = nbarsTension.valueAsNumber * Math.PI * dbt**2 / 4;
-    let est = (ec/(ku*d))*(ku*d - y);
-    let Ts = Ast*Math.max(-fsy,est*steelModulus.valueAsNumber*1000);
-
-    return {Cc,Cs,Ts};
-}
-
-function calculateULS()
-{
-    let ku = 0.0;
-    let guess = -1;
-    let forces = NaN;
-    while (guess < 0 && ku < 1) {
-        ku += 0.1;
-        forces = equillibriumForces(ku);
-        guess = forces['Cc'] + forces['Cs'] + forces['Ts'];
-    }
-    while (guess > 0 && ku > 0) {
-        ku -= 0.01;
-        forces = equillibriumForces(ku);
-        guess = forces['Cc'] + forces['Cs'] + forces['Ts'];
-    }
-    while (guess < 0 && ku < 1) {
-        ku += 0.001;
-        forces = equillibriumForces(ku);
-        guess = forces['Cc'] + forces['Cs'] + forces['Ts'];
-    }
-    while (guess > 0 && ku > 0) {
-        ku -= 0.0001;
-        forces = equillibriumForces(ku);
-        guess = forces['Cc'] + forces['Cs'] + forces['Ts'];
-    }
-    while (guess < 0 && ku < 1) {
-        ku += 0.00001;
-        forces = equillibriumForces(ku);
-        guess = forces['Cc'] + forces['Cs'] + forces['Ts'];
-    }
-
-    ulsku.value = ku.toFixed(2);
-    setPassFail(ulsku, 0.36);
-    let dn = ku*effectiveD.valueAsNumber;
-    ulsdn.value = dn.toFixed(1);
-
-    let gamma = calcGamma(concreteStrength.valueAsNumber);
-    let leverCc = gamma*dn/2;
-    let leverCs = dn-cover.valueAsNumber-dbCompression.valueAsNumber/2;
-    let leverTs = effectiveD.valueAsNumber - dn;
-    let Mu = Math.abs(forces['Cc'])*leverCc
-        + Math.abs(forces['Cs'])*leverCs
-        + Math.abs(forces['Ts'])*leverTs;
-    let phi = Math.max(Math.min(1.24 - 13*ku/12, 0.85), 0.65); // Check
-    phiMu.value = (phi*Mu/1e6).toFixed();
-
-    momentCheck.value = (Mstar.valueAsNumber/(phi*Mu/1e6)).toFixed(2);
+    // Bending
+    let ku = determine_ku(beam, concrete, steel);
+    let dn = beam.d*ku;
+    let Muo = moment_capacity(beam, concrete, steel, ku);
+    let phi = bending_phi(ku);
+    o_ku.value = (ku).toFixed(3);
+    o_dn.value = (dn).toFixed(1);
+    o_Muo.value = Muo.toPrecision(3);
+    o_phi.value = phi.toFixed(2);
+    o_phiMuo.value = (phi*Muo).toPrecision(3);
+    momentCheck.value = (i_Mstar.valueAsNumber/(phi*Muo)).toFixed(2);
     setPassFail(momentCheck);
+
+    beam.Z = beam.B * beam.d**2 / 6;
+    concrete.fctf = 0.6*Math.sqrt(concrete.fc);
+    let Muomin = 1.2*beam.Z*concrete.fctf/1000**2;
+    o_Z.value = (beam.Z).toPrecision(3);
+    o_fctf.value = (concrete.fctf).toPrecision(3);
+    o_Muomin.value = (Muomin).toFixed(0);
+    momentminCheck.value = (Muomin/Muo).toFixed(2);
+    setPassFail(momentminCheck);
+
 }
+
+function determine_ku(beam, concrete, steel) {
+    let incr = 0.1;
+    let steps = 10;
+    let ku = 0;
+    for (let iteration=0; iteration<4; iteration++) {
+        for (let testku=ku+incr; testku<ku+(incr*steps); testku+=incr) {
+            let sumF = sum_cs_forces(testku, beam, concrete, steel);
+            if (sumF > 0) {
+                ku = testku-incr;
+                incr = incr/steps;
+                break;
+            }
+        }
+    }
+    return ku; 
+}
+
+function sum_cs_forces(ku, beam, concrete, steel) {
+    let Cc = concrete.alpha2*concrete.fc*concrete.gamma*ku*beam.d*beam.B/1000;
+    let Cs = beam.Asc*steel.Es*steel_strain(ku, concrete.ecu, steel.esu, beam.d, beam.a);
+    let Ts = beam.Ast*steel.Es*steel_strain(ku, concrete.ecu, steel.esu, beam.d, beam.d);
+    return Cc+Cs+Ts;
+}
+
+function steel_strain(ku, ecu, esu, d, y) {
+    let e = (ecu/(ku*d))*(ku*d - y);
+    if (e < -esu) {
+        return -esu;
+    } else if (e > esu) {
+        return esu;
+    } else {
+        return e;
+    }
+}
+
+function moment_capacity(beam, concrete, steel, ku) {
+    let Cc = concrete.alpha2*concrete.fc*concrete.gamma*ku*beam.d*beam.B/1000;
+    let Cs = beam.Asc*steel.Es*steel_strain(ku, concrete.ecu, steel.esu, beam.d, beam.a);
+    let Ts = beam.Ast*steel.Es*steel_strain(ku, concrete.ecu, steel.esu, beam.d, beam.d);
+    let Muo = -(Cc*(concrete.gamma*ku*beam.d/2) + Cs*beam.a + Ts*beam.d)/1000;
+    return Muo;
+}
+
+function bending_phi(ku) {
+    let phi = 1.24 - 13*ku/12;
+    return Math.min(Math.max(phi, 0.65), 0.85);
+}
+
+
+/// ORIGINAL FUNCTIONS:
+
+// function drawFigure(scale)
+// {
+//     let canvas = document.getElementById('beamFigure');
+//     if (canvas.getContext)
+//     {
+//         let ctx = canvas.getContext('2d');
+//         let X = canvas.width;
+//         let Y = canvas.height;
+//         ctx.clearRect(0, 0, X, Y);
+
+//         // Variables
+//         let B = beamWidth.valueAsNumber;
+//         let D = beamDepth.valueAsNumber;
+//         let dbt = dbtension.valueAsNumber;
+//         let dbc = dbcompression.valueAsNumber;
+//         let axist = cover.valueAsNumber + dbt/2;
+//         let axisc = cover.valueAsNumber + dbc/2;
+//         let btmBars = nbarstension.valueAsNumber;
+//         let topBars = nbarscompression.valueAsNumber;
+
+//         // Concrete mass
+//         ctx.fillStyle = 'lightgray';
+//         ctx.fillRect(0,0,scale*B,scale*D);
+
+//         // Bottom bars
+//         ctx.lineStyle = 'black';
+//         ctx.lineWidth = 1;
+//         ctx.fillStyle = 'black';
+//         let barSpace = (B-2*axist)/(btmBars-1);
+//         for (i = 0; i < btmBars; i++) {
+//             rebar(ctx, scale*(axist+(i*barSpace)), scale*(D-axist), scale*dbt);
+//         }
+//         // Top bars
+//         barSpace = (B-2*axisc)/(topBars-1);
+//         for (i = 0; i < topBars; i++) {
+//             rebar(ctx, scale*(axisc+(i*barSpace)), scale*axisc, scale*dbc);
+//         }
+
+//         // ULS N.A.
+//         let dn = ulsdn.valueAsNumber;
+//         ctx.lineStyle = 'black';
+//         ctx.setLineDash([5,5]);
+//         ctx.beginPath();
+//         ctx.moveTo(0,scale*dn);
+//         ctx.lineTo(scale*B,scale*dn);
+//         ctx.stroke();
+//         ctx.fillStyle = '#bbb';
+//         ctx.fillRect(0,0,scale*B,scale*dn);
+
+//     }
+// }
+
+// function rebar(ctx, x, y, db)
+// {
+//     ctx.beginPath();
+//     ctx.arc(x, y, db/2, 0, 2*Math.PI, false);
+//     ctx.fill();
+//     ctx.stroke();
+// }

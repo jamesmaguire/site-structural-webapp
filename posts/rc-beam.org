@@ -1,4 +1,6 @@
-#+title: RC beam
+#+title: Reinforced Concrete Beam
+#+subtitle: Based on AS3600 2018
+
 #+setupfile: post.setup
 #+HTML_HEAD: <body onload="updatePage();">
 #+HTML_HEAD: <script type="text/javascript" src="../static/rcbeam.js"></script>
@@ -11,81 +13,71 @@
 <canvas id="beamFigure" width="500" height="300" draggable="true"></canvas>
 #+end_export
 
-* Beam design
+* Beam parameters
 
-Beam width {{{input(beamWidth,300,mm)}}}
+Beam width {{{input(i_B,300,mm)}}}
 
-Beam depth {{{input(beamDepth,400,mm)}}}
+Beam depth {{{input(i_D,400,mm)}}}
 
-Tension bars {{{input(nbarsTension,2,)}}} {{{barinput(dbTension,16)}}}
+Top reo {{{input(i_nbc,0,)}}} {{{barinput(i_dbc,12)}}}
 
-Compression bars {{{input(nbarsCompression,0,)}}} {{{barinput(dbCompression,12)}}}
+Bottom reo {{{input(i_nbt,2,)}}} {{{barinput(i_dbt,16)}}}
 
-Cover {{{input(cover,40,mm)}}}
+Stirrups {{{barinput(i_dbs,10,)}}} {{{input(i_dbspc,200)}}}
 
-Effective depth {{{output(effectiveD,mm)}}}
+Cover {{{input(i_c,50,mm)}}}
+
+Effective depth {{{output(o_d,mm)}}}
+
+Axis depth {{{output(o_a,mm)}}}
+
+Area tensile steel {{{output(o_Ast,mm<sup>2</sup>)}}}
+
+Area compression steel {{{output(o_Asc,mm<sup>2</sup>)}}}
 
 * Material properties
 
-Concrete strength {{{input(concreteStrength,40,MPa)}}}
+Concrete strength {{{input(i_fc,40,MPa)}}}
 
-Concrete strain {{{output(epsilonc,)}}}
+Concrete ult. strain, \varepsilon_{cu} {{{output(i_ecu)}}}
 
-Steel strength {{{input(steelStrength,500,MPa)}}}
+\alpha_2 {{{output(o_alpha2,)}}}
 
-Steel modulus {{{input(steelModulus,200,GPa)}}}
+\gamma {{{output(o_gamma,)}}}
 
-\alpha_2 {{{output(alpha2,)}}}
+Steel strength {{{input(i_fsy,500,MPa)}}}
 
-\gamma {{{output(gamma,)}}}
+Steel modulus {{{input(i_Es,200,GPa)}}}
 
-* Ultimate limit state
+Steel ult. strain, \varepsilon_{su} {{{output(o_esu)}}}
 
-Design moment, M* {{{input(Mstar,50,kNm)}}}
+* Loading
 
-k_u {{{output(ulsku,)}}}
+Applied moment, M* {{{input(i_Mstar,50,kNm)}}}
 
-d_n {{{output(ulsdn,mm)}}}
+* Bending capacity
 
-Moment capacity \Phi{}M_u {{{output(phiMu,kNm)}}}
+Neutral axis parameter, k_u {{{output(o_ku,)}}}
 
-Moment check {{{output(momentCheck,)}}}
+Plastic neutral axis, d_n {{{output(o_dn,mm)}}}
 
-* Determination of dn                                              :noexport:
-** Strains
-Concrete strain: \varepsilon_c = 0.003
+Moment capacity, M_{uo} {{{output(o_Muo,kNm)}}}
 
-Strain at depth $y$: \( \varepsilon_{y} = \frac{\varepsilon_c}{k_ud}(k_ud - y) \)
+Capacity reduction factor, \Phi {{{output(o_phi)}}}
 
-** Assume tension and compression steel has yielded
-$$ k_u = \frac{(A_{st} - A_{sc})f_{sy}}{\alpha_2 f'_c b \gamma d} $$
+Design moment capacity, \Phi{}M_{uo} {{{output(o_phiMuo,kNm)}}}
 
-Then check 0.0025 \le \varepsilon_{st} \le 0.05
+Moment check, M*/\Phi{}M_{uo} {{{output(momentCheck,)}}}
 
-** Assume tension steel has yielded and compression has not
-$$ k_u = \frac{-B \pm \sqrt{B^2 - 4AC}}{2A} $$
-$$ A = \alpha_2 f'_c b \gamma d $$
-$$ B = -A_{st}f_{sy} + A_{sc}\varepsilon_cE_s $$
-$$ C = -A_{sc} \frac{\varepsilon_c(c+d_b/2)}{d} E_s $$
+* Minimum strength
 
-Check assumptions
+Section modulus, Z {{{output(o_Z,mm<sup>3</sup>)}}}
 
-** Assume tension steel has not yielded and compression has
-$$ k_u = \frac{-B \pm \sqrt{B^2 - 4AC}}{2A} $$
-$$ A = \alpha_2 f'_c b \gamma d $$
-$$ B = -A_{st}\varepsilon_cE_s + A_{sc}f_{sy} $$
-$$ C = -A_{st}\varepsilon_cE_s $$
+Concrete flex.ten. strength, f'_{ct.f} {{{output(o_fctf,MPa)}}}
 
-Check assumptions
+Minimum bending strength, M_{uo,min} {{{output(o_Muomin,kNm)}}}
 
-** Assume that steel has not yielded
-
-$$ k_u = \frac{-B \pm \sqrt{B^2 - 4AC}}{2A} $$
-$$ A = \alpha_2 f'_c b \gamma d $$
-$$ B = -A_{st}\varepsilon_cE_s + -A_{sc}\varepsilon_cE_s $$
-$$ C = -A_{st}\varepsilon_cE_s - A_{sc} \frac{\varepsilon_c(c+d_b/2)}{d} E_s $$
-
-Check assumptions
+Min strength check, M_{uo,min}/M_{uo} {{{output(momentminCheck)}}}
 
 * Export on save                                                   :noexport:
 ;; Local Variables:
