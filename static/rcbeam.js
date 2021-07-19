@@ -1,8 +1,102 @@
 function updatePage()
 {
     runCalcs();
-    // drawFigure(0.4);
+    drawFigure();
     setStatusUptodate();
+}
+
+function drawFigure() {
+    let canvas = document.getElementById('beamFigure');
+    let ctx = canvas.getContext('2d');
+    let X = canvas.width;
+    let Y = canvas.height;
+    ctx.clearRect(0, 0, X, Y);
+
+    let beam = {
+        B:i_B.valueAsNumber,
+        D:i_D.valueAsNumber,
+        dbc:i_dbc.valueAsNumber,
+        dbt:i_dbt.valueAsNumber,
+        dbs:i_dbs.valueAsNumber,
+        c:i_c.valueAsNumber,
+        dn:o_dn.valueAsNumber,
+    };
+    let scalefactor = 0.9*Math.min(canvas.width/beam.B,
+                                   canvas.height/beam.D);
+    for (key in beam) {
+        beam[key] = scalefactor*beam[key];
+    }
+    beam.nbc = i_nbc.valueAsNumber;
+    beam.nbt = i_nbt.valueAsNumber;
+
+    // Neutral axis
+    ctx.strokeStyle = '#ccc';
+    ctx.fillStyle = '#f3f3f3';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.rect((X-beam.B)/2,(Y-beam.D)/2,beam.B,beam.dn);
+    ctx.fill();
+    ctx.stroke();
+
+    // Beam outline
+    ctx.beginPath();
+    ctx.strokeStyle = 'black';
+    ctx.lineWidth = 1;
+    ctx.rect((X-beam.B)/2,(Y-beam.D)/2,beam.B,beam.D);
+    ctx.stroke();
+
+    // Bottom bars
+    ctx.strokeStyle = 'black';
+    ctx.lineWidth = 1;
+    let barspc = (beam.B-2*(beam.c+beam.dbs)-beam.dbt)/(beam.nbt-1);
+    for (i = 0; i < beam.nbt; i++) {
+        rebar(ctx,
+              (X-beam.B)/2 + beam.c+beam.dbs+beam.dbt/2 + (i*barspc),
+              (Y+beam.D)/2 - (beam.c+beam.dbs+beam.dbt/2),
+              beam.dbt);
+    }
+
+    // Top bars
+    ctx.strokeStyle = 'black';
+    ctx.lineWidth = 1;
+    barspc = (beam.B-2*(beam.c+beam.dbs)-beam.dbc)/(beam.nbc-1);
+    for (i = 0; i < beam.nbc; i++) {
+        rebar(ctx,
+              (X-beam.B)/2 + beam.c+beam.dbs+beam.dbc/2 + (i*barspc),
+              (Y-beam.D)/2 + (beam.c+beam.dbs+beam.dbc/2),
+              beam.dbc);
+    }
+
+    // Stirrups
+    ctx.strokeStyle = 'black';
+    ctx.lineWidth = 1;
+    roundedrect(ctx, (X-beam.B)/2+beam.c, (Y-beam.D)/2+beam.c,
+                beam.B-2*beam.c, beam.D-2*beam.c, 3*beam.dbs/2);
+    roundedrect(ctx, (X-beam.B)/2+beam.c+beam.dbs, (Y-beam.D)/2+beam.c+beam.dbs,
+                beam.B-2*beam.c-2*beam.dbs, beam.D-2*beam.c-2*beam.dbs, beam.dbs/2);
+
+}
+
+
+function rebar(ctx, x, y, db)
+{
+    ctx.beginPath();
+    ctx.arc(x, y, db/2, 0, 2*Math.PI, false);
+    ctx.stroke();
+}
+
+function roundedrect(ctx, x, y, width, height, radius) {
+    ctx.beginPath();
+    ctx.moveTo(x + radius, y);
+    ctx.lineTo(x + width - radius, y);
+    ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+    ctx.lineTo(x + width, y + height - radius);
+    ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+    ctx.lineTo(x + radius, y + height);
+    ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+    ctx.lineTo(x, y + radius);
+    ctx.quadraticCurveTo(x, y, x + radius, y);
+    ctx.stroke();
 }
 
 function runCalcs() {
@@ -15,7 +109,7 @@ function runCalcs() {
         dbt:i_dbt.valueAsNumber,
         dbs:i_dbs.valueAsNumber,
         dbspc:i_dbspc.valueAsNumber,
-        c:i_c.valueAsNumber
+        c:i_c.valueAsNumber,
     };
 
     // Beam parameters
@@ -117,66 +211,3 @@ function bending_phi(ku) {
     let phi = 1.24 - 13*ku/12;
     return Math.min(Math.max(phi, 0.65), 0.85);
 }
-
-
-/// ORIGINAL FUNCTIONS:
-
-// function drawFigure(scale)
-// {
-//     let canvas = document.getElementById('beamFigure');
-//     if (canvas.getContext)
-//     {
-//         let ctx = canvas.getContext('2d');
-//         let X = canvas.width;
-//         let Y = canvas.height;
-//         ctx.clearRect(0, 0, X, Y);
-
-//         // Variables
-//         let B = beamWidth.valueAsNumber;
-//         let D = beamDepth.valueAsNumber;
-//         let dbt = dbtension.valueAsNumber;
-//         let dbc = dbcompression.valueAsNumber;
-//         let axist = cover.valueAsNumber + dbt/2;
-//         let axisc = cover.valueAsNumber + dbc/2;
-//         let btmBars = nbarstension.valueAsNumber;
-//         let topBars = nbarscompression.valueAsNumber;
-
-//         // Concrete mass
-//         ctx.fillStyle = 'lightgray';
-//         ctx.fillRect(0,0,scale*B,scale*D);
-
-//         // Bottom bars
-//         ctx.lineStyle = 'black';
-//         ctx.lineWidth = 1;
-//         ctx.fillStyle = 'black';
-//         let barSpace = (B-2*axist)/(btmBars-1);
-//         for (i = 0; i < btmBars; i++) {
-//             rebar(ctx, scale*(axist+(i*barSpace)), scale*(D-axist), scale*dbt);
-//         }
-//         // Top bars
-//         barSpace = (B-2*axisc)/(topBars-1);
-//         for (i = 0; i < topBars; i++) {
-//             rebar(ctx, scale*(axisc+(i*barSpace)), scale*axisc, scale*dbc);
-//         }
-
-//         // ULS N.A.
-//         let dn = ulsdn.valueAsNumber;
-//         ctx.lineStyle = 'black';
-//         ctx.setLineDash([5,5]);
-//         ctx.beginPath();
-//         ctx.moveTo(0,scale*dn);
-//         ctx.lineTo(scale*B,scale*dn);
-//         ctx.stroke();
-//         ctx.fillStyle = '#bbb';
-//         ctx.fillRect(0,0,scale*B,scale*dn);
-
-//     }
-// }
-
-// function rebar(ctx, x, y, db)
-// {
-//     ctx.beginPath();
-//     ctx.arc(x, y, db/2, 0, 2*Math.PI, false);
-//     ctx.fill();
-//     ctx.stroke();
-// }
