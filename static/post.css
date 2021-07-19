@@ -150,6 +150,7 @@ a:hover {
 canvas {
   background: white;
   border: 1px solid darkgrey;
+  max-width: 97%;
 }
 
 input {
