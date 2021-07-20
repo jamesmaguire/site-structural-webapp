@@ -5,7 +5,7 @@
 #+HTML_HEAD: <body onload="updatePage();">
 #+HTML_HEAD: <script type="text/javascript" src="../static/rcbeam.js"></script>
 #+include: "../statusicon.org"
-#+include: "../navbar.org"
+#+include: "../header.org"
 
 * Image
 

@@ -38,7 +38,7 @@ p {
 
 #statusbutton {
   position: fixed;
-  bottom: 1.0rem;
+  top: 0.5rem;
   right: 1.5rem;
   padding: 0.7rem;
   padding-top: 0.4rem;
@@ -64,7 +64,7 @@ p {
   transition-duration: 0.4s;
 }
 
-.navbar {
+.header {
   position: absolute;
   left: 0;
   top: 0;
@@ -76,16 +76,16 @@ p {
   border: none;
   border-bottom: 1px solid lightgrey;
 }
-.navbar .outline-3 {
+.header .outline-3 {
   display: inline-block;
   margin: 0;
   padding: 0;
 }
-.navbar h2 {
+.header h2 {
   margin: 0;
   padding: 0;
 }
-.navbar .org-svg {
+.header .org-svg {
   height: 2rem;
   margin: 0;
   padding: 0;
@@ -93,12 +93,12 @@ p {
   margin-bottom: -0.7rem;
   margin-top: -1rem;
 }
-.navbar h3::after {
+.header h3::after {
   font-weight: bold;
   content: "\00B7  ";
   padding-left: 0.5rem;
 }
-.navbar h3 {
+.header h3 {
   font-weight: bold;
   font-size: 100%;
   padding: 0.2rem;
@@ -136,6 +136,10 @@ h2 {
   font-weight: bold;
   margin-bottom: 0.6rem;
   margin-top: 0.5rem;
+}
+
+h3 {
+  font-size: 100%;
 }
 
 a {

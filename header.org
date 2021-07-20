@@ -1,0 +1,6 @@
+* 
+:PROPERTIES:
+:HTML_CONTAINER_CLASS: header
+:END:
+** [[file:./static/icon/favicon.svg]]
+** [[file:index.org][Home]]

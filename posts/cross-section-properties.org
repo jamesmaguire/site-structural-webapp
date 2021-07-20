@@ -3,7 +3,7 @@
 #+HTML_HEAD: <body onload="updatePage();">
 #+HTML_HEAD: <script type="text/javascript" src="../static/cross-section-properties.js"></script>
 #+include: "../statusicon.org"
-#+include: "../navbar.org"
+#+include: "../header.org"
 
 * Circle
 

@@ -1,6 +1,19 @@
 #+title: Structural design applications
 #+setupfile: index.setup
-#+include: "navbar.org"
+#+include: "header.org"
+
+* Application index
+
+** Foundations
+*** [[file:posts/pad-footing.org][Pad footings]]
+*** [[file:posts/strip-footing.org][Strip footings]]
+*** [[file:posts/bored-piles.org][Bored piles]]
+** Reinforced concrete design
+*** [[file:posts/rc-beam.org][RC Beam]]
+# ** TODO [[file:posts/rc-columns.org][RC Column]]
+** Other tools
+*** [[file:posts/cross-section-properties.org][Cross section properties]]
+*** [[file:posts/rebar-properties.org][Rebar properties]]
 
 * Description
 This is a website created by JM to solve simple structural engineering design problems. There is no warranty of correctness of these applications and results must be checked by other methods by an experienced engineer if they are to be used for design purposes.
@@ -13,10 +26,19 @@ Input boxes that look like @@html:<input value="this" readonly></input>@@ are de
 ** TODO Page: second moment of area
 ** TODO Page: Geo properties
 ** TODO Page: beam bending formulae
-** TODO Page: Beam moment capacity (+ drawing)
+** DONE Page: RC beam moment capacity (+ drawing)
+** TODO Search/filter header
+** DONE Fix sub/super scripts
+** DONE Update header css
+** DONE Create output textbox
+** DONE Update RC beam and add min strength check
+** DONE Update page when input box is unfocused
+** TODO Create canvas.js page with helpers
+- rebar function
+- roundedrect function
+** TODO Just have a home link and links on the index page (can categorise them) rather than header
 
-** TODO Search/filter navbar
-** TODO Update Up to date icon css
-** TODO Fix sub/super scripts
-** TODO Update navbar css
-** TODO Create output textbox
+* Export on save                                                   :noexport:
+;; Local Variables:
+;; eval: (add-hook 'after-save-hook 'org-html-export-to-html nil t)
+;; End:
