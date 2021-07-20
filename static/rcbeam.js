@@ -70,8 +70,9 @@ function drawFigure() {
     // Stirrups
     ctx.strokeStyle = 'black';
     ctx.lineWidth = 1;
-    roundedrect(ctx, (X-beam.B)/2+beam.c, (Y-beam.D)/2+beam.c,
-                beam.B-2*beam.c, beam.D-2*beam.c, 3*beam.dbs/2);
+    // I've trimmed one pixel to give the stirrup a more visually consistent size
+    roundedrect(ctx, (X-beam.B)/2+beam.c+1, (Y-beam.D)/2+beam.c+1,
+                beam.B-2*beam.c-2, beam.D-2*beam.c-2, 3*beam.dbs/2);
     roundedrect(ctx, (X-beam.B)/2+beam.c+beam.dbs, (Y-beam.D)/2+beam.c+beam.dbs,
                 beam.B-2*beam.c-2*beam.dbs, beam.D-2*beam.c-2*beam.dbs, beam.dbs/2);
 
