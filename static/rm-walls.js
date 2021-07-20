@@ -34,7 +34,7 @@ function inplaneShear() {
 
     let fvr = 1.5 - 0.5*H/L;
     effshearstrength.value = (fvr).toFixed(1);
-    let Ad = L*D^2;
+    let Ad = L*D;
     let fsy = yieldstrength.valueAsNumber;
     let Ash = (H/hbarspc.valueAsNumber)*Math.PI*hbarsize.valueAsNumber**2/4;
     let Asv = (L/vbarspc.valueAsNumber)*Math.PI*vbarsize.valueAsNumber**2/4;
@@ -82,7 +82,7 @@ function outofplaneShear() {
     strengthvm.value = fvm;
     strengthvs.value = fvs;
     let bw = walllength.valueAsNumber*1000; //mm
-    let d = thickness.valueAsNumber*1000; //mm
+    let d = thickness.valueAsNumber*1000/2; //mm
 
     let s = vbarspc.valueAsNumber;
     let Ast = Math.min((bw/s)*Math.PI*vbarsize.valueAsNumber**2/4,
