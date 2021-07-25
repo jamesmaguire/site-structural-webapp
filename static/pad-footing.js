@@ -1,6 +1,6 @@
 function updatePage()
 {
-    drawFooting(0.05);
+    drawFigure();
     checkBearing();
     checkPunching();
     checkShear();
@@ -8,43 +8,61 @@ function updatePage()
     setStatusUptodate();
 }
 
-function drawFooting(scale)
-{
+function drawFigure() {
     let canvas = document.getElementById('padFootingFigure');
-    if (canvas.getContext)
-    {
-        let ctx = canvas.getContext('2d');
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    let ctx = canvas.getContext('2d');
+    let X = canvas.width;
+    let Y = canvas.height;
+    ctx.clearRect(0, 0, X, Y);
 
-        // Footing
-        ctx.fillStyle = 'lightgray';
-        ctx.fillRect(0,0,scale*Lx.valueAsNumber,scale*Ly.valueAsNumber);
-        ctx.lineWidth = 1;
-        ctx.setLineDash([]);
-        ctx.lineStyle = 'black';
-        ctx.beginPath();
-        ctx.rect(0,0,scale*Lx.valueAsNumber,scale*Ly.valueAsNumber);
-        ctx.stroke();
+    let pad = {
+        Lx:Lx.valueAsNumber,
+        Ly:Ly.valueAsNumber,
+        D:footingHeight.valueAsNumber,
+        db:barDiameter.valueAsNumber,
+        c:cover.valueAsNumber,
+    };
 
-        // Column
-        let xmin = scale*(eccentricityX.valueAsNumber+(Lx.valueAsNumber - Lcx.valueAsNumber)/2);
-        let ymin = scale*(eccentricityY.valueAsNumber+(Ly.valueAsNumber - Lcy.valueAsNumber)/2);
-        ctx.lineStyle = 'black';
-        ctx.beginPath();
-        ctx.rect(xmin,ymin,scale*Lcx.valueAsNumber,scale*Lcy.valueAsNumber);
-        ctx.stroke();
+    let col = {
+        Lx:Lcx.valueAsNumber,
+        Ly:Lcy.valueAsNumber,
+        ex:eccentricityX.valueAsNumber,
+        ey:eccentricityY.valueAsNumber,
+    };
 
-        // Shear perimeter
-        let d0 = footingHeight.valueAsNumber - cover.valueAsNumber - barDiameter.valueAsNumber;
-        xmin = scale*(eccentricityX.valueAsNumber+(Lx.valueAsNumber-Lcx.valueAsNumber-d0)/2);
-        ymin = scale*(eccentricityY.valueAsNumber+(Ly.valueAsNumber-Lcy.valueAsNumber-d0)/2);
-        ctx.lineStyle = 'grey';
-        ctx.setLineDash([5, 5]);
-        ctx.beginPath();
-        ctx.rect(xmin,ymin,scale*(Lcx.valueAsNumber+d0),scale*(Lcy.valueAsNumber+d0));
-        ctx.stroke();
-
+    let scalefactor = 0.9*Math.min(canvas.width/pad.Lx,
+                                   canvas.height/pad.Ly);
+    for (key in pad) {
+        pad[key] = scalefactor*pad[key];
     }
+    for (key in col) {
+        col[key] = scalefactor*col[key];
+    }
+
+    // Footing
+    ctx.strokeStyle = 'black';
+    ctx.lineWidth = 1;
+    ctx.setLineDash([]);
+    ctx.beginPath();
+    ctx.rect((X-pad.Lx)/2, (Y-pad.Ly)/2, pad.Lx, pad.Ly);
+    ctx.stroke();
+
+    // Column
+    ctx.strokeStyle = 'black';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.rect((X-col.Lx)/2+col.ex, (Y-col.Ly)/2-col.ey, col.Lx, col.Ly);
+    ctx.stroke();
+
+    // Shear perimeter
+    let d0 = pad.D - pad.c - pad.db/2;
+    ctx.lineStyle = 'grey';
+    ctx.lineWidth = 1;
+    ctx.setLineDash([5, 5]);
+    ctx.beginPath();
+    ctx.rect((X-col.Lx-d0)/2+col.ex, (Y-col.Ly-d0)/2-col.ey,
+             col.Lx+d0, col.Ly+d0);
+    ctx.stroke();
 }
 
 function checkBearing()

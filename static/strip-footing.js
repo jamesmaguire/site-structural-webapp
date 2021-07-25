@@ -1,66 +1,70 @@
 function updatePage()
 {
-    drawFooting(0.05);
+    drawFigure();
     checkBearing();
     checkShear();
     checkBending();
     setStatusUptodate();
 }
 
-function drawFooting(scale)
-{
+function drawFigure() {
     let canvas = document.getElementById('stripFootingFigure');
-    if (canvas.getContext)
-    {
-        let ctx = canvas.getContext('2d');
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    let ctx = canvas.getContext('2d');
+    let X = canvas.width;
+    let Y = canvas.height;
+    ctx.clearRect(0, 0, X, Y);
 
-        let Ww = wallWidth.valueAsNumber;
-        let Hw = 1500;
-        let Wf = footingWidth.valueAsNumber;
-        let Hf = footingHeight.valueAsNumber;
-        let e = eccentricity.valueAsNumber;
+    let strip = {
+        W:footingWidth.valueAsNumber,
+        D:footingHeight.valueAsNumber,
+        db:barDiameter.valueAsNumber,
+        c:cover.valueAsNumber,
+    };
 
-        // Footing
-        ctx.fillStyle = 'lightgray';
-        ctx.fillRect(0,scale*Hw,scale*Wf,scale*Hf);
-        ctx.lineWidth = 1;
-        ctx.setLineDash([]);
-        ctx.lineStyle = 'black';
-        ctx.beginPath();
-        ctx.rect(0,scale*Hw,scale*Wf,scale*Hf);
-        ctx.stroke();
+    let wall = {
+        W:wallWidth.valueAsNumber,
+        e:eccentricity.valueAsNumber,
+    };
 
-        // Wall
-        ctx.fillStyle = '#eee';
-        ctx.fillRect(scale*(e+(Wf-Ww)/2), 0, scale*Ww, scale*Hw);
-        ctx.beginPath();
-        ctx.rect(scale*(e+(Wf-Ww)/2), 0, scale*Ww, scale*Hw);
-        ctx.stroke();
-
-        // Shear planes
-        let x1 = shearPlaneLHS();
-        let x2 = Wf-shearPlaneRHS();
-        ctx.lineStyle = 'grey';
-        ctx.setLineDash([5, 5]);
-        ctx.beginPath();
-        ctx.moveTo(scale*x1,scale*Hw);
-        ctx.lineTo(scale*x1,scale*(Hw+Hf));
-        ctx.moveTo(scale*x2,scale*Hw);
-        ctx.lineTo(scale*x2,scale*(Hw+Hf));
-        ctx.stroke();
-
-        // Reo
-        let c = cover.valueAsNumber;
-        ctx.lineStyle = 'black';
-        ctx.setLineDash([]);
-        ctx.beginPath();
-        ctx.moveTo(scale*c,scale*(Hw+c));
-        ctx.lineTo(scale*c,scale*(Hw+Hf-c));
-        ctx.lineTo(scale*(Wf-c),scale*(Hw+Hf-c));
-        ctx.lineTo(scale*(Wf-c),scale*(Hw+c));
-        ctx.stroke();
+    let scalefactor = 0.9*Math.min(canvas.width/strip.W,
+                                   canvas.height/strip.D);
+    for (key in strip) {
+        strip[key] = scalefactor*strip[key];
     }
+    for (key in wall) {
+        wall[key] = scalefactor*wall[key];
+    }
+
+    // Strip
+    ctx.strokeStyle = 'black';
+    ctx.lineWidth = 1;
+    ctx.setLineDash([]);
+    ctx.beginPath();
+    ctx.rect((X-strip.W)/2, 0.95*Y - strip.D, strip.W, strip.D);
+    ctx.stroke();
+
+
+    // Wall
+    ctx.strokeStyle = 'black';
+    ctx.lineWidth = 1;
+    ctx.setLineDash([]);
+    ctx.beginPath();
+    ctx.rect((X-wall.W)/2+wall.e, 0.05*Y, wall.W, 0.9*Y - strip.D);
+    ctx.stroke();
+
+    // Shear perimeter
+    let d0 = strip.D - strip.c - strip.db/2;
+    ctx.strokeStyle = 'black';
+    ctx.lineWidth = 1;
+    ctx.setLineDash([5, 5]);
+    ctx.beginPath();
+    ctx.moveTo((X-wall.W-d0)/2+wall.e, 0.95*Y-strip.D);
+    ctx.lineTo((X-wall.W-d0)/2+wall.e, 0.95*Y);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo((X+wall.W+d0)/2+wall.e, 0.95*Y-strip.D);
+    ctx.lineTo((X+wall.W+d0)/2+wall.e, 0.95*Y);
+    ctx.stroke();
 }
 
 function d0()
@@ -73,15 +77,17 @@ function d0()
 function shearPlaneLHS()
 {
     return footingWidth.valueAsNumber/2
+        - wallWidth.valueAsNumber/2
         + eccentricity.valueAsNumber
-        - d0();
+        - d0()/2;
 }
 
 function shearPlaneRHS()
 {
     return footingWidth.valueAsNumber/2
+        - wallWidth.valueAsNumber/2
         - eccentricity.valueAsNumber
-        - d0();
+        - d0()/2;
 }
 
 function checkBearing()

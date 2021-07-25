@@ -16,7 +16,7 @@ Footing width {{{input(footingWidth,2400,mm)}}}
 
 Concrete strength {{{input(concreteStrength,32,MPa)}}}
 
-Concrete unit weight {{{input(gammac,25,kN/m^3)}}}
+Concrete unit weight {{{input(gammac,25,kN/m<sup>3</sup>)}}}
 
 * Wall parameters
 
