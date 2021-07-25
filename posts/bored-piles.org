@@ -20,6 +20,8 @@ Tie diameter {{{input(tieDiameter,10,mm)}}}
 
 Concrete cover {{{input(cover,50,mm)}}}
 
+@@html:<label>Fully embedded? </label><input id="embedded" type="checkbox" value="false" oninput="updatePage()"></input>@@
+
 Concrete placement factor k {{{input(placementFactor,0.75,)}}}
 
 * Loading parameters

@@ -3,58 +3,63 @@ function updatePage()
     checkAxial();
     checkSoil();
     designBars();
-    drawFigure(0.2);
+    drawFigure();
     setStatusUptodate();
 }
 
-function drawFigure(scale)
-{
+function drawFigure() {
     let canvas = document.getElementById('boredPileFigure');
-    if (canvas.getContext)
-    {
-        let ctx = canvas.getContext('2d');
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    let ctx = canvas.getContext('2d');
+    let X = canvas.width;
+    let Y = canvas.height;
+    ctx.clearRect(0, 0, X, Y);
 
-        // Variables
-        let R = diameter.valueAsNumber/2;
-        let c = cover.valueAsNumber;
-        let dt = tieDiameter.valueAsNumber;
-        let db = barDiameter.valueAsNumber;
+    let pile = {
+        D:diameter.valueAsNumber,
+        c:cover.valueAsNumber,
+        db:barDiameter.valueAsNumber,
+        dbt:tieDiameter.valueAsNumber,
+    };
 
-        // Concrete mass
-        ctx.lineWidth = 1;
-        ctx.fillStyle = 'lightgray';
-        ctx.beginPath();
-        ctx.arc(scale*R, scale*R, scale*R, 0, 2*Math.PI);
-        ctx.fill();
-
-        // Tie
-        ctx.lineWidth = scale*dt;
-        ctx.lineStyle = 'black';
-        ctx.beginPath();
-        ctx.arc(scale*R, scale*R, scale*(R-c-dt/2), 0, 2*Math.PI);
-        ctx.stroke();
-
-        // Long bars
-        let nbars = parseInt(longBars.value.split(" ")[0]);
-        let armlength = diameter.valueAsNumber/2 - cover.valueAsNumber
-            - tieDiameter.valueAsNumber - barDiameter.valueAsNumber/2;
-        ctx.lineWidth = 1;
-        ctx.fillStyle = 'black';
-        for (let i = 0; i < nbars; i++) {
-            let x = armlength * Math.sin(i*2*Math.PI/nbars) + R;
-            let y = armlength * Math.cos(i*2*Math.PI/nbars) + R;
-            rebar(ctx, scale*x, scale*y, scale*barDiameter.valueAsNumber);
-        }
-        
+    let scalefactor = 0.9*Math.min(canvas.width/pile.D, canvas.height/pile.D);
+    for (key in pile) {
+        pile[key] = scalefactor*pile[key];
     }
+    pile.nbars = parseInt(longBars.value.split(" ")[0]);
+
+    // Pile outline
+    ctx.beginPath();
+    ctx.strokeStyle = 'black';
+    ctx.lineWidth = 1;
+    ctx.arc(X/2 ,Y/2 , pile.D/2, 0, 2*Math.PI);
+    ctx.stroke();
+
+    // Ties
+    ctx.strokeStyle = 'black';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.arc(X/2 ,Y/2 , pile.D/2-pile.c-1, 0, 2*Math.PI);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.arc(X/2 ,Y/2 , pile.D/2-pile.c-pile.dbt, 0, 2*Math.PI);
+    ctx.stroke();
+
+    // Longitudinal bars
+    ctx.strokeStyle = 'black';
+    ctx.lineWidth = 1;
+    let armlength = pile.D/2 - pile.c - pile.dbt - pile.db/2;
+    for (let i = 0; i < pile.nbars; i++) {
+        let x = armlength * Math.sin(i*2*Math.PI/pile.nbars) + X/2;
+        let y = armlength * Math.cos(i*2*Math.PI/pile.nbars) + Y/2;
+        rebar(ctx, x, y, pile.db);
+    }
+
 }
 
 function rebar(ctx, x, y, db)
 {
     ctx.beginPath();
     ctx.arc(x, y, db/2, 0, 2*Math.PI, false);
-    ctx.fill();
     ctx.stroke();
 }
 
@@ -94,6 +99,16 @@ function checkSoil()
     setPassFail(soilCheck);
 }
 
+function calcAstmin() {
+    
+    if (embedded.checked) {
+        return 0.005*Ag() * 1e6;
+    }
+    else {
+        return 0.010*Ag() * 1e6;
+    }
+}
+
 function designBars()
 {
     let c = cover.valueAsNumber;
@@ -101,7 +116,7 @@ function designBars()
     let dt = tieDiameter.valueAsNumber;
 
     // Longitudinal
-    let Astmin = 0.005*Ag() * 1e6;
+    let Astmin = calcAstmin();
     let Astmax = 0.04*Ag() * 1e6;
     let bars = Math.floor(Astmin/Abar)+1;
     let Ast = bars*Abar;
