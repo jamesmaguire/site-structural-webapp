@@ -28,7 +28,7 @@ Moment capacity, M_u {{{output(Mcapacity,kNm)}}}
 
 (Apply \Phi of 0.65 for bending as part of singly reinforced wall)
 
-Axial capacity, \Phi{}N_u {{{output(Ncapacity,kN)}}}
+Axial capacity, N_u {{{output(Ncapacity,kN)}}}
 
 (Apply \Phi of 0.85 for tension of Class N reo)
 
