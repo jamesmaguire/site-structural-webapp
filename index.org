@@ -35,7 +35,8 @@ Input boxes that look like @@html:<input value="this" readonly></input>@@ are de
 ** TODO Create canvas.js page with helpers
 - rebar function
 - roundedrect function
-** TODO Just have a home link and links on the index page (can categorise them) rather than header
+** TODO Add input calculations to text box
+(Type 1000/200 in input and gives 5)
 
 * Export on save                                                   :noexport:
 ;; Local Variables:
