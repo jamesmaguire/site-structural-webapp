@@ -73,6 +73,7 @@ body {
 canvas {
   max-width: 100%;
   background: white;
+  border: 1px solid #d3d3d3;
 }
 
 /* Input/output */
