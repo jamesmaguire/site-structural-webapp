@@ -1,6 +1,5 @@
 #+title: Structural design applications
 #+setupfile: index.setup
-#+include: "header.org"
 
 * Application index
 
