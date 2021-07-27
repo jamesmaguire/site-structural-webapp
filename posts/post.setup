@@ -1,16 +1,17 @@
 # -*- mode: org; -*-
 
-#+OPTIONS: toc:nil num:nil
-#+OPTIONS: html-postamble:nil
-#+OPTIONS: html-style:nil
-#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../static/post.css" />
-#+HTML_HEAD: <script type="text/javascript" src="../static/general.js"></script>
-#+HTML_HEAD: <link rel="icon" type="image/ico" href="../static/icon/favicon.svg" />
-#+HTML_HEAD: <meta name="viewport" content="width=device-width, initial-scale=1.0">
+#+options: toc:nil num:nil
+#+options: html-postamble:nil
+#+options: html-style:nil
+#+html_head: <link rel="stylesheet" type="text/css" href="../static/post.css" />
+#+html_head: <script type="text/javascript" src="../static/general.js"></script>
+#+html_head: <link rel="icon" type="image/ico" href="../static/icon/favicon.svg" />
+#+html_head: <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 # Navigation
-#+HTML_LINK_HOME: ../index.html
-#+HTML_LINK_UP: ../index.html
+#+html_link_home: ../index.html
+#+html_link_up: ../index.html
+#+bind: org-html-home/up-format "<div id=\"org-div-home-and-up\"> <img src=\"../static/icon/favicon.svg\" /> <a href=\"%s\"> Home </a> </div>"
 
 # Macros
 #+macro: input @@html:<span class="inputspan"><input id="$1" class="right" type="number" value="$2" onkeypress="eventHandler(event)" onblur="updatePage()"> $3</span>@@
