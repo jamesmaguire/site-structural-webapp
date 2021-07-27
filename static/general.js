@@ -9,9 +9,9 @@ function eventHandler(event)
 
 function setPassFail (obj, threshold = 1) {
     if (obj.valueAsNumber < threshold) {
-        obj.className = 'PASS right';
+        obj.parentElement.className = 'outputspan PASS right';
     } else {
-        obj.className = 'FAIL right';
+        obj.parentElement.className = 'outputspan FAIL right';
     }
 }
 
@@ -20,12 +20,12 @@ function setStatusOutofdate()
     if (document.getElementById('text-results-window') != null) {
         document.getElementById('text-results-window').innerHTML = "";
     }
-    statusbutton.innerHTML = "▶ &nbsp Run analysis";
+    statusbutton.innerHTML = "▶ &nbsp Solve";
     statusbutton.className = "status-red";
 }
 
 function setStatusUptodate()
 {
-    statusbutton.innerHTML = "👍 &nbsp Up to date"; // (Thumbs up unicode);
+    statusbutton.innerHTML = "▶ &nbsp Up to date"; // (Thumbs up unicode);
     statusbutton.className = "status-green";
 }
