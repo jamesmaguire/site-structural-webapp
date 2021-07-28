@@ -1,0 +1,17 @@
+{
+  "theme_color": "#f8813c",
+  "background_color": "#eeeef2",
+  "description": "Structural engineering design applications",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "icon/logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+      "purpose": "maskable"
+    }
+  ],
+  "name": "StructApps",
+  "short_name": "StructApps",
+  "start_url": "/index.html"
+}
