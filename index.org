@@ -1,6 +1,8 @@
 #+title: Structural design applications
 #+setupfile: index.setup
 
+[[file:./static/icon/logo.svg]]
+
 * Application index
 
 ** Foundations
