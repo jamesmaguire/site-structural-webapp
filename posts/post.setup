@@ -11,7 +11,7 @@
 # Navigation
 #+html_link_home: ../index.html
 #+html_link_up: ../index.html
-#+bind: org-html-home/up-format "<div id=\"org-div-home-and-up\"> <img src=\"../static/icon/favicon.svg\" /> <a href=\"%s\"> Home </a> </div>"
+#+bind: org-html-home/up-format "<div id=\"org-div-home-and-up\"> <img src=\"../static/icon/logo.svg\" /> <a href=\"%s\"> Home </a> </div>"
 
 # Macros
 #+macro: input @@html:<span class="inputspan"><input id="$1" class="right" type="number" value="$2" onkeypress="eventHandler(event)" onblur="updatePage()"> $3</span>@@
