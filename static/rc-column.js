@@ -202,6 +202,8 @@ function runCalcs() {
         col.Ag = Math.PI*col.Dia**2/4;
     }
     o_Ag.value = col.Ag.toFixed(0);
+    o_Astratio.value = (100*col.Ast/col.Ag).toFixed(2);
+    setPassFail(o_Astratio, 1, inverse=true);
 
     col.ry = 0.3*col.Dy;
     col.rx = 0.3*col.Dx;
@@ -254,14 +256,36 @@ function runCalcs() {
     let Mcx = MNpointx(0.545, col, concrete, steel)[0];
     let Mcy = MNpointy(0.545, col, concrete, steel)[0];
     let phi = 0.65;
-    let Ncx = (Math.PI**2/col.L**2) * (182*(col.Dx-col.c-col.dbt-col.db/2)*phi*Mcx/(1+beta)) * 1000;
-    let Ncy = (Math.PI**2/col.L**2) * (182*(col.Dy-col.c-col.dbt-col.db/2)*phi*Mcy/(1+beta)) * 1000;
+    let axisdist = col.c + col.dbt + col.db/2;
+    let Ncx = (Math.PI**2/col.L**2) * (182*(col.Dx-axisdist)*phi*Mcx/(1+beta)) * 1000;
+    let Ncy = (Math.PI**2/col.L**2) * (182*(col.Dy-axisdist)*phi*Mcy/(1+beta)) * 1000;
     let Nc = Math.min(Ncx, Ncy);
     o_Nc.value = Nc.toFixed(0);
     
     // Squash load
     let Nuo = ((col.Ag - col.Ast)*concrete.alpha1*concrete.fc + col.Ast*steel.fsy)/1000;
     o_Nuo.value = Nuo.toFixed(0);
+
+    // Ties
+    // TODO:
+    let tieSpacing = 300;
+
+    // Rates
+    let steelDensity = i_rhos.valueAsNumber;
+    let tielength = 0;
+    if (col.shape == "rect") {
+        let tielength = 2*(col.Dx-col.c-col.dbt) + 2*(col.Dy-col.c-col.dbt);
+    } else if (col.shape == "circ") {
+        let tielength = Math.PI * (col.Dia - 2*col.c - col.dbt);
+    }
+    let longVol = col.Ast*col.L; // mm3
+    let tieVol = Math.PI*col.dbt**2/4 * tielength * col.L/tieSpacing; // mm3
+    let steelVol = (longVol + tieVol) / 1000**3; // m3
+    let steelMass = steelVol * steelDensity; // kg
+    let concreteVol = col.Ag*col.L / 1000**3; // m3
+    let steelRate = steelMass / concreteVol;
+    o_concreteVol.value = concreteVol.toFixed(2);
+    o_steelRate.value = steelRate.toFixed(0);
 
 }
 

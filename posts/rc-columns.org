@@ -60,7 +60,7 @@ Bars - circle {{{input(i_nbarscirc,8)}}} (Space: {{{output(o_barspccirc,mm)}}})
 
 Bars - total {{{output(o_nbars,)}}}
 
-Steel area, A_{st} {{{output(o_Ast,mm<sup>2</mm>)}}}
+Steel area, A_{st} {{{output(o_Ast,mm<sup>2</mm>)}}} {{{output(o_Astratio,%)}}}
 
 Steel modulus, E_s {{{output(o_Es,GPa)}}}
 
@@ -100,7 +100,13 @@ Squash load, N_{uo} {{{output(o_Nuo,kN)}}}
 
 Mc = Mub with ku = 0.545 and phi = 0.65
 
+* Rates
 
+Steel density {{{input(i_rhos,7850,kg/m<sup>3</sup>)}}}
+
+Concrete volume {{{output(o_concreteVol,m<sup>3</sup>)}}}
+
+Reinforcement rate {{{output(o_steelRate,kg/m<sup>3</sup>)}}}
 
 * Export on save                                                   :noexport:
 ;; Local Variables:

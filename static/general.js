@@ -7,8 +7,10 @@ function eventHandler(event)
     }
 }
 
-function setPassFail (obj, threshold = 1) {
-    if (obj.valueAsNumber < threshold) {
+function setPassFail (obj, threshold=1, inverse=false) {
+    if (obj.valueAsNumber < threshold && inverse == false) {
+        obj.parentElement.className = 'outputspan PASS right';
+    } else if (obj.valueAsNumber > threshold && inverse == true) {
         obj.parentElement.className = 'outputspan PASS right';
     } else {
         obj.parentElement.className = 'outputspan FAIL right';
