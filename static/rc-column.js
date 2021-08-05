@@ -188,6 +188,7 @@ function runCalcs() {
         nbarsside:i_nbarsside.valueAsNumber,
         nbarscirc:i_nbarscirc.valueAsNumber,
         dbt:i_dbt.valueAsNumber,
+        c:i_c.valueAsNumber,
         shape:i_shape.value,
     };
     col.nbars = barCoords(col).length;
@@ -250,25 +251,57 @@ function runCalcs() {
     // TODO: Show short/long
     
     // Buckling load
-        // - Calc Mc
-        // let phi = XX;
-        // let Nc = (Math.PI**2/col.L**2) * (182*col.do*phi*Mc/(1+col.beta));
+    let Mcx = MNpointx(0.545, col, concrete, steel)[0];
+    let Mcy = MNpointy(0.545, col, concrete, steel)[0];
+    let phi = 0.65;
+    let Ncx = (Math.PI**2/col.L**2) * (182*(col.Dx-col.c-col.dbt-col.db/2)*phi*Mcx/(1+beta)) * 1000;
+    let Ncy = (Math.PI**2/col.L**2) * (182*(col.Dy-col.c-col.dbt-col.db/2)*phi*Mcy/(1+beta)) * 1000;
+    let Nc = Math.min(Ncx, Ncy);
+    o_Nc.value = Nc.toFixed(0);
+    
     // Squash load
     let Nuo = ((col.Ag - col.Ast)*concrete.alpha1*concrete.fc + col.Ast*steel.fsy)/1000;
     o_Nuo.value = Nuo.toFixed(0);
 
 }
 
-// function Mu(ku, col, concrete, steel) {
-//     if (col.shape == "rect") {
-//         let Cc = concrete.alpha2*concrete.fc*concrete.gamma*ku*beam.d*beam.B/1000;
-//         // Loop over each steel bar
-//         // let Cs = beam.Asc*steel.Es*steel_strain(ku, concrete.ecu, steel.esu, beam.d, beam.a);
-//         // let Ts = beam.Ast*steel.Es*steel_strain(ku, concrete.ecu, steel.esu, beam.d, beam.d);
-//         let Mu = -(Cc*(concrete.gamma*ku*beam.d/2) + Cs*beam.a + Ts*beam.d)/1000;
-//         return Mu;
-//     }
-// }
+function MNpointy(ku, col, concrete, steel) {
+    let d = col.Dy - col.c - col.dbt - col.db/2;
+    let Cc = concrete.alpha2*concrete.fc*concrete.gamma*ku*d*col.Dx/1000;
+    let bars = barCoords(col);
+    let barForce = [];
+    let barMoment = [];
+    // Loop over each steel bar
+    for (let i=0; i<bars.length; i++) {
+        let y = bars[i][1];
+        let strain = steel_strain(ku, concrete.ecu, steel.esu, d, y);
+        let F = Math.PI*col.db**2/4 * steel.Es*strain;
+        barForce.push(F);
+        barMoment.push(F*(ku*d - y));
+    }
+    let N = Cc + barForce.reduce((a,b)=>a+b);
+    let M = (Cc*(ku*d - concrete.gamma*ku*d/2) + barMoment.reduce((a,b)=>a+b))/1000;
+    return [M, N];
+}
+
+function MNpointx(ku, col, concrete, steel) {
+    let d = col.Dx - col.c - col.dbt - col.db/2;
+    let Cc = concrete.alpha2*concrete.fc*concrete.gamma*ku*d*col.Dy/1000;
+    let bars = barCoords(col);
+    let barForce = [];
+    let barMoment = [];
+    // Loop over each steel bar
+    for (let i=0; i<bars.length; i++) {
+        let x = bars[i][0];
+        let strain = steel_strain(ku, concrete.ecu, steel.esu, d, x);
+        let F = Math.PI*col.db**2/4 * steel.Es*strain;
+        barForce.push(F);
+        barMoment.push(F*(ku*d - x));
+    }
+    let N = Cc + barForce.reduce((a,b)=>a+b);
+    let M = (Cc*(ku*d - concrete.gamma*ku*d/2) + barMoment.reduce((a,b)=>a+b))/1000;
+    return [M, N];
+}
 
 function steel_strain(ku, ecu, esu, d, y) {
     let e = (ecu/(ku*d))*(ku*d - y);

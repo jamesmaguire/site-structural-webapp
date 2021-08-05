@@ -94,7 +94,7 @@ Radius of gyration, r {{{output(o_rd,mm)}}}
 
 Slenderness, \lambda {{{output(o_lambdad,)}}}
 
-Buckling load, N_{cx} {{{output(o_Ncx,kN)}}}
+Buckling load, N_{c} {{{output(o_Nc,kN)}}}
 
 Squash load, N_{uo} {{{output(o_Nuo,kN)}}}
 
