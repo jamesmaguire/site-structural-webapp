@@ -143,6 +143,9 @@ a {
 a:hover {
   color: #0162bc;
 }
+sup, sub {
+  font-size: 75%;
+}
 
 /* Org states */
 .todo {
