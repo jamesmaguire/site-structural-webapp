@@ -264,7 +264,19 @@ function runCalcs() {
     
     // Squash load
     let Nuo = ((col.Ag - col.Ast)*concrete.alpha1*concrete.fc + col.Ast*steel.fsy)/1000;
+    let phiNuo = 0.65*Nuo;
     o_Nuo.value = Nuo.toFixed(0);
+    o_phiNuo.value = phiNuo.toFixed(0);
+
+    // TODO:
+    // Decompression point (ku = 1)
+    let mnpt = MNpointy(1, col, concrete, steel);
+    console.log(mnpt);
+
+    //TODO:
+    // Balanced point (ku = 0.545)
+    mnpt = MNpointy(0.545, col, concrete, steel);
+    console.log(mnpt);
 
     // Ties
     // TODO:
@@ -292,6 +304,8 @@ function runCalcs() {
 function MNpointy(ku, col, concrete, steel) {
     let d = col.Dy - col.c - col.dbt - col.db/2;
     let Cc = concrete.alpha2*concrete.fc*concrete.gamma*ku*d*col.Dx/1000;
+    let yc = concrete.gamma*ku*d/2;
+
     let bars = barCoords(col);
     let barForce = [];
     let barMoment = [];
@@ -300,17 +314,30 @@ function MNpointy(ku, col, concrete, steel) {
         let y = bars[i][1];
         let strain = steel_strain(ku, concrete.ecu, steel.esu, d, y);
         let F = Math.PI*col.db**2/4 * steel.Es*strain;
+        if (strain > 0) { // In compression, subtract concrete load
+            F -= Math.PI*col.db**2/4 * concrete.alpha2*concrete.fc/1000;
+        }
         barForce.push(F);
-        barMoment.push(F*(ku*d - y));
+        barMoment.push(F*y);
     }
-    let N = Cc + barForce.reduce((a,b)=>a+b);
-    let M = (Cc*(ku*d - concrete.gamma*ku*d/2) + barMoment.reduce((a,b)=>a+b))/1000;
-    return [M, N];
+    let Nu = Cc + barForce.reduce((a,b)=>a+b);
+    let Mu = (Nu*col.Dy/2 - Cc*yc - barMoment.reduce((a,b)=>a+b))/1000;
+    let phiN = 0.65;
+    let phiM = 0.65*(12/13);
+    if (ku < 0.545) {
+        let phi = Math.min(Math.max(1.24 - 13*ku/12, 0.65));
+        let kphi = 12/13;
+        let Nub = MNpointy(0.545, col, concrete, steel)[1] / phiN;
+        phiM = 0.65*kphi + ((phi - 0.65*kphi)*(1 - Nu/Nub));
+    }
+    return [phiM*Mu, phiN*Nu];
 }
 
 function MNpointx(ku, col, concrete, steel) {
     let d = col.Dx - col.c - col.dbt - col.db/2;
     let Cc = concrete.alpha2*concrete.fc*concrete.gamma*ku*d*col.Dy/1000;
+    xc = concrete.gamma*ku*d/2;
+
     let bars = barCoords(col);
     let barForce = [];
     let barMoment = [];
@@ -319,12 +346,23 @@ function MNpointx(ku, col, concrete, steel) {
         let x = bars[i][0];
         let strain = steel_strain(ku, concrete.ecu, steel.esu, d, x);
         let F = Math.PI*col.db**2/4 * steel.Es*strain;
+        if (strain > 0) { // In compression, subtract concrete load
+            F -= Math.PI*col.db**2/4 * concrete.alpha2*concrete.fc/1000;
+        }
         barForce.push(F);
-        barMoment.push(F*(ku*d - x));
+        barMoment.push(F*x);
     }
-    let N = Cc + barForce.reduce((a,b)=>a+b);
-    let M = (Cc*(ku*d - concrete.gamma*ku*d/2) + barMoment.reduce((a,b)=>a+b))/1000;
-    return [M, N];
+    let Nu = Cc + barForce.reduce((a,b)=>a+b);
+    let Mu = (Nu*col.Dx/2 - Cc*xc - barMoment.reduce((a,b)=>a+b))/1000;
+    let phiN = 0.65;
+    let phiM = 0.65*(12/13);
+    if (ku < 0.545) {
+        let phi = Math.min(Math.max(1.24 - 13*ku/12, 0.65));
+        let kphi = 12/13;
+        let Nub = MNpointx(0.545, col, concrete, steel)[1] / phiN;
+        phiM = 0.65*kphi + ((phi - 0.65*kphi)*(1 - Nu/Nub));
+    }
+    return [phiM*Mu, phiN*Nu];
 }
 
 function steel_strain(ku, ecu, esu, d, y) {
