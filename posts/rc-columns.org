@@ -68,9 +68,21 @@ Steel ult. strain, \varepsilon_{su} {{{output(o_esu)}}}
 
 * Steel ties
 
-Bar diameter {{{barinput(i_dbt,12)}}}
+Bar diameter {{{barinput(i_dbt,12)}}} @ {{{input(i_tieSpacing,200,mm)}}}
 
 Yield stress {{{input(i_fsyt,500,MPa)}}}
+
+Min tie spacing, S {{{output(o_minTieSpacing,mm)}}}
+
+* Column properties
+
+Rad. gyration, r_x {{{output(o_rx,mm)}}}, r_y {{{output(o_ry,mm)}}}
+
+Slenderness, \lambda{}_x {{{output(o_lambdax,)}}} \lambda{}_y {{{output(o_lambday,)}}} 
+
+Radius of gyration, r {{{output(o_r,mm)}}}
+
+Slenderness, \lambda {{{output(o_lambda,)}}} {{{textoutput(o_shortlong)}}}
 
 * Design load
 
@@ -84,21 +96,23 @@ Fire, N*_f {{{output(o_Nfire,kN)}}}
 
 \beta_d {{{output(o_beta,)}}}
 
+Min moment, M*_x {{{output(o_Mxstar,kNm)}}} # TODO
+
+Min moment, M*_y {{{output(o_Mystar,kNm)}}} # TODO
+
 * Strength design
 
-Radius of gyration, r_x {{{output(o_rx,mm)}}}, r_y {{{output(o_ry,mm)}}}
+Buckling load, N_c {{{output(o_Nc,kN)}}}, \Phi{}N_c {{{output(o_phiNc,kN)}}}
 
-Slenderness, \lambda{}_x {{{output(o_lambdax,)}}} \lambda{}_y {{{output(o_lambday,)}}} 
+Squash load, N_{uo} {{{output(o_Nuo,kN)}}}, \Phi{}N_{uo} {{{output(o_phiNuo,kN)}}}
 
-Radius of gyration, r {{{output(o_rd,mm)}}}
+* M-N plot (x)
 
-Slenderness, \lambda {{{output(o_lambdad,)}}}
+@@html:<canvas id="mnxPlot" width="500" height="500" draggable="true"></canvas>@@
 
-Buckling load, N_{c} {{{output(o_Nc,kN)}}}
+* M-N plot (y)
 
-Squash load, N_{uo} {{{output(o_Nuo,kN)}}}
-
-Mc = Mub with ku = 0.545 and phi = 0.65
+@@html:<canvas id="mnyPlot" width="500" height="500" draggable="true"></canvas>@@
 
 * Rates
 

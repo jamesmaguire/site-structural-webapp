@@ -205,10 +205,6 @@ function runCalcs() {
     o_Astratio.value = (100*col.Ast/col.Ag).toFixed(2);
     setPassFail(o_Astratio, 1, inverse=true);
 
-    col.ry = 0.3*col.Dy;
-    col.rx = 0.3*col.Dx;
-    col.rd = 0.25*col.Dia;
-
     // Material properties
     let concrete = {
         fc:i_fc.valueAsNumber,
@@ -230,6 +226,28 @@ function runCalcs() {
     o_Es.value = steel.Es;
     o_esu.value = steel.esu;
 
+    // Column properties
+    col.ry = 0.3*col.Dy;
+    col.rx = 0.3*col.Dx;
+    col.rd = 0.25*col.Dia;
+    o_rx.value = col.rx.toFixed(1);
+    o_ry.value = col.ry.toFixed(1);
+    col.lambdax = col.kx * col.L / col.rx;
+    col.lambday = col.ky * col.L / col.ry;
+    o_lambdax.value = col.lambdax.toFixed(1);
+    o_lambday.value = col.lambday.toFixed(1);
+    if (col.shape=="rect") {
+        col.r = Math.min(col.rx, col.ry);
+        col.lambda = Math.max(col.lambdax, col.lambday);
+    } else if (col.shape=="circ") {
+        col.r = col.rd;
+        col.lambda = Math.max(col.ky, col.kx) * col.L / col.r;
+    }
+    o_r.value = col.r.toFixed(1);
+    o_lambda.value = col.lambda.toFixed(1);
+    if (col.lambda <= 25) {col.class = "short";} else {col.class = "long";}
+    o_shortlong.value = "(" + col.class.charAt(0).toUpperCase() + col.class.slice(1) + ")";
+
     // Design load
     let G = i_G.valueAsNumber;
     let Q = i_Q.valueAsNumber;
@@ -239,18 +257,8 @@ function runCalcs() {
     o_Nuls.value = Nuls.toFixed(0);
     o_Nfire.value = Nfire.toFixed(0);
     o_beta.value = beta.toFixed(3);
+    // TODO: min bending load
 
-    // Strength
-    o_rx.value = col.rx.toFixed(1);
-    o_ry.value = col.ry.toFixed(1);
-    o_rd.value = col.rd.toFixed(1);
-    col.lambdax = col.kx * col.L / col.rx;
-    col.lambday = col.ky * col.L / col.ry;
-    col.lambdad = Math.max(col.ky, col.kx) * col.L / col.rd;
-    o_lambdax.value = col.lambdax.toFixed(1);
-    o_lambday.value = col.lambday.toFixed(1);
-    o_lambdad.value = col.lambdad.toFixed(1);
-    // TODO: Show short/long
     
     // Buckling load
     let Mcx = MNpointx(0.545, col, concrete, steel)[0];
