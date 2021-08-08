@@ -318,16 +318,25 @@ function runCalcs() {
     drawPlot('mnyPlot', plotPts, keyPts);
 
     // Ties
-    // TODO:
-    let tieSpacing = 300;
+    let tieSpacing = i_tieSpacing.valueAsNumber;
+    let minTieSpacing = 0;
+    if (concrete.fc <= 50) { // Clause 10.7.4
+        let b = 0;
+        if (col.shape=="rect") {b = Math.min(col.Dx,col.Dy);}
+        else if (col.shape=="circ") {b = col.Dia;}
+        minTieSpacing = Math.min(b, 15*col.db);
+    }
+    // TODO: else (fc > 50) (clause 10.7.3.2-10.7.3.4)
+    o_minTieSpacing.value = minTieSpacing;
+    setPassFail(o_minTieSpacing, tieSpacing, inverse=true);
 
     // Rates
     let steelDensity = i_rhos.valueAsNumber;
     let tielength = 0;
     if (col.shape == "rect") {
-        let tielength = 2*(col.Dx-col.c-col.dbt) + 2*(col.Dy-col.c-col.dbt);
+        tielength = 2*(col.Dx-col.c-col.dbt) + 2*(col.Dy-col.c-col.dbt);
     } else if (col.shape == "circ") {
-        let tielength = Math.PI * (col.Dia - 2*col.c - col.dbt);
+        tielength = Math.PI * (col.Dia - 2*col.c - col.dbt);
     }
     let longVol = col.Ast*col.L; // mm3
     let tieVol = Math.PI*col.dbt**2/4 * tielength * col.L/tieSpacing; // mm3
@@ -539,8 +548,8 @@ function drawPlot(plotid, points, labelledpts) {
         ctx.beginPath();
         ctx.arc(labelcoords[i][0], labelcoords[i][1], 3, 0, 2*Math.PI);
         ctx.fill();
-        ctx.fillText("(" + labelledpts[i][0].toFixed(0) + ", "
-                     + labelledpts[i][1].toFixed(0) + ")",
+        ctx.fillText("(" + labelledpts[i][0].toFixed(0) + "kNm , "
+                     + labelledpts[i][1].toFixed(0) + "kN)",
                      labelcoords[i][0]+0.03*X, labelcoords[i][1]);
     }
 
