@@ -260,23 +260,54 @@ function runCalcs() {
     let Ncx = (Math.PI**2/col.L**2) * (182*(col.Dx-axisdist)*phi*Mcx/(1+beta)) * 1000;
     let Ncy = (Math.PI**2/col.L**2) * (182*(col.Dy-axisdist)*phi*Mcy/(1+beta)) * 1000;
     let Nc = Math.min(Ncx, Ncy);
+    col.phiNc = phi*Nc;
     o_Nc.value = Nc.toFixed(0);
+    o_phiNc.value = col.phiNc.toFixed(0);
     
     // Squash load
     let Nuo = ((col.Ag - col.Ast)*concrete.alpha1*concrete.fc + col.Ast*steel.fsy)/1000;
     let phiNuo = 0.65*Nuo;
+    col.phiNuo = phiNuo;
     o_Nuo.value = Nuo.toFixed(0);
     o_phiNuo.value = phiNuo.toFixed(0);
 
-    // TODO:
-    // Decompression point (ku = 1)
-    let mnpt = MNpointy(1, col, concrete, steel);
-    console.log(mnpt);
+    // Load-moment plot (X)
+    let purecomp = [0, phiNuo];
+    let decompression = MNpointx(1, col, concrete, steel);
+    let balance = MNpointx(0.545, col, concrete, steel);
+    let purebend = findMNpointx(0, col, concrete, steel);
+    let keyPts = [purecomp, decompression, balance, purebend];
+    let plotPts = [purecomp, decompression];
+    for (ku=0.9; ku>0.55; ku-=0.1) {
+        plotPts.push(MNpointx(ku, col, concrete, steel));
+    }
+    plotPts.push(balance);
+    for (ku=0.5; ku>0; ku-=0.05) {
+        pt = MNpointx(ku, col, concrete, steel);
+        if (pt[1] < 0) {break;}
+        plotPts.push(pt);
+    }
+    plotPts.push(purebend);
+    drawPlot('mnxPlot', plotPts, keyPts);
 
-    //TODO:
-    // Balanced point (ku = 0.545)
-    mnpt = MNpointy(0.545, col, concrete, steel);
-    console.log(mnpt);
+    // Load-moment plot (Y)
+    purecomp = [0, phiNuo];
+    decompression = MNpointy(1, col, concrete, steel);
+    balance = MNpointy(0.545, col, concrete, steel);
+    purebend = findMNpointy(0, col, concrete, steel);
+    keyPts = [purecomp, decompression, balance, purebend];
+    plotPts = [purecomp, decompression];
+    for (ku=0.9; ku>0.55; ku-=0.1) {
+        plotPts.push(MNpointy(ku, col, concrete, steel));
+    }
+    plotPts.push(balance);
+    for (ku=0.5; ku>0; ku-=0.05) {
+        pt = MNpointy(ku, col, concrete, steel);
+        if (pt[1] < 0) {break;}
+        plotPts.push(pt);
+    }
+    plotPts.push(purebend);
+    drawPlot('mnyPlot', plotPts, keyPts);
 
     // Ties
     // TODO:
@@ -365,6 +396,68 @@ function MNpointx(ku, col, concrete, steel) {
     return [phiM*Mu, phiN*Nu];
 }
 
+function findMNpointx(N, col, concrete, steel) {
+    let decompression = MNpointx(1, col, concrete, steel);
+    if (N > decompression[1]) {
+        // Linear interpolate
+        pt1 = [0, col.phiNuo];
+        pt2 = decompression;
+        slope = (pt2[0]-pt1[0])/(pt1[1]-pt2[1]);
+        return [slope*(pt1[1] - N), N];
+    } else {
+        // Iterate to find N
+        let ku= 1;
+        for (kutest=ku; kutest>0; kutest -=0.1) {
+            let pt = MNpointx(kutest , col, concrete, steel);
+            if (pt[1] < N) {ku = kutest; break;}
+        }
+        for (kutest=ku; kutest <1; kutest +=0.01) {
+            let pt = MNpointx(kutest , col, concrete, steel);
+            if (pt[1] > N) {ku = kutest; break;}
+        }
+        for (kutest=ku; kutest >0; kutest -=0.001) {
+            let pt = MNpointx(kutest , col, concrete, steel);
+            if (pt[1] < N) {ku = kutest; break;}
+        }
+        for (kutest=ku; kutest <1; kutest +=0.0001) {
+            let pt = MNpointx(kutest , col, concrete, steel);
+            if (pt[1] > N) {ku = kutest; break;}
+        }
+        return MNpointx(ku, col, concrete, steel);
+    }
+}
+
+function findMNpointy(N, col, concrete, steel) {
+    let decompression = MNpointy(1, col, concrete, steel);
+    if (N > decompression[1]) {
+        // Linear interpolate
+        pt1 = [0, col.phiNuo];
+        pt2 = decompression;
+        slope = (pt2[0]-pt1[0])/(pt1[1]-pt2[1]);
+        return [slope*(pt1[1] - N), N];
+    } else {
+        // Iterate to find N
+        let ku= 1;
+        for (kutest=ku; kutest>0; kutest -=0.1) {
+            let pt = MNpointy(kutest , col, concrete, steel);
+            if (pt[1] < N) {ku = kutest; break;}
+        }
+        for (kutest=ku; kutest <1; kutest +=0.01) {
+            let pt = MNpointy(kutest , col, concrete, steel);
+            if (pt[1] > N) {ku = kutest; break;}
+        }
+        for (kutest=ku; kutest >0; kutest -=0.001) {
+            let pt = MNpointy(kutest , col, concrete, steel);
+            if (pt[1] < N) {ku = kutest; break;}
+        }
+        for (kutest=ku; kutest <1; kutest +=0.0001) {
+            let pt = MNpointy(kutest , col, concrete, steel);
+            if (pt[1] > N) {ku = kutest; break;}
+        }
+        return MNpointy(ku, col, concrete, steel);
+    }
+}
+
 function steel_strain(ku, ecu, esu, d, y) {
     let e = (ecu/(ku*d))*(ku*d - y);
     if (e < -esu) {
@@ -374,4 +467,73 @@ function steel_strain(ku, ecu, esu, d, y) {
     } else {
         return e;
     }
+}
+
+
+function drawPlot(plotid, points, labelledpts) {
+    let canvas = document.getElementById(plotid);
+    let ctx = canvas.getContext('2d');
+    let X = canvas.width;
+    let Y = canvas.height;
+    ctx.clearRect(0, 0, X, Y);
+
+    // Chart area
+    ctx.strokeStyle = 'black';
+    ctx.lineWidth = 1;
+    ctx.rect(0.1*X, 0.1*Y, 0.8*X, 0.8*Y);
+    ctx.stroke();
+
+    // Axes labels
+    ctx.font = "14pt sans-serif";
+    ctx.textAlign = "right";
+    ctx.textBaseline = "top";
+    ctx.fillText("ΦMu", 0.9*X, 0.92*Y);
+    ctx.fillText("ΦNu", 0.08*X, 0.1*Y);
+
+    // Scale points
+    let xmax = 0;
+    let ymax = 0;
+    for (i=0; i<points.length; i++) {
+        let x = points[i][0];
+        let y = points[i][1];
+        xmax = Math.max(xmax, x);
+        ymax = Math.max(ymax, y);
+    }
+    let sf = 0.75*Math.max(X, Y)/Math.max(xmax, ymax);
+    let sfx = 0.5*X/xmax;
+    let sfy = 0.75*Y/ymax;
+
+    let coords = [];
+    for (i=0; i<points.length; i++) {
+        coords.push([sfx*points[i][0]+0.1*X, -sfy*points[i][1]+0.9*Y]);
+    }
+    let labelcoords = [];
+    for (i=0; i<labelledpts.length; i++) {
+        labelcoords.push([sfx*labelledpts[i][0]+0.1*X, -sfy*labelledpts[i][1]+0.9*Y]);
+    }
+
+    // Plot points
+    ctx.strokeStyle = 'black';
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.moveTo(coords[0][0], coords[0][1]);
+    for (i=1; i<coords.length; i++) {
+        ctx.lineTo(coords[i][0], coords[i][1]);
+    }
+    ctx.stroke();
+
+    // Label points
+    ctx.font = "12pt sans-serif";
+    ctx.textAlign = "left";
+    ctx.textBaseline = "bottom";
+
+    for (i=0; i<labelcoords.length; i++) {
+        ctx.beginPath();
+        ctx.arc(labelcoords[i][0], labelcoords[i][1], 3, 0, 2*Math.PI);
+        ctx.fill();
+        ctx.fillText("(" + labelledpts[i][0].toFixed(0) + ", "
+                     + labelledpts[i][1].toFixed(0) + ")",
+                     labelcoords[i][0]+0.03*X, labelcoords[i][1]);
+    }
+
 }
