@@ -33,6 +33,57 @@ function fillOutputs()
     // Capacity
     Mcapacity.value = calcMomentCapacity(fsy, db).toPrecision(3);
     Ncapacity.value = calcAxialCapacity(fsy, db).toPrecision(3);
+
+    // Development length
+    hideshowac();
+    let cd = calccd();
+    let fc = i_fc.valueAsNumber;
+    let k1 = 1.0;
+    let k2 = (132-db)/100;
+    let k3 = limit(0.7, 1.0-0.15*(cd-db)/db, 1.0);
+    console.log(k1, k2, k3);
+    let Lsytb = Math.max(0.5*k1*k3*fsy*db/(k2*Math.sqrt(fc)),
+                         0.058*fsy*k1*db);
+    console.log(0.5*k1*k3*fsy*db/(k2*Math.sqrt(fc)));
+    console.log(0.058*fsy*k1*db);
+    o_cd.value = cd.toFixed();
+    o_Lsytb.value = Lsytb.toFixed();
+    o_simpleL.value = (40*db).toFixed();
+}
+
+function calccd()
+{
+    let cdtype = i_cdtype.value;
+    let a = i_a.value;
+    let c = i_c.value;
+    if (cdtype == "ia" || cdtype == "ib" || cdtype == "iia")
+    { return Math.min(a/2, c); }
+    else if (cdtype == "ic" || cdtype == "iic")
+    { return c; }
+    else if (cdtype == "iib")
+    { return a/2; }
+}
+
+function hideshowac()
+{
+    let cdtype = i_cdtype.value;
+    if (cdtype == "ia" || cdtype == "ib" || cdtype == "iia") {
+        i_a.parentElement.parentElement.style.display = "";
+        i_c.parentElement.parentElement.style.display = "";
+    }
+    else if (cdtype == "ic" || cdtype == "iic") {
+        i_a.parentElement.parentElement.style.display = "none";
+        i_c.parentElement.parentElement.style.display = "";
+    }
+    else if (cdtype == "iib") {
+        i_a.parentElement.parentElement.style.display = "";
+        i_c.parentElement.parentElement.style.display = "none";
+    }
+}
+
+function limit(min, val, max)
+{
+    return Math.max(Math.min(val, max), min);
 }
 
 function calcArea(db)

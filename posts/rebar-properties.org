@@ -49,7 +49,30 @@ Rate (top+btm) {{{output(o_rateef,kg/m<sup>2</sup>)}}}
 
 Rate (two way, top+btm) {{{output(o_ratetwowayef,kg/m<sup>2</sup>)}}}
 
-* TODO Development length
+* Development length (AS3600, Sec 13.1)
+
+@@html:
+<select id="i_cdtype" value="iia" onchange="updatePage();">
+<option value="ia">Narrow elements, straight bars</option>
+<option value="ib">Narrow elements, cogged/hooked bars</option>
+<option value="ic">Narrow elements, looped bars</option>
+<option value="iia">Wide elements, straight bars</option>
+<option value="iib">Wide elements, cogged/hooked bars</option>
+<option value="iic">Wide elements, looped bars</option>
+</select>
+@@
+
+Concrete strength, f_c {{{input(i_fc,40,MPa)}}}
+
+Cover, c {{{input(i_c,30,mm)}}}
+
+a {{{input(i_a,150,mm)}}}
+
+c_d {{{output(o_cd,mm)}}}
+
+Basic development length, L_{sy,tb} {{{output(o_Lsytb,mm)}}}
+
+40d_b {{{output(o_simpleL,mm)}}}
 
 * Export on save                                                   :noexport:
 ;; Local Variables:
