@@ -41,11 +41,8 @@ function fillOutputs()
     let k1 = 1.0;
     let k2 = (132-db)/100;
     let k3 = limit(0.7, 1.0-0.15*(cd-db)/db, 1.0);
-    console.log(k1, k2, k3);
     let Lsytb = Math.max(0.5*k1*k3*fsy*db/(k2*Math.sqrt(fc)),
                          0.058*fsy*k1*db);
-    console.log(0.5*k1*k3*fsy*db/(k2*Math.sqrt(fc)));
-    console.log(0.058*fsy*k1*db);
     o_cd.value = cd.toFixed();
     o_Lsytb.value = Lsytb.toFixed();
     o_simpleL.value = (40*db).toFixed();
