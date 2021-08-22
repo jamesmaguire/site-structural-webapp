@@ -6,9 +6,11 @@
 
 * Rebar properties
 
-Rebar diameter, d_b {{{barinput(diameter,16)}}}
+Rebar diameter, d_b {{{barinput(i_db,16)}}}
 
-Yield strength, f_sy {{{input(yieldStrength,500,MPa)}}}
+Yield strength, f_sy {{{input(i_fsy,500,MPa)}}}
+
+Steel density, \rho {{{input(i_rho,7850,kg/m<sup>2</sup>)}}}
 
 * Cross section properties
 
@@ -25,11 +27,27 @@ Second moment, I {{{output(secondmoment,mm<sup>4</sup>)}}},
 
 Moment capacity, M_u {{{output(Mcapacity,kNm)}}}
 
-(Apply \Phi of 0.65 for bending as part of singly reinforced wall)
+(Apply \Phi = 0.65 for bending for bending in singly reinforced wall)
 
 Axial capacity, N_u {{{output(Ncapacity,kN)}}}
 
 (Apply \Phi of 0.85 for tension of Class N reo)
+
+* Rates
+
+Mass {{{output(o_barmass,kg/m)}}}
+
+Spacing {{{textoutput(o_barid)}}} @ {{{input(i_spc,200,mm)}}}
+
+Area rate {{{output(o_arearate,mm<sup>2</sup>/m)}}} 
+
+Rate (one way) {{{output(o_barrate,kg/m<sup>2</sup>)}}}
+
+Rate (two way) {{{output(o_ratetwoway,kg/m<sup>2</sup>)}}}
+
+Rate (top+btm) {{{output(o_rateef,kg/m<sup>2</sup>)}}}
+
+Rate (two way, top+btm) {{{output(o_ratetwowayef,kg/m<sup>2</sup>)}}}
 
 * TODO Development length
 
