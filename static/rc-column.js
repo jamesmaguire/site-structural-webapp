@@ -84,7 +84,6 @@ function drawFigure() {
         for (i = 0; i<coords.length; i++) {
             rebar(ctx, X/2+coords[i][0], Y/2+coords[i][1], col.db);
         }
-
     }
 }
 
@@ -257,8 +256,10 @@ function runCalcs() {
     o_Nuls.value = Nuls.toFixed(0);
     o_Nfire.value = Nfire.toFixed(0);
     o_beta.value = beta.toFixed(3);
-    // TODO: min bending load
-
+    let Mxmin = Nuls * 0.05*col.Dx/1000;
+    let Mymin = Nuls * 0.05*col.Dy/1000;
+    o_Mstarx.value = Math.max(Mxmin, i_Mx.valueAsNumber).toFixed(0);
+    o_Mstary.value = Math.max(Mymin, i_My.valueAsNumber).toFixed(0);
     
     // Buckling load
     let Mcx = MNpointx(0.545, col, concrete, steel)[0];
