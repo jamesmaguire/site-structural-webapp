@@ -254,13 +254,8 @@ function runCalcs() {
     let Nfire = 1.0*G + 0.4*Q;
     let beta = G/(G+Q);
     o_Nuls.value = Nuls.toFixed(0);
-    o_Nfire.value = Nfire.toFixed(0);
     o_beta.value = beta.toFixed(3);
-    let Mxmin = Nuls * 0.05*col.Dx/1000;
-    let Mymin = Nuls * 0.05*col.Dy/1000;
-    o_Mstarx.value = Math.max(Mxmin, i_Mx.valueAsNumber).toFixed(0);
-    o_Mstary.value = Math.max(Mymin, i_My.valueAsNumber).toFixed(0);
-    
+
     // Buckling load
     let Mcx = MNpointx(0.545, col, concrete, steel)[0];
     let Mcy = MNpointy(0.545, col, concrete, steel)[0];
@@ -273,12 +268,35 @@ function runCalcs() {
     o_Nc.value = Nc.toFixed(0);
     o_phiNc.value = col.phiNc.toFixed(0);
     
+    // Design loads
+    let km = 0.4; // Moment equal on both ends
+    let deltab = Math.max(km/(1-Nuls/Nc), 1); // Moment magnifier (braced col)
+    let Mstarx = deltab * Math.max(Nuls * 0.05*col.Dx/1000, i_Mx.valueAsNumber);
+    let Mstary = deltab * Math.max(Nuls * 0.05*col.Dy/1000, i_My.valueAsNumber);
+    o_deltab.value = deltab.toFixed(2);
+    o_Mstarx.value = Mstarx.toFixed(0);
+    o_Mstary.value = Mstary.toFixed(0);
+    
     // Squash load
     let Nuo = ((col.Ag - col.Ast)*concrete.alpha1*concrete.fc + col.Ast*steel.fsy)/1000;
     let phiNuo = 0.65*Nuo;
     col.phiNuo = phiNuo;
     o_Nuo.value = Nuo.toFixed(0);
     o_phiNuo.value = phiNuo.toFixed(0);
+
+    // Strength design
+    o_buckleCheck.value = (Nuls/col.phiNc).toFixed(2);
+    setPassFail(o_buckleCheck);
+    o_squashCheck.value = (Nuls/phiNuo).toFixed(2);
+    setPassFail(o_squashCheck);
+    let phiMux = findMNpointx(Nuls, col, concrete, steel)[0];
+    o_phiMux.value = phiMux.toFixed(0);
+    o_MxCheck.value = (Mstarx/phiMux).toFixed(2);
+    setPassFail(o_MxCheck);
+    let phiMuy = findMNpointy(Nuls, col, concrete, steel)[0];
+    o_phiMuy.value = phiMuy.toFixed(0);
+    o_MyCheck.value = (Mstary/phiMuy).toFixed(2);
+    setPassFail(o_MyCheck);
 
     // Load-moment plot (X)
     let purecomp = [0, phiNuo];
@@ -287,6 +305,7 @@ function runCalcs() {
     let purebend = findMNpointx(0, col, concrete, steel);
     let keyPts = [purecomp, decompression, balance, purebend];
     let plotPts = [purecomp, decompression];
+    let designxpt = [Mstarx, Nuls];
     for (ku=0.9; ku>0.55; ku-=0.1) {
         plotPts.push(MNpointx(ku, col, concrete, steel));
     }
@@ -297,7 +316,7 @@ function runCalcs() {
         plotPts.push(pt);
     }
     plotPts.push(purebend);
-    drawPlot('mnxPlot', plotPts, keyPts);
+    drawPlot('mnxPlot', plotPts, keyPts, designxpt, o_MxCheck.value<1.0);
 
     // Load-moment plot (Y)
     purecomp = [0, phiNuo];
@@ -306,6 +325,7 @@ function runCalcs() {
     purebend = findMNpointy(0, col, concrete, steel);
     keyPts = [purecomp, decompression, balance, purebend];
     plotPts = [purecomp, decompression];
+    let designypt = [Mstary, Nuls];
     for (ku=0.9; ku>0.55; ku-=0.1) {
         plotPts.push(MNpointy(ku, col, concrete, steel));
     }
@@ -316,7 +336,7 @@ function runCalcs() {
         plotPts.push(pt);
     }
     plotPts.push(purebend);
-    drawPlot('mnyPlot', plotPts, keyPts);
+    drawPlot('mnyPlot', plotPts, keyPts, designypt, o_MyCheck.value<1.0);
 
     // Ties
     let tieSpacing = i_tieSpacing.valueAsNumber;
@@ -488,7 +508,7 @@ function steel_strain(ku, ecu, esu, d, y) {
 }
 
 
-function drawPlot(plotid, points, labelledpts) {
+function drawPlot(plotid, points, labelledpts, designpt, pass) {
     let canvas = document.getElementById(plotid);
     let ctx = canvas.getContext('2d');
     let X = canvas.width;
@@ -497,6 +517,7 @@ function drawPlot(plotid, points, labelledpts) {
 
     // Chart area
     ctx.strokeStyle = 'black';
+    ctx.fillStyle = 'black';
     ctx.lineWidth = 1;
     ctx.rect(0.1*X, 0.1*Y, 0.8*X, 0.8*Y);
     ctx.stroke();
@@ -553,5 +574,24 @@ function drawPlot(plotid, points, labelledpts) {
                      + labelledpts[i][1].toFixed(0) + "kN)",
                      labelcoords[i][0]+0.03*X, labelcoords[i][1]);
     }
+
+    // Design points
+    let designcoords = [0.1*X + designpt[0]*sfx,
+                        0.9*Y - designpt[1]*sfy];
+    if (pass) {
+        ctx.fillStyle = 'green';
+    } else {
+        ctx.fillStyle = 'red';
+    }
+    ctx.lineWidth = 3;
+    ctx.textAlign = "center";
+    ctx.textBaseline = "top";
+
+    ctx.beginPath();
+    ctx.arc(designcoords[0], designcoords[1], 4, 0, 2*Math.PI);
+    ctx.fill();
+    ctx.fillText("(" + designpt[0].toFixed(0) + "kNm , "
+                 + designpt[1].toFixed(0) + "kN)",
+                 designcoords[0], designcoords[1]+0.02*Y);
 
 }

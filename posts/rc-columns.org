@@ -94,18 +94,28 @@ Moment, M_x {{{input(i_Mx,0,kNm)}}} M_y {{{input(i_My,0,kNm)}}}
 
 Ultimate, N* {{{output(o_Nuls,kN)}}}
 
+Moment magnifier, \delta{}_b {{{output(o_deltab)}}}
+
 Ultimate, M*_x {{{output(o_Mstarx,kNm)}}} M*_y {{{output(o_Mstary,kNm)}}}
 
-Fire, N*_f {{{output(o_Nfire,kN)}}}
+# Fire, N*_f {{{output(o_Nfire,kN)}}}
 
 \beta_d {{{output(o_beta,)}}}
 
 
 * Strength design
 
-Buckling load, N_c {{{output(o_Nc,kN)}}}, \Phi{}N_c {{{output(o_phiNc,kN)}}}
+Buckling capacity, N_c {{{output(o_Nc,kN)}}}, \Phi{}N_c {{{output(o_phiNc,kN)}}}
 
-Squash load, N_{uo} {{{output(o_Nuo,kN)}}}, \Phi{}N_{uo} {{{output(o_phiNuo,kN)}}}
+Buckling check, N*/\Phi{}N_c {{{output(o_buckleCheck)}}}
+
+Squash capacity, N_{uo} {{{output(o_Nuo,kN)}}}, \Phi{}N_{uo} {{{output(o_phiNuo,kN)}}}
+
+Squash check, N*/\Phi{}N_{uo} {{{output(o_squashCheck)}}}
+
+Moment capacity, \Phi{}M_{ux} {{{output(o_phiMux)}}} M*_x/\Phi{}M_{ux} {{{output(o_MxCheck)}}}
+
+Moment capacity, \Phi{}M_{uy} {{{output(o_phiMuy)}}} M*_y/\Phi{}M_{uy} {{{output(o_MyCheck)}}}
 
 * M-N plot (x)
 
