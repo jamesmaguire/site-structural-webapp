@@ -12,6 +12,8 @@
 ** Reinforced concrete design
 *** [[file:posts/rc-beam.org][RC Beam]]
 # ** TODO [[file:posts/rc-columns.org][RC Column]]
+** Design actions
+*** [[file:posts/wind-loading.org][Wind loading]]
 ** Other tools
 *** [[file:posts/rebar-properties.org][Rebar properties]]
 

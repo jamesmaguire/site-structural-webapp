@@ -1,0 +1,148 @@
+#+title: Wind loading
+#+subtitle: Based on AS1170.2 2011
+
+#+setupfile: post.setup
+#+HTML_HEAD: <body onload="updatePage();">
+#+HTML_HEAD: <script type="text/javascript" src="../static/windload.js"></script>
+#+include: "../statusicon.org"
+
+* Inputs
+
+Region
+@@html:
+<select id="i_region" value="A2" onchange="updatePage();">
+<option value="A1">Region A1</option>
+<option value="A2">Region A2</option>
+<option value="A3">Region A3</option>
+<option value="A4">Region A4</option>
+<option value="A5">Region A5</option>
+<option value="A6">Region A6</option>
+<option value="A7">Region A7</option>
+<option value="B">Region B</option>
+<option value="C">Region C</option>
+<option value="D">Region D</option>
+<option value="W">Region W</option>
+</select>@@
+
+Recurrance interval, R
+@@html:
+<select id="i_R" value="500" onchange="updatePage();">
+<option value="5">5 years</option>
+<option value="10">10 years</option>
+<option value="20">20 years</option>
+<option value="25">25 years</option>
+<option value="50">50 years</option>
+<option value="100">100 years</option>
+<option value="200">200 years</option>
+<option value="250">250 years</option>
+<option value="500">500 years</option>
+<option value="1000">1000 years</option>
+<option value="2000">2000 years</option>
+<option value="2500">2500 years</option>
+<option value="5000">5000 years</option>
+<option value="10000">10000 years</option>
+</select>@@
+
+Aerodynamic shape factor, C_{fig} {{{input(i_Cfig,1.0)}}}
+
+Dynamic response factor factor, C_{dyn} {{{input(i_Cdyn,1.0)}}}
+
+* Multipliers
+
+Terrain height multiplier, M_{z,cat} {{{input(i_Mzcat,1.0)}}}
+
+Sheilding multiplier, M_s {{{input(i_Ms,1.0)}}}
+
+Topographic multiplier, M_t {{{input(i_Mt,1.0)}}}
+
+* Design wind
+
+Density of air, \rho{}_{air} {{{output(o_rho,kg/m<sup>3</sup>)}}}
+
+Regional wind speed, V_R {{{output(o_VR,m/s)}}}
+
+Design wind pressure, p {{{output(o_p,kPa)}}} (for M_d=1.0)
+
+@@html: <div id=windir></div>@@
+
+M_d - Wind direction multiplier
+
+V_{sit,\beta} - Wind site speed
+
+p - Design wind pressure
+
+* Figure
+
+North direction {{{input(i_northdir,90,&deg)}}}
+
+Structure X dim {{{input(i_xdim,15,m)}}}
+
+Structure Y dim {{{input(i_ydim,10,m)}}}
+
+@@html:<canvas id="windFigure" width="250" height="250" draggable="true"></canvas>@@
+
+* Terrain height multiplier calculator
+
+Terrain height multiplier, M_{z,cat} {{{output(o_Mzcatcalc)}}}
+
+Height, z {{{input(i_zz,30,m)}}}
+
+@@html:
+<select id="i_tc" value="3" onchange="updatePage();">
+<option value="1">Terrain category 1</option>
+<option value="1.5">Terrain category 1.5</option>
+<option value="2">Terrain category 2</option>
+<option value="2.5">Terrain category 2.5</option>
+<option value="3">Terrain category 3</option>
+<option value="4">Terrain category 4</option>
+</select>@@
+
+@@html: <div class="descbox" id=o_tc></div>@@
+
+* Shielding multiplier calculator
+
+Avg roof height of shielding bldgs, h_s {{{input(i_hs,5,m)}}}
+
+Avg breadth of shielding bldgs, b_s {{{input(i_bs,10,m)}}}
+
+Avg roof height of structure, h {{{input(i_h,10,m)}}}
+
+(20h = {{{output(o_20h,m)}}})
+
+Shielding bldgs within 45\deg{} and 20h, n_s {{{input(i_ns,1)}}}
+
+Shielding multiplier, M_s {{{output(o_Mscalc)}}}
+
+* Topographic multiplier calculator
+
+@@html:
+<select id="i_hilltype" value="hill" onchange="updatePage();">
+<option value="hill">Hill or ridge</option>
+<option value="escarpmentuw">Escarpment (upwind)</option>
+<option value="escarpmentdw">Escarpment (downwind)</option>
+</select>@@
+
+Height of hill/ridge/escarpment, H {{{input(i_H,0,m)}}}
+
+Distance from crest to half height, Lu {{{input(i_Lu,100,m)}}}
+
+Distance from structure to crest, x {{{input(i_x,50,m)}}}
+
+Height, z {{{input(i_zh,30,m)}}}
+
+Length scale, L_1 {{{output(o_L1,m)}}}
+
+Length scale, L_2 {{{output(o_L2,m)}}}
+
+Topographic multiplier, M_t {{{output(o_Mt)}}}
+
+#+attr_html: :id fighill
+[[file:../static/img/AS1170-2-Fig4-2.png]]
+
+#+attr_html: :id figescarpment
+[[file:../static/img/AS1170-2-Fig4-3.png]]
+
+* Export on save                                                   :noexport:
+;; Local Variables:
+;; eval: (add-hook 'after-save-hook 'org-html-export-to-html nil t)
+;; End:
