@@ -1,0 +1,12 @@
+#+title: Earthquake loading
+#+subtitle: Based on AS1170.4 2007
+
+#+setupfile: post.setup
+#+HTML_HEAD: <body onload="updatePage();">
+#+HTML_HEAD: <script type="text/javascript" src="../static/eqkeload.js"></script>
+#+include: "../statusicon.org"
+
+* Export on save                                                   :noexport:
+;; Local Variables:
+;; eval: (add-hook 'after-save-hook 'org-html-export-to-html nil t)
+;; End:
