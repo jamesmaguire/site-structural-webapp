@@ -100,6 +100,12 @@ p {
   padding-left: 0.3rem;
   padding-right: 0.3rem;
 }
+select {
+  background: white;
+  border: 1px solid #646464;
+  padding: 0.1rem;
+  padding-left: 0.3rem;
+}
 input {
   background: none;
   border: none;
