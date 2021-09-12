@@ -21,3 +21,5 @@
 #+macro: output @@html:<span class="outputspan"><input id="$1" class="right" type="number" value="0" readonly> $2</span>@@
 
 #+macro: textoutput @@html:<span class="outputspan"><input id="$1" class="right" type="text" value="0" readonly></span>@@
+
+#+macro: tooltip @@html:<span class="tooltip">$1 <span class="tooltiptext">$2</span></span>@@

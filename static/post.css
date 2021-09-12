@@ -152,6 +152,35 @@ a:hover {
 sup, sub {
   font-size: 75%;
 }
+/* Tooltip */
+.tooltip {
+  cursor: pointer;
+  border-bottom: 1px dotted black;
+  display: inline;
+}
+.tooltip .tooltiptext {
+  visibility: hidden;
+  background-color: white;
+  text-align: left;
+  line-height: 1.5;
+  font-size: 110%;
+  padding: 1.5rem;
+  border: 1px #f8813c solid;
+  border-radius: 3px;
+  
+  position: fixed;
+  width: 55ch;
+  bottom: 2%;
+  left: 2%;
+  z-index: 1;
+  
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.tooltip:hover .tooltiptext, .tooltiptext:hover {
+  visibility: visible;
+  opacity: 1;
+}
 
 /* Org states */
 .todo {
