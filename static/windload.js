@@ -218,16 +218,3 @@ function runCalcs()
     o_Mt.value = Mhcalc.toFixed(2);
 
 }
-
-function ilookup(x, lookuparr, returnarr) {
-    let x0 = Math.max(...lookuparr.filter(n => n <= x));
-    let x1 = Math.min(...lookuparr.filter(n => n > x));
-    let y0 = xlookup(x0, lookuparr, returnarr);
-    let y1 = xlookup(x1, lookuparr, returnarr);
-    let y = y0 + (x-x0)*(y1-y0)/(x1-x0);
-    return y;
-}
-
-function xlookup(x, lookuparr, returnarr) {
-    return returnarr[lookuparr.indexOf(x)];
-}
