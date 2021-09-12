@@ -134,13 +134,6 @@ function displayShape()
     }
 }
 
-function hideInput(i_ID) {
-    i_ID.parentElement.parentElement.style.display = "none";
-}
-function showInput(i_ID) {
-    i_ID.parentElement.parentElement.style.display = "";
-}
-
 function barCoords(col) {
     let coords = [];
 

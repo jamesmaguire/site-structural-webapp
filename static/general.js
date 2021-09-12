@@ -31,3 +31,10 @@ function setStatusUptodate()
     statusbutton.innerHTML = "▶ &nbsp Up to date"; // (Thumbs up unicode);
     statusbutton.className = "status-green";
 }
+
+function hideInput(i_ID) {
+    i_ID.parentElement.parentElement.style.display = "none";
+}
+function showInput(i_ID) {
+    i_ID.parentElement.parentElement.style.display = "";
+}
