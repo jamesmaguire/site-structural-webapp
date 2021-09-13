@@ -6,6 +6,42 @@
 #+HTML_HEAD: <script type="text/javascript" src="../static/eqkeload.js"></script>
 #+include: "../statusicon.org"
 
+* Natural period
+
+Frame type 
+@@html:
+<select id="i_frametype" value="other" onchange="updatePage();">
+<option value="mrsf">Moment resisting steel frame</option>
+<option value="mrcf">Moment resisting concrete frame</option>
+<option value="ebsf">Eccentrically braced steel frames</option>
+<option value="other">All other structures</option>
+</select>@@
+
+k_t {{{output(o_kt)}}}
+
+Height to uppermost seismic mass, h_n {{{input(i_hn,10,m)}}}
+
+Natural period to Eq 6.2(7), {{{output(o_T1simple,s)}}}
+
+Natural period, T_1 {{{input(i_T1,0.5,s)}}}
+
+TODO: Check that base shear is within 70% of the value using Tn=6.2(7)
+
+* Spectral shape factor
+
+Site sub-soil class
+@@html:
+<select id="i_SSC" value="Ce" onchange="updatePage();">
+<option value="Ae">Strong rock, Ae</option>
+<option value="Be">Rock, Be</option>
+<option value="Ce">Shallow soil, Ce</option>
+<option value="De">Deep or soft soil, De</option>
+<option value="Ee">Very soft soil, Ee</option>
+</select>@@
+
+@@html:<canvas id="ChPlot" width="500" height="500" draggable="true"></canvas>@@
+
+
 * Export on save                                                   :noexport:
 ;; Local Variables:
 ;; eval: (add-hook 'after-save-hook 'org-html-export-to-html nil t)
