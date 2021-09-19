@@ -52,3 +52,28 @@ function ilookup(x, lookuparr, returnarr) {
     let y = y0 + (x-x0)*(y1-y0)/(x1-x0);
     return y;
 }
+
+// Input elements --------------------------------------------------------------
+
+function dropdown(id, values, initval=0) {
+    let html = `<select id='${id}' value=${initval} onchange='updatePage();'>`;
+    values.forEach(x => html+= `<option value="${x}">${x}</option>`);
+    html += `</select>`;
+    document.getElementById(id).outerHTML = html;
+}
+
+function input(id, {initval=0, units='', prefix='', align='right'}={}) {
+    let html = `<span class="inputspan">${prefix}`;
+    html += `<input id='${id}' class='${align}' type='number' value=${initval}`;
+    html += ` onkeypress='eventHandler(event)' onblur='updatePage()'>`;
+    html += ` ${units}</span>`;
+    document.getElementById(id).outerHTML = html;
+}
+
+function output(id, {initval=0, units='', prefix='', align='right'}={}) {
+    let html = `<span class="outputspan">${prefix}`;
+    html += `<input id='${id}' class='${align}' type='number' value=${initval}`;
+    html += ` onkeypress='eventHandler(event)' onblur='updatePage()'>`;
+    html += ` ${units}</span>`;
+    document.getElementById(id).outerHTML = html;
+}

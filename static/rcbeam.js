@@ -1,3 +1,49 @@
+function initPage()
+{
+    // Beam parameters
+    input('i_B', {initval:200, units:'mm'});
+    input('i_D', {initval:400, units:'mm'});
+    input('i_nbc', {initval:0});
+    input('i_dbc', {initval:12, prefix:'N', align:'left'});
+    input('i_nbt', {initval:2});
+    input('i_dbt', {initval:16, prefix:'N', align:'left'});
+    input('i_dbs', {initval:10, prefix:'N', align:'left'});
+    input('i_dbspc', {initval:200});
+    input('i_c', {initval:50, units:'mm'});
+    output('o_d', {units:'mm'});
+    output('o_a', {units:'mm'});
+    output('o_Ast', {units:'mm<sup>2</sup>'});
+    output('o_Asc', {units:'mm<sup>2</sup>'});
+
+    // Material properties
+    input('i_fc', {initval:40, units:'MPa'});
+    output('i_ecu');
+    output('o_alpha2');
+    output('o_gamma');
+    input('i_fsy', {initval:500, units:'MPa'});
+    input('i_Es', {initval:200, units:'GPa'});
+    output('o_esu');
+
+    // Loading
+    input('i_Mstar', {initval:50, units:'kNm'});
+
+    // // Bending capacity
+    output('o_ku');
+    output('o_dn', {units:'mm'});
+    output('o_Muo', {units:'kNm'});
+    output('o_phi');
+    output('o_phiMuo', {units:'kNm'});
+    output('momentCheck');
+
+    // // // Min strength
+    output('o_Z', {units:'mm<sup>3</sup>'});
+    output('o_fctf', {units:'MPa'});
+    output('o_Muomin', {units:'kNm'});
+    output('momentminCheck');
+
+    updatePage();
+}
+
 function updatePage()
 {
     runCalcs();

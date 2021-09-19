@@ -2,7 +2,7 @@
 #+subtitle: Based on AS3600 2018
 
 #+setupfile: post.setup
-#+HTML_HEAD: <body onload="updatePage();">
+#+HTML_HEAD: <body onload="initPage();">
 #+HTML_HEAD: <script type="text/javascript" src="../static/rcbeam.js"></script>
 #+include: "../statusicon.org"
 
@@ -14,69 +14,69 @@
 
 * Beam parameters
 
-Beam width {{{input(i_B,300,mm)}}}
+Beam width {{{span(i_B)}}}
 
-Beam depth {{{input(i_D,400,mm)}}}
+Beam depth {{{span(i_D)}}}
 
-Top reo {{{input(i_nbc,0,)}}} {{{barinput(i_dbc,12)}}}
+Top reo {{{span(i_nbc)}}} {{{span(i_dbc)}}}
 
-Bottom reo {{{input(i_nbt,2,)}}} {{{barinput(i_dbt,16)}}}
+Bottom reo {{{span(i_nbt)}}} {{{span(i_dbt)}}}
 
-Stirrups {{{barinput(i_dbs,10,)}}} {{{input(i_dbspc,200)}}}
+Stirrups {{{span(i_dbs)}}} {{{span(i_dbspc)}}}
 
-Cover {{{input(i_c,50,mm)}}}
+Cover {{{span(i_c)}}}
 
-Effective depth {{{output(o_d,mm)}}}
+Effective depth {{{span(o_d)}}}
 
-Axis depth {{{output(o_a,mm)}}}
+Axis depth {{{span(o_a)}}}
 
-Area tensile steel {{{output(o_Ast,mm<sup>2</sup>)}}}
+Area tensile steel {{{span(o_Ast)}}}
 
-Area compression steel {{{output(o_Asc,mm<sup>2</sup>)}}}
+Area compression steel {{{span(o_Asc)}}}
 
 * Material properties
 
-Concrete strength {{{input(i_fc,40,MPa)}}}
+Concrete strength {{{span(i_fc)}}}
 
-Concrete ult. strain, \varepsilon_{cu} {{{output(i_ecu)}}}
+Concrete ult. strain, \varepsilon_{cu} {{{span(i_ecu)}}}
 
-\alpha_2 {{{output(o_alpha2,)}}}
+\alpha_2 {{{span(o_alpha2)}}}
 
-\gamma {{{output(o_gamma,)}}}
+\gamma {{{span(o_gamma)}}}
 
-Steel strength {{{input(i_fsy,500,MPa)}}}
+Steel strength {{{span(i_fsy)}}}
 
-Steel modulus {{{input(i_Es,200,GPa)}}}
+Steel modulus {{{span(i_Es)}}}
 
-Steel ult. strain, \varepsilon_{su} {{{output(o_esu)}}}
+Steel ult. strain, \varepsilon_{su} {{{span(o_esu)}}}
 
 * Loading
 
-Applied moment, M* {{{input(i_Mstar,50,kNm)}}}
+Applied moment, M* {{{span(i_Mstar)}}}
 
 * Bending capacity
 
-Neutral axis parameter, k_u {{{output(o_ku,)}}}
+Neutral axis parameter, k_u {{{span(o_ku)}}}
 
-Plastic neutral axis, d_n {{{output(o_dn,mm)}}}
+Plastic neutral axis, d_n {{{span(o_dn)}}}
 
-Moment capacity, M_{uo} {{{output(o_Muo,kNm)}}}
+Moment capacity, M_{uo} {{{span(o_Muo)}}}
 
-Capacity reduction factor, \Phi {{{output(o_phi)}}}
+Capacity reduction factor, \Phi {{{span(o_phi)}}}
 
-Design moment capacity, \Phi{}M_{uo} {{{output(o_phiMuo,kNm)}}}
+Design moment capacity, \Phi{}M_{uo} {{{span(o_phiMuo)}}}
 
-Moment check, M*/\Phi{}M_{uo} {{{output(momentCheck,)}}}
+Moment check, M*/\Phi{}M_{uo} {{{span(momentCheck)}}}
 
 * Minimum strength
 
-Section modulus, Z {{{output(o_Z,mm<sup>3</sup>)}}}
+Section modulus, Z {{{span(o_Z)}}}
 
-Concrete flex.ten. strength, f'_{ct.f} {{{output(o_fctf,MPa)}}}
+Concrete flex.ten. strength, f'_{ct.f} {{{span(o_fctf)}}}
 
-Minimum bending strength, M_{uo,min} {{{output(o_Muomin,kNm)}}}
+Minimum bending strength, M_{uo,min} {{{span(o_Muomin)}}}
 
-Min strength check, M_{uo,min}/M_{uo} {{{output(momentminCheck)}}}
+Min strength check, M_{uo,min}/M_{uo} {{{span(momentminCheck)}}}
 
 * Export on save                                                   :noexport:
 ;; Local Variables:

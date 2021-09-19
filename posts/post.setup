@@ -14,6 +14,8 @@
 #+bind: org-html-home/up-format "<div id=\"org-div-home-and-up\"> <img src=\"../static/icon/logo.svg\" /> <a href=\"%s\"> Home </a> </div>"
 
 # Macros
+#+macro: span @@html:<span id="$1"></span>@@
+
 #+macro: input @@html:<span class="inputspan"><input id="$1" class="right" type="number" value="$2" onkeypress="eventHandler(event)" onblur="updatePage()"> $3</span>@@
 
 #+macro: barinput @@html:<span class="inputspan">N<input id="$1" class="left" type="number" value="$2" onkeypress="eventHandler(event)" onblur="updatePage()"></span>@@
