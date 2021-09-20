@@ -22,6 +22,8 @@ Top reo {{{span(i_nbc)}}} {{{span(i_dbc)}}}
 
 Bottom reo {{{span(i_nbt)}}} {{{span(i_dbt)}}}
 
+Edge bars {{{span(i_nbe)}}} {{{span(i_dbe)}}}
+
 Stirrups {{{span(i_dbs)}}} {{{span(i_dbspc)}}}
 
 Cover {{{span(i_c)}}}

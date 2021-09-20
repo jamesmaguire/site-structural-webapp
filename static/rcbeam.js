@@ -3,10 +3,12 @@ function initPage()
     // Beam parameters
     input('i_B', {initval:200, units:'mm'});
     input('i_D', {initval:400, units:'mm'});
-    input('i_nbc', {initval:0});
-    input('i_dbc', {initval:12, prefix:'N', align:'left'});
+    input('i_nbc', {initval:2});
+    input('i_dbc', {initval:16, prefix:'N', align:'left'});
     input('i_nbt', {initval:2});
     input('i_dbt', {initval:16, prefix:'N', align:'left'});
+    input('i_nbe', {initval:2});
+    input('i_dbe', {initval:16, prefix:'N', align:'left'});
     input('i_dbs', {initval:10, prefix:'N', align:'left'});
     input('i_dbspc', {initval:200});
     input('i_c', {initval:50, units:'mm'});
@@ -63,6 +65,7 @@ function drawFigure() {
         D:i_D.valueAsNumber,
         dbc:i_dbc.valueAsNumber,
         dbt:i_dbt.valueAsNumber,
+        dbe:i_dbe.valueAsNumber,
         dbs:i_dbs.valueAsNumber,
         c:i_c.valueAsNumber,
         dn:o_dn.valueAsNumber,
@@ -74,6 +77,7 @@ function drawFigure() {
     }
     beam.nbc = i_nbc.valueAsNumber;
     beam.nbt = i_nbt.valueAsNumber;
+    beam.nbe = i_nbe.valueAsNumber;
 
     // Neutral axis
     ctx.strokeStyle = '#ccc';
@@ -91,26 +95,12 @@ function drawFigure() {
     ctx.rect((X-beam.B)/2,(Y-beam.D)/2,beam.B,beam.D);
     ctx.stroke();
 
-    // Bottom bars
+    // Bars
     ctx.strokeStyle = 'black';
     ctx.lineWidth = 1;
-    let barspc = (beam.B-2*(beam.c+beam.dbs)-beam.dbt)/(beam.nbt-1);
-    for (i = 0; i < beam.nbt; i++) {
-        rebar(ctx,
-              (X-beam.B)/2 + beam.c+beam.dbs+beam.dbt/2 + (i*barspc),
-              (Y+beam.D)/2 - (beam.c+beam.dbs+beam.dbt/2),
-              beam.dbt);
-    }
-
-    // Top bars
-    ctx.strokeStyle = 'black';
-    ctx.lineWidth = 1;
-    barspc = (beam.B-2*(beam.c+beam.dbs)-beam.dbc)/(beam.nbc-1);
-    for (i = 0; i < beam.nbc; i++) {
-        rebar(ctx,
-              (X-beam.B)/2 + beam.c+beam.dbs+beam.dbc/2 + (i*barspc),
-              (Y-beam.D)/2 + (beam.c+beam.dbs+beam.dbc/2),
-              beam.dbc);
+    bars = beamBars(beam);
+    for (i=0; i<bars.length; i++) {
+        rebar(ctx, (X-beam.B)/2+bars[i][0], (Y+beam.D)/2-bars[i][1], bars[i][2]);
     }
 
     // Stirrups
@@ -156,6 +146,8 @@ function runCalcs() {
         dbc:i_dbc.valueAsNumber,
         nbt:i_nbt.valueAsNumber,
         dbt:i_dbt.valueAsNumber,
+        nbe:i_nbe.valueAsNumber,
+        dbe:i_dbe.valueAsNumber,
         dbs:i_dbs.valueAsNumber,
         dbspc:i_dbspc.valueAsNumber,
         c:i_c.valueAsNumber,
@@ -190,10 +182,10 @@ function runCalcs() {
     o_esu.value = steel.esu;
 
     // Bending
-    let ku = determine_ku(beam, concrete, steel);
+    let ku = determineku(beam, concrete, steel);
     let dn = beam.d*ku;
-    let Muo = moment_capacity(beam, concrete, steel, ku);
-    let phi = bending_phi(ku);
+    let Muo = momentCapacity(beam, concrete, steel, ku);
+    let phi = bendingPhi(ku);
     o_ku.value = (ku).toFixed(3);
     o_dn.value = (dn).toFixed(1);
     o_Muo.value = Muo.toPrecision(3);
@@ -211,15 +203,44 @@ function runCalcs() {
     momentminCheck.value = (Muomin/Muo).toFixed(2);
     setPassFail(momentminCheck);
 
+    sumCSFforces(0.15, beam, concrete, steel, true);
+
 }
 
-function determine_ku(beam, concrete, steel) {
+// Function that determines bar locations
+// Returns array of form: [[x, y, db], ...]
+// Where x, y = 0, 0 is the bottom left corner
+function beamBars(beam) {
+    let bars = [];
+    // Bottom bars
+    let a = beam.c + beam.dbs + beam.dbt/2;
+    let barspc = (beam.B - 2*a)/(beam.nbt-1);
+    for (i=0; i < beam.nbt; i++) {
+        bars.push([a + i*barspc, a, beam.dbt]);
+    }
+    // Top bars
+    a = beam.c + beam.dbs + beam.dbc/2;
+    barspc = (beam.B - 2*a)/(beam.nbc-1);
+    for (i=0; i < beam.nbc; i++) {
+        bars.push([a + i*barspc, beam.D - a, beam.dbc]);
+    }
+    // Edge bars
+    a = beam.c + beam.dbs + beam.dbe/2;
+    barspc = (beam.D - 2*a)/(beam.nbe+1);
+    for (i=1; i < beam.nbe+1; i++) {
+        bars.push([a, a + i*barspc, beam.dbe]);
+        bars.push([beam.B - a, a + i*barspc, beam.dbe]);
+    }
+    return bars;
+}
+
+function determineku(beam, concrete, steel) {
     let incr = 0.1;
     let steps = 10;
     let ku = 0;
     for (let iteration=0; iteration<4; iteration++) {
         for (let testku=ku+incr; testku<ku+(incr*steps); testku+=incr) {
-            let sumF = sum_cs_forces(testku, beam, concrete, steel);
+            let sumF = sumCSFforces(testku, beam, concrete, steel);
             if (sumF > 0) {
                 ku = testku-incr;
                 incr = incr/steps;
@@ -230,14 +251,21 @@ function determine_ku(beam, concrete, steel) {
     return ku; 
 }
 
-function sum_cs_forces(ku, beam, concrete, steel) {
+function sumCSFforces(ku, beam, concrete, steel, debug=false) {
     let Cc = concrete.alpha2*concrete.fc*concrete.gamma*ku*beam.d*beam.B/1000;
-    let Cs = beam.Asc*steel.Es*steel_strain(ku, concrete.ecu, steel.esu, beam.d, beam.a);
-    let Ts = beam.Ast*steel.Es*steel_strain(ku, concrete.ecu, steel.esu, beam.d, beam.d);
-    return Cc+Cs+Ts;
+    let Cs = beam.Asc*steel.Es*steelStrain(ku, concrete.ecu, steel.esu, beam.d, beam.a);
+    let Ts = beam.Ast*steel.Es*steelStrain(ku, concrete.ecu, steel.esu, beam.d, beam.d);
+    let barF = 0;
+    let bars = beamBars(beam);
+    for (i=0; i<bars.length; i++) {
+        let A = Math.PI*bars[i][2]**2/4;
+        let y = beam.D - bars[i][1];
+        barF += A*steel.Es*steelStrain(ku, concrete.ecu, steel.esu, beam.d, y);
+    }
+    return Cc+barF;
 }
 
-function steel_strain(ku, ecu, esu, d, y) {
+function steelStrain(ku, ecu, esu, d, y) {
     let e = (ecu/(ku*d))*(ku*d - y);
     if (e < -esu) {
         return -esu;
@@ -248,15 +276,21 @@ function steel_strain(ku, ecu, esu, d, y) {
     }
 }
 
-function moment_capacity(beam, concrete, steel, ku) {
+function momentCapacity(beam, concrete, steel, ku) {
     let Cc = concrete.alpha2*concrete.fc*concrete.gamma*ku*beam.d*beam.B/1000;
-    let Cs = beam.Asc*steel.Es*steel_strain(ku, concrete.ecu, steel.esu, beam.d, beam.a);
-    let Ts = beam.Ast*steel.Es*steel_strain(ku, concrete.ecu, steel.esu, beam.d, beam.d);
-    let Muo = -(Cc*(concrete.gamma*ku*beam.d/2) + Cs*beam.a + Ts*beam.d)/1000;
+    let barM = 0;
+    let bars = beamBars(beam);
+    for (i=0; i<bars.length; i++) {
+        let A = Math.PI*bars[i][2]**2/4;
+        let y = beam.D - bars[i][1];
+        let barF = A*steel.Es*steelStrain(ku, concrete.ecu, steel.esu, beam.d, y);
+        barM += y*barF;
+    }
+    let Muo = -(Cc*(concrete.gamma*ku*beam.d/2) + barM)/1000;
     return Muo;
 }
 
-function bending_phi(ku) {
+function bendingPhi(ku) {
     let phi = 1.24 - 13*ku/12;
     return Math.min(Math.max(phi, 0.65), 0.85);
 }
