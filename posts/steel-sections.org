@@ -2,7 +2,6 @@
 
 #+setupfile: post.setup
 #+HTML_HEAD: <body onload="initPage();">
-#+HTML_HEAD: <script type="text/javascript" src="../static/d3.min.js"></script>
 #+HTML_HEAD: <script type="text/javascript" src="../static/steelsections.json"></script>
 #+HTML_HEAD: <script type="text/javascript" src="../static/steelsections.js"></script>
 #+include: "../statusicon.org"

@@ -16,20 +16,20 @@ function updatePage()
 
 function drawFigure()
 {
-
     let section = i_section.value;
     let sectionProps = steelSectionData.filter(x => x.Designation === section)[0];
     let sectionType = memberType(sectionProps);
 
+    let svgNS = 'http://www.w3.org/2000/svg';
     let s = 'black';
     let f = 'lightgrey';
     let sw = 1;
-    let outlinePath = '';
     let figW = 500;
     let figH = 500;
     let secW = 400;
     let secH = 400;
 
+    let outlinePath = '';
     if (sectionType === 'UB' ||
         sectionType === 'UBP' ||
         sectionType === 'UC') {
@@ -54,19 +54,21 @@ function drawFigure()
         console.log('Section not recognised');
     }
 
-    d3.select('svg').remove();
-    let svgfig = d3.select('#sectionFigure')
-        .append('svg')
-        .attr('width', figW)
-        .attr('height', figH)
-        .attr('viewBox', `${-0.1*secW} ${-0.1*secH} ${1.2*secW} ${1.2*secH}`)
-        .attr('preserveAspectRatio', 'xMidYMid');
-    svgfig.append('path')
-        .attr('d', outlinePath)
-        .attr('fill', f)
-        .attr('stroke', s)
-        .attr('stroke-width', sw)
-        .attr('stroke-linejoin', 'round');
+    svg = document.createElementNS(svgNS, 'svg');
+    svg.setAttributeNS(null, 'width', figW);
+    svg.setAttributeNS(null, 'height', figH);
+    svg.setAttributeNS(null, 'viewBox', `${-0.1*secW} ${-0.1*secH} ${1.2*secW} ${1.2*secH}`);
+    svg.setAttributeNS(null, 'preserveAspectRatio',"xMidYMid");
+
+    outline = document.createElementNS(svgNS,'path');
+    outline.setAttributeNS(null, 'd', outlinePath);
+    outline.setAttributeNS(null, 'fill', f);
+    outline.setAttributeNS(null, 'stroke', s);
+    outline.setAttributeNS(null, 'stroke-width', sw);
+    outline.setAttributeNS(null, 'stroke-linejoin', 'round');
+
+    document.getElementById('sectionFigure').innerHTML = '';
+    document.getElementById('sectionFigure').appendChild(svg).appendChild(outline);
 }
 
 function runCalcs()
