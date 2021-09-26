@@ -1,0 +1,27 @@
+#+title: Steel sections
+
+#+setupfile: post.setup
+#+HTML_HEAD: <body onload="initPage();">
+#+HTML_HEAD: <script type="text/javascript" src="../static/d3.min.js"></script>
+#+HTML_HEAD: <script type="text/javascript" src="../static/steelsections.json"></script>
+#+HTML_HEAD: <script type="text/javascript" src="../static/steelsections.js"></script>
+#+include: "../statusicon.org"
+
+* Member selection
+
+Section: {{{span(i_section)}}}
+
+{{{div(o_properties)}}}
+
+* Figure
+
+{{{div(sectionFigure)}}}
+
+* Similar members
+
+{{{div(o_table)}}}
+
+* Export on save                                                   :noexport:
+;; Local Variables:
+;; eval: (add-hook 'after-save-hook 'org-html-export-to-html nil t)
+;; End:

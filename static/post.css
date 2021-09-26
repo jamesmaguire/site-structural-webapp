@@ -70,8 +70,9 @@ body {
   margin-right: 2%;
   padding: 0.5rem;
 }
-canvas {
+canvas, svg {
   max-width: 100%;
+  max-height: 40ch;
   background: white;
   border: 1px solid #d3d3d3;
 }
@@ -166,9 +167,14 @@ sup, sub {
 }
 
 /* Tables */
+.overflow {
+  overflow-x: auto;
+  overflow-y: auto;
+  max-height: 50vh;
+}
 table {
   table-layout: fixed;
-  width: 100%;
+  min-width: 100%;
   border-collapse: collapse;
   border-top: 1px black solid;
   border-bottom: 1px black solid;
@@ -178,6 +184,13 @@ th {
   font-weight: bold;
   text-align: center;
   padding: 0.2rem;
+  min-width: 6ch;
+}
+/* tr:nth-child(even) {
+  background-color: white;
+} */
+tr.selected {
+  background-color: white;
 }
 td {
   text-align: center;
