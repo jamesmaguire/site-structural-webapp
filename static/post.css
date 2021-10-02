@@ -244,3 +244,26 @@ td {
 .done {
   display: none;
 }
+
+/* Charts/SVGs */
+.axis {
+  stroke: grey;
+  stroke-width: 1;
+}
+.plotline {
+  stroke: black;
+  stroke-width: 2;
+}
+.xticks, .xlabel {
+  text-anchor: middle;
+  dominant-baseline: hanging;
+  transform: translate(0, 6pt);
+}
+.yticks, .ylabel {
+  text-anchor: end;
+  dominant-baseline: central;
+  transform: translate(-6pt, 0);
+}
+svg text {
+  font-size: 150%;
+}

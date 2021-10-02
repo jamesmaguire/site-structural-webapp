@@ -1,0 +1,49 @@
+#+title: SDOF oscillator
+
+#+setupfile: post.setup
+#+HTML_HEAD: <body onload="initPage();">
+#+HTML_HEAD: <script type="text/javascript" src="../static/sdof-oscillator.js"></script>
+#+include: "../statusicon.org"
+
+* System properties
+
+$$ m \ddot{u} + c\dot{u} + ku = f(t)$$
+
+Mass, m {{{span(i_m)}}}
+
+Damping, c {{{span(i_c)}}}
+
+Stiffness, k {{{span(i_k)}}}
+
+Natural frequency, \omega{}_n {{{span(o_wn)}}}
+
+Natural period, T_n {{{span(o_Tn)}}}
+
+* Initial conditions
+
+Displacement, u_0 {{{span(i_u0)}}}
+
+Velocity, $\dot{u}_0$ {{{span(i_v0)}}}
+
+* Force function
+
+Type (trianglur impulse, sine wave, f/t data) {{{span(i_ftype)}}}
+
+Impulse peak force {{{span(i_fpeak)}}}
+
+Impulse duration, t_d {{{span(i_td)}}}
+
+{{{div(forcePlot)}}}
+
+* Analysis
+
+Timestep, \Delta{}t {{{span(i_dt)}}}
+
+Duration {{{span(i_duration)}}}
+
+{{{div(responsePlot)}}}
+
+* Export on save                                                   :noexport:
+;; Local Variables:
+;; eval: (add-hook 'after-save-hook 'org-html-export-to-html nil t)
+;; End:
