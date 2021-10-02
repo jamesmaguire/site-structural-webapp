@@ -72,8 +72,23 @@ function input(id, {initval=0, units='', prefix='', align='right'}={}) {
 
 function output(id, {initval=0, units='', prefix='', align='right'}={}) {
     let html = `<span class="outputspan">${prefix}`;
-    html += `<input id='${id}' class='${align}' type='number' value=${initval}`;
-    html += ` onkeypress='eventHandler(event)' onblur='updatePage()'>`;
+    html += `<input id='${id}' class='${align}' type='number' value=${initval} readonly>`;
     html += ` ${units}</span>`;
     document.getElementById(id).outerHTML = html;
+}
+
+function text(id, {initval='', align='left'}={}) {
+    let html = `<span class="inputspan">`;
+    html += `<input id='${id}' class='${align}' value='${initval}'`;
+    html += ` onkeypress='eventHandler(event)' onblur='updatePage()'>`;
+    html += ` </span>`;
+    document.getElementById(id).outerHTML = html;
+}
+
+function canvas(id, width=500, height=500) {
+    let html = `<canvas id='${id}'`;
+    html += ` width=${width}`;
+    html += ` height=${height}`;
+    html += ` draggable='true'></canvas>`;
+    return html;
 }
