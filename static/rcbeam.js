@@ -7,7 +7,7 @@ function initPage()
     input('i_dbc', {initval:16, prefix:'N', align:'left'});
     input('i_nbt', {initval:2});
     input('i_dbt', {initval:16, prefix:'N', align:'left'});
-    input('i_nbe', {initval:2});
+    input('i_nbe', {initval:0});
     input('i_dbe', {initval:16, prefix:'N', align:'left'});
     input('i_dbs', {initval:10, prefix:'N', align:'left'});
     input('i_dbspc', {initval:200});
@@ -53,12 +53,10 @@ function updatePage()
     setStatusUptodate();
 }
 
-function drawFigure() {
-    let canvas = document.getElementById('beamFigure');
-    let ctx = canvas.getContext('2d');
-    let X = canvas.width;
-    let Y = canvas.height;
-    ctx.clearRect(0, 0, X, Y);
+function drawFigure()
+{
+    document.getElementById('beamFigure').innerHTML='';
+    const svgNS = 'http://www.w3.org/2000/svg';
 
     let beam = {
         B:i_B.valueAsNumber,
@@ -69,73 +67,82 @@ function drawFigure() {
         dbs:i_dbs.valueAsNumber,
         c:i_c.valueAsNumber,
         dn:o_dn.valueAsNumber,
+        nbc:i_nbc.valueAsNumber,
+        nbt:i_nbt.valueAsNumber,
+        nbe:i_nbe.valueAsNumber,
     };
-    let scalefactor = 0.9*Math.min(canvas.width/beam.B,
-                                   canvas.height/beam.D);
-    for (key in beam) {
-        beam[key] = scalefactor*beam[key];
-    }
-    beam.nbc = i_nbc.valueAsNumber;
-    beam.nbt = i_nbt.valueAsNumber;
-    beam.nbe = i_nbe.valueAsNumber;
 
-    // Neutral axis
-    ctx.strokeStyle = '#ccc';
-    ctx.fillStyle = '#f3f3f3';
-    ctx.lineWidth = 1;
-    ctx.beginPath();
-    ctx.rect((X-beam.B)/2,(Y-beam.D)/2,beam.B,beam.dn);
-    ctx.fill();
-    ctx.stroke();
+    const margin = {left:50, right:50, top:50, bottom:50},
+          height = 500 - margin.top - margin.bottom,
+          width = 500 - margin.left - margin.right;
 
-    // Beam outline
-    ctx.beginPath();
-    ctx.strokeStyle = 'black';
-    ctx.lineWidth = 1;
-    ctx.rect((X-beam.B)/2,(Y-beam.D)/2,beam.B,beam.D);
-    ctx.stroke();
+    const sf = Math.min(width/beam.B, height/beam.D);
 
-    // Bars
-    ctx.strokeStyle = 'black';
-    ctx.lineWidth = 1;
-    bars = beamBars(beam);
+    const xmap = n => n*sf + margin.left + (width-beam.B)/2;
+    const ymap = n => (-n+beam.D)*sf + margin.top;
+
+    const svg = document.createElementNS(svgNS, 'svg');
+    svg.setAttributeNS(null, 'width', width + margin.left + margin.right);
+    svg.setAttributeNS(null, 'height', height + margin.top + margin.bottom);
+    svg.setAttributeNS(null, 'viewBox', `0 0 `
+                       +`${width + margin.left + margin.top} `
+                       +`${height + margin.top + margin.bottom}`);
+    svg.setAttributeNS(null, 'preserveAspectRatio',"xMidYMid");
+    document.getElementById('beamFigure').appendChild(svg);
+
+    const compZone = document.createElementNS(svgNS, 'path');
+    compZone.setAttributeNS(null, 'class', 'shadedzone');
+    compZone.setAttributeNS(null, 'd',
+                               `M${xmap(0)},${ymap(beam.D)}`
+                               +` L${xmap(0)},${ymap(beam.D-beam.dn)}`
+                               +` L${xmap(beam.B)},${ymap(beam.D-beam.dn)}`
+                               +` L${xmap(beam.B)},${ymap(beam.D)} z`);
+    svg.appendChild(compZone);
+
+    const beamOutline = document.createElementNS(svgNS, 'path');
+    beamOutline.setAttributeNS(null, 'class', 'concrete');
+    beamOutline.setAttributeNS(null, 'd',
+                               `M${xmap(0)},${ymap(0)}`
+                               +` L${xmap(0)},${ymap(beam.D)}`
+                               +` L${xmap(beam.B)},${ymap(beam.D)}`
+                               +` L${xmap(beam.B)},${ymap(0)} z`);
+    svg.appendChild(beamOutline);
+
+    const bars = beamBars(beam);
     for (i=0; i<bars.length; i++) {
-        rebar(ctx, (X-beam.B)/2+bars[i][0], (Y+beam.D)/2-bars[i][1], bars[i][2]);
+        let bar = document.createElementNS(svgNS, 'circle');
+        bar.setAttributeNS(null, 'class', 'rebar');
+        bar.setAttributeNS(null, 'cx', xmap(bars[i][0]));
+        bar.setAttributeNS(null, 'cy', ymap(bars[i][1]));
+        bar.setAttributeNS(null, 'r', sf*bars[i][2]/2);
+        svg.appendChild(bar);
     }
 
-    // Stirrups
-    if (beam.dbs > 0) {
-        ctx.strokeStyle = 'black';
-        ctx.lineWidth = 1;
-        // I've trimmed one pixel to give the stirrup a more visually consistent size
-        roundedrect(ctx, (X-beam.B)/2+beam.c+1, (Y-beam.D)/2+beam.c+1,
-                    beam.B-2*beam.c-2, beam.D-2*beam.c-2, 3*beam.dbs/2);
-        roundedrect(ctx, (X-beam.B)/2+beam.c+beam.dbs, (Y-beam.D)/2+beam.c+beam.dbs,
-                    beam.B-2*beam.c-2*beam.dbs, beam.D-2*beam.c-2*beam.dbs, beam.dbs/2);
-    }
+    let rs = 3*beam.dbs/2;
+    let spath = `M${xmap(beam.c)},${ymap(beam.D-beam.c-rs)}`
+        +`Q${xmap(beam.c)},${ymap(beam.D-beam.c)} ${xmap(beam.c+rs)},${ymap(beam.D-beam.c)}`
+        +`L${xmap(beam.B-beam.c-rs)},${ymap(beam.D-beam.c)}`
+        +`Q${xmap(beam.B-beam.c)},${ymap(beam.D-beam.c)} ${xmap(beam.B-beam.c)},${ymap(beam.D-beam.c-rs)}`
+        +`L${xmap(beam.B-beam.c)},${ymap(beam.c+rs)}`
+        +`Q${xmap(beam.B-beam.c)},${ymap(beam.c)} ${xmap(beam.B-beam.c-rs)},${ymap(beam.c)}`
+        +`L${xmap(beam.c+rs)},${ymap(beam.c)}`
+        +`Q${xmap(beam.c)},${ymap(beam.c)} ${xmap(beam.c)},${ymap(beam.c+rs)} Z`;
+    rs = beam.dbs/2;
+    beam.dbs -= 1;
+    spath += `M${xmap(beam.c+beam.dbs)},${ymap(beam.D-beam.c-beam.dbs-rs)}`
+        +`Q${xmap(beam.c+beam.dbs)},${ymap(beam.D-beam.c-beam.dbs)} ${xmap(beam.c+beam.dbs+rs)},${ymap(beam.D-beam.c-beam.dbs)}`
+        +`L${xmap(beam.B-beam.c-beam.dbs-rs)},${ymap(beam.D-beam.c-beam.dbs)}`
+        +`Q${xmap(beam.B-beam.c-beam.dbs)},${ymap(beam.D-beam.c-beam.dbs)} ${xmap(beam.B-beam.c-beam.dbs)},${ymap(beam.D-beam.c-beam.dbs-rs)}`
+        +`L${xmap(beam.B-beam.c-beam.dbs)},${ymap(beam.c+beam.dbs+rs)}`
+        +`Q${xmap(beam.B-beam.c-beam.dbs)},${ymap(beam.c+beam.dbs)} ${xmap(beam.B-beam.c-beam.dbs-rs)},${ymap(beam.c+beam.dbs)}`
+        +`L${xmap(beam.c+beam.dbs+rs)},${ymap(beam.c+beam.dbs)}`
+        +`Q${xmap(beam.c+beam.dbs)},${ymap(beam.c+beam.dbs)} ${xmap(beam.c+beam.dbs)},${ymap(beam.c+beam.dbs+rs)} Z` ;
+    beam.dbs += 1;
+    const stirrup = document.createElementNS(svgNS, 'path');
+    stirrup.setAttributeNS(null, 'class', 'rebar');
+    stirrup.setAttributeNS(null, 'd', spath);
+    svg.appendChild(stirrup);
 
-}
-
-
-function rebar(ctx, x, y, db)
-{
-    ctx.beginPath();
-    ctx.arc(x, y, db/2, 0, 2*Math.PI, false);
-    ctx.stroke();
-}
-
-function roundedrect(ctx, x, y, width, height, radius) {
-    ctx.beginPath();
-    ctx.moveTo(x + radius, y);
-    ctx.lineTo(x + width - radius, y);
-    ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
-    ctx.lineTo(x + width, y + height - radius);
-    ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
-    ctx.lineTo(x + radius, y + height);
-    ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
-    ctx.lineTo(x, y + radius);
-    ctx.quadraticCurveTo(x, y, x + radius, y);
-    ctx.stroke();
 }
 
 function runCalcs() {
@@ -215,12 +222,14 @@ function beamBars(beam) {
     // Bottom bars
     let a = beam.c + beam.dbs + beam.dbt/2;
     let barspc = (beam.B - 2*a)/(beam.nbt-1);
+    if (beam.nbt === 1) {barspc = 0;}
     for (i=0; i < beam.nbt; i++) {
         bars.push([a + i*barspc, a, beam.dbt]);
     }
     // Top bars
     a = beam.c + beam.dbs + beam.dbc/2;
     barspc = (beam.B - 2*a)/(beam.nbc-1);
+    if (beam.nbc === 1) {barspc = 0;}
     for (i=0; i < beam.nbc; i++) {
         bars.push([a + i*barspc, beam.D - a, beam.dbc]);
     }

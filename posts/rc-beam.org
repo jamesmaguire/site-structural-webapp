@@ -8,9 +8,7 @@
 
 * Image
 
-#+begin_export html
-<canvas id="beamFigure" width="500" height="300" draggable="true"></canvas>
-#+end_export
+{{{div(beamFigure)}}}
 
 * Beam parameters
 

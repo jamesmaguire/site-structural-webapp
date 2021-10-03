@@ -271,3 +271,18 @@ td {
 svg text {
   font-size: 150%;
 }
+
+.concrete {
+  stroke-width: 1;
+  stroke: black;
+  fill: none;
+}
+.shadedzone {
+  stroke: #ccc;
+  fill: #f3f3f3;
+}
+.rebar {
+  stroke: black;
+  stroke-width: 1;
+  fill: none;
+}
