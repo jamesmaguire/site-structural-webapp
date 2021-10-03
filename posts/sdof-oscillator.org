@@ -43,6 +43,8 @@ Duration {{{span(i_duration)}}}
 
 {{{div(responsePlot)}}}
 
+Peak displacement {{{span(o_umin)}}} {{{span(o_umax)}}}
+
 * Export on save                                                   :noexport:
 ;; Local Variables:
 ;; eval: (add-hook 'after-save-hook 'org-html-export-to-html nil t)

@@ -253,6 +253,7 @@ td {
 .plotline {
   stroke: black;
   stroke-width: 2;
+  fill: none;
 }
 .xticks, .xlabel {
   text-anchor: middle;
@@ -263,6 +264,9 @@ td {
   text-anchor: end;
   dominant-baseline: central;
   transform: translate(-6pt, 0);
+}
+.xlabel, .ylabel {
+  font-weight: bold;
 }
 svg text {
   font-size: 150%;
