@@ -39,7 +39,7 @@ Site sub-soil class
 <option value="Ee">Very soft soil, Ee</option>
 </select>@@
 
-@@html:<canvas id="ChPlot" width="500" height="500" draggable="true"></canvas>@@
+{{{div(svgplot)}}}
 
 
 * Export on save                                                   :noexport:

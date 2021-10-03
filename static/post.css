@@ -286,3 +286,8 @@ svg text {
   stroke-width: 1;
   fill: none;
 }
+.highlight {
+  stroke: darkred;
+  stroke-width: 1;
+  fill: darkred;
+}

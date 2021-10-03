@@ -22,76 +22,116 @@ function runCalcs()
     let SSC = i_SSC.value;
     let Ch = periods.map(T => SpectralShapeFactor(SSC, T));
     let ChT = ilookup(T1, periods, Ch);
-    drawPlot("ChPlot", periods, Ch, T1);
 
-}
+    /////////////////////////////////////////////////////////////////////////////
+    // Plot
 
-// function drawPlot(plotid, points, labelledpts, designpt, pass) {
-function drawPlot(plotid, periods, Chs, T) {
-    let canvas = document.getElementById(plotid);
-    let ctx = canvas.getContext('2d');
-    let X = canvas.width;
-    let Y = canvas.height;
-    ctx.clearRect(0, 0, X, Y);
-    ctx.clearRect(0, 0, X, Y);
+    document.getElementById('svgplot').innerHTML='';
+    const svgNS = 'http://www.w3.org/2000/svg';
 
-    // Chart area
-    ctx.strokeStyle = 'black';
-    ctx.fillStyle = 'black';
-    ctx.lineWidth = 1;
-    ctx.rect(0.1*X, 0.1*Y, 0.8*X, 0.8*Y);
-    ctx.stroke();
+    const margin = {left:50, right:50, top:50, bottom:50},
+          height = 500 - margin.top - margin.bottom,
+          width = 500 - margin.left - margin.right;
 
-    // Axes labels
-    ctx.font = "14pt sans-serif";
-    ctx.textAlign = "center";
-    ctx.textBaseline = "top";
-    ctx.fillText("PERIOD IN SECONDS (T)", 0.5*X, 0.92*Y);
-    ctx.save();
-    ctx.rotate(-Math.PI/2);
-    ctx.fillText("SPECTRAL ORDINATES (Ch(T))", -0.50*X, 0.03*Y);
-    ctx.restore();
+    const xmin = 0, xmax = 5.0,
+          ymin = 0, ymax = 4.5,
+          dx = xmax - xmin,
+          dy = ymax - ymin;
 
-    // Scale points
-    let xmax = 5.0;
-    let ymax = 4.0;
-    let xs = [];
-    let ys = [];
+    const xmap = n => (n+xmin)*width/dx + margin.left;
+    const ymap = n => (-n+ymax)*height/dy + margin.top;
+
+    const svg = document.createElementNS(svgNS, 'svg');
+    svg.setAttributeNS(null, 'width', width + margin.left + margin.right);
+    svg.setAttributeNS(null, 'height', height + margin.top + margin.bottom);
+    svg.setAttributeNS(null, 'viewBox', `0 0 `
+                       +`${width + margin.left + margin.top} `
+                       +`${height + margin.top + margin.bottom}`);
+    svg.setAttributeNS(null, 'preserveAspectRatio',"xMidYMid");
+    document.getElementById('svgplot').appendChild(svg);
+
+    let xaxis = document.createElementNS(svgNS, 'line');
+    xaxis.setAttributeNS(null, 'class', 'axis');
+    xaxis.setAttributeNS(null, 'x1', xmap(xmin));
+    xaxis.setAttributeNS(null, 'x2', xmap(xmax));
+    xaxis.setAttributeNS(null, 'y1', ymap(0));
+    xaxis.setAttributeNS(null, 'y2', ymap(0));
+    svg.appendChild(xaxis);
+
+    let xticks = document.createElementNS(svgNS, 'g');
+    xticks.setAttributeNS(null, 'class', 'xticks');
+    [xmin, xmax].map(function(t) {
+        let tick = document.createElementNS(svgNS, 'text');
+        tick.setAttributeNS(null, 'x', xmap(t));
+        tick.setAttributeNS(null, 'y', ymap(0));
+        tick.innerHTML = t;
+        xticks.appendChild(tick);
+    });
+    svg.appendChild(xticks);
+
+    let yaxis = document.createElementNS(svgNS, 'line');
+    yaxis.setAttributeNS(null, 'class', 'axis');
+    yaxis.setAttributeNS(null, 'x1', xmap(0));
+    yaxis.setAttributeNS(null, 'x2', xmap(0));
+    yaxis.setAttributeNS(null, 'y1', ymap(ymin));
+    yaxis.setAttributeNS(null, 'y2', ymap(ymax));
+    svg.appendChild(yaxis);
+
+    let yticks = document.createElementNS(svgNS, 'g');
+    yticks.setAttributeNS(null, 'class', 'yticks');
+    [ymin, ymax].map(function(t) {
+        let tick = document.createElementNS(svgNS, 'text');
+        tick.setAttributeNS(null, 'x', xmap(0));
+        tick.setAttributeNS(null, 'y', ymap(t));
+        tick.innerHTML = t;
+        yticks.appendChild(tick);
+    });
+    svg.appendChild(yticks);
+
+    let xlabel = document.createElementNS(svgNS, 'text');
+    xlabel.setAttributeNS(null, 'class', 'xlabel');
+    xlabel.setAttributeNS(null, 'x', xmap((xmin+xmax)/2));
+    xlabel.setAttributeNS(null, 'y', ymap(0));
+    xlabel.innerHTML = 'Period, T (s)';
+    svg.appendChild(xlabel);
+
+    let ylabel = document.createElementNS(svgNS, 'text');
+    ylabel.setAttributeNS(null, 'class', 'ylabel');
+    ylabel.setAttributeNS(null, 'x', xmap(0));
+    ylabel.setAttributeNS(null, 'y', ymap(ymax/2));
+    ylabel.innerHTML = 'Ch(T)';
+    svg.appendChild(ylabel);
+
+    let linepath = `M${xmap(periods[0])},${ymap(Ch[0])}`;
     for (i=0; i<periods.length; i++) {
-        xs.push(0.8*X*periods[i]/xmax + 0.1*X);
-        ys.push(-0.8*Y*Chs[i]/ymax + 0.9*Y);
+        linepath += ` L${xmap(periods[i])},${ymap(Ch[i])}`;
     }
-    
-    // Plot points
-    ctx.strokeStyle = 'black';
-    ctx.lineWidth = 3;
-    ctx.beginPath();
-    ctx.moveTo(xs[0], ys[0]);
-    for (i=1; i<xs.length; i++) {
-        ctx.lineTo(xs[i], ys[i]);
-    }
-    ctx.stroke();
+    let line = document.createElementNS(svgNS, 'path');
+    line.setAttributeNS(null, 'class', 'plotline');
+    line.setAttributeNS(null, 'd', linepath);
+    svg.appendChild(line);
 
-    // Show T1 vline
-    let ChT = ilookup(T, periods, Chs);
-    x = 0.8*X*T/xmax + 0.1*X;
-    y = -0.8*Y*ChT/ymax + 0.9*Y;
-    ctx.strokeStyle = 'darkred';
-    ctx.fillStyle = 'darkred';
-    ctx.lineWidth = 1;
-    ctx.beginPath();
-    ctx.moveTo(x, 0.9*Y);
-    ctx.lineTo(x, y);
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.arc(x,y, 4, 0, 2*Math.PI);
-    ctx.stroke();
-    ctx.fill();
+    let hl = document.createElementNS(svgNS, 'line');
+    hl.setAttributeNS(null, 'class', 'highlight');
+    hl.setAttributeNS(null, 'x1', xmap(T1));
+    hl.setAttributeNS(null, 'x2', xmap(T1));
+    hl.setAttributeNS(null, 'y1', ymap(0));
+    hl.setAttributeNS(null, 'y2', ymap(ChT));
+    svg.appendChild(hl);
+    hl = document.createElementNS(svgNS, 'circle');
+    hl.setAttributeNS(null, 'class', 'highlight');
+    hl.setAttributeNS(null, 'cx', xmap(T1));
+    hl.setAttributeNS(null, 'cy', ymap(ChT));
+    hl.setAttributeNS(null, 'r', 3);
+    svg.appendChild(hl);
 
-    ctx.font = "14pt sans-serif";
-    ctx.textAlign = "left";
-    ctx.textBaseline = "bottom";
-    ctx.fillText("Ch("+T.toFixed(2)+") = "+ChT.toFixed(2), x+0.01*X, y-0.01*Y);
+    let callout = document.createElementNS(svgNS, 'text');
+    callout.setAttributeNS(null, 'x', xmap(T1)+0.02*width);
+    callout.setAttributeNS(null, 'y', ymap(ChT));
+    callout.innerHTML = `Ch(${T1.toPrecision(2)}) = ${ChT.toPrecision(3)}`;
+    svg.appendChild(callout);
+
+    /////////////////////////////////////////////////////////////////////////////
 
 }
 
