@@ -78,8 +78,8 @@ function drawFigure()
 
     const sf = Math.min(width/beam.B, height/beam.D);
 
-    const xmap = n => n*sf + margin.left + (width-beam.B)/2;
-    const ymap = n => (-n+beam.D)*sf + margin.top;
+    const xmap = n => margin.left + sf*n + width/2 - sf*beam.B/2;
+    const ymap = n => margin.top  - sf*n + height/2 + sf*beam.D/2;
 
     const svg = document.createElementNS(svgNS, 'svg');
     svg.setAttributeNS(null, 'width', width + margin.left + margin.right);
