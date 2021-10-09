@@ -291,3 +291,13 @@ svg text {
   stroke-width: 1;
   fill: darkred;
 }
+.ptlabel {
+  transform: translate(10px,-10px);
+  font-size: 12pt;
+}
+.designptlabel {
+  transform: translate(0px,10px);
+  font-size: 12pt;
+  dominant-baseline: text-before-edge;
+  text-anchor:  middle;
+}

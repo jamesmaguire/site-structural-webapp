@@ -203,7 +203,7 @@ function barCoords(col) {
 }
 
 function runCalcs() {
-    let col = {
+    const col = {
         L:i_L.valueAsNumber,
         kx:i_kx.valueAsNumber,
         ky:i_ky.valueAsNumber,
@@ -226,7 +226,7 @@ function runCalcs() {
     setPassFail(o_Astratio, 1, inverse=true);
 
     // Material properties
-    let concrete = {
+    const concrete = {
         fc:i_fc.valueAsNumber,
         ecu:0.003,
     };
@@ -238,7 +238,7 @@ function runCalcs() {
     o_alpha2.value = concrete.alpha2.toFixed(2);
     o_gamma.value = concrete.gamma.toFixed(2);
 
-    let steel = {
+    const steel = {
         fsy:i_fsy.valueAsNumber,
         Es:200, // GPa
     };
@@ -518,91 +518,88 @@ function steel_strain(ku, ecu, esu, d, y) {
     }
 }
 
-
 function drawPlot(plotid, points, labelledpts, designpt, pass) {
-    let canvas = document.getElementById(plotid);
-    let ctx = canvas.getContext('2d');
-    let X = canvas.width;
-    let Y = canvas.height;
-    ctx.clearRect(0, 0, X, Y);
+    
+    document.getElementById(plotid).innerHTML='';
+    const svgNS = 'http://www.w3.org/2000/svg';
 
-    // Chart area
-    ctx.strokeStyle = 'black';
-    ctx.fillStyle = 'black';
-    ctx.lineWidth = 1;
-    ctx.rect(0.1*X, 0.1*Y, 0.8*X, 0.8*Y);
-    ctx.stroke();
+    const Ms = points.map(pt => pt[0]),
+          Ns = points.map(pt => pt[1]);
+
+    const margin = {left:50, right:50, top:50, bottom:50},
+          height = 500 - margin.top - margin.bottom,
+          width = 500 - margin.left - margin.right;
+
+    const xmin = 0,
+          xmax = Math.max(o_phiMux.valueAsNumber, o_phiMuy.valueAsNumber)*1.8,
+          ymin = 0,
+          ymax = o_phiNuo.valueAsNumber*1.1,
+          dx = xmax - xmin,
+          dy = ymax - ymin;
+
+    const xmap = n => (n+xmin)*width/dx + margin.left;
+    const ymap = n => (-n+ymax)*height/dy + margin.top;
+
+    const svg = document.createElementNS(svgNS, 'svg');
+    svg.setAttributeNS(null, 'width', width + margin.left + margin.right);
+    svg.setAttributeNS(null, 'height', height + margin.top + margin.bottom);
+    svg.setAttributeNS(null, 'viewBox', `0 0 `
+                       +`${width + margin.left + margin.top} `
+                       +`${height + margin.top + margin.bottom}`);
+    svg.setAttributeNS(null, 'preserveAspectRatio',"xMidYMid");
+    document.getElementById(plotid).appendChild(svg);
+
+    // X axis
+    svgCreateAppend(svg, 'line', {
+        class:'axis',
+        x1:margin.left,
+        x2:margin.left+width,
+        y1:margin.top+height,
+        y2:margin.top+height,
+    });
+
+    // Y axis
+    svgCreateAppend(svg, 'line', {
+        class:'axis',
+        x1:margin.left,
+        x2:margin.left,
+        y1:margin.top+height,
+        y2:margin.top,
+    });
+
+    // Points of interest
+    for (let i=0; i<labelledpts.length; i++) {
+        let pt = labelledpts[i];
+        svgCreateAppend(svg, 'circle',
+                        {'cx':xmap(pt[0]), 'cy':ymap(pt[1]), 'r':3});
+        svgCreateAppend(svg, 'text',
+                        {'class': 'ptlabel', 'x':xmap(pt[0]), 'y':ymap(pt[1])},
+                       content=`(${pt[0].toFixed(0)} kNm, ${pt[1].toFixed(0)} kN)`);
+    }
+
+    // Design load
+    svgCreateAppend(svg, 'circle',
+                    {'cx':xmap(designpt[0]), 'cy':ymap(designpt[1]),
+                     'r':4, 'fill': pass ? 'green' : 'red'});
+    svgCreateAppend(svg, 'text',
+                    {'class': 'designptlabel',
+                     'x':xmap(designpt[0]), 'y':ymap(designpt[1]),
+                     'fill': pass ? 'green' : 'red'},
+                    content=`(${designpt[0].toFixed(0)} kNm, ${designpt[1].toFixed(0)} kN)`);
 
     // Axes labels
-    ctx.font = "14pt sans-serif";
-    ctx.textAlign = "right";
-    ctx.textBaseline = "top";
-    ctx.fillText("ΦMu", 0.9*X, 0.92*Y);
-    ctx.fillText("ΦNu", 0.08*X, 0.1*Y);
+    svgCreateAppend(svg, 'text',
+                    {'class': 'xlabel', 'x': xmap(xmax), 'y': ymap(0)},
+                    content='&Phi;Mu');
+    svgCreateAppend(svg, 'text',
+                    {'class': 'ylabel', 'x': xmap(0), 'y': ymap(ymax)},
+                    content='&Phi;Nu');
 
-    // Scale points
-    let xmax = 0;
-    let ymax = 0;
-    for (i=0; i<points.length; i++) {
-        let x = points[i][0];
-        let y = points[i][1];
-        xmax = Math.max(xmax, x);
-        ymax = Math.max(ymax, y);
+    // Plot line
+    let linepath = `M${xmap(Ms[0])},${ymap(Ns[0])}`;
+    for (i=0; i<Ns.length; i++) {
+        linepath += ` L${xmap(Ms[i])},${ymap(Ns[i])}`;
     }
-    let sf = 0.75*Math.max(X, Y)/Math.max(xmax, ymax);
-    let sfx = 0.5*X/xmax;
-    let sfy = 0.75*Y/ymax;
-
-    let coords = [];
-    for (i=0; i<points.length; i++) {
-        coords.push([sfx*points[i][0]+0.1*X, -sfy*points[i][1]+0.9*Y]);
-    }
-    let labelcoords = [];
-    for (i=0; i<labelledpts.length; i++) {
-        labelcoords.push([sfx*labelledpts[i][0]+0.1*X, -sfy*labelledpts[i][1]+0.9*Y]);
-    }
-
-    // Plot points
-    ctx.strokeStyle = 'black';
-    ctx.lineWidth = 3;
-    ctx.beginPath();
-    ctx.moveTo(coords[0][0], coords[0][1]);
-    for (i=1; i<coords.length; i++) {
-        ctx.lineTo(coords[i][0], coords[i][1]);
-    }
-    ctx.stroke();
-
-    // Label points
-    ctx.font = "12pt sans-serif";
-    ctx.textAlign = "left";
-    ctx.textBaseline = "bottom";
-
-    for (i=0; i<labelcoords.length; i++) {
-        ctx.beginPath();
-        ctx.arc(labelcoords[i][0], labelcoords[i][1], 3, 0, 2*Math.PI);
-        ctx.fill();
-        ctx.fillText("(" + labelledpts[i][0].toFixed(0) + "kNm , "
-                     + labelledpts[i][1].toFixed(0) + "kN)",
-                     labelcoords[i][0]+0.03*X, labelcoords[i][1]);
-    }
-
-    // Design points
-    let designcoords = [0.1*X + designpt[0]*sfx,
-                        0.9*Y - designpt[1]*sfy];
-    if (pass) {
-        ctx.fillStyle = 'green';
-    } else {
-        ctx.fillStyle = 'red';
-    }
-    ctx.lineWidth = 3;
-    ctx.textAlign = "center";
-    ctx.textBaseline = "top";
-
-    ctx.beginPath();
-    ctx.arc(designcoords[0], designcoords[1], 4, 0, 2*Math.PI);
-    ctx.fill();
-    ctx.fillText("(" + designpt[0].toFixed(0) + "kNm , "
-                 + designpt[1].toFixed(0) + "kN)",
-                 designcoords[0], designcoords[1]+0.02*Y);
+    svgCreateAppend(svg, 'path', {'class': 'plotline', 'd': linepath});
 
 }

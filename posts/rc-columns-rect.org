@@ -107,11 +107,11 @@ Moment capacity, \Phi{}M_{uy} {{{span(o_phiMuy)}}} M*_y/\Phi{}M_{uy} {{{span(o_M
 
 * M-N plot (x)
 
-@@html:<canvas id="mnxPlot" width="500" height="500" draggable="true"></canvas>@@
+{{{div(mnxPlot)}}}
 
 * M-N plot (y)
 
-@@html:<canvas id="mnyPlot" width="500" height="500" draggable="true"></canvas>@@
+{{{div(mnyPlot)}}}
 
 * Rates
 
