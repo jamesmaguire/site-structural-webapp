@@ -41,7 +41,7 @@ function plotForce()
     const dt = i_dt.valueAsNumber,
           duration = i_duration.valueAsNumber,
           nsteps = Math.floor(duration/dt, 1),
-          t = [...Array(nsteps).keys()].map(i => dt*i),
+          t = [...Array(nsteps+1).keys()].map(i => dt*i),
           fpeak = i_fpeak.valueAsNumber,
           td = i_td.valueAsNumber,
           f = t.map(ti => fTriangularImpulse(ti, fpeak, td));
@@ -69,13 +69,22 @@ function plotForce()
     svg.setAttributeNS(null, 'preserveAspectRatio',"xMidYMid");
     document.getElementById('forcePlot').appendChild(svg);
 
-    let xaxis = document.createElementNS(svgNS, 'line');
-    xaxis.setAttributeNS(null, 'class', 'axis');
-    xaxis.setAttributeNS(null, 'x1', xmap(xmin));
-    xaxis.setAttributeNS(null, 'x2', xmap(xmax));
-    xaxis.setAttributeNS(null, 'y1', ymap(0));
-    xaxis.setAttributeNS(null, 'y2', ymap(0));
-    svg.appendChild(xaxis);
+    // X axis
+    svgCreateAppend(svg, 'line', {
+        class:'axis',
+        x1:xmap(xmin),
+        x2:xmap(xmax),
+        y1:ymap(0),
+        y2:ymap(0)
+    });
+
+    // Y axis
+    svgCreateAppend(svg, 'line', {
+        class:'axis',
+        x1:xmap(0),
+        x2:xmap(0),
+        y1:ymap(ymin),
+        y2:ymap(ymax)});
 
     let xticks = document.createElementNS(svgNS, 'g');
     xticks.setAttributeNS(null, 'class', 'xticks');
@@ -88,14 +97,6 @@ function plotForce()
             xticks.appendChild(tick);
         });
     svg.appendChild(xticks);
-
-    let yaxis = document.createElementNS(svgNS, 'line');
-    yaxis.setAttributeNS(null, 'class', 'axis');
-    yaxis.setAttributeNS(null, 'x1', xmap(0));
-    yaxis.setAttributeNS(null, 'x2', xmap(0));
-    yaxis.setAttributeNS(null, 'y1', ymap(ymin));
-    yaxis.setAttributeNS(null, 'y2', ymap(ymax));
-    svg.appendChild(yaxis);
 
     let yticks = document.createElementNS(svgNS, 'g');
     yticks.setAttributeNS(null, 'class', 'yticks');
