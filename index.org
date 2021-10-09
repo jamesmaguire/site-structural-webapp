@@ -16,6 +16,7 @@
 *** [[file:posts/wind-loading.org][Wind loading]]
 *** TODO [[file:posts/earthquake-loading.org][Earthquake loading]]
 ** Other tools
+*** [[file:posts/sdof-oscillator.html][SDOF oscillator]]
 *** [[file:posts/rebar-properties.org][Rebar properties]]
 *** [[file:posts/steel-sections.org][Hot rolled steel sections]]
 
