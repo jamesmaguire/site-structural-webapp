@@ -1,7 +1,7 @@
 #+title: Reinforced Concrete Column
 #+setupfile: post.setup
 #+HTML_HEAD: <body onload="updatePage();">
-#+HTML_HEAD: <script type="text/javascript" src="../static/rc-column.js"></script>
+#+HTML_HEAD: <script type="text/javascript" src="../static/rc-column-rect.js"></script>
 #+include: "../statusicon.org"
 
 * Tasks [0/2]                                                      :noexport:
