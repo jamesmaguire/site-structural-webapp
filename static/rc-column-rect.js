@@ -84,105 +84,82 @@ function updatePage()
     setStatusUptodate();
 }
 
-function drawFigure() {
-    let canvas = document.getElementById('columnFigure');
-    let ctx = canvas.getContext('2d');
-    let X = canvas.width;
-    let Y = canvas.height;
-    ctx.clearRect(0, 0, X, Y);
+function drawFigure()
+{
+    document.getElementById('columnFigure').innerHTML='';
+    const svgNS = 'http://www.w3.org/2000/svg';
 
-    let col = {
-        L:i_L.valueAsNumber,
+    const col = {
         Dx:i_Dx.valueAsNumber,
         Dy:i_Dy.valueAsNumber,
-        Dia:i_Dia.valueAsNumber,
         c:i_c.valueAsNumber,
         db:i_db.valueAsNumber,
         dbt:i_dbt.valueAsNumber,
+        nbarstop:i_nbarstop.valueAsNumber,
+        nbarsside:i_nbarsside.valueAsNumber,
     };
-    let scalefactor = 0.9*Math.min(canvas.width/col.Dx, canvas.height/col.Dy);
-    if (i_shape.value == "circ") {
-        scalefactor = 0.8*Math.min(canvas.width/col.Dia, canvas.height/col.Dia);
+
+    const margin = {left:50, right:50, top:50, bottom:50},
+          height = 500 - margin.top - margin.bottom,
+          width = 500 - margin.left - margin.right;
+
+    const sf = Math.min(width/col.Dx, height/col.Dy);
+
+    const xmap = n => margin.left + sf*n + width/2 - sf*col.Dx/2;
+    const ymap = n => margin.top  - sf*n + height/2 + sf*col.Dy/2;
+
+    const svg = document.createElementNS(svgNS, 'svg');
+    svg.setAttributeNS(null, 'width', width + margin.left + margin.right);
+    svg.setAttributeNS(null, 'height', height + margin.top + margin.bottom);
+    svg.setAttributeNS(null, 'viewBox', `0 0 `
+                       +`${width + margin.left + margin.top} `
+                       +`${height + margin.top + margin.bottom}`);
+    svg.setAttributeNS(null, 'preserveAspectRatio',"xMidYMid");
+    document.getElementById('columnFigure').appendChild(svg);
+
+    svgCreateAppend(svg, 'path', {
+        'class': 'concrete',
+        'd': `M${xmap(0)},${ymap(0)}`
+            +` L${xmap(0)},${ymap(col.Dy)}`
+            +` L${xmap(col.Dx)},${ymap(col.Dy)}`
+            +` L${xmap(col.Dx)},${ymap(0)} z`
+    });
+
+    const bars = barCoords(col);
+    for (i=0; i<bars.length; i++) {
+        svgCreateAppend(svg, 'circle', {
+            'class': 'rebar',
+            'cx': xmap(bars[i][0]),
+            'cy': ymap(bars[i][1]),
+            'r': sf*col.db/2,
+        });
     }
-    for (key in col) {
-        col[key] = scalefactor*col[key];
-    }
-    col.nbarstop = i_nbarstop.valueAsNumber;
-    col.nbarsside = i_nbarsside.valueAsNumber;
-    col.nbarscirc = i_nbarscirc.valueAsNumber;
-    col.nbars = o_nbars.valueAsNumber;
-    col.shape = i_shape.value;
 
-    if (col.shape == "rect") {
-        // Column outline
-        ctx.beginPath();
-        ctx.strokeStyle = 'black';
-        ctx.lineWidth = 1;
-        ctx.rect((X-col.Dx)/2,(Y-col.Dy)/2,col.Dx,col.Dy);
-        ctx.stroke();
+    let rs = 3*col.dbt/2;
+    let spath = `M${xmap(col.c)},${ymap(col.Dy-col.c-rs)}`
+        +`Q${xmap(col.c)},${ymap(col.Dy-col.c)} ${xmap(col.c+rs)},${ymap(col.Dy-col.c)}`
+        +`L${xmap(col.Dx-col.c-rs)},${ymap(col.Dy-col.c)}`
+        +`Q${xmap(col.Dx-col.c)},${ymap(col.Dy-col.c)} ${xmap(col.Dx-col.c)},${ymap(col.Dy-col.c-rs)}`
+        +`L${xmap(col.Dx-col.c)},${ymap(col.c+rs)}`
+        +`Q${xmap(col.Dx-col.c)},${ymap(col.c)} ${xmap(col.Dx-col.c-rs)},${ymap(col.c)}`
+        +`L${xmap(col.c+rs)},${ymap(col.c)}`
+        +`Q${xmap(col.c)},${ymap(col.c)} ${xmap(col.c)},${ymap(col.c+rs)} Z`;
+    rs = col.dbt/2;
+    col.dbt -= 1;
+    spath += `M${xmap(col.c+col.dbt)},${ymap(col.Dy-col.c-col.dbt-rs)}`
+        +`Q${xmap(col.c+col.dbt)},${ymap(col.Dy-col.c-col.dbt)} ${xmap(col.c+col.dbt+rs)},${ymap(col.Dy-col.c-col.dbt)}`
+        +`L${xmap(col.Dx-col.c-col.dbt-rs)},${ymap(col.Dy-col.c-col.dbt)}`
+        +`Q${xmap(col.Dx-col.c-col.dbt)},${ymap(col.Dy-col.c-col.dbt)} ${xmap(col.Dx-col.c-col.dbt)},${ymap(col.Dy-col.c-col.dbt-rs)}`
+        +`L${xmap(col.Dx-col.c-col.dbt)},${ymap(col.c+col.dbt+rs)}`
+        +`Q${xmap(col.Dx-col.c-col.dbt)},${ymap(col.c+col.dbt)} ${xmap(col.Dx-col.c-col.dbt-rs)},${ymap(col.c+col.dbt)}`
+        +`L${xmap(col.c+col.dbt+rs)},${ymap(col.c+col.dbt)}`
+        +`Q${xmap(col.c+col.dbt)},${ymap(col.c+col.dbt)} ${xmap(col.c+col.dbt)},${ymap(col.c+col.dbt+rs)} Z` ;
+    col.dbt += 1;
+    const stirrup = document.createElementNS(svgNS, 'path');
+    stirrup.setAttributeNS(null, 'class', 'rebar');
+    stirrup.setAttributeNS(null, 'd', spath);
+    svg.appendChild(stirrup);
 
-        // Long bars
-        let coords = barCoords(col);
-        for (i = 0; i<coords.length; i++) {
-            rebar(ctx, (X-col.Dx)/2+coords[i][0], (Y-col.Dy)/2+coords[i][1], col.db);
-        }
-
-        // Stirrups
-        ctx.strokeStyle = 'black';
-        ctx.lineWidth = 1;
-        // I've trimmed one pixel to give the stirrup a more visually consistent size
-        roundedrect(ctx, (X-col.Dx)/2+col.c+1, (Y-col.Dy)/2+col.c+1,
-                    col.Dx-2*col.c-2, col.Dy-2*col.c-2, 3*col.dbt/2);
-        roundedrect(ctx, (X-col.Dx)/2+col.c+col.dbt, (Y-col.Dy)/2+col.c+col.dbt,
-                    col.Dx-2*col.c-2*col.dbt, col.Dy-2*col.c-2*col.dbt, col.dbt/2);
-
-    } else if (col.shape == 'circ') {
-        // Column outline
-        ctx.beginPath();
-        ctx.strokeStyle = 'black';
-        ctx.lineWidth = 1;
-        ctx.arc(X/2 ,Y/2 , col.Dia/2, 0, 2*Math.PI);
-        ctx.stroke();
-
-        // Stirrups
-        ctx.strokeStyle = 'black';
-        ctx.lineWidth = 1;
-        ctx.beginPath();
-        ctx.arc(X/2 ,Y/2 , col.Dia/2-col.c-1, 0, 2*Math.PI);
-        ctx.stroke();
-        ctx.beginPath();
-        ctx.arc(X/2 ,Y/2 , col.Dia/2-col.c-col.dbt, 0, 2*Math.PI);
-        ctx.stroke();
-
-        // Longitudinal bars
-        ctx.strokeStyle = 'black';
-        ctx.lineWidth = 1;
-        let coords = barCoords(col);
-        for (i = 0; i<coords.length; i++) {
-            rebar(ctx, X/2+coords[i][0], Y/2+coords[i][1], col.db);
-        }
-    }
-}
-
-function rebar(ctx, x, y, db)
-{
-    ctx.beginPath();
-    ctx.arc(x, y, db/2, 0, 2*Math.PI, false);
-    ctx.stroke();
-}
-
-function roundedrect(ctx, x, y, width, height, radius) {
-    ctx.beginPath();
-    ctx.moveTo(x + radius, y);
-    ctx.lineTo(x + width - radius, y);
-    ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
-    ctx.lineTo(x + width, y + height - radius);
-    ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
-    ctx.lineTo(x + radius, y + height);
-    ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
-    ctx.lineTo(x, y + radius);
-    ctx.quadraticCurveTo(x, y, x + radius, y);
-    ctx.stroke();
 }
 
 // function calcBarParams()
@@ -197,50 +174,29 @@ function roundedrect(ctx, x, y, width, height, radius) {
 //     barSpcY.value = (colDy.valueAsNumber - 2*c - 2*dt - db)/(barsS-1);
 // }
 
-function displayShape()
-{
-    let shape = i_shape.value;
-    let circInputs = [i_Dia, i_nbarscirc, o_rd, o_lambdad];
-    let rectInputs = [i_Dx, i_Dy, i_nbarstop, i_nbarsside, o_nbars, o_rx, o_ry, o_lambdax, o_lambday];
-    if (shape == "rect") {
-        circInputs.forEach(hideInput);
-        rectInputs.forEach(showInput);
-    } else if (shape == "circ") {
-        circInputs.forEach(showInput);
-        rectInputs.forEach(hideInput);
-    }
-}
-
 function barCoords(col) {
     let coords = [];
 
-    if (col.shape == "rect") {
-        // Top
-        let barspc = (col.Dx-2*(col.c+col.dbt)-col.db)/(col.nbarstop-1);
-        let ys = [col.c+col.dbt+col.db/2, col.Dy-col.c-col.dbt-col.db/2];
-        for (i=0; i<col.nbarstop; i++) {
-            let x = col.c+col.dbt+col.db/2 + (i*barspc);
-            for (j in ys) {
-                coords.push([x, ys[j]]);
-            }
-        }
-        //Side
-        barspc = (col.Dy-2*(col.c+col.dbt)-col.db)/(col.nbarsside-1);
-        let xs = [col.c+col.dbt+col.db/2, col.Dx-col.c-col.dbt-col.db/2];
-        for (i=1; i<col.nbarsside-1; i++) {
-            let y = col.c+col.dbt+col.db/2 + (i*barspc);
-            for (j in xs) {
-                coords.push([xs[j], y]);
-            }
-        }
-
-    } else if (col.shape == "circ") {
-        for (let angle=0; angle<2*Math.PI; angle+=2*Math.PI/col.nbarscirc) {
-            let x = (col.Dia/2-col.c-col.dbt-col.db/2) * Math.cos(angle);
-            let y = (col.Dia/2-col.c-col.dbt-col.db/2) * Math.sin(angle);
-            coords.push([x, y]);
+    // Top
+    let barspc = (col.Dx-2*(col.c+col.dbt)-col.db)/(col.nbarstop-1);
+    let ys = [col.c+col.dbt+col.db/2, col.Dy-col.c-col.dbt-col.db/2];
+    for (i=0; i<col.nbarstop; i++) {
+        let x = col.c+col.dbt+col.db/2 + (i*barspc);
+        for (j in ys) {
+            coords.push([x, ys[j]]);
         }
     }
+
+    //Side
+    barspc = (col.Dy-2*(col.c+col.dbt)-col.db)/(col.nbarsside-1);
+    let xs = [col.c+col.dbt+col.db/2, col.Dx-col.c-col.dbt-col.db/2];
+    for (i=1; i<col.nbarsside-1; i++) {
+        let y = col.c+col.dbt+col.db/2 + (i*barspc);
+        for (j in xs) {
+            coords.push([xs[j], y]);
+        }
+    }
+
     return coords;
 }
 
