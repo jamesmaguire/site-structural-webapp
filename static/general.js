@@ -92,3 +92,13 @@ function canvas(id, width=500, height=500) {
     html += ` draggable='true'></canvas>`;
     return html;
 }
+
+// Helper for creating scg elements
+function svgCreateAppend(svg, elem, dict)
+{
+    let svgNS = 'http://www.w3.org/2000/svg';
+    let element = document.createElementNS(svgNS, elem);
+    Object.keys(dict).forEach(key =>
+        element.setAttributeNS(null, key, dict[key]));
+    svg.appendChild(element);
+}
