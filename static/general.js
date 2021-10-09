@@ -77,6 +77,13 @@ function output(id, {initval=0, units='', prefix='', align='right'}={}) {
     document.getElementById(id).outerHTML = html;
 }
 
+function textoutput(id, {initval='', units='', prefix='', align='right'}={}) {
+    let html = `<span class="outputspan">`;
+    html += `<input id='${id}' class='${align}' type='text' value="${initval}" readonly>`;
+    html += `</span>`;
+    document.getElementById(id).outerHTML = html;
+}
+
 function text(id, {initval='', align='left'}={}) {
     let html = `<span class="inputspan">`;
     html += `<input id='${id}' class='${align}' value='${initval}'`;

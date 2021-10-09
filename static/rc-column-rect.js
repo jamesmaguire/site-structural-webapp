@@ -1,7 +1,84 @@
 
+function initPage()
+{
+    // Column geometry
+    input('i_L', {initval:3000, units:'mm'});
+    input('i_kx', {initval:1.0});
+    input('i_ky', {initval:1.0});
+    input('i_Dx', {initval:600, units:'mm'});
+    input('i_Dy', {initval:250, units:'mm'});
+    output('o_Ag', {units:'mm<sup>2</sup>'});
+
+    // Concrete
+    input('i_fc', {initval:32, units:'MPa'});
+    input('i_c', {initval:40, units:'mm'});
+    output('o_ecu');
+    output('o_alpha1');
+    output('o_alpha2');
+    output('o_gamma');
+
+    // Long steel
+    input('i_db', {initval:16, units:'mm'});
+    input('i_fsy', {initval:500, units:'MPa'});
+    input('i_nbarstop', {initval:3});
+    output('o_barspcx', {units:'m'});
+    input('i_nbarsside', {initval:3});
+    output('o_barspcy', {units:'m'});
+    output('o_nbars');
+    output('o_Ast', {units:'mm<sup>2</sup>'});
+    output('o_Astratio', {units:'%'});
+    output('o_Es', {units:'GPa'});
+    output('o_esu');
+
+    // Steel ties
+    input('i_dbt', {prefix:'N', initval:12, align:'left'});
+    input('i_tieSpacing', {initval:200, units:'mm'});
+    input('i_fsyt', {initval:500, units:'MPa'});
+    output('o_minTieSpacing',{units:'mm'});
+
+    // Column properties
+    output('o_rx', {units:'mm'});
+    output('o_ry', {units:'mm'});
+    output('o_lambdax');
+    output('o_lambday');
+    output('o_r', {units:'mm'});
+    output('o_lambda');
+
+    // Design load
+    textoutput('o_shortlong');
+    input('i_G', {initval:1000, units:'kN'});
+    input('i_Q', {initval:500, units:'kN'});
+    input('i_Mx', {initval:0, units:'kNm'});
+    input('i_My', {initval:0, units:'kNm'});
+    output('o_Nuls', {units:'kN'});
+    output('o_deltab');
+    output('o_Mstarx', {units:'kNm'});
+    output('o_Mstary', {nits:'kNm'});
+    // output('o_Nfire', {units:'kN'});
+    output('o_beta');
+
+    // Strength design
+    output('o_Nc', {units:'kN'});
+    output('o_phiNc', {units:'kN'});
+    output('o_buckleCheck');
+    output('o_Nuo', {units:'kN'});
+    output('o_phiNuo', {units:'kN'});
+    output('o_squashCheck');
+    output('o_phiMux');
+    output('o_MxCheck');
+    output('o_phiMuy');
+    output('o_MyCheck');
+
+    // Rates
+    input('i_rhos', {initval:7850, units :'kg/m<sup>3</sup>'});
+    output('o_concreteVol', {units:'m<sup>3</sup>'});
+    output('o_steelRate', {units:'kg/m<sup>3</sup>'});
+
+    updatePage();
+}
+
 function updatePage()
 {
-    // displayShape();
     runCalcs();
     drawFigure();
     setStatusUptodate();
@@ -174,25 +251,18 @@ function runCalcs() {
         ky:i_ky.valueAsNumber,
         Dx:i_Dx.valueAsNumber,
         Dy:i_Dy.valueAsNumber,
-        Dia:i_Dia.valueAsNumber,
         db:i_db.valueAsNumber,
         nbarstop:i_nbarstop.valueAsNumber,
         nbarsside:i_nbarsside.valueAsNumber,
-        nbarscirc:i_nbarscirc.valueAsNumber,
         dbt:i_dbt.valueAsNumber,
         c:i_c.valueAsNumber,
-        shape:i_shape.value,
     };
     col.nbars = barCoords(col).length;
     col.Ast = col.nbars*Math.PI*col.db**2/4;
     o_nbars.value = col.nbars;
     o_Ast.value = col.Ast.toFixed(0);
 
-    if (col.shape == "rect") {
-        col.Ag = col.Dx * col.Dy;
-    } else if (col.shape == "circ") {
-        col.Ag = Math.PI*col.Dia**2/4;
-    }
+    col.Ag = col.Dx * col.Dy;
     o_Ag.value = col.Ag.toFixed(0);
     o_Astratio.value = (100*col.Ast/col.Ag).toFixed(2);
     setPassFail(o_Astratio, 1, inverse=true);
@@ -228,13 +298,8 @@ function runCalcs() {
     col.lambday = col.ky * col.L / col.ry;
     o_lambdax.value = col.lambdax.toFixed(1);
     o_lambday.value = col.lambday.toFixed(1);
-    if (col.shape=="rect") {
-        col.r = Math.min(col.rx, col.ry);
-        col.lambda = Math.max(col.lambdax, col.lambday);
-    } else if (col.shape=="circ") {
-        col.r = col.rd;
-        col.lambda = Math.max(col.ky, col.kx) * col.L / col.r;
-    }
+    col.r = Math.min(col.rx, col.ry);
+    col.lambda = Math.max(col.lambdax, col.lambday);
     o_r.value = col.r.toFixed(1);
     o_lambda.value = col.lambda.toFixed(1);
     if (col.lambda <= 25) {col.class = "short";} else {col.class = "long";}
@@ -336,8 +401,7 @@ function runCalcs() {
     let minTieSpacing = 0;
     if (concrete.fc <= 50) { // Clause 10.7.4
         let b = 0;
-        if (col.shape=="rect") {b = Math.min(col.Dx,col.Dy);}
-        else if (col.shape=="circ") {b = col.Dia;}
+        b = Math.min(col.Dx,col.Dy);
         minTieSpacing = Math.min(b, 15*col.db);
     }
     // TODO: else (fc > 50) (clause 10.7.3.2-10.7.3.4)
@@ -347,11 +411,7 @@ function runCalcs() {
     // Rates
     let steelDensity = i_rhos.valueAsNumber;
     let tielength = 0;
-    if (col.shape == "rect") {
-        tielength = 2*(col.Dx-col.c-col.dbt) + 2*(col.Dy-col.c-col.dbt);
-    } else if (col.shape == "circ") {
-        tielength = Math.PI * (col.Dia - 2*col.c - col.dbt);
-    }
+    tielength = 2*(col.Dx-col.c-col.dbt) + 2*(col.Dy-col.c-col.dbt);
     let longVol = col.Ast*col.L; // mm3
     let tieVol = Math.PI*col.dbt**2/4 * tielength * col.L/tieSpacing; // mm3
     let steelVol = (longVol + tieVol) / 1000**3; // m3

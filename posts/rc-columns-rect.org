@@ -1,121 +1,109 @@
-#+title: Reinforced Concrete Column
+#+title: Reinforced Concrete Column (rectangle)
+#+subtitle: Based on AS3600 2018
+
 #+setupfile: post.setup
-#+HTML_HEAD: <body onload="updatePage();">
+#+HTML_HEAD: <body onload="initPage();">
 #+HTML_HEAD: <script type="text/javascript" src="../static/rc-column-rect.js"></script>
 #+include: "../statusicon.org"
 
-* Tasks [0/2]                                                      :noexport:
-** TODO Design for shear?
-
 * Figure
 
-@@html:<canvas id="columnFigure" width="500" height="500" draggable="true"></canvas>@@
+{{{div(columnFigure)}}}
 
 * Column geometry
 
-Section type = @@html:
-<select id="i_shape" value="Rectangle" onchange="updatePage();">
-<option value="rect">Rectangle</option>
-<option value="circ">Circle</option>
-</select>
-@@
+Height {{{span(i_L)}}}
 
-Height {{{input(i_L,3000,mm)}}}
+Eff length factor, k_X {{{span(i_kx)}}}, k_Y {{{span(i_ky)}}}
 
-Eff length factor, k_X {{{input(i_kx,1.0,)}}}, k_Y {{{input(i_ky,1.0,)}}}
+Dimension, D_x {{{span(i_Dx)}}}
 
-Dimension, D_x {{{input(i_Dx,600,mm)}}}
+Dimension, D_y {{{span(i_Dy)}}}
 
-Dimension, D_y {{{input(i_Dy,250,mm)}}}
-
-Diameter, D {{{input(i_Dia,500,mm)}}}
-
-Gross area, A_g {{{output(o_Ag,mm<sup>2</sup>)}}}
+Gross area, A_g {{{span(o_Ag)}}}
 
 * Concrete
 
-Concrete strength {{{input(i_fc,32,MPa)}}}
+Concrete strength {{{span(i_fc)}}}
 
-Concrete cover {{{input(i_c,40,mm)}}}
+Concrete cover {{{span(i_c)}}}
 
-Ultimate strain, \varepsilon{}_{cu} {{{output(o_ecu,)}}}
+Ultimate strain, \varepsilon{}_{cu} {{{span(o_ecu)}}}
 
-\alpha_1 {{{output(o_alpha1,)}}}
+\alpha_1 {{{span(o_alpha1)}}}
 
-\alpha_2 {{{output(o_alpha2,)}}}
+\alpha_2 {{{span(o_alpha2)}}}
 
-\gamma {{{output(o_gamma,)}}}
+\gamma {{{span(o_gamma)}}}
 
 * Longitudinal steel
 
-Bar diameter {{{input(i_db,16,mm)}}}
+Bar diameter {{{span(i_db)}}}
 
-Yield stress {{{input(i_fsy,500,MPa)}}}
+Yield stress {{{span(i_fsy)}}}
 
-Bars - top/btm {{{input(i_nbarstop,3,)}}} (Space: {{{output(o_barspcx,mm)}}})
+Bars - top/btm {{{span(i_nbarstop)}}} (Space: {{{span(o_barspcx)}}})
 
-Bars - side {{{input(i_nbarsside,2,)}}} (Space: {{{output(o_barspcy,mm)}}})
+Bars - side {{{span(i_nbarsside)}}} (Space: {{{span(o_barspcy)}}})
 
-Bars - circle {{{input(i_nbarscirc,8)}}} (Space: {{{output(o_barspccirc,mm)}}})
+Bars - total {{{span(o_nbars)}}}
 
-Bars - total {{{output(o_nbars,)}}}
+Steel area, A_{st} {{{span(o_Ast)}}} {{{span(o_Astratio)}}}
 
-Steel area, A_{st} {{{output(o_Ast,mm<sup>2</mm>)}}} {{{output(o_Astratio,%)}}}
+Steel modulus, E_s {{{span(o_Es)}}}
 
-Steel modulus, E_s {{{output(o_Es,GPa)}}}
-
-Steel ult. strain, \varepsilon_{su} {{{output(o_esu)}}}
+Steel ult. strain, \varepsilon_{su} {{{span(o_esu)}}}
 
 * Steel ties
 
-Bar diameter {{{barinput(i_dbt,12)}}} @ {{{input(i_tieSpacing,200,mm)}}}
+Bar diameter {{{span(i_dbt)}}} @ {{{span(i_tieSpacing)}}}
 
-Yield stress {{{input(i_fsyt,500,MPa)}}}
+Yield stress {{{span(i_fsyt)}}}
 
-Min tie spacing, S {{{output(o_minTieSpacing,mm)}}}
+Min tie spacing, S {{{span(o_minTieSpacing)}}}
 
 * Column properties
 
-Rad. gyration, r_x {{{output(o_rx,mm)}}}, r_y {{{output(o_ry,mm)}}}
+Rad. gyration, r_x {{{span(o_rx)}}}, r_y {{{span(o_ry)}}}
 
-Slenderness, \lambda{}_x {{{output(o_lambdax,)}}} \lambda{}_y {{{output(o_lambday,)}}} 
+Slenderness, \lambda{}_x {{{span(o_lambdax)}}} \lambda{}_y {{{span(o_lambday)}}} 
 
-Radius of gyration, r {{{output(o_r,mm)}}}
+Radius of gyration, r {{{span(o_r)}}}
 
-Slenderness, \lambda {{{output(o_lambda,)}}} {{{textoutput(o_shortlong)}}}
+Slenderness, \lambda {{{span(o_lambda)}}} {{{textoutput(o_shortlong)}}}
 
 * Design load
 
-Dead load, G {{{input(i_G,1000,kN)}}}
+Dead load, G {{{span(i_G)}}}
 
-Live load, Q {{{input(i_Q,500,kN)}}}
+Live load, Q {{{span(i_Q)}}}
 
-Moment, M_x {{{input(i_Mx,0,kNm)}}} M_y {{{input(i_My,0,kNm)}}}
+Moment, M_x {{{span(i_Mx)}}} M_y {{{span(i_My)}}}
 
-Ultimate, N* {{{output(o_Nuls,kN)}}}
+Ultimate, N* {{{span(o_Nuls)}}}
 
-Moment magnifier, \delta{}_b {{{output(o_deltab)}}}
+Moment magnifier, \delta{}_b {{{span(o_deltab)}}}
 
-Ultimate, M*_x {{{output(o_Mstarx,kNm)}}} M*_y {{{output(o_Mstary,kNm)}}}
+Ultimate, M*_x {{{span(o_Mstarx)}}} M*_y {{{span(o_Mstary)}}}
 
-# Fire, N*_f {{{output(o_Nfire,kN)}}}
+# Fire, N*_f {{{span(o_Nfire)}}}
 
-\beta_d {{{output(o_beta,)}}}
+\beta_d {{{span(o_beta)}}}
 
 
 * Strength design
 
-Buckling capacity, N_c {{{output(o_Nc,kN)}}}, \Phi{}N_c {{{output(o_phiNc,kN)}}}
+Buckling capacity, N_c {{{span(o_Nc)}}}, \Phi{}N_c {{{span(o_phiNc)}}}
 
-Buckling check, N*/\Phi{}N_c {{{output(o_buckleCheck)}}}
+Buckling check, N*/\Phi{}N_c {{{span(o_buckleCheck)}}}
 
-Squash capacity, N_{uo} {{{output(o_Nuo,kN)}}}, \Phi{}N_{uo} {{{output(o_phiNuo,kN)}}}
+Squash capacity, N_{uo} {{{span(o_Nuo)}}}, \Phi{}N_{uo} {{{span(o_phiNuo)}}}
 
-Squash check, N*/\Phi{}N_{uo} {{{output(o_squashCheck)}}}
+Squash check, N*/\Phi{}N_{uo} {{{span(o_squashCheck)}}}
 
-Moment capacity, \Phi{}M_{ux} {{{output(o_phiMux)}}} M*_x/\Phi{}M_{ux} {{{output(o_MxCheck)}}}
+Moment capacity, \Phi{}M_{ux} {{{span(o_phiMux)}}} M*_x/\Phi{}M_{ux} {{{span(o_MxCheck)}}}
 
-Moment capacity, \Phi{}M_{uy} {{{output(o_phiMuy)}}} M*_y/\Phi{}M_{uy} {{{output(o_MyCheck)}}}
+Moment capacity, \Phi{}M_{uy} {{{span(o_phiMuy)}}} M*_y/\Phi{}M_{uy} {{{span(o_MyCheck)}}}
 
 * M-N plot (x)
 
@@ -127,11 +115,11 @@ Moment capacity, \Phi{}M_{uy} {{{output(o_phiMuy)}}} M*_y/\Phi{}M_{uy} {{{output
 
 * Rates
 
-Steel density {{{input(i_rhos,7850,kg/m<sup>3</sup>)}}}
+Steel density {{{span(i_rhos)}}}
 
-Concrete volume {{{output(o_concreteVol,m<sup>3</sup>)}}}
+Concrete volume {{{span(o_concreteVol)}}}
 
-Reinforcement rate {{{output(o_steelRate,kg/m<sup>3</sup>)}}}
+Reinforcement rate {{{span(o_steelRate)}}}
 
 * Export on save                                                   :noexport:
 ;; Local Variables:
