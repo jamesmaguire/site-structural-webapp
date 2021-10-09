@@ -101,11 +101,12 @@ function canvas(id, width=500, height=500) {
 }
 
 // Helper for creating scg elements
-function svgCreateAppend(svg, elem, dict)
+function svgCreateAppend(svg, elem, dict, content='')
 {
     let svgNS = 'http://www.w3.org/2000/svg';
     let element = document.createElementNS(svgNS, elem);
     Object.keys(dict).forEach(key =>
         element.setAttributeNS(null, key, dict[key]));
+    element.innerHTML = content;
     svg.appendChild(element);
 }
