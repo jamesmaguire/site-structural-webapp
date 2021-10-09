@@ -81,6 +81,7 @@ function updatePage()
 {
     runCalcs();
     drawFigure();
+    calcBarParams();
     setStatusUptodate();
 }
 
@@ -162,17 +163,18 @@ function drawFigure()
 
 }
 
-// function calcBarParams()
-// {
-//     let db = bardb.valueAsNumber;
-//     let barsTB = nbarsTB.valueAsNumber;
-//     let barsS = nbarsSide.valueAsNumber;
-//     let c = cover.valueAsNumber;
-//     let dt = tiedb.valueAsNumber;
-//     nbars.value = 2*(barsTB+barsS) - 4;
-//     barSpcX.value = (colDx.valueAsNumber - 2*c - 2*dt - db)/(barsTB-1);
-//     barSpcY.value = (colDy.valueAsNumber - 2*c - 2*dt - db)/(barsS-1);
-// }
+function calcBarParams()
+{
+    const db = i_db.valueAsNumber,
+          topbars = i_nbarstop.valueAsNumber,
+          sidebars = i_nbarsside.valueAsNumber,
+          c = i_c.valueAsNumber,
+          dt = i_dbt.valueAsNumber,
+          Dx = i_Dx.valueAsNumber,
+          Dy = i_Dy.valueAsNumber;
+    o_barspcx.value = (i_Dx.valueAsNumber - 2*c - 2*dt - db)/(topbars-1);
+    o_barspcy.value = (i_Dy.valueAsNumber - 2*c - 2*dt - db)/(sidebars-1);
+}
 
 function barCoords(col) {
     let coords = [];
