@@ -28,8 +28,9 @@ function setStatusOutofdate()
 
 function setStatusUptodate()
 {
-    statusbutton.innerHTML = "▶ &nbsp Up to date"; // (Thumbs up unicode);
+    statusbutton.innerHTML = "▶ &nbsp Up to date";
     statusbutton.className = "status-green";
+    setFavicon('static/icon/favicon-green.svg');
 }
 
 function hideInput(i_ID) {
@@ -100,7 +101,7 @@ function canvas(id, width=500, height=500) {
     return html;
 }
 
-// Helper for creating scg elements
+// Helper for creating svg elements
 function svgCreateAppend(svg, elem, dict, content='')
 {
     let svgNS = 'http://www.w3.org/2000/svg';
