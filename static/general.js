@@ -30,7 +30,6 @@ function setStatusUptodate()
 {
     statusbutton.innerHTML = "▶ &nbsp Up to date";
     statusbutton.className = "status-green";
-    setFavicon('static/icon/favicon-green.svg');
 }
 
 function hideInput(i_ID) {
