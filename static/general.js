@@ -49,14 +49,22 @@ function ilookup(x, lookuparr, returnarr) {
     let x1 = Math.min(...lookuparr.filter(n => n > x));
     let y0 = xlookup(x0, lookuparr, returnarr);
     let y1 = xlookup(x1, lookuparr, returnarr);
-    let y = y0 + (x-x0)*(y1-y0)/(x1-x0);
+    let y;
+    if (x < lookuparr.reduce((a,b) => Math.min(a,b))) {
+        y = returnarr.reduce((a,b) => Math.min(a,b));
+    } else if (x > lookuparr.reduce((a,b) => Math.max(a,b))) {
+        y = returnarr.reduce((a,b) => Math.max(a,b));
+    }
+    else {
+        y = y0 + (x-x0)*(y1-y0)/(x1-x0);
+    }
     return y;
 }
 
 // Input elements --------------------------------------------------------------
 
 function dropdown(id, values, initval=0) {
-    let html = `<select id='${id}' value=${initval} onchange='updatePage();'>`;
+    let html = `<select id='${id}' value='${initval}' onchange='updatePage();'>`;
     values.forEach(x => html+= `<option value="${x}">${x}</option>`);
     html += `</select>`;
     document.getElementById(id).outerHTML = html;

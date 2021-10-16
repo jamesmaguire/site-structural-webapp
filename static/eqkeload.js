@@ -1,3 +1,61 @@
+function initPage()
+{
+    
+    // Natural period
+    dropdown('i_frametype', ['Moment resisting steel frame',
+                             'Moment resisting concrete frame',
+                             'Eccentrically braced steel frames',
+                             'All other structures',]);
+    output('o_kt');
+    input('i_hn', {initval:10, units:'m'});
+    output('o_T1simple', {units:'s'});
+    input('i_T1', {initval:0.5, units:'s'});
+
+    // Spectral shape factor
+    dropdown('i_SSC', ['Strong rock, Ae', 
+                       'Rock, Be', 
+                       'Shallow soil, Ce', 
+                       'Deep or soft soil, De', 
+                       'Very soft soil, Ee',]);
+
+    // Base shear
+    input('i_kp', {initval:1});
+    input('i_Z', {initval:0.08});
+    input('i_Spmu', {initval:1.5});
+    input('i_nlevels', {initval:5});
+    output('o_Wt', {units:'kN'});
+    output('o_V', {units:'kN'});
+
+    // Equivalent static forces
+    const nlevels = i_nlevels.valueAsNumber;
+    let html = '<table><tr>';
+    html += '<th>Level</th>';
+    html += '<th>Height, h<sub>i</sub></th>';
+    html += '<th>Weight, W<sub>i</sub></th>';
+    html += '<th>k<sub>Fi</sub></th>';
+    html += '<th>Force, F<sub>i</sub></th>';
+    html += '</tr>';
+    for (i=1; i<nlevels+1; i++) {
+        html += `<tr><td>${i}</td>`;
+        html += `<td><span class='inputspan'>`;
+        html += `<input id='h${i}' class='right' type='number' onchange='updatePage();' value=${3*i}> m`;
+        html += `</span></td>`;
+        html += `<td><span class='inputspan'>`;
+        html += `<input id='W${i}' class='right' type='number' onchange='updatePage();' value=100> kN`;
+        html += `</span></td>`;
+        html += `<td><span class='outputspan'>`;
+        html += `<input id='kF${i}' class='right' type='number' value=0>`;
+        html += `</span></td>`;
+        html += `<td><span class='outputspan'>`;
+        html += `<input id='F${i}' class='right' type='number' value=0> kN`;
+        html += `</span></td>`;
+        html += `</tr>`;
+    }
+    document.getElementById('leveltable').innerHTML = html;
+
+    updatePage();
+}
+
 function updatePage()
 {
     runCalcs();
@@ -10,7 +68,10 @@ function runCalcs()
     // Natural period
     let frametype = i_frametype.value;
     let hn = i_hn.valueAsNumber;
-    let kt = {"mrsf":0.11, "mrcf":0.075, "ebsf":0.06, "other":0.05};
+    let kt = {"Moment resisting steel frame":0.11,
+              "Moment resisting concrete frame":0.075,
+              "Eccentrically braced steel frames":0.06,
+              "All other structures":0.05};
     let T1 = i_T1.valueAsNumber;
     T1simple = 1.25*kt[frametype]*hn**0.75;
     o_kt.value = kt[frametype];
@@ -133,10 +194,91 @@ function runCalcs()
 
     /////////////////////////////////////////////////////////////////////////////
 
+    // Base shear
+    const nlevels = i_nlevels.valueAsNumber;
+    const kp = i_kp.valueAsNumber;
+    const Z = i_Z.valueAsNumber;
+    const Spmu = i_Spmu.valueAsNumber;
+    let k = ilookup(T1, [0.5, 2.5], [1, 2]);
+    let W = [];
+    let h = [];
+    let sumWhk = 0;
+    for (i=1; i<nlevels+1; i++) {
+        if (document.getElementById(`h${i}`)) {
+            h.push(document.getElementById(`h${i}`).valueAsNumber);
+            W.push(document.getElementById(`W${i}`).valueAsNumber);
+        } else {
+            h.push(0);
+            W.push(0);
+        }
+        sumWhk += W[i-1] * h[i-1]**k;
+    }
+    const Wt = W.reduce((a,b) => a+b);
+    const V = kp*Z*ChT*Spmu*Wt;
+    o_Wt.value = Wt.toFixed(0);
+    o_V.value = V.toFixed(0);
+
+    // Equivalent static forces
+    // const table = document.getElementById('leveltable');
+    let kF = [];
+    let F = [];
+    for (i=0; i<nlevels; i++) {
+        let kFi = W[i]*h[i]**k/sumWhk;
+        kF.push(kFi);
+        F.push(kFi*V);
+        if (document.getElementById(`h${i+1}`)) {
+            document.getElementById(`kF${i+1}`).value = kF[i].toFixed(3);
+            document.getElementById(`F${i+1}`).value = F[i].toFixed(1);
+        }
+    }
+
+    // Rebuild table
+    let html = '<table><tr>';
+    html += '<th>Level</th>';
+    html += '<th>Height, h<sub>i</sub></th>';
+    html += '<th>Weight, W<sub>i</sub></th>';
+    html += '<th>k<sub>Fi</sub></th>';
+    html += '<th>Force, F<sub>i</sub></th>';
+    html += '</tr>';
+    for (i=1; i<nlevels+1; i++) {
+        if (i-1 < W.length) {
+            html += `<tr><td>${i}</td>`;
+            html += `<td><span class='inputspan'>`;
+            html += `<input id='h${i}' class='right' type='number' onchange='updatePage();' value=${h[i-1]}> m`;
+            html += `</span></td>`;
+            html += `<td><span class='inputspan'>`;
+            html += `<input id='W${i}' class='right' type='number' onchange='updatePage();' value=${W[i-1]}> kN`;
+            html += `</span></td>`;
+            html += `<td><span class='outputspan'>`;
+            html += `<input id='kF${i}' class='right' type='number' value=${kF[i-1].toFixed(3)}>`;
+            html += `</span></td>`;
+            html += `<td><span class='outputspan'>`;
+            html += `<input id='F${i}' class='right' type='number' value=${F[i-1].toFixed(1)}> kN`;
+            html += `</span></td>`;
+            html += `</tr>`;
+        } else {
+            html += `<tr><td>${i}</td>`;
+            html += `<td><span class='inputspan'>`;
+            html += `<input id='h${i}' class='right' type='number' onchange='updatePage();' value=0> m`;
+            html += `</span></td>`;
+            html += `<td><span class='inputspan'>`;
+            html += `<input id='W${i}' class='right' type='number' onchange='updatePage();' value=0> kN`;
+            html += `</span></td>`;
+            html += `<td><span class='outputspan'>`;
+            html += `<input id='kF${i}' class='right' type='number' value=0>`;
+            html += `</span></td>`;
+            html += `<td><span class='outputspan'>`;
+            html += `<input id='F${i}' class='right' type='number' value=0> kN`;
+            html += `</span></td>`;
+            html += `</tr>`;
+        }
+    }
+    document.getElementById('leveltable').innerHTML = html;
+
 }
 
 function SpectralShapeFactor(SSC, T) {
-    if (SSC == "Ae") {
+    if (SSC == "Strong rock, Ae") {
         if (T <= 0.1) {
             return 0.8 + 15.5*T;
         } else if (T <= 1.5) {
@@ -145,7 +287,7 @@ function SpectralShapeFactor(SSC, T) {
             return 1.056/T**2;
         }
     }
-    else if (SSC == "Be") {
+    else if (SSC == "Rock, Be") {
         if (T <= 0.1) {
             return 1.0 + 19.4*T;
         } else if (T <= 1.5) {
@@ -153,7 +295,7 @@ function SpectralShapeFactor(SSC, T) {
         } else {
             return 1.32/T**2;
         }
-    } else if (SSC == "Ce") {
+    } else if (SSC == "Shallow soil, Ce") {
         if (T <= 0.1) {
             return 1.3 + 23.8*T;
         } else if (T <= 1.5) {
@@ -161,7 +303,7 @@ function SpectralShapeFactor(SSC, T) {
         } else {
             return 1.874/T**2;
         }
-    } else if (SSC == "De") {
+    } else if (SSC == "Deep or soft soil, De") {
         if (T <= 0.1) {
             return 1.1 + 25.8*T;
         } else if (T <= 1.5) {
@@ -169,7 +311,7 @@ function SpectralShapeFactor(SSC, T) {
         } else {
             return 2.97/T**2;
         }
-    } else if (SSC == "Ee") {
+    } else if (SSC == "Very soft soil, Ee") {
         if (T <= 0.1) {
             return 1.1 + 25.8*T;
         } else if (T <= 1.5) {
