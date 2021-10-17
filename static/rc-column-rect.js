@@ -118,7 +118,7 @@ function drawFigure()
     svg.setAttributeNS(null, 'preserveAspectRatio',"xMidYMid");
     document.getElementById('columnFigure').appendChild(svg);
 
-    svgCreateAppend(svg, 'path', {
+    svgElemAppend(svg, 'path', {
         'class': 'concrete',
         'd': `M${xmap(0)},${ymap(0)}`
             +` L${xmap(0)},${ymap(col.Dy)}`
@@ -128,7 +128,7 @@ function drawFigure()
 
     const bars = barCoords(col);
     for (i=0; i<bars.length; i++) {
-        svgCreateAppend(svg, 'circle', {
+        svgElemAppend(svg, 'circle', {
             'class': 'rebar',
             'cx': xmap(bars[i][0]),
             'cy': ymap(bars[i][1]),
@@ -550,7 +550,7 @@ function drawPlot(plotid, points, labelledpts, designpt, pass) {
     document.getElementById(plotid).appendChild(svg);
 
     // X axis
-    svgCreateAppend(svg, 'line', {
+    svgElemAppend(svg, 'line', {
         class:'axis',
         x1:margin.left,
         x2:margin.left+width,
@@ -559,7 +559,7 @@ function drawPlot(plotid, points, labelledpts, designpt, pass) {
     });
 
     // Y axis
-    svgCreateAppend(svg, 'line', {
+    svgElemAppend(svg, 'line', {
         class:'axis',
         x1:margin.left,
         x2:margin.left,
@@ -570,28 +570,28 @@ function drawPlot(plotid, points, labelledpts, designpt, pass) {
     // Points of interest
     for (let i=0; i<labelledpts.length; i++) {
         let pt = labelledpts[i];
-        svgCreateAppend(svg, 'circle',
+        svgElemAppend(svg, 'circle',
                         {'cx':xmap(pt[0]), 'cy':ymap(pt[1]), 'r':3});
-        svgCreateAppend(svg, 'text',
+        svgElemAppend(svg, 'text',
                         {'class': 'ptlabel', 'x':xmap(pt[0]), 'y':ymap(pt[1])},
                        content=`(${pt[0].toFixed(0)} kNm, ${pt[1].toFixed(0)} kN)`);
     }
 
     // Design load
-    svgCreateAppend(svg, 'circle',
+    svgElemAppend(svg, 'circle',
                     {'cx':xmap(designpt[0]), 'cy':ymap(designpt[1]),
                      'r':4, 'fill': pass ? 'green' : 'red'});
-    svgCreateAppend(svg, 'text',
+    svgElemAppend(svg, 'text',
                     {'class': 'designptlabel',
                      'x':xmap(designpt[0]), 'y':ymap(designpt[1]),
                      'fill': pass ? 'green' : 'red'},
                     content=`(${designpt[0].toFixed(0)} kNm, ${designpt[1].toFixed(0)} kN)`);
 
     // Axes labels
-    svgCreateAppend(svg, 'text',
+    svgElemAppend(svg, 'text',
                     {'class': 'xlabel', 'x': xmap(xmax), 'y': ymap(0)},
                     content='&Phi;Mu');
-    svgCreateAppend(svg, 'text',
+    svgElemAppend(svg, 'text',
                     {'class': 'ylabel', 'x': xmap(0), 'y': ymap(ymax)},
                     content='&Phi;Nu');
 
@@ -600,6 +600,6 @@ function drawPlot(plotid, points, labelledpts, designpt, pass) {
     for (i=0; i<Ns.length; i++) {
         linepath += ` L${xmap(Ms[i])},${ymap(Ns[i])}`;
     }
-    svgCreateAppend(svg, 'path', {'class': 'plotline', 'd': linepath});
+    svgElemAppend(svg, 'path', {'class': 'plotline', 'd': linepath});
 
 }

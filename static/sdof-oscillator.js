@@ -70,7 +70,7 @@ function plotForce()
     document.getElementById('forcePlot').appendChild(svg);
 
     // X axis
-    svgCreateAppend(svg, 'line', {
+    svgElemAppend(svg, 'line', {
         class:'axis',
         x1:xmap(xmin),
         x2:xmap(xmax),
@@ -79,7 +79,7 @@ function plotForce()
     });
 
     // Y axis
-    svgCreateAppend(svg, 'line', {
+    svgElemAppend(svg, 'line', {
         class:'axis',
         x1:xmap(0),
         x2:xmap(0),
