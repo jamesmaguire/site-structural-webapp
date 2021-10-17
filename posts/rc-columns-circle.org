@@ -1,0 +1,115 @@
+#+title: Reinforced Concrete Column (Circle)
+#+setupfile: post.setup
+#+HTML_HEAD: <body onload="initPage();">
+#+HTML_HEAD: <script type="text/javascript" src="../static/rc-column-circ.js"></script>
+#+include: "../statusicon.org"
+
+
+* Figure
+
+{{{div(columnFigure)}}}
+
+* Column geometry
+
+Height {{{span(i_L)}}}
+
+Eff length factor, k_X {{{span(i_kx)}}}, k_Y {{{span(i_ky)}}}
+
+Diameter, D {{{span(i_D)}}}
+
+Gross area, A_g {{{span(o_Ag)}}}
+
+* Concrete
+
+Concrete strength {{{span(i_fc)}}}
+
+Concrete cover {{{span(i_c)}}}
+
+Ultimate strain, \varepsilon{}_{cu} {{{span(o_ecu)}}}
+
+\alpha_1 {{{span(o_alpha1)}}}
+
+\alpha_2 {{{span(o_alpha2)}}}
+
+\gamma {{{span(o_gamma)}}}
+
+* Longitudinal steel
+
+Bar diameter {{{span(i_db)}}}
+
+Yield stress {{{span(i_fsy)}}}
+
+Bars {{{span(i_nbars)}}} (Space: {{{span(o_barspc)}}})
+
+Steel area, A_{st} {{{span(o_Ast)}}} {{{span(o_Astratio)}}}
+
+Steel modulus, E_s {{{span(o_Es)}}}
+
+Steel ult. strain, \varepsilon_{su} {{{span(o_esu)}}}
+
+* Steel ties
+
+Bar diameter {{{span(i_dbt)}}} @ {{{span(i_tieSpacing)}}}
+
+Yield stress {{{span(i_fsyt)}}}
+
+Min tie spacing, S {{{span(o_minTieSpacing)}}}
+
+* Column properties
+
+Radius of gyration, r {{{span(o_r,mm)}}}
+
+Slenderness, \lambda {{{span(o_lambda)}}} {{{textoutput(o_shortlong)}}}
+
+# * Design load
+
+# Dead load, G {{{span(i_G,1000,kN)}}}
+
+# Live load, Q {{{span(i_Q,500,kN)}}}
+
+# Moment, M_x {{{span(i_Mx,0,kNm)}}} M_y {{{input(i_My,0,kNm)}}}
+
+# Ultimate, N* {{{span(o_Nuls,kN)}}}
+
+# Moment magnifier, \delta{}_b {{{span(o_deltab)}}}
+
+# Ultimate, M*_x {{{span(o_Mstarx,kNm)}}} M*_y {{{output(o_Mstary,kNm)}}}
+
+# # Fire, N*_f {{{span(o_Nfire,kN)}}}
+
+# \beta_d {{{span(o_beta,)}}}
+
+# * Strength design
+
+# Buckling capacity, N_c {{{span(o_Nc,kN)}}}, \Phi{}N_c {{{output(o_phiNc,kN)}}}
+
+# Buckling check, N*/\Phi{}N_c {{{span(o_buckleCheck)}}}
+
+# Squash capacity, N_{uo} {{{span(o_Nuo,kN)}}}, \Phi{}N_{uo} {{{output(o_phiNuo,kN)}}}
+
+# Squash check, N*/\Phi{}N_{uo} {{{span(o_squashCheck)}}}
+
+# Moment capacity, \Phi{}M_{ux} {{{span(o_phiMux)}}} M*_x/\Phi{}M_{ux} {{{output(o_MxCheck)}}}
+
+# Moment capacity, \Phi{}M_{uy} {{{span(o_phiMuy)}}} M*_y/\Phi{}M_{uy} {{{output(o_MyCheck)}}}
+
+# * M-N plot (x)
+
+# @@html:<canvas id="mnxPlot" width="500" height="500" draggable="true"></canvas>@@
+
+# * M-N plot (y)
+
+# @@html:<canvas id="mnyPlot" width="500" height="500" draggable="true"></canvas>@@
+
+* Rates
+
+Steel density {{{span(i_rhos)}}}
+
+Concrete volume {{{span(o_concreteVol)}}}
+
+Reinforcement rate {{{span(o_steelRate)}}}
+
+* Export on save                                                   :noexport:
+;; Local Variables:
+;; eval: (add-hook 'after-save-hook 'org-html-export-to-html nil t)
+;; End:
