@@ -108,7 +108,7 @@ function drawFigure()
                                +` L${xmap(beam.B)},${ymap(0)} z`);
     svg.appendChild(beamOutline);
 
-    const bars = beamBars(beam);
+    const bars = barCoords(beam);
     for (i=0; i<bars.length; i++) {
         let bar = document.createElementNS(svgNS, 'circle');
         bar.setAttributeNS(null, 'class', 'rebar');
@@ -217,28 +217,42 @@ function runCalcs() {
 // Function that determines bar locations
 // Returns array of form: [[x, y, db], ...]
 // Where x, y = 0, 0 is the bottom left corner
-function beamBars(beam) {
+function barCoords(beam) {
     let bars = [];
+    let barspc;
     // Bottom bars
     let a = beam.c + beam.dbs + beam.dbt/2;
-    let barspc = (beam.B - 2*a)/(beam.nbt-1);
-    if (beam.nbt === 1) {barspc = 0;}
-    for (i=0; i < beam.nbt; i++) {
-        bars.push([a + i*barspc, a, beam.dbt]);
+    if (beam.nbt === 1) {
+        bars.push([beam.B/2, a, beam.dbt]);
+    } else {
+        for (i=0; i < beam.nbt; i++) {
+            let barspc = (beam.B - 2*a)/(beam.nbt-1);
+            bars.push([a + i*barspc, a, beam.dbt]);
+        }
     }
     // Top bars
     a = beam.c + beam.dbs + beam.dbc/2;
-    barspc = (beam.B - 2*a)/(beam.nbc-1);
-    if (beam.nbc === 1) {barspc = 0;}
-    for (i=0; i < beam.nbc; i++) {
-        bars.push([a + i*barspc, beam.D - a, beam.dbc]);
+    if (beam.nbc === 1) {
+        bars.push([beam.B/2, beam.D-a, beam.dbt]);
+    } else {
+        for (i=0; i < beam.nbc; i++) {
+            barspc = (beam.B - 2*a)/(beam.nbc-1);
+            bars.push([a + i*barspc, beam.D - a, beam.dbc]);
+        }
     }
     // Edge bars
     a = beam.c + beam.dbs + beam.dbe/2;
-    barspc = (beam.D - 2*a)/(beam.nbe+1);
-    for (i=1; i < beam.nbe+1; i++) {
-        bars.push([a, a + i*barspc, beam.dbe]);
-        bars.push([beam.B - a, a + i*barspc, beam.dbe]);
+    if (beam.nbc === 1 || beam.nbt === 1) {
+        for (i=1; i < beam.nbe+1; i++) {
+            barspc = (beam.D - 2*a)/(beam.nbe+1);
+            bars.push([beam.B/2, a + i*barspc, beam.dbe]);
+        }
+    } else {
+        for (i=1; i < beam.nbe+1; i++) {
+            barspc = (beam.D - 2*a)/(beam.nbe+1);
+            bars.push([a, a + i*barspc, beam.dbe]);
+            bars.push([beam.B - a, a + i*barspc, beam.dbe]);
+        }
     }
     return bars;
 }
@@ -265,7 +279,7 @@ function sumCSFforces(ku, beam, concrete, steel, debug=false) {
     let Cs = beam.Asc*steel.Es*steelStrain(ku, concrete.ecu, steel.esu, beam.d, beam.a);
     let Ts = beam.Ast*steel.Es*steelStrain(ku, concrete.ecu, steel.esu, beam.d, beam.d);
     let barF = 0;
-    let bars = beamBars(beam);
+    let bars = barCoords(beam);
     for (i=0; i<bars.length; i++) {
         let A = Math.PI*bars[i][2]**2/4;
         let y = beam.D - bars[i][1];
@@ -288,7 +302,7 @@ function steelStrain(ku, ecu, esu, d, y) {
 function momentCapacity(beam, concrete, steel, ku) {
     let Cc = concrete.alpha2*concrete.fc*concrete.gamma*ku*beam.d*beam.B/1000;
     let barM = 0;
-    let bars = beamBars(beam);
+    let bars = barCoords(beam);
     for (i=0; i<bars.length; i++) {
         let A = Math.PI*bars[i][2]**2/4;
         let y = beam.D - bars[i][1];
