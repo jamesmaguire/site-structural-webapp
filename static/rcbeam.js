@@ -111,12 +111,21 @@ function drawFigure()
     // Rebar
     const bars = barCoords(beam);
     for (i=0; i<bars.length; i++) {
-        svgElemAppend(svg, 'circle', {
-            class:'rebar',
-            cx:xmap(bars[i][0]),
-            cy:ymap(bars[i][1]),
-            r:sf*bars[i][2]/2,
-        });
+        if (bars[i].mult === 1) {
+            svgElemAppend(svg, 'circle', {
+                class:'rebar',
+                cx:xmap(bars[i].x),
+                cy:ymap(bars[i].y),
+                r:sf*bars[i].db/2,
+            });
+        } else {
+            svgElemAppend(svg, 'line', {
+                class:'rebardash',
+                x1:xmap(beam.c+beam.dbs), x2:xmap(beam.B-beam.c-beam.dbs),
+                y1:ymap(bars[i].y), y2:ymap(bars[i].y),
+                'stroke-dasharray': (beam.B - 2*beam.c - 2*beam.dbs)/7,
+            });
+        }
     }
 
     // Stirrups
@@ -219,43 +228,50 @@ function runCalcs() {
 }
 
 // Function that determines bar locations
-// Returns array of form: [[x, y, db], ...]
+// Returns array of form: [[x, y, db, multiplier], ...]
 // Where x, y = 0, 0 is the bottom left corner
 function barCoords(beam) {
     let bars = [];
     let barspc;
+
     // Bottom bars
     let a = beam.c + beam.dbs + beam.dbt/2;
     if (beam.nbt === 1) {
-        bars.push([beam.B/2, a, beam.dbt]);
-    } else {
+        bars.push({x:beam.B/2, y:a, db:beam.dbt, mult:1});
+    } else if (Number.isInteger(beam.nbt)) {
         for (i=0; i < beam.nbt; i++) {
             let barspc = (beam.B - 2*a)/(beam.nbt-1);
-            bars.push([a + i*barspc, a, beam.dbt]);
+            bars.push({x:a + i*barspc, y:a, db:beam.dbt, mult:1});
         }
+    } else {
+        bars.push({x:beam.B/2, y:a, db:beam.dbt, mult:beam.nbt});
     }
+
     // Top bars
     a = beam.c + beam.dbs + beam.dbc/2;
     if (beam.nbc === 1) {
-        bars.push([beam.B/2, beam.D-a, beam.dbt]);
-    } else {
+        bars.push({x:beam.B/2, y:beam.D-a, db:beam.dbt, mult:1});
+    } else if (Number.isInteger(beam.nbc)) {
         for (i=0; i < beam.nbc; i++) {
             barspc = (beam.B - 2*a)/(beam.nbc-1);
-            bars.push([a + i*barspc, beam.D - a, beam.dbc]);
+            bars.push({x:a + i*barspc, y:beam.D - a, db:beam.dbc, mult:1});
         }
+    } else {
+        bars.push({x:a + i*barspc, y:beam.D - a, db:beam.dbc, mult:beam.nbc});
     }
+
     // Edge bars
     a = beam.c + beam.dbs + beam.dbe/2;
     if (beam.nbc === 1 || beam.nbt === 1) {
         for (i=1; i < beam.nbe+1; i++) {
             barspc = (beam.D - 2*a)/(beam.nbe+1);
-            bars.push([beam.B/2, a + i*barspc, beam.dbe]);
+            bars.push({x:beam.B/2, y:a + i*barspc, db:beam.dbe, mult:1});
         }
     } else {
         for (i=1; i < beam.nbe+1; i++) {
             barspc = (beam.D - 2*a)/(beam.nbe+1);
-            bars.push([a, a + i*barspc, beam.dbe]);
-            bars.push([beam.B - a, a + i*barspc, beam.dbe]);
+            bars.push({x:a, y:a + i*barspc, db:beam.dbe, mult:1});
+            bars.push({x:beam.B - a, y:a + i*barspc, db:beam.dbe, mult:1});
         }
     }
     return bars;
@@ -285,8 +301,8 @@ function sumCSFforces(ku, beam, concrete, steel, debug=false) {
     let barF = 0;
     let bars = barCoords(beam);
     for (i=0; i<bars.length; i++) {
-        let A = Math.PI*bars[i][2]**2/4;
-        let y = beam.D - bars[i][1];
+        let A = bars[i].mult * Math.PI*bars[i].db**2/4;
+        let y = beam.D - bars[i].y;
         barF += A*steel.Es*steelStrain(ku, concrete.ecu, steel.esu, beam.d, y);
     }
     return Cc+barF;
@@ -308,8 +324,8 @@ function momentCapacity(beam, concrete, steel, ku) {
     let barM = 0;
     let bars = barCoords(beam);
     for (i=0; i<bars.length; i++) {
-        let A = Math.PI*bars[i][2]**2/4;
-        let y = beam.D - bars[i][1];
+        let A = bars[i].mult * Math.PI*bars[i].db**2/4;
+        let y = beam.D - bars[i].y;
         let barF = A*steel.Es*steelStrain(ku, concrete.ecu, steel.esu, beam.d, y);
         barM += y*barF;
     }

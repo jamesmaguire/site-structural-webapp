@@ -286,6 +286,11 @@ svg text {
   stroke-width: 1;
   fill: none;
 }
+.rebardash {
+  stroke: black;
+  stroke-width: 4;
+  fill: none;
+}
 .highlight {
   stroke: darkred;
   stroke-width: 1;
