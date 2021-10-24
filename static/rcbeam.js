@@ -213,6 +213,10 @@ function runCalcs() {
     o_phiMuo.value = (phi*Muo).toPrecision(3);
     momentCheck.value = (i_Mstar.valueAsNumber/(phi*Muo)).toFixed(2);
     setPassFail(momentCheck);
+    o_ku.parentElement.classList.remove('FAIL');
+    if (ku > 0.36 && i_Mstar.valueAsNumber > 0.8*phi*Muo) {
+        setPassFail(o_ku, 0.36);
+    }
 
     beam.Z = beam.B * beam.d**2 / 6;
     concrete.fctf = 0.6*Math.sqrt(concrete.fc);
