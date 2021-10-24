@@ -81,67 +81,71 @@ function drawFigure()
     const xmap = n => margin.left + sf*n + width/2 - sf*beam.B/2;
     const ymap = n => margin.top  - sf*n + height/2 + sf*beam.D/2;
 
-    const svg = document.createElementNS(svgNS, 'svg');
-    svg.setAttributeNS(null, 'width', width + margin.left + margin.right);
-    svg.setAttributeNS(null, 'height', height + margin.top + margin.bottom);
-    svg.setAttributeNS(null, 'viewBox', `0 0 `
-                       +`${width + margin.left + margin.top} `
-                       +`${height + margin.top + margin.bottom}`);
-    svg.setAttributeNS(null, 'preserveAspectRatio',"xMidYMid");
-    document.getElementById('beamFigure').appendChild(svg);
+    const svg = svgElemAppend(beamFigure, 'svg', {
+        width: width + margin.left + margin.right,
+        height: height + margin.top + margin.bottom,
+        viewBox:`0 0 `
+            +`${width + margin.left + margin.top} `
+            +`${height + margin.top + margin.bottom}`,
+        preserveAspectRatio:"xMidYMid",
+    });
 
-    const compZone = document.createElementNS(svgNS, 'path');
-    compZone.setAttributeNS(null, 'class', 'shadedzone');
-    compZone.setAttributeNS(null, 'd',
-                               `M${xmap(0)},${ymap(beam.D)}`
-                               +` L${xmap(0)},${ymap(beam.D-beam.dn)}`
-                               +` L${xmap(beam.B)},${ymap(beam.D-beam.dn)}`
-                               +` L${xmap(beam.B)},${ymap(beam.D)} z`);
-    svg.appendChild(compZone);
+    // Shade compression zone
+    const compZone = svgElemAppend(svg, 'path', {
+        class:'shadedzone',
+        d: `M${xmap(0)},${ymap(beam.D)}`
+            +` L${xmap(0)},${ymap(beam.D-beam.dn)}`
+            +` L${xmap(beam.B)},${ymap(beam.D-beam.dn)}`
+            +` L${xmap(beam.B)},${ymap(beam.D)} z`,
+    });
 
-    const beamOutline = document.createElementNS(svgNS, 'path');
-    beamOutline.setAttributeNS(null, 'class', 'concrete');
-    beamOutline.setAttributeNS(null, 'd',
-                               `M${xmap(0)},${ymap(0)}`
-                               +` L${xmap(0)},${ymap(beam.D)}`
-                               +` L${xmap(beam.B)},${ymap(beam.D)}`
-                               +` L${xmap(beam.B)},${ymap(0)} z`);
-    svg.appendChild(beamOutline);
+    // Concrete outline
+    const beamOutline = svgElemAppend(svg, 'path', {
+        class:'concrete',
+        d:`M${xmap(0)},${ymap(0)}`
+            +` L${xmap(0)},${ymap(beam.D)}`
+            +` L${xmap(beam.B)},${ymap(beam.D)}`
+            +` L${xmap(beam.B)},${ymap(0)} z`,
+    });
 
+    // Rebar
     const bars = barCoords(beam);
     for (i=0; i<bars.length; i++) {
-        let bar = document.createElementNS(svgNS, 'circle');
-        bar.setAttributeNS(null, 'class', 'rebar');
-        bar.setAttributeNS(null, 'cx', xmap(bars[i][0]));
-        bar.setAttributeNS(null, 'cy', ymap(bars[i][1]));
-        bar.setAttributeNS(null, 'r', sf*bars[i][2]/2);
-        svg.appendChild(bar);
+        svgElemAppend(svg, 'circle', {
+            class:'rebar',
+            cx:xmap(bars[i][0]),
+            cy:ymap(bars[i][1]),
+            r:sf*bars[i][2]/2,
+        });
     }
 
-    let rs = 3*beam.dbs/2;
-    let spath = `M${xmap(beam.c)},${ymap(beam.D-beam.c-rs)}`
-        +`Q${xmap(beam.c)},${ymap(beam.D-beam.c)} ${xmap(beam.c+rs)},${ymap(beam.D-beam.c)}`
-        +`L${xmap(beam.B-beam.c-rs)},${ymap(beam.D-beam.c)}`
-        +`Q${xmap(beam.B-beam.c)},${ymap(beam.D-beam.c)} ${xmap(beam.B-beam.c)},${ymap(beam.D-beam.c-rs)}`
-        +`L${xmap(beam.B-beam.c)},${ymap(beam.c+rs)}`
-        +`Q${xmap(beam.B-beam.c)},${ymap(beam.c)} ${xmap(beam.B-beam.c-rs)},${ymap(beam.c)}`
-        +`L${xmap(beam.c+rs)},${ymap(beam.c)}`
-        +`Q${xmap(beam.c)},${ymap(beam.c)} ${xmap(beam.c)},${ymap(beam.c+rs)} Z`;
-    rs = beam.dbs/2;
-    beam.dbs -= 1;
-    spath += `M${xmap(beam.c+beam.dbs)},${ymap(beam.D-beam.c-beam.dbs-rs)}`
-        +`Q${xmap(beam.c+beam.dbs)},${ymap(beam.D-beam.c-beam.dbs)} ${xmap(beam.c+beam.dbs+rs)},${ymap(beam.D-beam.c-beam.dbs)}`
-        +`L${xmap(beam.B-beam.c-beam.dbs-rs)},${ymap(beam.D-beam.c-beam.dbs)}`
-        +`Q${xmap(beam.B-beam.c-beam.dbs)},${ymap(beam.D-beam.c-beam.dbs)} ${xmap(beam.B-beam.c-beam.dbs)},${ymap(beam.D-beam.c-beam.dbs-rs)}`
-        +`L${xmap(beam.B-beam.c-beam.dbs)},${ymap(beam.c+beam.dbs+rs)}`
-        +`Q${xmap(beam.B-beam.c-beam.dbs)},${ymap(beam.c+beam.dbs)} ${xmap(beam.B-beam.c-beam.dbs-rs)},${ymap(beam.c+beam.dbs)}`
-        +`L${xmap(beam.c+beam.dbs+rs)},${ymap(beam.c+beam.dbs)}`
-        +`Q${xmap(beam.c+beam.dbs)},${ymap(beam.c+beam.dbs)} ${xmap(beam.c+beam.dbs)},${ymap(beam.c+beam.dbs+rs)} Z` ;
-    beam.dbs += 1;
-    const stirrup = document.createElementNS(svgNS, 'path');
-    stirrup.setAttributeNS(null, 'class', 'rebar');
-    stirrup.setAttributeNS(null, 'd', spath);
-    svg.appendChild(stirrup);
+    // Stirrups
+    if (beam.dbs > 0) {
+        let rs = 3*beam.dbs/2;
+        let spath = `M${xmap(beam.c)},${ymap(beam.D-beam.c-rs)}`
+            +`Q${xmap(beam.c)},${ymap(beam.D-beam.c)} ${xmap(beam.c+rs)},${ymap(beam.D-beam.c)}`
+            +`L${xmap(beam.B-beam.c-rs)},${ymap(beam.D-beam.c)}`
+            +`Q${xmap(beam.B-beam.c)},${ymap(beam.D-beam.c)} ${xmap(beam.B-beam.c)},${ymap(beam.D-beam.c-rs)}`
+            +`L${xmap(beam.B-beam.c)},${ymap(beam.c+rs)}`
+            +`Q${xmap(beam.B-beam.c)},${ymap(beam.c)} ${xmap(beam.B-beam.c-rs)},${ymap(beam.c)}`
+            +`L${xmap(beam.c+rs)},${ymap(beam.c)}`
+            +`Q${xmap(beam.c)},${ymap(beam.c)} ${xmap(beam.c)},${ymap(beam.c+rs)} Z`;
+        rs = beam.dbs/2;
+        beam.dbs -= 1;
+        spath += `M${xmap(beam.c+beam.dbs)},${ymap(beam.D-beam.c-beam.dbs-rs)}`
+            +`Q${xmap(beam.c+beam.dbs)},${ymap(beam.D-beam.c-beam.dbs)} ${xmap(beam.c+beam.dbs+rs)},${ymap(beam.D-beam.c-beam.dbs)}`
+            +`L${xmap(beam.B-beam.c-beam.dbs-rs)},${ymap(beam.D-beam.c-beam.dbs)}`
+            +`Q${xmap(beam.B-beam.c-beam.dbs)},${ymap(beam.D-beam.c-beam.dbs)} ${xmap(beam.B-beam.c-beam.dbs)},${ymap(beam.D-beam.c-beam.dbs-rs)}`
+            +`L${xmap(beam.B-beam.c-beam.dbs)},${ymap(beam.c+beam.dbs+rs)}`
+            +`Q${xmap(beam.B-beam.c-beam.dbs)},${ymap(beam.c+beam.dbs)} ${xmap(beam.B-beam.c-beam.dbs-rs)},${ymap(beam.c+beam.dbs)}`
+            +`L${xmap(beam.c+beam.dbs+rs)},${ymap(beam.c+beam.dbs)}`
+            +`Q${xmap(beam.c+beam.dbs)},${ymap(beam.c+beam.dbs)} ${xmap(beam.c+beam.dbs)},${ymap(beam.c+beam.dbs+rs)} Z` ;
+        beam.dbs += 1;
+        const stirrup = svgElemAppend(svg, 'path', {
+            class:'rebar',
+            d:spath,
+        });
+    }
 
 }
 
