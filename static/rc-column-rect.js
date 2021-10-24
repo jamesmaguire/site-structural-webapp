@@ -88,8 +88,6 @@ function updatePage()
 function drawFigure()
 {
     document.getElementById('columnFigure').innerHTML='';
-    const svgNS = 'http://www.w3.org/2000/svg';
-
     const col = {
         Dx:i_Dx.valueAsNumber,
         Dy:i_Dy.valueAsNumber,
@@ -109,14 +107,14 @@ function drawFigure()
     const xmap = n => margin.left + sf*n + width/2 - sf*col.Dx/2;
     const ymap = n => margin.top  - sf*n + height/2 + sf*col.Dy/2;
 
-    const svg = document.createElementNS(svgNS, 'svg');
-    svg.setAttributeNS(null, 'width', width + margin.left + margin.right);
-    svg.setAttributeNS(null, 'height', height + margin.top + margin.bottom);
-    svg.setAttributeNS(null, 'viewBox', `0 0 `
-                       +`${width + margin.left + margin.top} `
-                       +`${height + margin.top + margin.bottom}`);
-    svg.setAttributeNS(null, 'preserveAspectRatio',"xMidYMid");
-    document.getElementById('columnFigure').appendChild(svg);
+    const svg = svgElemAppend(columnFigure, 'svg', {
+        width:  width + margin.left + margin.right,
+        height:  height + margin.top + margin.bottom,
+        viewBox: `0 0 `
+            +`${width + margin.left + margin.top} `
+            +`${height + margin.top + margin.bottom}`,
+        preserveAspectRatio: "xMidYMid",
+    });
 
     svgElemAppend(svg, 'path', {
         'class': 'concrete',
@@ -156,10 +154,10 @@ function drawFigure()
         +`L${xmap(col.c+col.dbt+rs)},${ymap(col.c+col.dbt)}`
         +`Q${xmap(col.c+col.dbt)},${ymap(col.c+col.dbt)} ${xmap(col.c+col.dbt)},${ymap(col.c+col.dbt+rs)} Z` ;
     col.dbt += 1;
-    const stirrup = document.createElementNS(svgNS, 'path');
-    stirrup.setAttributeNS(null, 'class', 'rebar');
-    stirrup.setAttributeNS(null, 'd', spath);
-    svg.appendChild(stirrup);
+    const stirrup = svgElemAppend(svg, 'path', {
+        class:'rebar',
+        d:spath,
+    });
 
 }
 
@@ -521,7 +519,6 @@ function steel_strain(ku, ecu, esu, d, y) {
 function drawPlot(plotid, points, labelledpts, designpt, pass) {
     
     document.getElementById(plotid).innerHTML='';
-    const svgNS = 'http://www.w3.org/2000/svg';
 
     const Ms = points.map(pt => pt[0]),
           Ns = points.map(pt => pt[1]);
@@ -540,14 +537,14 @@ function drawPlot(plotid, points, labelledpts, designpt, pass) {
     const xmap = n => (n+xmin)*width/dx + margin.left;
     const ymap = n => (-n+ymax)*height/dy + margin.top;
 
-    const svg = document.createElementNS(svgNS, 'svg');
-    svg.setAttributeNS(null, 'width', width + margin.left + margin.right);
-    svg.setAttributeNS(null, 'height', height + margin.top + margin.bottom);
-    svg.setAttributeNS(null, 'viewBox', `0 0 `
-                       +`${width + margin.left + margin.top} `
-                       +`${height + margin.top + margin.bottom}`);
-    svg.setAttributeNS(null, 'preserveAspectRatio',"xMidYMid");
-    document.getElementById(plotid).appendChild(svg);
+    const svg = svgElemAppend(document.getElementById(plotid), 'svg', {
+        width:  width + margin.left + margin.right,
+        height:  height + margin.top + margin.bottom,
+        viewBox: `0 0 `
+            +`${width + margin.left + margin.top} `
+            +`${height + margin.top + margin.bottom}`,
+        preserveAspectRatio: "xMidYMid",
+    });
 
     // X axis
     svgElemAppend(svg, 'line', {
