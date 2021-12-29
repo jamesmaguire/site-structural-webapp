@@ -6,37 +6,37 @@
 
 * Figure
 
-{{{div(soilFigure)}}}
+{{{span(soilFigure)}}}
 
 * Properties
 
-Soil unit weight, \gamma{} {{{input(i_gamma)}}}
+Soil unit weight, \gamma{} {{{span(i_gamma)}}}
 
-Soil depth, z {{{input(i_z)}}}
+Soil depth, z {{{span(i_z)}}}
 
 -----
 
 Pressure coefficient method {{{span(i_theory)}}}
 
-Friction angle, \phi{}' {{{input(i_phi)}}}
+Friction angle, \phi{}' {{{span(i_phi)}}}
 
-Backfill angle, \beta{} {{{input(i_beta)}}}
+Backfill angle, \beta{} {{{span(i_beta)}}}
 
-Active pressure coefficient, K_a {{{input(i_Ka)}}} 
+Active pressure coefficient, K_a {{{span(i_Ka)}}} 
 
-Active pressure coefficient, K_a {{{output(o_Ka)}}}
+Active pressure coefficient, K_a {{{span(o_Ka)}}}
 
-Passive pressure coefficient, K_p {{{input(i_Kp)}}}
+Passive pressure coefficient, K_p {{{span(i_Kp)}}}
 
-Passive pressure coefficient, K_p {{{output(o_Kp)}}}
+Passive pressure coefficient, K_p {{{span(o_Kp)}}}
 
 * Loading
 
-Force (active), P_a {{{output(o_Pa)}}}
+Force (active), P_a {{{span(o_Pa)}}}
 
-Moment (active), M_a {{{output(o_Ma)}}}
+Moment (active), M_a {{{span(o_Ma)}}}
 
-Force (passive), P_p {{{output(o_Pp)}}}
+Force (passive), P_p {{{span(o_Pp)}}}
 
 * Export on save                                                   :noexport:
 ;; Local Variables:
