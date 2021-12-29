@@ -38,6 +38,14 @@ function hideInput(i_ID) {
 function showInput(i_ID) {
     i_ID.parentElement.parentElement.style.display = "";
 }
+// Visible function is used for newer apps using the updated div/span setout
+function visible(i_ID, visibility) {
+    if (visibility) {
+        i_ID.parentElement.parentElement.parentElement.style.display = "";
+    } else {
+        i_ID.parentElement.parentElement.parentElement.style.display = "none";
+    }
+}
 
 function xlookup(x, lookuparr, returnarr) {
     return returnarr[lookuparr.indexOf(x)];

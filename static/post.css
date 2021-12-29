@@ -126,6 +126,11 @@ input[type=number] {
   background: lightpink;
   color: darkred;
 }
+hr {
+  border: none;
+  border-top: 1px solid #d3d3d3;
+  padding: 0.5rem;
+}
 
 /* Title/headings */
 h1 {
@@ -305,4 +310,23 @@ svg text {
   font-size: 12pt;
   dominant-baseline: text-before-edge;
   text-anchor:  middle;
+}
+.loadarrow {
+  stroke-width: 2;
+  stroke: black;
+  fill: black;
+}
+.backfill {
+  stroke-width: 1;
+  stroke: #825a2a;
+  fill: #825a2a22;
+}
+.concretewall {
+  stroke-width: 1;
+  stroke: black;
+  fill: white;
+}
+.shadedload {
+  stroke: #e5a122;
+  fill: #e5a12222;
 }
