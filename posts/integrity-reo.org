@@ -1,0 +1,85 @@
+#+title: Integrity reinforcement
+#+subtitle: Based on AS3600 2018(+A2) Clause 9.2
+
+#+setupfile: post.setup
+#+HTML_HEAD: <body onload="initPage();">
+#+HTML_HEAD: <script type="text/javascript" src="../static/integrityreo.js"></script>
+#+include: "../statusicon.org"
+
+* 9.2.2   Minimum structural integrity reinforcement 
+The summation of the area of bottom reinforcement connecting the slab, drop panel, or slab band to the column or column capital on all faces of the periphery of a column or column capital shall be not less than, 
+
+$$ A_{s.min} = \frac{2N^*}{\Phi f_{sy}} $$
+
+in which N* is the column reaction from the floor slab at the ultimate limit state. Integrity reinforcement shall not be required if there are beams containing shear reinforcement and with at least two bottom bars continuous through the joint in all spans framing into the column. 
+
+* Inputs
+
+Slab reaction, N^* {{{span(i_Nstar)}}}
+
+Concrete strength, f'_c {{{span(i_fc)}}}
+
+Rebar strength, f_{sy} {{{span(i_fsy)}}}
+
+Strength reduction factor, \Phi {{{span(i_phi)}}}
+
+* Column geometry
+
+Column D_x {{{span(i_Dx)}}}
+
+Column D_y {{{span(i_Dy)}}}
+
+Cover {{{span(i_c)}}}
+
+Spacing, a {{{span(i_a)}}}
+
+k_1 {{{span(o_k1)}}}
+
+c_d (straight) {{{span(o_cds)}}}
+
+* Design option 1
+
+Bar size {{{span(i_db1)}}}
+
+Basic development length, L_{sy.tb} {{{span(o_Lsytb1)}}}
+
+Length X-X {{{span(o_Lxx1)}}}
+
+Length Y-Y {{{span(o_Lyy1)}}}
+
+{{{div(o_bar1)}}}
+
+{{{div(fig1)}}}
+
+* Design option 2
+
+Bar size {{{span(i_db2)}}}
+
+Basic development length, L_{sy.tb} {{{span(o_Lsytb2)}}}
+
+Length X-X {{{span(o_Lxx2)}}}
+
+Length Y-Y {{{span(o_Lyy2)}}}
+
+{{{div(o_bar2)}}}
+
+{{{div(fig2)}}}
+
+* Design option 3
+
+Bar size {{{span(i_db3)}}}
+
+Basic development length, L_{sy.tb} {{{span(o_Lsytb3)}}}
+
+Length X-X {{{span(o_Lxx3)}}}
+
+Length Y-Y {{{span(o_Lyy3)}}}
+
+{{{div(o_bar3)}}}
+
+{{{div(fig3)}}}
+
+* Export on save                                                   :noexport:
+;; Local Variables:
+;; eval: (add-hook 'after-save-hook 'org-html-export-to-html nil t)
+;; End:
