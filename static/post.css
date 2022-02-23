@@ -204,6 +204,9 @@ td {
   text-align: center;
   padding: 0.2rem;
 }
+.org-left {
+  text-align: left;
+}
 
 /* Tooltip */
 .tooltip {
@@ -314,6 +317,13 @@ svg text {
   dominant-baseline: text-before-edge;
   text-anchor:  middle;
 }
+.rebarlabel {
+  text-anchor: middle;
+  dominant-baseline: hanging;
+}
+.rotate {
+  writing-mode: vertical-lr;
+}
 .loadarrow {
   stroke-width: 2;
   stroke: black;
@@ -332,4 +342,7 @@ svg text {
 .shadedload {
   stroke: #e5a122;
   fill: #e5a12222;
+}
+.dashed {
+  stroke-dasharray: 10 10;
 }

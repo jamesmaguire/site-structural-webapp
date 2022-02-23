@@ -1,0 +1,69 @@
+#+title: Punching shear
+# #+subtitle: Based on AS3600 2018(+A2) Clause 9.2
+
+#+setupfile: post.setup
+#+HTML_HEAD: <body onload="initPage();">
+#+HTML_HEAD: <script type="text/javascript" src="../static/punchingshear.js"></script>
+#+include: "../statusicon.org"
+
+* Loading + column
+
+Design shear force, V* {{{span(i_Vstar)}}}
+
+Design bending moment, M*_{vx} {{{span(i_Mxstar)}}}
+
+Design bending moment, M*_{vy} {{{span(i_Mystar)}}}
+
+Column shape, rectangle
+
+Column size, Dx {{{span(i_Dx)}}}
+
+Column size, Dy  {{{span(i_Dy)}}}
+
+* Parameters
+
+Concrete strength, f'_c {{{span(i_fc)}}}
+
+PT P/A, \sigma_{cp} {{{span(i_sigmacp)}}}
+
+Slab depth, D {{{span(i_D)}}}
+
+Rebar diameter, d_b {{{span(i_db)}}}
+
+Cover {{{span(i_c)}}}
+
+Axis depth {{{span(o_axisd)}}}
+
+Capacity reduction factor, \Phi {{{span(o_phi)}}}
+
+* Shear perimeter
+
+Shear perimeter reduction {{{span(i_ureduction)}}}
+
+Ratio of column dims, \beta_h {{{span(o_betah)}}}
+
+Average effective depth, d_{om} {{{span(o_dom)}}}
+
+Critical shear perimeter, u {{{span(o_u)}}}
+
+Concrete shear strength, f_{cv} {{{span(o_fcv)}}}
+
+Min transverse shear provided? {{{span(i_transverseshear)}}}
+
+* Ultimate shear capacity
+
+| Capacity                                |          x           |          y           |
+| <l>                                     |         <c>          |         <c>          |
+|-----------------------------------------+----------------------+----------------------|
+| ...for M*_v=0, \Phi{}V_{uo}             |  {{{span(o_Vuox)}}}  |  {{{span(o_Vuoy)}}}  |
+| ...no closed fitments, \Phi{}V_{u}      |  {{{span(o_Vux)}}}   |  {{{span(o_Vuy)}}}   |
+| ...min closed fitments, \Phi{}V_{u.min} | {{{span(o_Vuminx)}}} | {{{span(o_Vuminy)}}} |
+
+* Diagram
+
+{{{div(diagram)}}}
+
+* Export on save                                                   :noexport:
+;; Local Variables:
+;; eval: (add-hook 'after-save-hook 'org-html-export-to-html nil t)
+;; End:
