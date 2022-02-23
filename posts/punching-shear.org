@@ -14,11 +14,13 @@ Design bending moment, M*_{vx} {{{span(i_Mxstar)}}}
 
 Design bending moment, M*_{vy} {{{span(i_Mystar)}}}
 
-Column shape, rectangle
+Column shape, {{{span(i_shape)}}}
 
-Column size, Dx {{{span(i_Dx)}}}
+Column size, D_x {{{span(i_Dx)}}}
 
-Column size, Dy  {{{span(i_Dy)}}}
+Column size, D_y  {{{span(i_Dy)}}}
+
+Column diameter, D_{dia}  {{{span(i_Dia)}}}
 
 * Parameters
 

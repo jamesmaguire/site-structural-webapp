@@ -10,9 +10,10 @@ function initPage()
     input('i_Mxstar', {initval:0, units:'kNm'});
     input('i_Mystar', {initval:0, units:'kNm'});
 
-    // dropdown('i_shape', ["rectangle",], initval="rectange");
+    dropdown('i_shape', ["rectangle","circle"]);
     input('i_Dx', {initval:1000, units:'mm'});
     input('i_Dy', {initval:300, units:'mm'});
+    input('i_Dia', {initval:400, units:'mm'});
 
     input('i_fc', {initval:40, units:'MPa'});
     input('i_sigmacp', {initval:0.00, units:'MPa'});
@@ -29,13 +30,6 @@ function initPage()
     output('o_fcv', {initval:0, units:'MPa'});
     dropdown('i_transverseshear', ["No","Yes"]);
 
-    // output('o_Vuox', {initval:0, units:'kN'});
-    // output('o_Vuoy', {initval:0, units:'kN'});
-    // output('o_Vux', {initval:0, units:'kN'});
-    // output('o_Vuy', {initval:0, units:'kN'});
-    // output('o_Vuminx', {initval:0, units:'kN'});
-    // output('o_Vuminy', {initval:0, units:'kN'});
-
     updatePage();
 }
 
@@ -43,6 +37,16 @@ function updatePage() {
     const Vstar = i_Vstar.valueAsNumber;
     const Mxstar = i_Mxstar.valueAsNumber;
     const Mystar = i_Mystar.valueAsNumber;
+
+    if (i_shape.value === "rectangle") {
+        hideInput(i_Dia);
+        showInput(i_Dx);
+        showInput(i_Dy);
+    } else if (i_shape.value === "circle") {
+        showInput(i_Dia);
+        hideInput(i_Dx);
+        hideInput(i_Dy);
+    }
 
     const D = i_D.valueAsNumber,
           c = i_c.valueAsNumber,
@@ -52,14 +56,19 @@ function updatePage() {
     
     const Dx = i_Dx.valueAsNumber,
           Dy = i_Dy.valueAsNumber,
+          Dia = i_Dia.valueAsNumber,
+          shape = i_shape.value,
           sigmacp = i_sigmacp.valueAsNumber,
           ureduction = i_ureduction.valueAsNumber;
-    const betah = Math.max(Dx, Dy)/Math.min(Dx, Dy);
+    const betah = shape === "rectangle" ?
+          Math.max(Dx, Dy)/Math.min(Dx, Dy) : 1;
     o_betah.value = betah.toFixed(2);
     const dom = Math.max(D - axisd,
                          sigmacp > 0 ? 0.8*D : 0);
     o_dom.value = dom.toFixed(0);
-    const u = 2*(Dx+dom + Dy+dom) - ureduction;
+    const u = shape === "rectangle" ?
+          2*(Dx+dom + Dy+dom) - ureduction :
+          Math.PI*(Dia+dom) - ureduction;
     o_u.value = u.toFixed(0);
 
     const phi = 0.7;
@@ -69,9 +78,8 @@ function updatePage() {
                    0.34*Math.sqrt(fc));
     o_fcv.value = fcv.toFixed(2);
 
-    const ax = Dx + dom,
-          ay = Dy + dom;
-    console.log(ax, ay);
+    const ax = shape === "rectangle" ? Dx + dom : Dia + dom,
+          ay = shape === "rectangle" ? Dy + dom : Dia + dom;
     const Vuox = phi*u*dom*(fcv + 0.3*sigmacp)/1000,
           Vuoy = Vuox,
           Vux = Vuox/(1+(u*Mxstar*1000/(8*Vstar*ax*dom))),
@@ -104,12 +112,20 @@ function drawDiagram () {
 
     const Dx = i_Dx.valueAsNumber,
           Dy = i_Dy.valueAsNumber,
+          Dia = i_Dia.valueAsNumber,
+          shape = i_shape.value,
           dom = o_dom.valueAsNumber;
 
-    const sf = Math.min(width/(Dx+2*dom), height/(Dy+2*dom));
-
-    const xmap = n => margin.left + sf*n + width/2 - sf*Dx/2;
-    const ymap = n => margin.top  - sf*n + height/2 + sf*Dy/2;
+    let xmap, ymap, sf;
+    if (shape === "rectangle") {
+        sf = Math.min(width/(Dx+2*dom), height/(Dy+2*dom));
+        xmap = n => margin.left + sf*n + width/2 - sf*Dx/2;
+        ymap = n => margin.top  - sf*n + height/2 + sf*Dy/2;
+    } else if (shape === "circle") {
+        sf = Math.min(width/(Dia+(2*dom)), height/(Dia+(2*dom)));
+        xmap = n => margin.left + sf*n + width/2;
+        ymap = n => margin.top  - sf*n + height/2;
+    }
 
     const svg = svgElemAppend(diagram, 'svg', {
         width: width + margin.left + margin.right,
@@ -120,22 +136,32 @@ function drawDiagram () {
         preserveAspectRatio:"xMidYMid",
     });
 
-    // Concrete outline
-    svgElemAppend(svg, 'path', {
-        class:'concrete',
-        d:`M${xmap(0)},${ymap(0)}`
-            +` L${xmap(0)},${ymap(Dy)}`
-            +` L${xmap(Dx)},${ymap(Dy)}`
-            +` L${xmap(Dx)},${ymap(0)} z`,
-    });
-
-    // Shear perimeter
-    svgElemAppend(svg, 'path', {
-        class:'concrete dashed',
-        d:`M${xmap(-dom/2)},${ymap(-dom/2)}`
-            +` L${xmap(-dom/2)},${ymap(Dy+dom/2)}`
-            +` L${xmap(Dx+dom/2)},${ymap(Dy+dom/2)}`
-            +` L${xmap(Dx+dom/2)},${ymap(-dom/2)} z`,
-    });
+    if (shape === "rectangle") {
+        // Concrete outline
+        svgElemAppend(svg, 'path', {
+            class:'concrete',
+            d:`M${xmap(0)},${ymap(0)}`
+                +` L${xmap(0)},${ymap(Dy)}`
+                +` L${xmap(Dx)},${ymap(Dy)}`
+                +` L${xmap(Dx)},${ymap(0)} z`,
+        });
+        // Shear perimeter
+        svgElemAppend(svg, 'path', {
+            class:'concrete dashed',
+            d:`M${xmap(-dom/2)},${ymap(-dom/2)}`
+                +` L${xmap(-dom/2)},${ymap(Dy+dom/2)}`
+                +` L${xmap(Dx+dom/2)},${ymap(Dy+dom/2)}`
+                +` L${xmap(Dx+dom/2)},${ymap(-dom/2)} z`,
+        });
+    } else if (shape === "circle") {
+        svgElemAppend(svg, 'circle', {
+            class:'concrete',
+            cx:xmap(0), cy:ymap(0), r:sf*(Dia/2)
+        });
+        svgElemAppend(svg, 'circle', {
+            class:'concrete dashed',
+            cx:xmap(0), cy:ymap(0), r:sf*(Dia/2 + dom/2)
+        });
+    }
 
 }
