@@ -1,0 +1,85 @@
+#+title: Top reinforcement over columns
+#+subtitle: Based on AS3600 2018(+A2) Clause 9.2
+
+#+setupfile: post.setup
+#+HTML_HEAD: <body onload="initPage();">
+#+HTML_HEAD: <script type="text/javascript" src="../static/topreo.js"></script>
+#+include: "../statusicon.org"
+
+* 9.1.2 Reinforcement and tendon distribution in two-way flat slabs
+In two-way flat slabs, at least 25% of the total of the design negative moment in a column-strip and adjacent half middle-strips shall be resisted by reinforcement or tendons or both, located in a cross-section of slab centred on the column and of a width equal to twice the overall depth of the slab or drop panel plus the width of the column. 
+
+* Inputs
+
+Moment, M^* {{{span(i_Mstar)}}}
+
+Slab depth, D {{{span(i_D)}}}
+
+Top cover {{{span(i_c)}}}
+
+Concrete strength, f'_c {{{span(i_fc)}}}
+
+Rebar strength, f_{sy} {{{span(i_fsy)}}}
+
+Strength reduction factor, \Phi {{{span(o_phi)}}}
+
+Concrete strain, \varepsilon_c {{{span(o_ec)}}}
+
+Steel strain, \varepsilon_s {{{span(o_es)}}}
+
+Stress block factor, \gamma {{{span(o_gamma)}}}
+
+* Column geometry
+
+Column D_x {{{span(i_Dx)}}}
+
+Column D_y {{{span(i_Dy)}}}
+
+PT strands {{{span(i_np)}}}
+
+PT strand size {{{span(i_dp)}}}
+
+PT hat height {{{span(i_pthh)}}}
+
+PT yield stress {{{span(o_fpy)}}}
+
+* Design option 1
+
+Bar size {{{span(i_db1)}}}
+
+Length X-X {{{span(o_Lxx1)}}}
+
+Length Y-Y {{{span(o_Lyy1)}}}
+
+{{{div(o_bar1)}}}
+
+{{{div(fig1)}}}
+
+* Design option 2
+
+Bar size {{{span(i_db2)}}}
+
+Length X-X {{{span(o_Lxx2)}}}
+
+Length Y-Y {{{span(o_Lyy2)}}}
+
+{{{div(o_bar2)}}}
+
+{{{div(fig2)}}}
+
+* Design option 3
+
+Bar size {{{span(i_db3)}}}
+
+Length X-X {{{span(o_Lxx3)}}}
+
+Length Y-Y {{{span(o_Lyy3)}}}
+
+{{{div(o_bar3)}}}
+
+{{{div(fig3)}}}
+
+* Export on save                                                   :noexport:
+;; Local Variables:
+;; eval: (add-hook 'after-save-hook 'org-html-export-to-html nil t)
+;; End:
