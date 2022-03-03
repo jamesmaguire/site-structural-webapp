@@ -173,7 +173,7 @@ function integrityDiagram (divId, db, Dx, Dy, Lx, Ly, scalenumx, scalenumy) {
 
     // Concrete outline
     const colOutline = svgElemAppend(svg, 'path', {
-        class:'concrete',
+        class:'planconcrete',
         d:`M${xmap(0)},${ymap(0)}`
             +` L${xmap(0)},${ymap(Dy)}`
             +` L${xmap(Dx)},${ymap(Dy)}`
@@ -182,7 +182,7 @@ function integrityDiagram (divId, db, Dx, Dy, Lx, Ly, scalenumx, scalenumy) {
 
     // X reo
     svgElemAppend(svg, 'line', {
-        class:'rebar',
+        class:'planrebar',
         x1:xmap(Dx/2 - Lx/2), x2:xmap(Dx/2 + Lx/2),
         y1:ymap(Dy/2), y2:ymap(Dy/2),
     });
@@ -194,7 +194,7 @@ function integrityDiagram (divId, db, Dx, Dy, Lx, Ly, scalenumx, scalenumy) {
 
     // Y reo
     svgElemAppend(svg, 'line', {
-        class:'rebar',
+        class:'planrebar',
         x1:xmap(Dx/2), x2:xmap(Dx/2),
         y1:ymap(Dy/2 - Ly/2), y2:ymap(Dy/2 + Ly/2),
     });

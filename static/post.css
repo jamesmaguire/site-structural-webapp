@@ -288,6 +288,13 @@ svg text {
   stroke: black;
   fill: none;
 }
+.planconcrete {
+  stroke-width: 3;
+  stroke: grey;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  fill: none;
+}
 .shadedzone {
   stroke: #ccc;
   fill: #f3f3f3;
@@ -300,6 +307,13 @@ svg text {
 .rebardash {
   stroke: black;
   stroke-width: 4;
+  fill: none;
+}
+.planrebar {
+  stroke: black;
+  stroke-width: 4;
+  stroke-linejoin: round;
+  stroke-linecap: round;
   fill: none;
 }
 .highlight {
