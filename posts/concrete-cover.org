@@ -1,0 +1,56 @@
+#+title: Concrete cover
+#+subtitle: Based on AS3600 2018(+A2)
+
+#+setupfile: post.setup
+#+HTML_HEAD: <body onload="initPage();">
+#+HTML_HEAD: <script type="text/javascript" src="../static/concretecover.js"></script>
+#+include: "../statusicon.org"
+
+* Exposure classification
+
+| Environment |                                 | Classification |
+|-------------+---------------------------------+----------------|
+| Interior    | Residential                     | A1             |
+|             | Non-residential                 | A2             |
+|             | Industrial (subject to wetting) | B1             |
+|-------------+---------------------------------+----------------|
+| Exterior    | Inland arid                     | A1             |
+|             | Inland temperate                | A2             |
+|             | Inland topical or industrial    | B1             |
+|             | Near coastal (1-50 km)          | B1             |
+|             | Coastal                         | B2             |
+
+* Inputs
+
+Exposure classification {{{span(i_class)}}}
+
+Fire resistance period, FRP {{{span(i_FRP)}}}
+
+Concrete strength, f'_c {{{span(i_fc)}}}
+
+Slab depth, D {{{span(i_D)}}}
+
+* Post tensioning
+
+Strand diameter, d_p {{{span(i_dp)}}}
+
+Duct height {{{span(i_ducth)}}}
+
+Top cover to duct {{{span(o_pttc)}}}
+
+Bottom cover to duct {{{span(o_ptbc)}}}
+
+Bottom cover to pan {{{span(o_ptpan)}}} /(CL 100 below top)/
+
+* Cover
+
+Cover (corrosion) {{{span(o_ccorrosion)}}}
+
+Axis dist. (fire) {{{span(o_afire)}}}
+
+{{{span(bartable)}}}
+
+* Export on save                                                   :noexport:
+;; Local Variables:
+;; eval: (add-hook 'after-save-hook 'org-html-export-to-html nil t)
+;; End:
