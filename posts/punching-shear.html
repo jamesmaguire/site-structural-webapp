@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2022-02-23 Wed 22:09 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Punching shear</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="james" />
+<link rel="stylesheet" type="text/css" href="../static/post.css" />
+<script type="text/javascript" src="../static/general.js"></script>
+<link rel="icon" type="image/ico" href="../static/icon/favicon.svg" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<body onload="initPage();">
+<script type="text/javascript" src="../static/punchingshear.js"></script>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up"> <img src="../static/icon/logo.svg" /> <a href="../index.html"> Home </a> </div><div id="content">
+<h1 class="title">Punching shear</h1>
+<p>
+<button id='statusbutton' onclick='updatePage();'>▶ Run analysis</button>
+</p>
+
+<div id="outline-container-org9df994f" class="outline-2">
+<h2 id="org9df994f">Loading + column</h2>
+<div class="outline-text-2" id="text-org9df994f">
+<p>
+Design shear force, V* <span id="i_Vstar"></span>
+</p>
+
+<p>
+Design bending moment, M*<sub>vx</sub> <span id="i_Mxstar"></span>
+</p>
+
+<p>
+Design bending moment, M*<sub>vy</sub> <span id="i_Mystar"></span>
+</p>
+
+<p>
+Column shape, <span id="i_shape"></span>
+</p>
+
+<p>
+Column size, D<sub>x</sub> <span id="i_Dx"></span>
+</p>
+
+<p>
+Column size, D<sub>y</sub>  <span id="i_Dy"></span>
+</p>
+
+<p>
+Column diameter, D<sub>dia</sub>  <span id="i_Dia"></span>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org9eddbe0" class="outline-2">
+<h2 id="org9eddbe0">Parameters</h2>
+<div class="outline-text-2" id="text-org9eddbe0">
+<p>
+Concrete strength, f'<sub>c</sub> <span id="i_fc"></span>
+</p>
+
+<p>
+PT P/A, &sigma;<sub>cp</sub> <span id="i_sigmacp"></span>
+</p>
+
+<p>
+Slab depth, D <span id="i_D"></span>
+</p>
+
+<p>
+Rebar diameter, d<sub>b</sub> <span id="i_db"></span>
+</p>
+
+<p>
+Cover <span id="i_c"></span>
+</p>
+
+<p>
+Axis depth <span id="o_axisd"></span>
+</p>
+
+<p>
+Capacity reduction factor, &Phi; <span id="o_phi"></span>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org588c4df" class="outline-2">
+<h2 id="org588c4df">Shear perimeter</h2>
+<div class="outline-text-2" id="text-org588c4df">
+<p>
+Shear perimeter reduction <span id="i_ureduction"></span>
+</p>
+
+<p>
+Ratio of column dims, &beta;<sub>h</sub> <span id="o_betah"></span>
+</p>
+
+<p>
+Average effective depth, d<sub>om</sub> <span id="o_dom"></span>
+</p>
+
+<p>
+Critical shear perimeter, u <span id="o_u"></span>
+</p>
+
+<p>
+Concrete shear strength, f<sub>cv</sub> <span id="o_fcv"></span>
+</p>
+
+<p>
+Min transverse shear provided? <span id="i_transverseshear"></span>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org53d1f72" class="outline-2">
+<h2 id="org53d1f72">Ultimate shear capacity</h2>
+<div class="outline-text-2" id="text-org53d1f72">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-center" />
+
+<col  class="org-center" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Capacity</th>
+<th scope="col" class="org-center">x</th>
+<th scope="col" class="org-center">y</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">&#x2026;for M*<sub>v</sub>=0, &Phi;V<sub>uo</sub></td>
+<td class="org-center"><span id="o_Vuox"></span></td>
+<td class="org-center"><span id="o_Vuoy"></span></td>
+</tr>
+
+<tr>
+<td class="org-left">&#x2026;no closed fitments, &Phi;V<sub>u</sub></td>
+<td class="org-center"><span id="o_Vux"></span></td>
+<td class="org-center"><span id="o_Vuy"></span></td>
+</tr>
+
+<tr>
+<td class="org-left">&#x2026;min closed fitments, &Phi;V<sub>u.min</sub></td>
+<td class="org-center"><span id="o_Vuminx"></span></td>
+<td class="org-center"><span id="o_Vuminy"></span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org62717dc" class="outline-2">
+<h2 id="org62717dc">Diagram</h2>
+<div class="outline-text-2" id="text-org62717dc">
+<p>
+<div id="diagram"></div>
+</p>
+</div>
+</div>
+</div>
+</body>
+</html>

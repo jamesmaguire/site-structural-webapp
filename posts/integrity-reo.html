@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2022-03-03 Thu 11:51 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Integrity reinforcement</title>
+<meta name="generator" content="Org mode" />
+<link rel="stylesheet" type="text/css" href="../static/post.css" />
+<script type="text/javascript" src="../static/general.js"></script>
+<link rel="icon" type="image/ico" href="../static/icon/favicon.svg" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<body onload="initPage();">
+<script type="text/javascript" src="../static/integrityreo.js"></script>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="org-div-home-and-up"> <img src="../static/icon/logo.svg" /> <a href="../index.html"> Home </a> </div><div id="content">
+<h1 class="title">Integrity reinforcement
+<br />
+<span class="subtitle">Based on AS3600 2018(+A2) Clause 9.2</span>
+</h1>
+<p>
+<button id='statusbutton' onclick='updatePage();'>▶ Run analysis</button>
+</p>
+
+<div id="outline-container-orgb6aa89d" class="outline-2">
+<h2 id="orgb6aa89d">9.2.2   Minimum structural integrity reinforcement</h2>
+<div class="outline-text-2" id="text-orgb6aa89d">
+<p>
+The summation of the area of bottom reinforcement connecting the slab, drop panel, or slab band to the column or column capital on all faces of the periphery of a column or column capital shall be not less than, 
+</p>
+
+<p>
+\[ A_{s.min} = \frac{2N^*}{\Phi f_{sy}} \]
+</p>
+
+<p>
+in which N* is the column reaction from the floor slab at the ultimate limit state. Integrity reinforcement shall not be required if there are beams containing shear reinforcement and with at least two bottom bars continuous through the joint in all spans framing into the column. 
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf2516c3" class="outline-2">
+<h2 id="orgf2516c3">Inputs</h2>
+<div class="outline-text-2" id="text-orgf2516c3">
+<p>
+Slab reaction, N<sup>*</sup> <span id="i_Nstar"></span>
+</p>
+
+<p>
+Concrete strength, f'<sub>c</sub> <span id="i_fc"></span>
+</p>
+
+<p>
+Rebar strength, f<sub>sy</sub> <span id="i_fsy"></span>
+</p>
+
+<p>
+Strength reduction factor, &Phi; <span id="i_phi"></span>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org842f525" class="outline-2">
+<h2 id="org842f525">Column geometry</h2>
+<div class="outline-text-2" id="text-org842f525">
+<p>
+Column D<sub>x</sub> <span id="i_Dx"></span>
+</p>
+
+<p>
+Column D<sub>y</sub> <span id="i_Dy"></span>
+</p>
+
+<p>
+Cover <span id="i_c"></span>
+</p>
+
+<p>
+Spacing, a <span id="i_a"></span>
+</p>
+
+<p>
+k<sub>1</sub> <span id="o_k1"></span>
+</p>
+
+<p>
+c<sub>d</sub> (straight) <span id="o_cds"></span>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0840351" class="outline-2">
+<h2 id="org0840351">Design option 1</h2>
+<div class="outline-text-2" id="text-org0840351">
+<p>
+Bar size <span id="i_db1"></span>
+</p>
+
+<p>
+Basic development length, L<sub>sy.tb</sub> <span id="o_Lsytb1"></span>
+</p>
+
+<p>
+Length X-X <span id="o_Lxx1"></span>
+</p>
+
+<p>
+Length Y-Y <span id="o_Lyy1"></span>
+</p>
+
+<p>
+<div id="o_bar1"></div>
+</p>
+
+<p>
+<div id="fig1"></div>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org6835469" class="outline-2">
+<h2 id="org6835469">Design option 2</h2>
+<div class="outline-text-2" id="text-org6835469">
+<p>
+Bar size <span id="i_db2"></span>
+</p>
+
+<p>
+Basic development length, L<sub>sy.tb</sub> <span id="o_Lsytb2"></span>
+</p>
+
+<p>
+Length X-X <span id="o_Lxx2"></span>
+</p>
+
+<p>
+Length Y-Y <span id="o_Lyy2"></span>
+</p>
+
+<p>
+<div id="o_bar2"></div>
+</p>
+
+<p>
+<div id="fig2"></div>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org7701e79" class="outline-2">
+<h2 id="org7701e79">Design option 3</h2>
+<div class="outline-text-2" id="text-org7701e79">
+<p>
+Bar size <span id="i_db3"></span>
+</p>
+
+<p>
+Basic development length, L<sub>sy.tb</sub> <span id="o_Lsytb3"></span>
+</p>
+
+<p>
+Length X-X <span id="o_Lxx3"></span>
+</p>
+
+<p>
+Length Y-Y <span id="o_Lyy3"></span>
+</p>
+
+<p>
+<div id="o_bar3"></div>
+</p>
+
+<p>
+<div id="fig3"></div>
+</p>
+</div>
+</div>
+</div>
+</body>
+</html>

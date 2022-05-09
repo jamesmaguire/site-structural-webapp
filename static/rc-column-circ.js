@@ -38,7 +38,7 @@ function updatePage()
 {
     // runCalcs();
     drawFigure();
-    // setStatusUptodate();
+    setStatusUptodate();
 }
 
 function drawFigure() {

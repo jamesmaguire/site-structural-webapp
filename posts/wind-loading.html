@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2021-12-29 Wed 18:44 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Wind loading</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="james" />
+<link rel="stylesheet" type="text/css" href="../static/post.css" />
+<script type="text/javascript" src="../static/general.js"></script>
+<link rel="icon" type="image/ico" href="../static/icon/favicon.svg" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<body onload="updatePage();">
+<script type="text/javascript" src="../static/windload.js"></script>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up"> <img src="../static/icon/logo.svg" /> <a href="../index.html"> Home </a> </div><div id="content">
+<h1 class="title">Wind loading
+<br />
+<span class="subtitle">Based on AS1170.2 2011</span>
+</h1>
+<p>
+<button id='statusbutton' onclick='updatePage();'>▶ Run analysis</button>
+</p>
+
+<div id="outline-container-org2a8a846" class="outline-2">
+<h2 id="org2a8a846">Inputs</h2>
+<div class="outline-text-2" id="text-org2a8a846">
+<p>
+Region
+
+<select id="i_region" value="A2" onchange="updatePage();">
+<option value="A1">Region A1</option>
+<option value="A2">Region A2</option>
+<option value="A3">Region A3</option>
+<option value="A4">Region A4</option>
+<option value="A5">Region A5</option>
+<option value="A6">Region A6</option>
+<option value="A7">Region A7</option>
+<option value="B">Region B</option>
+<option value="C">Region C</option>
+<option value="D">Region D</option>
+<option value="W">Region W</option>
+</select>
+</p>
+
+<p>
+Recurrance interval, R
+
+<select id="i_R" value="500" onchange="updatePage();">
+<option value="5">5 years</option>
+<option value="10">10 years</option>
+<option value="20">20 years</option>
+<option value="25">25 years</option>
+<option value="50">50 years</option>
+<option value="100">100 years</option>
+<option value="200">200 years</option>
+<option value="250">250 years</option>
+<option value="500">500 years</option>
+<option value="1000">1000 years</option>
+<option value="2000">2000 years</option>
+<option value="2500">2500 years</option>
+<option value="5000">5000 years</option>
+<option value="10000">10000 years</option>
+</select>
+</p>
+
+<p>
+Aerodynamic shape factor, C<sub>fig</sub> <span class="inputspan"><input id="i_Cfig" class="right" type="number" value="1.0" onkeypress="eventHandler(event)" onblur="updatePage()"> </span>
+</p>
+
+<p>
+Dynamic response factor factor, C<sub>dyn</sub> <span class="inputspan"><input id="i_Cdyn" class="right" type="number" value="1.0" onkeypress="eventHandler(event)" onblur="updatePage()"> </span>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org1186ad5" class="outline-2">
+<h2 id="org1186ad5">Multipliers</h2>
+<div class="outline-text-2" id="text-org1186ad5">
+<p>
+Terrain height multiplier, M<sub>z,cat</sub> <span class="inputspan"><input id="i_Mzcat" class="right" type="number" value="1.0" onkeypress="eventHandler(event)" onblur="updatePage()"> </span>
+</p>
+
+<p>
+Sheilding multiplier, M<sub>s</sub> <span class="inputspan"><input id="i_Ms" class="right" type="number" value="1.0" onkeypress="eventHandler(event)" onblur="updatePage()"> </span>
+</p>
+
+<p>
+Topographic multiplier, M<sub>t</sub> <span class="inputspan"><input id="i_Mt" class="right" type="number" value="1.0" onkeypress="eventHandler(event)" onblur="updatePage()"> </span>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb5815b2" class="outline-2">
+<h2 id="orgb5815b2">Design wind</h2>
+<div class="outline-text-2" id="text-orgb5815b2">
+<p>
+Density of air, &rho;<sub>air</sub> <span class="outputspan"><input id="o_rho" class="right" type="number" value="0" readonly> kg/m<sup>3</sup></span>
+</p>
+
+<p>
+Regional wind speed, V<sub>R</sub> <span class="outputspan"><input id="o_VR" class="right" type="number" value="0" readonly> m/s</span>
+</p>
+
+<p>
+Design wind pressure, p <span class="outputspan"><input id="o_p" class="right" type="number" value="0" readonly> kPa</span> (for M<sub>d</sub>=1.0)
+</p>
+
+<p>
+ <div id=windir></div>
+</p>
+
+<p>
+M<sub>d</sub> - Wind direction multiplier
+</p>
+
+<p>
+V<sub>sit,&beta;</sub> - Wind site speed
+</p>
+
+<p>
+p - Design wind pressure
+</p>
+</div>
+</div>
+
+<div id="outline-container-org70cec82" class="outline-2">
+<h2 id="org70cec82">Figure</h2>
+<div class="outline-text-2" id="text-org70cec82">
+<p>
+North direction <span class="inputspan"><input id="i_northdir" class="right" type="number" value="90" onkeypress="eventHandler(event)" onblur="updatePage()"> &deg</span>
+</p>
+
+<p>
+Structure X dim <span class="inputspan"><input id="i_xdim" class="right" type="number" value="15" onkeypress="eventHandler(event)" onblur="updatePage()"> m</span>
+</p>
+
+<p>
+Structure Y dim <span class="inputspan"><input id="i_ydim" class="right" type="number" value="10" onkeypress="eventHandler(event)" onblur="updatePage()"> m</span>
+</p>
+
+<p>
+<canvas id="windFigure" width="250" height="250" draggable="true"></canvas>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge40be9d" class="outline-2">
+<h2 id="orge40be9d">Terrain height multiplier calculator</h2>
+<div class="outline-text-2" id="text-orge40be9d">
+<p>
+Terrain height multiplier, M<sub>z,cat</sub> <span class="outputspan"><input id="o_Mzcatcalc" class="right" type="number" value="0" readonly> </span>
+</p>
+
+<p>
+Height, z <span class="inputspan"><input id="i_zz" class="right" type="number" value="30" onkeypress="eventHandler(event)" onblur="updatePage()"> m</span>
+</p>
+
+<p>
+
+<select id="i_tc" value="3" onchange="updatePage();">
+<option value="1">Terrain category 1</option>
+<option value="1.5">Terrain category 1.5</option>
+<option value="2">Terrain category 2</option>
+<option value="2.5">Terrain category 2.5</option>
+<option value="3">Terrain category 3</option>
+<option value="4">Terrain category 4</option>
+</select>
+</p>
+
+<p>
+ <div class="descbox" id=o_tc></div>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org9ef829f" class="outline-2">
+<h2 id="org9ef829f">Shielding multiplier calculator</h2>
+<div class="outline-text-2" id="text-org9ef829f">
+<p>
+Avg roof height of shielding bldgs, h<sub>s</sub> <span class="inputspan"><input id="i_hs" class="right" type="number" value="5" onkeypress="eventHandler(event)" onblur="updatePage()"> m</span>
+</p>
+
+<p>
+Avg breadth of shielding bldgs, b<sub>s</sub> <span class="inputspan"><input id="i_bs" class="right" type="number" value="10" onkeypress="eventHandler(event)" onblur="updatePage()"> m</span>
+</p>
+
+<p>
+Avg roof height of structure, h <span class="inputspan"><input id="i_h" class="right" type="number" value="10" onkeypress="eventHandler(event)" onblur="updatePage()"> m</span>
+</p>
+
+<p>
+(20h = <span class="outputspan"><input id="o_20h" class="right" type="number" value="0" readonly> m</span>)
+</p>
+
+<p>
+Shielding bldgs within 45&deg; and 20h, n<sub>s</sub> <span class="inputspan"><input id="i_ns" class="right" type="number" value="1" onkeypress="eventHandler(event)" onblur="updatePage()"> </span>
+</p>
+
+<p>
+Shielding multiplier, M<sub>s</sub> <span class="outputspan"><input id="o_Mscalc" class="right" type="number" value="0" readonly> </span>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf04fa5e" class="outline-2">
+<h2 id="orgf04fa5e">Topographic multiplier calculator</h2>
+<div class="outline-text-2" id="text-orgf04fa5e">
+<p>
+
+<select id="i_hilltype" value="hill" onchange="updatePage();">
+<option value="hill">Hill or ridge</option>
+<option value="escarpmentuw">Escarpment (upwind)</option>
+<option value="escarpmentdw">Escarpment (downwind)</option>
+</select>
+</p>
+
+<p>
+Height of hill/ridge/escarpment, H <span class="inputspan"><input id="i_H" class="right" type="number" value="0" onkeypress="eventHandler(event)" onblur="updatePage()"> m</span>
+</p>
+
+<p>
+Distance from crest to half height, Lu <span class="inputspan"><input id="i_Lu" class="right" type="number" value="100" onkeypress="eventHandler(event)" onblur="updatePage()"> m</span>
+</p>
+
+<p>
+Distance from structure to crest, x <span class="inputspan"><input id="i_x" class="right" type="number" value="50" onkeypress="eventHandler(event)" onblur="updatePage()"> m</span>
+</p>
+
+<p>
+Height, z <span class="inputspan"><input id="i_zh" class="right" type="number" value="30" onkeypress="eventHandler(event)" onblur="updatePage()"> m</span>
+</p>
+
+<p>
+Length scale, L<sub>1</sub> <span class="outputspan"><input id="o_L1" class="right" type="number" value="0" readonly> m</span>
+</p>
+
+<p>
+Length scale, L<sub>2</sub> <span class="outputspan"><input id="o_L2" class="right" type="number" value="0" readonly> m</span>
+</p>
+
+<p>
+Topographic multiplier, M<sub>t</sub> <span class="outputspan"><input id="o_Mt" class="right" type="number" value="0" readonly> </span>
+</p>
+
+
+<div class="figure">
+<p><img src="../static/img/AS1170-2-Fig4-2.png" alt="AS1170-2-Fig4-2.png" id="fighill" />
+</p>
+</div>
+
+
+<div class="figure">
+<p><img src="../static/img/AS1170-2-Fig4-3.png" alt="AS1170-2-Fig4-3.png" id="figescarpment" />
+</p>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

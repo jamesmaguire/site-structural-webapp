@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2022-03-27 Sun 18:02 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Concrete cover</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="james" />
+<link rel="stylesheet" type="text/css" href="../static/post.css" />
+<script type="text/javascript" src="../static/general.js"></script>
+<link rel="icon" type="image/ico" href="../static/icon/favicon.svg" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<body onload="initPage();">
+<script type="text/javascript" src="../static/concretecover.js"></script>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up"> <img src="../static/icon/logo.svg" /> <a href="../index.html"> Home </a> </div><div id="content">
+<h1 class="title">Concrete cover
+<br />
+<span class="subtitle">Based on AS3600 2018(+A2)</span>
+</h1>
+<p>
+<button id='statusbutton' onclick='updatePage();'>▶ Run analysis</button>
+</p>
+
+<div id="outline-container-orgcc8e0df" class="outline-2">
+<h2 id="orgcc8e0df">Exposure classification</h2>
+<div class="outline-text-2" id="text-orgcc8e0df">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Environment</th>
+<th scope="col" class="org-left">&#xa0;</th>
+<th scope="col" class="org-left">Classification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Interior</td>
+<td class="org-left">Residential</td>
+<td class="org-left">A1</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">Non-residential</td>
+<td class="org-left">A2</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">Industrial (subject to wetting)</td>
+<td class="org-left">B1</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left">Exterior</td>
+<td class="org-left">Inland arid</td>
+<td class="org-left">A1</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">Inland temperate</td>
+<td class="org-left">A2</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">Inland topical or industrial</td>
+<td class="org-left">B1</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">Near coastal (1-50 km)</td>
+<td class="org-left">B1</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">Coastal</td>
+<td class="org-left">B2</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-orgcc44e91" class="outline-2">
+<h2 id="orgcc44e91">Inputs</h2>
+<div class="outline-text-2" id="text-orgcc44e91">
+<p>
+Exposure classification <span id="i_class"></span>
+</p>
+
+<p>
+Fire resistance period, FRP <span id="i_FRP"></span>
+</p>
+
+<p>
+Concrete strength, f'<sub>c</sub> <span id="i_fc"></span>
+</p>
+
+<p>
+Slab depth, D <span id="i_D"></span>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org173bbf3" class="outline-2">
+<h2 id="org173bbf3">Post tensioning</h2>
+<div class="outline-text-2" id="text-org173bbf3">
+<p>
+Strand diameter, d<sub>p</sub> <span id="i_dp"></span>
+</p>
+
+<p>
+Duct height <span id="i_ducth"></span>
+</p>
+
+<p>
+Top cover to duct <span id="o_pttc"></span>
+</p>
+
+<p>
+Bottom cover to duct <span id="o_ptbc"></span>
+</p>
+
+<p>
+Bottom cover to pan <span id="o_ptpan"></span> <i>(CL 100 below top)</i>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org487ab79" class="outline-2">
+<h2 id="org487ab79">Cover</h2>
+<div class="outline-text-2" id="text-org487ab79">
+<p>
+Cover (corrosion) <span id="o_ccorrosion"></span>
+</p>
+
+<p>
+Axis dist. (fire) <span id="o_afire"></span>
+</p>
+
+<p>
+<span id="bartable"></span>
+</p>
+</div>
+</div>
+</div>
+</body>
+</html>

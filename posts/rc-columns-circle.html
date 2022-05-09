@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2021-12-29 Wed 18:44 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Reinforced Concrete Column (Circle)</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="james" />
+<link rel="stylesheet" type="text/css" href="../static/post.css" />
+<script type="text/javascript" src="../static/general.js"></script>
+<link rel="icon" type="image/ico" href="../static/icon/favicon.svg" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<body onload="initPage();">
+<script type="text/javascript" src="../static/rc-column-circ.js"></script>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up"> <img src="../static/icon/logo.svg" /> <a href="../index.html"> Home </a> </div><div id="content">
+<h1 class="title">Reinforced Concrete Column (Circle)</h1>
+<p>
+<button id='statusbutton' onclick='updatePage();'>▶ Run analysis</button>
+</p>
+
+
+<div id="outline-container-orga37e59a" class="outline-2">
+<h2 id="orga37e59a">Figure</h2>
+<div class="outline-text-2" id="text-orga37e59a">
+<p>
+<div id="columnFigure"></div>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org563b3b3" class="outline-2">
+<h2 id="org563b3b3">Column geometry</h2>
+<div class="outline-text-2" id="text-org563b3b3">
+<p>
+Height <span id="i_L"></span>
+</p>
+
+<p>
+Eff length factor, k<sub>X</sub> <span id="i_kx"></span>, k<sub>Y</sub> <span id="i_ky"></span>
+</p>
+
+<p>
+Diameter, D <span id="i_D"></span>
+</p>
+
+<p>
+Gross area, A<sub>g</sub> <span id="o_Ag"></span>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org6021f6c" class="outline-2">
+<h2 id="org6021f6c">Concrete</h2>
+<div class="outline-text-2" id="text-org6021f6c">
+<p>
+Concrete strength <span id="i_fc"></span>
+</p>
+
+<p>
+Concrete cover <span id="i_c"></span>
+</p>
+
+<p>
+Ultimate strain, &epsilon;<sub>cu</sub> <span id="o_ecu"></span>
+</p>
+
+<p>
+&alpha;<sub>1</sub> <span id="o_alpha1"></span>
+</p>
+
+<p>
+&alpha;<sub>2</sub> <span id="o_alpha2"></span>
+</p>
+
+<p>
+&gamma; <span id="o_gamma"></span>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org5cf44dd" class="outline-2">
+<h2 id="org5cf44dd">Longitudinal steel</h2>
+<div class="outline-text-2" id="text-org5cf44dd">
+<p>
+Bar diameter <span id="i_db"></span>
+</p>
+
+<p>
+Yield stress <span id="i_fsy"></span>
+</p>
+
+<p>
+Bars <span id="i_nbars"></span> (Space: <span id="o_barspc"></span>)
+</p>
+
+<p>
+Steel area, A<sub>st</sub> <span id="o_Ast"></span> <span id="o_Astratio"></span>
+</p>
+
+<p>
+Steel modulus, E<sub>s</sub> <span id="o_Es"></span>
+</p>
+
+<p>
+Steel ult. strain, &epsilon;<sub>su</sub> <span id="o_esu"></span>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3d8bfac" class="outline-2">
+<h2 id="org3d8bfac">Steel ties</h2>
+<div class="outline-text-2" id="text-org3d8bfac">
+<p>
+Bar diameter <span id="i_dbt"></span> @ <span id="i_tieSpacing"></span>
+</p>
+
+<p>
+Yield stress <span id="i_fsyt"></span>
+</p>
+
+<p>
+Min tie spacing, S <span id="o_minTieSpacing"></span>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgfbf7a50" class="outline-2">
+<h2 id="orgfbf7a50">Column properties</h2>
+<div class="outline-text-2" id="text-orgfbf7a50">
+<p>
+Radius of gyration, r <span id="o_r"></span>
+</p>
+
+<p>
+Slenderness, &lambda; <span id="o_lambda"></span> <span class="outputspan"><input id="o_shortlong" class="right" type="text" value="0" readonly></span>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org16a1463" class="outline-2">
+<h2 id="org16a1463">Rates</h2>
+<div class="outline-text-2" id="text-org16a1463">
+<p>
+Steel density <span id="i_rhos"></span>
+</p>
+
+<p>
+Concrete volume <span id="o_concreteVol"></span>
+</p>
+
+<p>
+Reinforcement rate <span id="o_steelRate"></span>
+</p>
+</div>
+</div>
+</div>
+</body>
+</html>

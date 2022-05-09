@@ -360,3 +360,12 @@ svg text {
 .dashed {
   stroke-dasharray: 10 10;
 }
+
+.bigsvg {
+  width: 80%;
+  max-height: 80%;
+}
+.tendon {
+  stroke: black;
+  stroke-width: 2;
+}

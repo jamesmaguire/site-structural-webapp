@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2021-12-29 Wed 18:44 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Earthquake loading</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="james" />
+<link rel="stylesheet" type="text/css" href="../static/post.css" />
+<script type="text/javascript" src="../static/general.js"></script>
+<link rel="icon" type="image/ico" href="../static/icon/favicon.svg" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<body onload="initPage();">
+<script type="text/javascript" src="../static/eqkeload.js"></script>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up"> <img src="../static/icon/logo.svg" /> <a href="../index.html"> Home </a> </div><div id="content">
+<h1 class="title">Earthquake loading
+<br />
+<span class="subtitle">Based on AS1170.4 2007</span>
+</h1>
+<p>
+<button id='statusbutton' onclick='updatePage();'>▶ Run analysis</button>
+</p>
+
+<div id="outline-container-orgc005de5" class="outline-2">
+<h2 id="orgc005de5">Natural period</h2>
+<div class="outline-text-2" id="text-orgc005de5">
+<p>
+Frame type <span id="i_frametype"></span>
+</p>
+
+<p>
+k<sub>t</sub> <span id="o_kt"></span>
+</p>
+
+<p>
+Height to uppermost seismic mass, h<sub>n</sub> <span id="i_hn"></span>
+</p>
+
+<p>
+Natural period to Eq 6.2(7), <span id="o_T1simple"></span>
+</p>
+
+<p>
+Natural period, T<sub>1</sub> <span id="i_T1"></span>
+</p>
+
+<p>
+TODO: Check that base shear is within 70% of the value using Tn=6.2(7)
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgefb02c3" class="outline-2">
+<h2 id="orgefb02c3">Spectral shape factor</h2>
+<div class="outline-text-2" id="text-orgefb02c3">
+<p>
+Site sub-soil class <span id="i_SSC"></span>
+</p>
+
+<p>
+<div id="svgplot"></div>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org6fb62c3" class="outline-2">
+<h2 id="org6fb62c3">Base shear</h2>
+<div class="outline-text-2" id="text-org6fb62c3">
+<p>
+Probability factor, k<sub>p</sub> <span id="i_kp"></span>
+</p>
+
+<p>
+Hazard factor, Z <span id="i_Z"></span>
+</p>
+
+<p>
+S<sub>p</sub>/&mu; <span id="i_Spmu"></span>
+</p>
+
+<p>
+Seismic weight, W<sub>t</sub> <span id="o_Wt"></span>
+</p>
+
+<p>
+Base shear, V <span id="o_V"></span>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgd82b6dd" class="outline-2">
+<h2 id="orgd82b6dd">Equivalent static forces</h2>
+<div class="outline-text-2" id="text-orgd82b6dd">
+<p>
+Number of levels <span id="i_nlevels"></span>
+</p>
+
+<p>
+<div id="leveltable"></div>
+</p>
+</div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2021-12-29 Wed 18:44 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Pad footings</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="james" />
+<link rel="stylesheet" type="text/css" href="../static/post.css" />
+<script type="text/javascript" src="../static/general.js"></script>
+<link rel="icon" type="image/ico" href="../static/icon/favicon.svg" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<body onload="updatePage();">
+<script type="text/javascript" src="../static/pad-footing.js"></script>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up"> <img src="../static/icon/logo.svg" /> <a href="../index.html"> Home </a> </div><div id="content">
+<h1 class="title">Pad footings</h1>
+<p>
+<button id='statusbutton' onclick='updatePage();'>▶ Run analysis</button>
+</p>
+
+<div id="outline-container-org25823d1" class="outline-2">
+<h2 id="org25823d1">Figure</h2>
+<div class="outline-text-2" id="text-org25823d1">
+<p>
+<canvas id="padFootingFigure" width="250" height="250" draggable="true"></canvas>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgda2484e" class="outline-2">
+<h2 id="orgda2484e">Footing parameters</h2>
+<div class="outline-text-2" id="text-orgda2484e">
+<p>
+Footing height <span class="inputspan"><input id="footingHeight" class="right" type="number" value="500" onkeypress="eventHandler(event)" onblur="updatePage()"> mm</span>
+</p>
+
+<p>
+Footing length (x) <span class="inputspan"><input id="Lx" class="right" type="number" value="2400" onkeypress="eventHandler(event)" onblur="updatePage()"> mm</span>
+</p>
+
+<p>
+Footing length (y) <span class="inputspan"><input id="Ly" class="right" type="number" value="2400" onkeypress="eventHandler(event)" onblur="updatePage()"> mm</span>
+</p>
+
+<p>
+Footing area <span class="outputspan"><input id="footingArea" class="right" type="number" value="0" readonly> m<sup>2</sup></span>
+</p>
+
+<p>
+Concrete strength <span class="inputspan"><input id="concreteStrength" class="right" type="number" value="25" onkeypress="eventHandler(event)" onblur="updatePage()"> MPa</span>
+</p>
+
+<p>
+Concrete unit weight <span class="inputspan"><input id="gammac" class="right" type="number" value="25" onkeypress="eventHandler(event)" onblur="updatePage()"> kN/m<sup>3</sup></span>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org8200a2a" class="outline-2">
+<h2 id="org8200a2a">Column parameters</h2>
+<div class="outline-text-2" id="text-org8200a2a">
+<p>
+Column length (x) <span class="inputspan"><input id="Lcx" class="right" type="number" value="300" onkeypress="eventHandler(event)" onblur="updatePage()"> mm</span>
+</p>
+
+<p>
+Column length (y) <span class="inputspan"><input id="Lcy" class="right" type="number" value="1000" onkeypress="eventHandler(event)" onblur="updatePage()"> mm</span>
+</p>
+
+<p>
+Eccentricity (x) <span class="inputspan"><input id="eccentricityX" class="right" type="number" value="0" onkeypress="eventHandler(event)" onblur="updatePage()"> mm</span>
+</p>
+
+<p>
+Eccentricity (y) <span class="inputspan"><input id="eccentricityY" class="right" type="number" value="0" onkeypress="eventHandler(event)" onblur="updatePage()"> mm</span>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org5029167" class="outline-2">
+<h2 id="org5029167">Steel parameters</h2>
+<div class="outline-text-2" id="text-org5029167">
+<p>
+Steel strength <span class="inputspan"><input id="fsy" class="right" type="number" value="500" onkeypress="eventHandler(event)" onblur="updatePage()"> MPa</span>
+</p>
+
+<p>
+Bar diameter <span class="inputspan">N<input id="barDiameter" class="left" type="number" value="12" onkeypress="eventHandler(event)" onblur="updatePage()"></span>
+</p>
+
+<p>
+Cover <span class="inputspan"><input id="cover" class="right" type="number" value="50" onkeypress="eventHandler(event)" onblur="updatePage()"> mm</span>
+</p>
+
+<p>
+<label>Min fitments = </label><input id="fitments" type="checkbox" value="false" oninput="updatePage()"></input>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org5cf8a3d" class="outline-2">
+<h2 id="org5cf8a3d">Loading</h2>
+<div class="outline-text-2" id="text-org5cf8a3d">
+<p>
+Dead load <span class="inputspan"><input id="deadLoad" class="right" type="number" value="800" onkeypress="eventHandler(event)" onblur="updatePage()"> kN</span>
+</p>
+
+<p>
+Live load <span class="inputspan"><input id="liveLoad" class="right" type="number" value="200" onkeypress="eventHandler(event)" onblur="updatePage()"> kN</span>
+</p>
+
+<p>
+Dead load factor Ψ<sub>G</sub> <span class="inputspan"><input id="psiG" class="right" type="number" value="1.2" onkeypress="eventHandler(event)" onblur="updatePage()"> </span>
+</p>
+
+<p>
+Live load factor Ψ<sub>Q</sub> <span class="inputspan"><input id="psiQ" class="right" type="number" value="1.5" onkeypress="eventHandler(event)" onblur="updatePage()"> </span>
+</p>
+
+<p>
+Pressure (ULS) <span class="outputspan"><input id="pressureULS" class="right" type="number" value="0" readonly> kPa</span>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org5f18f10" class="outline-2">
+<h2 id="org5f18f10">Bearing</h2>
+<div class="outline-text-2" id="text-org5f18f10">
+<p>
+Soil bearing capacity <span class="inputspan"><input id="qs" class="right" type="number" value="250" onkeypress="eventHandler(event)" onblur="updatePage()"> kPa</span>
+</p>
+
+<p>
+Pressure applied q* <span class="outputspan"><input id="qstar" class="right" type="number" value="0" readonly> kPa</span>
+</p>
+
+<p>
+Bearing check <span class="outputspan"><input id="bearingCheck" class="right" type="number" value="0" readonly> </span>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org87600b3" class="outline-2">
+<h2 id="org87600b3">Punching shear</h2>
+<div class="outline-text-2" id="text-org87600b3">
+<p>
+Shear applied V* <span class="outputspan"><input id="shearLoad" class="right" type="number" value="0" readonly> kN</span>
+</p>
+
+<p>
+Shear capacity ΦV<sub>uo</sub> <span class="outputspan"><input id="punchingCapacity" class="right" type="number" value="0" readonly> kN</span>
+</p>
+
+<p>
+Punching shear check <span class="outputspan"><input id="punchingCheck" class="right" type="number" value="0" readonly> </span>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org9ee36ce" class="outline-2">
+<h2 id="org9ee36ce">Moment check</h2>
+<div class="outline-text-2" id="text-org9ee36ce">
+<p>
+Moment applied, M*<sub>x</sub> <span class="outputspan"><input id="momentX" class="right" type="number" value="0" readonly> kNm</span>, M*<sub>y</sub> <span class="outputspan"><input id="momentY" class="right" type="number" value="0" readonly> kNm</span>
+</p>
+
+<p>
+Bars in X <span class="outputspan"><input id="barsX" class="right" type="text" value="0" readonly></span>
+</p>
+
+<p>
+Bars in Y <span class="outputspan"><input id="barsY" class="right" type="text" value="0" readonly></span>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org02a3e8c" class="outline-2">
+<h2 id="org02a3e8c">Shear check</h2>
+<div class="outline-text-2" id="text-org02a3e8c">
+<p>
+Shear applied, V*<sub>x</sub> <span class="outputspan"><input id="shearX" class="right" type="number" value="0" readonly> kN</span>, V*<sub>y</sub> <span class="outputspan"><input id="shearY" class="right" type="number" value="0" readonly> kN</span>
+</p>
+
+<p>
+Shear capacity, ΦV<sub>ucx</sub> <span class="outputspan"><input id="shearCapacityX" class="right" type="number" value="0" readonly> kN</span>, ΦV<sub>ucy</sub> <span class="outputspan"><input id="shearCapacityY" class="right" type="number" value="0" readonly> kN</span>
+</p>
+
+<p>
+Shear check, V*<sub>x</sub>/ΦV<sub>ucx</sub> <span class="outputspan"><input id="shearCheckX" class="right" type="number" value="0" readonly> </span>, V*<sub>y</sub>/ΦV<sub>ucy</sub> <span class="outputspan"><input id="shearCheckY" class="right" type="number" value="0" readonly> </span>
+</p>
+</div>
+</div>
+</div>
+</body>
+</html>

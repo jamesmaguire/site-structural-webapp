@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2022-04-13 Wed 08:46 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Load combinations</title>
+<meta name="generator" content="Org mode" />
+<link rel="stylesheet" type="text/css" href="../static/post.css" />
+<script type="text/javascript" src="../static/general.js"></script>
+<link rel="icon" type="image/ico" href="../static/icon/favicon.svg" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<body onload="initPage();">
+<script type="text/javascript" src="../static/loadcombinations.js"></script>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up"> <img src="../static/icon/logo.svg" /> <a href="../index.html"> Home </a> </div><div id="content">
+<h1 class="title">Load combinations</h1>
+<p>
+<button id='statusbutton' onclick='updatePage();'>▶ Run analysis</button>
+</p>
+
+<div id="outline-container-org2bd1d88" class="outline-2">
+<h2 id="org2bd1d88">Loading</h2>
+<div class="outline-text-2" id="text-org2bd1d88">
+<p>
+Dead load, G <span id="i_G"></span>
+</p>
+
+<p>
+Live load, Q <span id="i_Q"></span>
+</p>
+
+<p>
+Wind (ult.), W<sub>s</sub> <span id="i_Wu"></span>
+</p>
+
+<p>
+Earthquake (ult.), E<sub>s</sub> <span id="i_Eu"></span>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org5f31bac" class="outline-2">
+<h2 id="org5f31bac">Stability</h2>
+</div>
+
+<div id="outline-container-org533c868" class="outline-2">
+<h2 id="org533c868">Strength</h2>
+<div class="outline-text-2" id="text-org533c868">
+<p>
+E<sub>d</sub> = [1.35G] <span id="o_strength1"></span> permanent action only
+</p>
+
+<p>
+E<sub>d</sub> = [1.2G, 1.5Q] <span id="o_strength2"></span> permanent and imposed action
+</p>
+
+<p>
+E<sub>d</sub> = [1.2G, 1.5&psi;<sub>l</sub>Q] <span id="o_strength3"></span> permanent and long-term imposed
+</p>
+
+<p>
+E<sub>d</sub> = [1.2G, W<sub>u</sub>, &psi;<sub>c</sub>Q] <span id="o_strength4"></span> permanent, wind and imposed
+</p>
+
+<p>
+E<sub>d</sub> = [0.9G, W<sub>u</sub>] <span id="o_strength5"></span> permanent and wind action reversal
+</p>
+
+<p>
+E<sub>d</sub> = [G, Eu, &psi;<sub>E</sub>Q] <span id="o_strength6"></span> permanent, earthquake and imposed action
+</p>
+</div>
+</div>
+</div>
+</body>
+</html>

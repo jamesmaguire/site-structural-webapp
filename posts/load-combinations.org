@@ -1,0 +1,41 @@
+#+title: Load combinations
+
+#+setupfile: post.setup
+#+HTML_HEAD: <body onload="initPage();">
+#+HTML_HEAD: <script type="text/javascript" src="../static/loadcombinations.js"></script>
+#+include: "../statusicon.org"
+
+* Loading
+
+# Units {{{span(i_unit)}}}
+
+Dead load, G {{{span(i_G)}}}
+
+Live load, Q {{{span(i_Q)}}}
+
+Wind (ult.), W_s {{{span(i_Wu)}}}
+
+Earthquake (ult.), E_s {{{span(i_Eu)}}}
+
+* Stability
+
+* Strength
+
+E_d = [1.35G] {{{span(o_strength1)}}} permanent action only
+
+E_d = [1.2G, 1.5Q] {{{span(o_strength2)}}} permanent and imposed action
+
+E_d = [1.2G, 1.5\psi_{l}Q] {{{span(o_strength3)}}} permanent and long-term imposed
+
+E_d = [1.2G, W_u, \psi_{c}Q] {{{span(o_strength4)}}} permanent, wind and imposed
+
+E_d = [0.9G, W_u] {{{span(o_strength5)}}} permanent and wind action reversal
+
+E_d = [G, Eu, \psi_{E}Q] {{{span(o_strength6)}}} permanent, earthquake and imposed action
+
+# E_d = [G, Su, \psi_{c}Q] {{{span(o_strength7)}}} permanent, actions given in Clause 4.2.3 and imposed action
+
+* Export on save                                                   :noexport:
+;; Local Variables:
+;; eval: (add-hook 'after-save-hook 'org-html-export-to-html nil t)
+;; End:

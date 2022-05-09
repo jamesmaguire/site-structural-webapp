@@ -19,6 +19,7 @@
 *** [[file:posts/top-reo.org][Top reo]]
 *** [[file:posts/punching-shear.org][Punching shear]]
 ** Design actions
+*** TODO [[file:posts/load-combinations.org][Load combinations]]
 *** [[file:posts/wind-loading.org][Wind loading]]
 *** TODO [[file:posts/earthquake-loading.org][Earthquake loading]]
 *** [[file:posts/lateral-earth-loading.org][Lateral earth loading]]
@@ -26,6 +27,7 @@
 *** [[file:posts/sdof-oscillator.html][SDOF oscillator]]
 *** [[file:posts/rebar-properties.org][Rebar properties]]
 *** [[file:posts/steel-sections.org][Hot rolled steel sections]]
+*** TODO [[file:posts/purlin-design.org][Purlin design]]
 
 * Description
 This is a website created by JM to solve simple structural engineering design problems. There is no warranty of correctness of these applications and results must be checked by other methods by an experienced engineer if they are to be used for design purposes.

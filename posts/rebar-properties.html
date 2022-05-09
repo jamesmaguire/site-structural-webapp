@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2021-12-29 Wed 18:44 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Rebar properties</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="james" />
+<link rel="stylesheet" type="text/css" href="../static/post.css" />
+<script type="text/javascript" src="../static/general.js"></script>
+<link rel="icon" type="image/ico" href="../static/icon/favicon.svg" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<body onload="updatePage();">
+<script type="text/javascript" src="../static/rebar-properties.js"></script>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up"> <img src="../static/icon/logo.svg" /> <a href="../index.html"> Home </a> </div><div id="content">
+<h1 class="title">Rebar properties</h1>
+<p>
+<button id='statusbutton' onclick='updatePage();'>▶ Run analysis</button>
+</p>
+
+<div id="outline-container-orgfb56e86" class="outline-2">
+<h2 id="orgfb56e86">Rebar properties</h2>
+<div class="outline-text-2" id="text-orgfb56e86">
+<p>
+Rebar diameter, d<sub>b</sub> <span class="inputspan">N<input id="i_db" class="left" type="number" value="16" onkeypress="eventHandler(event)" onblur="updatePage()"></span>
+</p>
+
+<p>
+Yield strength, f<sub>sy</sub> <span class="inputspan"><input id="i_fsy" class="right" type="number" value="500" onkeypress="eventHandler(event)" onblur="updatePage()"> MPa</span>
+</p>
+
+<p>
+Steel density, &rho; <span class="inputspan"><input id="i_rho" class="right" type="number" value="7850" onkeypress="eventHandler(event)" onblur="updatePage()"> kg/m<sup>2</sup></span>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb7d1ce5" class="outline-2">
+<h2 id="orgb7d1ce5">Cross section properties</h2>
+<div class="outline-text-2" id="text-orgb7d1ce5">
+<p>
+Area, A<sub>st</sub> <span class="outputspan"><input id="area" class="right" type="number" value="0" readonly> mm<sup>2</sup></span>,
+             <span class="outputspan"><input id="aream" class="right" type="number" value="0" readonly> m<sup>2</sup></span>
+</p>
+
+<p>
+Section modulus, Z <span class="outputspan"><input id="sectionmodulus" class="right" type="number" value="0" readonly> mm<sup>3</sup></span>,
+                   <span class="outputspan"><input id="sectionmodulusm" class="right" type="number" value="0" readonly> m<sup>3</sup></span>
+</p>
+
+<p>
+Second moment, I <span class="outputspan"><input id="secondmoment" class="right" type="number" value="0" readonly> mm<sup>4</sup></span>,
+                 <span class="outputspan"><input id="secondmomentm" class="right" type="number" value="0" readonly> m<sup>4</sup></span>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgab90ec8" class="outline-2">
+<h2 id="orgab90ec8">Capacity</h2>
+<div class="outline-text-2" id="text-orgab90ec8">
+<p>
+Moment capacity, M<sub>u</sub> <span class="outputspan"><input id="Mcapacity" class="right" type="number" value="0" readonly> kNm</span>
+</p>
+
+<p>
+(Apply &Phi; = 0.65 for bending for bending in singly reinforced wall)
+</p>
+
+<p>
+Axial capacity, N<sub>u</sub> <span class="outputspan"><input id="Ncapacity" class="right" type="number" value="0" readonly> kN</span>
+</p>
+
+<p>
+(Apply &Phi; of 0.85 for tension of Class N reo)
+</p>
+</div>
+</div>
+
+<div id="outline-container-org59a473a" class="outline-2">
+<h2 id="org59a473a">Rates</h2>
+<div class="outline-text-2" id="text-org59a473a">
+<p>
+Mass <span class="outputspan"><input id="o_barmass" class="right" type="number" value="0" readonly> kg/m</span>
+</p>
+
+<p>
+Spacing <span class="outputspan"><input id="o_barid" class="right" type="text" value="0" readonly></span> @ <span class="inputspan"><input id="i_spc" class="right" type="number" value="200" onkeypress="eventHandler(event)" onblur="updatePage()"> mm</span>
+</p>
+
+<p>
+Area rate <span class="outputspan"><input id="o_arearate" class="right" type="number" value="0" readonly> mm<sup>2</sup>/m</span> 
+</p>
+
+<p>
+Rate (one way) <span class="outputspan"><input id="o_barrate" class="right" type="number" value="0" readonly> kg/m<sup>2</sup></span>
+</p>
+
+<p>
+Rate (two way) <span class="outputspan"><input id="o_ratetwoway" class="right" type="number" value="0" readonly> kg/m<sup>2</sup></span>
+</p>
+
+<p>
+Rate (top+btm) <span class="outputspan"><input id="o_rateef" class="right" type="number" value="0" readonly> kg/m<sup>2</sup></span>
+</p>
+
+<p>
+Rate (two way, top+btm) <span class="outputspan"><input id="o_ratetwowayef" class="right" type="number" value="0" readonly> kg/m<sup>2</sup></span>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgd7a4daa" class="outline-2">
+<h2 id="orgd7a4daa">Development length (AS3600, Sec 13.1)</h2>
+<div class="outline-text-2" id="text-orgd7a4daa">
+<p>
+
+<select id="i_cdtype" value="iia" onchange="updatePage();">
+<option value="ia">Narrow elements, straight bars</option>
+<option value="ib">Narrow elements, cogged/hooked bars</option>
+<option value="ic">Narrow elements, looped bars</option>
+<option value="iia">Wide elements, straight bars</option>
+<option value="iib">Wide elements, cogged/hooked bars</option>
+<option value="iic">Wide elements, looped bars</option>
+</select>
+
+</p>
+
+<p>
+Concrete strength, f<sub>c</sub> <span class="inputspan"><input id="i_fc" class="right" type="number" value="40" onkeypress="eventHandler(event)" onblur="updatePage()"> MPa</span>
+</p>
+
+<p>
+Cover, c <span class="inputspan"><input id="i_c" class="right" type="number" value="30" onkeypress="eventHandler(event)" onblur="updatePage()"> mm</span>
+</p>
+
+<p>
+a <span class="inputspan"><input id="i_a" class="right" type="number" value="150" onkeypress="eventHandler(event)" onblur="updatePage()"> mm</span>
+</p>
+
+<p>
+c<sub>d</sub> <span class="outputspan"><input id="o_cd" class="right" type="number" value="0" readonly> mm</span>
+</p>
+
+<p>
+Basic development length, L<sub>sy,tb</sub> <span class="outputspan"><input id="o_Lsytb" class="right" type="number" value="0" readonly> mm</span>
+</p>
+
+<p>
+40d<sub>b</sub> <span class="outputspan"><input id="o_simpleL" class="right" type="number" value="0" readonly> mm</span>
+</p>
+</div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2021-12-29 Wed 18:44 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Strip footings</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="james" />
+<link rel="stylesheet" type="text/css" href="../static/post.css" />
+<script type="text/javascript" src="../static/general.js"></script>
+<link rel="icon" type="image/ico" href="../static/icon/favicon.svg" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<body onload="updatePage();">
+<script type="text/javascript" src="../static/strip-footing.js"></script>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up"> <img src="../static/icon/logo.svg" /> <a href="../index.html"> Home </a> </div><div id="content">
+<h1 class="title">Strip footings</h1>
+<p>
+<button id='statusbutton' onclick='updatePage();'>▶ Run analysis</button>
+</p>
+
+<div id="outline-container-org61e9e09" class="outline-2">
+<h2 id="org61e9e09">Figure</h2>
+<div class="outline-text-2" id="text-org61e9e09">
+<p>
+<canvas id="stripFootingFigure" width="250" height="250" draggable="true"></canvas>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3ab4dc4" class="outline-2">
+<h2 id="org3ab4dc4">Footing parameters</h2>
+<div class="outline-text-2" id="text-org3ab4dc4">
+<p>
+Footing height <span class="inputspan"><input id="footingHeight" class="right" type="number" value="500" onkeypress="eventHandler(event)" onblur="updatePage()"> mm</span>
+</p>
+
+<p>
+Footing width <span class="inputspan"><input id="footingWidth" class="right" type="number" value="2400" onkeypress="eventHandler(event)" onblur="updatePage()"> mm</span>
+</p>
+
+<p>
+Concrete strength <span class="inputspan"><input id="concreteStrength" class="right" type="number" value="32" onkeypress="eventHandler(event)" onblur="updatePage()"> MPa</span>
+</p>
+
+<p>
+Concrete unit weight <span class="inputspan"><input id="gammac" class="right" type="number" value="25" onkeypress="eventHandler(event)" onblur="updatePage()"> kN/m<sup>3</sup></span>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org6b03799" class="outline-2">
+<h2 id="org6b03799">Wall parameters</h2>
+<div class="outline-text-2" id="text-org6b03799">
+<p>
+Wall width <span class="inputspan"><input id="wallWidth" class="right" type="number" value="300" onkeypress="eventHandler(event)" onblur="updatePage()"> mm</span>
+</p>
+
+<p>
+Eccentricity <span class="inputspan"><input id="eccentricity" class="right" type="number" value="0" onkeypress="eventHandler(event)" onblur="updatePage()"> mm</span>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org1dc7f93" class="outline-2">
+<h2 id="org1dc7f93">Steel parameters</h2>
+<div class="outline-text-2" id="text-org1dc7f93">
+<p>
+Steel strength <span class="inputspan"><input id="fsy" class="right" type="number" value="500" onkeypress="eventHandler(event)" onblur="updatePage()"> MPa</span>
+</p>
+
+<p>
+Bar diameter <span class="inputspan"><input id="barDiameter" class="right" type="number" value="12" onkeypress="eventHandler(event)" onblur="updatePage()"> mm</span>
+</p>
+
+<p>
+Cover <span class="inputspan"><input id="cover" class="right" type="number" value="50" onkeypress="eventHandler(event)" onblur="updatePage()"> mm</span>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org87d45fc" class="outline-2">
+<h2 id="org87d45fc">Loading</h2>
+<div class="outline-text-2" id="text-org87d45fc">
+<p>
+Dead load <span class="inputspan"><input id="deadLoad" class="right" type="number" value="250" onkeypress="eventHandler(event)" onblur="updatePage()"> kN/m</span>
+</p>
+
+<p>
+Live load <span class="inputspan"><input id="liveLoad" class="right" type="number" value="50" onkeypress="eventHandler(event)" onblur="updatePage()"> kN/m</span>
+</p>
+
+<p>
+Dead load factor Ψ<sub>G</sub> <span class="inputspan"><input id="psiG" class="right" type="number" value="1.2" onkeypress="eventHandler(event)" onblur="updatePage()"> </span>
+</p>
+
+<p>
+Live load factor Ψ<sub>Q</sub> <span class="inputspan"><input id="psiQ" class="right" type="number" value="1.5" onkeypress="eventHandler(event)" onblur="updatePage()"> </span>
+</p>
+
+<p>
+Pressure (ULS) <span class="outputspan"><input id="pressureULS" class="right" type="number" value="0" readonly> kPa</span>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga1a05c9" class="outline-2">
+<h2 id="orga1a05c9">Bearing</h2>
+<div class="outline-text-2" id="text-orga1a05c9">
+<p>
+Soil bearing capacity <span class="inputspan"><input id="qs" class="right" type="number" value="250" onkeypress="eventHandler(event)" onblur="updatePage()"> kPa</span>
+</p>
+
+<p>
+Pressure applied q* <span class="outputspan"><input id="qstar" class="right" type="number" value="0" readonly> kPa</span>
+</p>
+
+<p>
+Bearing check <span class="outputspan"><input id="bearingCheck" class="right" type="number" value="0" readonly> </span>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3e7fc99" class="outline-2">
+<h2 id="org3e7fc99">Moment check</h2>
+<div class="outline-text-2" id="text-org3e7fc99">
+<p>
+Moment applied M*<sub>x</sub> <span class="outputspan"><input id="momentX" class="right" type="number" value="0" readonly> kNm/m</span>
+</p>
+
+<p>
+Reinforcement bars <span class="outputspan"><input id="bars" class="right" type="text" value="0" readonly></span>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org503a8a3" class="outline-2">
+<h2 id="org503a8a3">Shear check</h2>
+<div class="outline-text-2" id="text-org503a8a3">
+<p>
+Shear applied V* <span class="outputspan"><input id="shearLoad" class="right" type="number" value="0" readonly> kN/m</span>
+</p>
+
+<p>
+Shear capacity ΦV<sub>uc</sub> <span class="outputspan"><input id="shearCapacity" class="right" type="number" value="0" readonly> kN/m</span>
+</p>
+
+<p>
+Shear check V*/ΦV<sub>uc</sub> <span class="outputspan"><input id="shearCheck" class="right" type="number" value="0" readonly> </span>
+</p>
+</div>
+</div>
+</div>
+</body>
+</html>

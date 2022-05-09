@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2021-12-29 Wed 18:44 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Reinforced Concrete Column (rectangle)</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="james" />
+<link rel="stylesheet" type="text/css" href="../static/post.css" />
+<script type="text/javascript" src="../static/general.js"></script>
+<link rel="icon" type="image/ico" href="../static/icon/favicon.svg" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<body onload="initPage();">
+<script type="text/javascript" src="../static/rc-column-rect.js"></script>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up"> <img src="../static/icon/logo.svg" /> <a href="../index.html"> Home </a> </div><div id="content">
+<h1 class="title">Reinforced Concrete Column (rectangle)
+<br />
+<span class="subtitle">Based on AS3600 2018</span>
+</h1>
+<p>
+<button id='statusbutton' onclick='updatePage();'>▶ Run analysis</button>
+</p>
+
+<div id="outline-container-orgd32bfad" class="outline-2">
+<h2 id="orgd32bfad">Figure</h2>
+<div class="outline-text-2" id="text-orgd32bfad">
+<p>
+<div id="columnFigure"></div>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org60319e6" class="outline-2">
+<h2 id="org60319e6">Column geometry</h2>
+<div class="outline-text-2" id="text-org60319e6">
+<p>
+Height <span id="i_L"></span>
+</p>
+
+<p>
+Eff length factor, k<sub>X</sub> <span id="i_kx"></span>, k<sub>Y</sub> <span id="i_ky"></span>
+</p>
+
+<p>
+Dimension, D<sub>x</sub> <span id="i_Dx"></span>
+</p>
+
+<p>
+Dimension, D<sub>y</sub> <span id="i_Dy"></span>
+</p>
+
+<p>
+Gross area, A<sub>g</sub> <span id="o_Ag"></span>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org1d9fcc4" class="outline-2">
+<h2 id="org1d9fcc4">Concrete</h2>
+<div class="outline-text-2" id="text-org1d9fcc4">
+<p>
+Concrete strength <span id="i_fc"></span>
+</p>
+
+<p>
+Concrete cover <span id="i_c"></span>
+</p>
+
+<p>
+Ultimate strain, &epsilon;<sub>cu</sub> <span id="o_ecu"></span>
+</p>
+
+<p>
+&alpha;<sub>1</sub> <span id="o_alpha1"></span>
+</p>
+
+<p>
+&alpha;<sub>2</sub> <span id="o_alpha2"></span>
+</p>
+
+<p>
+&gamma; <span id="o_gamma"></span>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0163fa8" class="outline-2">
+<h2 id="org0163fa8">Longitudinal steel</h2>
+<div class="outline-text-2" id="text-org0163fa8">
+<p>
+Bar diameter <span id="i_db"></span>
+</p>
+
+<p>
+Yield stress <span id="i_fsy"></span>
+</p>
+
+<p>
+Bars - top/btm <span id="i_nbarstop"></span> (Space: <span id="o_barspcx"></span>)
+</p>
+
+<p>
+Bars - side <span id="i_nbarsside"></span> (Space: <span id="o_barspcy"></span>)
+</p>
+
+<p>
+Bars - total <span id="o_nbars"></span>
+</p>
+
+<p>
+Steel area, A<sub>st</sub> <span id="o_Ast"></span> <span id="o_Astratio"></span>
+</p>
+
+<p>
+Steel modulus, E<sub>s</sub> <span id="o_Es"></span>
+</p>
+
+<p>
+Steel ult. strain, &epsilon;<sub>su</sub> <span id="o_esu"></span>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org71ab545" class="outline-2">
+<h2 id="org71ab545">Steel ties</h2>
+<div class="outline-text-2" id="text-org71ab545">
+<p>
+Bar diameter <span id="i_dbt"></span> @ <span id="i_tieSpacing"></span>
+</p>
+
+<p>
+Yield stress <span id="i_fsyt"></span>
+</p>
+
+<p>
+Min tie spacing, S <span id="o_minTieSpacing"></span>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgecd0c5b" class="outline-2">
+<h2 id="orgecd0c5b">Column properties</h2>
+<div class="outline-text-2" id="text-orgecd0c5b">
+<p>
+Rad. gyration, r<sub>x</sub> <span id="o_rx"></span>, r<sub>y</sub> <span id="o_ry"></span>
+</p>
+
+<p>
+Slenderness, &lambda;<sub>x</sub> <span id="o_lambdax"></span> &lambda;<sub>y</sub> <span id="o_lambday"></span> 
+</p>
+
+<p>
+Radius of gyration, r <span id="o_r"></span>
+</p>
+
+<p>
+Slenderness, &lambda; <span id="o_lambda"></span> <span class="outputspan"><input id="o_shortlong" class="right" type="text" value="0" readonly></span>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org4ef884d" class="outline-2">
+<h2 id="org4ef884d">Design load</h2>
+<div class="outline-text-2" id="text-org4ef884d">
+<p>
+Dead load, G <span id="i_G"></span>
+</p>
+
+<p>
+Live load, Q <span id="i_Q"></span>
+</p>
+
+<p>
+Moment, M<sub>x</sub> <span id="i_Mx"></span> M<sub>y</sub> <span id="i_My"></span>
+</p>
+
+<p>
+Ultimate, N* <span id="o_Nuls"></span>
+</p>
+
+<p>
+Moment magnifier, &delta;<sub>b</sub> <span id="o_deltab"></span>
+</p>
+
+<p>
+Ultimate, M*<sub>x</sub> <span id="o_Mstarx"></span> M*<sub>y</sub> <span id="o_Mstary"></span>
+</p>
+
+<p>
+&beta;<sub>d</sub> <span id="o_beta"></span>
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-orgbe82af8" class="outline-2">
+<h2 id="orgbe82af8">Strength design</h2>
+<div class="outline-text-2" id="text-orgbe82af8">
+<p>
+Buckling capacity, N<sub>c</sub> <span id="o_Nc"></span>, &Phi;N<sub>c</sub> <span id="o_phiNc"></span>
+</p>
+
+<p>
+Buckling check, N*/&Phi;N<sub>c</sub> <span id="o_buckleCheck"></span>
+</p>
+
+<p>
+Squash capacity, N<sub>uo</sub> <span id="o_Nuo"></span>, &Phi;N<sub>uo</sub> <span id="o_phiNuo"></span>
+</p>
+
+<p>
+Squash check, N*/&Phi;N<sub>uo</sub> <span id="o_squashCheck"></span>
+</p>
+
+<p>
+Moment capacity, &Phi;M<sub>ux</sub> <span id="o_phiMux"></span> M*<sub>x</sub>/&Phi;M<sub>ux</sub> <span id="o_MxCheck"></span>
+</p>
+
+<p>
+Moment capacity, &Phi;M<sub>uy</sub> <span id="o_phiMuy"></span> M*<sub>y</sub>/&Phi;M<sub>uy</sub> <span id="o_MyCheck"></span>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf377cc2" class="outline-2">
+<h2 id="orgf377cc2">M-N plot (x)</h2>
+<div class="outline-text-2" id="text-orgf377cc2">
+<p>
+<div id="mnxPlot"></div>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3891b8f" class="outline-2">
+<h2 id="org3891b8f">M-N plot (y)</h2>
+<div class="outline-text-2" id="text-org3891b8f">
+<p>
+<div id="mnyPlot"></div>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0de219d" class="outline-2">
+<h2 id="org0de219d">Rates</h2>
+<div class="outline-text-2" id="text-org0de219d">
+<p>
+Steel density <span id="i_rhos"></span>
+</p>
+
+<p>
+Concrete volume <span id="o_concreteVol"></span>
+</p>
+
+<p>
+Reinforcement rate <span id="o_steelRate"></span>
+</p>
+</div>
+</div>
+</div>
+</body>
+</html>
