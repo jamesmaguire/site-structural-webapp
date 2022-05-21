@@ -286,7 +286,7 @@ svg text {
 .concrete {
   stroke-width: 1;
   stroke: black;
-  fill: none;
+  fill: #fafafa;
 }
 .planconcrete {
   stroke-width: 3;
@@ -359,6 +359,11 @@ svg text {
 }
 .dashed {
   stroke-dasharray: 10 10;
+}
+.downpipe {
+  stroke: grey;
+  stroke-width: 3;
+  fill: #fff;
 }
 
 .bigsvg {

@@ -7,11 +7,15 @@ function initPage()
     input('i_ky', {initval:1.0});
     input('i_Dx', {initval:600, units:'mm'});
     input('i_Dy', {initval:250, units:'mm'});
+    input('i_Dvoid', {initval:0, units:'mm'});
     output('o_Ag', {units:'mm<sup>2</sup>'});
+    output('o_Avoid', {units:'mm<sup>2</sup>'});
+    output('o_Ac', {units:'mm<sup>2</sup>'});
 
     // Concrete
     input('i_fc', {initval:32, units:'MPa'});
     input('i_c', {initval:40, units:'mm'});
+    output('o_cvoid', {units:'mm'});
     output('o_ecu');
     output('o_alpha1');
     output('o_alpha2');
@@ -91,6 +95,7 @@ function drawFigure()
     const col = {
         Dx:i_Dx.valueAsNumber,
         Dy:i_Dy.valueAsNumber,
+        Dvoid:i_Dvoid.valueAsNumber,
         c:i_c.valueAsNumber,
         db:i_db.valueAsNumber,
         dbt:i_dbt.valueAsNumber,
@@ -122,6 +127,13 @@ function drawFigure()
             +` L${xmap(0)},${ymap(col.Dy)}`
             +` L${xmap(col.Dx)},${ymap(col.Dy)}`
             +` L${xmap(col.Dx)},${ymap(0)} z`
+    });
+
+    const pipe = svgElemAppend(svg, 'circle', {
+        'class': 'downpipe',
+        'cx': xmap(col.Dx/2),
+        'cy': ymap(col.Dy/2),
+        'r': sf*col.Dvoid/2,
     });
 
     const bars = barCoords(col);
@@ -207,6 +219,7 @@ function runCalcs() {
         ky:i_ky.valueAsNumber,
         Dx:i_Dx.valueAsNumber,
         Dy:i_Dy.valueAsNumber,
+        Dvoid:i_Dvoid.valueAsNumber,
         db:i_db.valueAsNumber,
         nbarstop:i_nbarstop.valueAsNumber,
         nbarsside:i_nbarsside.valueAsNumber,
@@ -223,11 +236,21 @@ function runCalcs() {
     o_Astratio.value = (100*col.Ast/col.Ag).toFixed(2);
     setPassFail(o_Astratio, 1, inverse=true);
 
+    col.Avoid = Math.PI*col.Dvoid**2/4;
+    o_Avoid.value = col.Avoid.toFixed(0);
+    col.Ac = col.Ag - col.Avoid;
+    o_Ac.value = col.Ac.toFixed(0);
+
     // Material properties
     const concrete = {
         fc:i_fc.valueAsNumber,
         ecu:0.003,
     };
+
+    col.voidcovertoedge = (Math.min(col.Dx, col.Dy) - col.Dvoid)/2;
+    col.voidcovertorebar = col.voidcovertoedge - col.c - col.db - col.dbt;
+    o_cvoid.value = col.voidcovertorebar;
+ 
     concrete.alpha1 = Math.min(Math.max(1.0-0.003*concrete.fc, 0.72), 0.85);
     concrete.alpha2 = Math.max(0.85-0.0015*concrete.fc, 0.67);
     concrete.gamma = Math.max(0.97-0.0025*concrete.fc, 0.67);
@@ -292,7 +315,7 @@ function runCalcs() {
     o_Mstary.value = Mstary.toFixed(0);
     
     // Squash load
-    let Nuo = ((col.Ag - col.Ast)*concrete.alpha1*concrete.fc + col.Ast*steel.fsy)/1000;
+    let Nuo = ((col.Ac - col.Ast)*concrete.alpha1*concrete.fc + col.Ast*steel.fsy)/1000;
     let phiNuo = 0.65*Nuo;
     col.phiNuo = phiNuo;
     o_Nuo.value = Nuo.toFixed(0);

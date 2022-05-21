@@ -20,13 +20,19 @@ Dimension, D_x {{{span(i_Dx)}}}
 
 Dimension, D_y {{{span(i_Dy)}}}
 
+Downpipe, D_void {{{span(i_Dvoid)}}} {{{span(o_Avoid)}}}
+
 Gross area, A_g {{{span(o_Ag)}}}
+
+Concrete area, A_c {{{span(o_Ac)}}}
 
 * Concrete
 
 Concrete strength {{{span(i_fc)}}}
 
 Concrete cover {{{span(i_c)}}}
+
+Downpipe cover {{{span(o_cvoid)}}}
 
 Ultimate strain, \varepsilon{}_{cu} {{{span(o_ecu)}}}
 
@@ -89,7 +95,6 @@ Ultimate, M*_x {{{span(o_Mstarx)}}} M*_y {{{span(o_Mstary)}}}
 # Fire, N*_f {{{span(o_Nfire)}}}
 
 \beta_d {{{span(o_beta)}}}
-
 
 * Strength design
 

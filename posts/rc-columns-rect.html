@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-12-29 Wed 18:44 -->
+<!-- 2022-05-21 Sat 10:55 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Reinforced Concrete Column (rectangle)</title>
@@ -72,18 +72,18 @@ for the JavaScript code in this tag.
 <button id='statusbutton' onclick='updatePage();'>▶ Run analysis</button>
 </p>
 
-<div id="outline-container-orgd32bfad" class="outline-2">
-<h2 id="orgd32bfad">Figure</h2>
-<div class="outline-text-2" id="text-orgd32bfad">
+<div id="outline-container-orgc311126" class="outline-2">
+<h2 id="orgc311126">Figure</h2>
+<div class="outline-text-2" id="text-orgc311126">
 <p>
 <div id="columnFigure"></div>
 </p>
 </div>
 </div>
 
-<div id="outline-container-org60319e6" class="outline-2">
-<h2 id="org60319e6">Column geometry</h2>
-<div class="outline-text-2" id="text-org60319e6">
+<div id="outline-container-orgd41bcaa" class="outline-2">
+<h2 id="orgd41bcaa">Column geometry</h2>
+<div class="outline-text-2" id="text-orgd41bcaa">
 <p>
 Height <span id="i_L"></span>
 </p>
@@ -101,20 +101,32 @@ Dimension, D<sub>y</sub> <span id="i_Dy"></span>
 </p>
 
 <p>
+Downpipe, D<sub>void</sub> <span id="i_Dvoid"></span> <span id="o_Avoid"></span>
+</p>
+
+<p>
 Gross area, A<sub>g</sub> <span id="o_Ag"></span>
+</p>
+
+<p>
+Concrete area, A<sub>c</sub> <span id="o_Ac"></span>
 </p>
 </div>
 </div>
 
-<div id="outline-container-org1d9fcc4" class="outline-2">
-<h2 id="org1d9fcc4">Concrete</h2>
-<div class="outline-text-2" id="text-org1d9fcc4">
+<div id="outline-container-org8f2311c" class="outline-2">
+<h2 id="org8f2311c">Concrete</h2>
+<div class="outline-text-2" id="text-org8f2311c">
 <p>
 Concrete strength <span id="i_fc"></span>
 </p>
 
 <p>
 Concrete cover <span id="i_c"></span>
+</p>
+
+<p>
+Downpipe cover <span id="o_cvoid"></span>
 </p>
 
 <p>
@@ -135,9 +147,9 @@ Ultimate strain, &epsilon;<sub>cu</sub> <span id="o_ecu"></span>
 </div>
 </div>
 
-<div id="outline-container-org0163fa8" class="outline-2">
-<h2 id="org0163fa8">Longitudinal steel</h2>
-<div class="outline-text-2" id="text-org0163fa8">
+<div id="outline-container-orgb28bbab" class="outline-2">
+<h2 id="orgb28bbab">Longitudinal steel</h2>
+<div class="outline-text-2" id="text-orgb28bbab">
 <p>
 Bar diameter <span id="i_db"></span>
 </p>
@@ -172,9 +184,9 @@ Steel ult. strain, &epsilon;<sub>su</sub> <span id="o_esu"></span>
 </div>
 </div>
 
-<div id="outline-container-org71ab545" class="outline-2">
-<h2 id="org71ab545">Steel ties</h2>
-<div class="outline-text-2" id="text-org71ab545">
+<div id="outline-container-orgcb79120" class="outline-2">
+<h2 id="orgcb79120">Steel ties</h2>
+<div class="outline-text-2" id="text-orgcb79120">
 <p>
 Bar diameter <span id="i_dbt"></span> @ <span id="i_tieSpacing"></span>
 </p>
@@ -189,9 +201,9 @@ Min tie spacing, S <span id="o_minTieSpacing"></span>
 </div>
 </div>
 
-<div id="outline-container-orgecd0c5b" class="outline-2">
-<h2 id="orgecd0c5b">Column properties</h2>
-<div class="outline-text-2" id="text-orgecd0c5b">
+<div id="outline-container-org674a2de" class="outline-2">
+<h2 id="org674a2de">Column properties</h2>
+<div class="outline-text-2" id="text-org674a2de">
 <p>
 Rad. gyration, r<sub>x</sub> <span id="o_rx"></span>, r<sub>y</sub> <span id="o_ry"></span>
 </p>
@@ -210,9 +222,9 @@ Slenderness, &lambda; <span id="o_lambda"></span> <span class="outputspan"><inpu
 </div>
 </div>
 
-<div id="outline-container-org4ef884d" class="outline-2">
-<h2 id="org4ef884d">Design load</h2>
-<div class="outline-text-2" id="text-org4ef884d">
+<div id="outline-container-org2c369f5" class="outline-2">
+<h2 id="org2c369f5">Design load</h2>
+<div class="outline-text-2" id="text-org2c369f5">
 <p>
 Dead load, G <span id="i_G"></span>
 </p>
@@ -243,10 +255,9 @@ Ultimate, M*<sub>x</sub> <span id="o_Mstarx"></span> M*<sub>y</sub> <span id="o_
 </div>
 </div>
 
-
-<div id="outline-container-orgbe82af8" class="outline-2">
-<h2 id="orgbe82af8">Strength design</h2>
-<div class="outline-text-2" id="text-orgbe82af8">
+<div id="outline-container-org0a44dbb" class="outline-2">
+<h2 id="org0a44dbb">Strength design</h2>
+<div class="outline-text-2" id="text-org0a44dbb">
 <p>
 Buckling capacity, N<sub>c</sub> <span id="o_Nc"></span>, &Phi;N<sub>c</sub> <span id="o_phiNc"></span>
 </p>
@@ -273,27 +284,27 @@ Moment capacity, &Phi;M<sub>uy</sub> <span id="o_phiMuy"></span> M*<sub>y</sub>/
 </div>
 </div>
 
-<div id="outline-container-orgf377cc2" class="outline-2">
-<h2 id="orgf377cc2">M-N plot (x)</h2>
-<div class="outline-text-2" id="text-orgf377cc2">
+<div id="outline-container-org913ad4d" class="outline-2">
+<h2 id="org913ad4d">M-N plot (x)</h2>
+<div class="outline-text-2" id="text-org913ad4d">
 <p>
 <div id="mnxPlot"></div>
 </p>
 </div>
 </div>
 
-<div id="outline-container-org3891b8f" class="outline-2">
-<h2 id="org3891b8f">M-N plot (y)</h2>
-<div class="outline-text-2" id="text-org3891b8f">
+<div id="outline-container-org350f62c" class="outline-2">
+<h2 id="org350f62c">M-N plot (y)</h2>
+<div class="outline-text-2" id="text-org350f62c">
 <p>
 <div id="mnyPlot"></div>
 </p>
 </div>
 </div>
 
-<div id="outline-container-org0de219d" class="outline-2">
-<h2 id="org0de219d">Rates</h2>
-<div class="outline-text-2" id="text-org0de219d">
+<div id="outline-container-orge83fb02" class="outline-2">
+<h2 id="orge83fb02">Rates</h2>
+<div class="outline-text-2" id="text-orge83fb02">
 <p>
 Steel density <span id="i_rhos"></span>
 </p>
