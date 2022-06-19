@@ -3,11 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-04-13 Wed 08:46 -->
+<!-- 2022-06-19 Sun 17:17 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Load combinations</title>
 <meta name="generator" content="Org mode" />
+<meta name="author" content="james" />
 <link rel="stylesheet" type="text/css" href="../static/post.css" />
 <script type="text/javascript" src="../static/general.js"></script>
 <link rel="icon" type="image/ico" href="../static/icon/favicon.svg" />
@@ -15,26 +16,50 @@
 <body onload="initPage();">
 <script type="text/javascript" src="../static/loadcombinations.js"></script>
 <script type="text/javascript">
-// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
 <!--/*--><![CDATA[/*><!--*/
-     function CodeHighlightOn(elem, id)
-     {
-       var target = document.getElementById(id);
-       if(null != target) {
-         elem.classList.add("code-highlighted");
-         target.classList.add("code-highlighted");
-       }
-     }
-     function CodeHighlightOff(elem, id)
-     {
-       var target = document.getElementById(id);
-       if(null != target) {
-         elem.classList.remove("code-highlighted");
-         target.classList.remove("code-highlighted");
-       }
-     }
-    /*]]>*///-->
-// @license-end
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
 </script>
 </head>
 <body>
@@ -44,9 +69,13 @@
 <button id='statusbutton' onclick='updatePage();'>▶ Run analysis</button>
 </p>
 
-<div id="outline-container-org2bd1d88" class="outline-2">
-<h2 id="org2bd1d88">Loading</h2>
-<div class="outline-text-2" id="text-org2bd1d88">
+<p>
+Units <span id="i_unit"></span>
+</p>
+
+<div id="outline-container-org2bb19ce" class="outline-2">
+<h2 id="org2bb19ce">Loading</h2>
+<div class="outline-text-2" id="text-org2bb19ce">
 <p>
 Dead load, G <span id="i_G"></span>
 </p>
@@ -56,44 +85,82 @@ Live load, Q <span id="i_Q"></span>
 </p>
 
 <p>
-Wind (ult.), W<sub>s</sub> <span id="i_Wu"></span>
+Wind (ult.), W<sub>u</sub> <span id="i_Wu"></span>
 </p>
 
 <p>
-Earthquake (ult.), E<sub>s</sub> <span id="i_Eu"></span>
+Earthquake (ult.), E<sub>u</sub> <span id="i_Eu"></span>
 </p>
 </div>
 </div>
 
-<div id="outline-container-org5f31bac" class="outline-2">
-<h2 id="org5f31bac">Stability</h2>
+<div id="outline-container-org731a23f" class="outline-2">
+<h2 id="org731a23f">Combination factors</h2>
+<div class="outline-text-2" id="text-org731a23f">
+<p>
+Character of imposed action <span id="i_combtype"></span>
+</p>
+
+<p>
+Short-term factor, &psi;<sub>s</sub> <span id="o_psis"></span>
+</p>
+
+<p>
+Long-term factor, &psi;<sub>l</sub> <span id="o_psil"></span>
+</p>
+
+<p>
+Combination factor, &psi;<sub>c</sub> <span id="o_psic"></span>
+</p>
+
+<p>
+Earthquake combination factor, &psi;<sub>E</sub> <span id="o_psiE"></span>
+</p>
+</div>
 </div>
 
-<div id="outline-container-org533c868" class="outline-2">
-<h2 id="org533c868">Strength</h2>
-<div class="outline-text-2" id="text-org533c868">
+<div id="outline-container-org6b2580e" class="outline-2">
+<h2 id="org6b2580e">Strength</h2>
+<div class="outline-text-2" id="text-org6b2580e">
 <p>
-E<sub>d</sub> = [1.35G] <span id="o_strength1"></span> permanent action only
+E<sub>d</sub> = [1.35G] <span id="o_strength1"></span>
 </p>
 
 <p>
-E<sub>d</sub> = [1.2G, 1.5Q] <span id="o_strength2"></span> permanent and imposed action
+E<sub>d</sub> = [1.2G, 1.5Q] <span id="o_strength2"></span>
 </p>
 
 <p>
-E<sub>d</sub> = [1.2G, 1.5&psi;<sub>l</sub>Q] <span id="o_strength3"></span> permanent and long-term imposed
+E<sub>d</sub> = [1.2G, 1.5&psi;<sub>l</sub>Q] <span id="o_strength3"></span>
 </p>
 
 <p>
-E<sub>d</sub> = [1.2G, W<sub>u</sub>, &psi;<sub>c</sub>Q] <span id="o_strength4"></span> permanent, wind and imposed
+E<sub>d</sub> = [1.2G, W<sub>u</sub>, &psi;<sub>c</sub>Q] <span id="o_strength4"></span>
 </p>
 
 <p>
-E<sub>d</sub> = [0.9G, W<sub>u</sub>] <span id="o_strength5"></span> permanent and wind action reversal
+E<sub>d</sub> = [0.9G, W<sub>u</sub>] <span id="o_strength5"></span>
 </p>
 
 <p>
-E<sub>d</sub> = [G, Eu, &psi;<sub>E</sub>Q] <span id="o_strength6"></span> permanent, earthquake and imposed action
+E<sub>d</sub> = [G, Eu, &psi;<sub>E</sub>Q] <span id="o_strength6"></span>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org4dc0fb3" class="outline-2">
+<h2 id="org4dc0fb3">Servicibility</h2>
+<div class="outline-text-2" id="text-org4dc0fb3">
+<p>
+G <span id="o_service1"></span>
+</p>
+
+<p>
+G + &psi;<sub>sQ</sub> <span id="o_service2"></span>
+</p>
+
+<p>
+G + &psi;<sub>lQ</sub> <span id="o_service3"></span>
 </p>
 </div>
 </div>
