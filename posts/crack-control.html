@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2022-07-23 Sat 19:12 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Reinforcement rates</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="james" />
+<link rel="stylesheet" type="text/css" href="../static/post.css" />
+<script type="text/javascript" src="../static/general.js"></script>
+<link rel="icon" type="image/ico" href="../static/icon/favicon.svg" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<body onload="initPage();">
+<script type="text/javascript" src="../static/crackcontrol.js"></script>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up"> <img src="../static/icon/logo.svg" /> <a href="../index.html"> Home </a> </div><div id="content">
+<h1 class="title">Reinforcement rates
+<br />
+<span class="subtitle">Based on AS3600 2018(+A2)</span>
+</h1>
+<p>
+<button id='statusbutton' onclick='updatePage();'>▶ Run analysis</button>
+</p>
+
+<div id="outline-container-org01b8ab5" class="outline-2">
+<h2 id="org01b8ab5">Typical rates</h2>
+<div class="outline-text-2" id="text-org01b8ab5">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Type</th>
+<th scope="col" class="org-right">Bar dia. (mm)</th>
+<th scope="col" class="org-right">Spacing (mm)</th>
+<th scope="col" class="org-right">Rate (mm<sup>2</sup>/m)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">SL72</td>
+<td class="org-right">6.75</td>
+<td class="org-right">200</td>
+<td class="org-right">179</td>
+</tr>
+
+<tr>
+<td class="org-left">SL82</td>
+<td class="org-right">7.60</td>
+<td class="org-right">200</td>
+<td class="org-right">227</td>
+</tr>
+
+<tr>
+<td class="org-left">SL92</td>
+<td class="org-right">8.55</td>
+<td class="org-right">200</td>
+<td class="org-right">287</td>
+</tr>
+
+<tr>
+<td class="org-left">N12-200</td>
+<td class="org-right">12</td>
+<td class="org-right">200</td>
+<td class="org-right">565</td>
+</tr>
+
+<tr>
+<td class="org-left">N16-200</td>
+<td class="org-right">16</td>
+<td class="org-right">200</td>
+<td class="org-right">1005</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Bar diameter, d<sub>b</sub> <span id="i_db"></span> A<sub>b</sub> <span id="o_Ab"></span>
+</p>
+
+<p>
+Spacing <span id="i_spc"></span>
+</p>
+
+<p>
+Layers <span id="i_layers"></span>
+</p>
+
+<p>
+Rate <span id="o_rate"></span>
+</p>
+
+<p>
+&rho;<sub>w</sub> <span id="o_rhow"></span>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org7a5cf08" class="outline-2">
+<h2 id="org7a5cf08">Slabs</h2>
+<div class="outline-text-2" id="text-org7a5cf08">
+<p>
+Slab depth, D <span id="i_D"></span>
+</p>
+
+<p>
+Average prestress, &sigma;<sub>cp</sub> <span id="i_sigmacp"></span>
+</p>
+</div>
+
+<div id="outline-container-org50f32a5" class="outline-3">
+<h3 id="org50f32a5">Reinforcement for crack control in secondary direction (unrestrained slab)</h3>
+<div class="outline-text-3" id="text-org50f32a5">
+<p>
+Minimum (1.75-2.5&sigma;<sub>cp</sub>)bD<sup>-3</sup> <span id="o_cc0"></span>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3dbc6bd" class="outline-3">
+<h3 id="org3dbc6bd">Reinforcement for crack control in secondary direction (restrained slab)</h3>
+<div class="outline-text-3" id="text-org3dbc6bd">
+<p>
+Minor (1.75-2.5&sigma;<sub>cp</sub>)bD<sup>-3</sup> <span id="o_cc1"></span>
+</p>
+
+<p>
+Moderate (3.5-2.5&sigma;<sub>cp</sub>)bD<sup>-3</sup> <span id="o_cc2"></span>
+</p>
+
+<p>
+Strong (6.0-2.5&sigma;<sub>cp</sub>)bD<sup>-3</sup> <span id="o_cc3"></span>
+</p>
+
+<p>
+*Note, for exposure classification B1, B2, C1, C2 a strong degree of crack control is always required
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org2c5e86c" class="outline-2">
+<h2 id="org2c5e86c">Walls</h2>
+<div class="outline-text-2" id="text-org2c5e86c">
+<p>
+Wall thickness, t <span id="i_t"></span>
+</p>
+</div>
+
+<div id="outline-container-orga241a53" class="outline-3">
+<h3 id="orga241a53">Minimum reinforcement</h3>
+<div class="outline-text-3" id="text-orga241a53">
+<p>
+Minimum reo, &rho;<sub>w</sub> = <span id="o_rhowmin"></span>
+</p>
+
+<p>
+Vertical if N* &lt; 0.03f'<sub>c</sub> and &lt; 2 MPa, &rho;<sub>w</sub> = <span id="o_rhowv"></span>
+</p>
+
+<p>
+Horizontal if unrestrained <span id="o_rhowh"></span>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc023f89" class="outline-3">
+<h3 id="orgc023f89">Horizontal reinforcement for crack control (restrained)</h3>
+<div class="outline-text-3" id="text-orgc023f89">
+<p>
+Minor &rho;<sub>w</sub> = <span id="o_rhow1"></span>
+</p>
+
+<p>
+Monderate &rho;<sub>w</sub> = <span id="o_rhow2"></span>
+</p>
+
+<p>
+Strong &rho;<sub>w</sub> = <span id="o_rhow3"></span>
+</p>
+
+<p>
+*Note, for exposure classification B1, B2, C1, C2 a strong degree of crack control is always required
+</p>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

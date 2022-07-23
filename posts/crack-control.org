@@ -1,0 +1,74 @@
+#+title: Reinforcement rates
+#+subtitle: Based on AS3600 2018(+A2)
+
+#+setupfile: post.setup
+#+HTML_HEAD: <body onload="initPage();">
+#+HTML_HEAD: <script type="text/javascript" src="../static/crackcontrol.js"></script>
+#+include: "../statusicon.org"
+
+* Typical rates
+
+| Type    | Bar dia. (mm) | Spacing (mm) | Rate (mm^2/m) |
+|---------+---------------+--------------+---------------|
+| SL72    |          6.75 |          200 |           179 |
+| SL82    |          7.60 |          200 |           227 |
+| SL92    |          8.55 |          200 |           287 |
+| N12-200 |            12 |          200 |           565 |
+| N16-200 |            16 |          200 |          1005 |
+
+Bar diameter, d_b {{{span(i_db)}}} A_b {{{span(o_Ab)}}}
+
+Spacing {{{span(i_spc)}}}
+
+Layers {{{span(i_layers)}}}
+
+Rate {{{span(o_rate)}}}
+
+\rho_w {{{span(o_rhow)}}}
+
+* Slabs
+
+Slab depth, D {{{span(i_D)}}}
+
+Average prestress, \sigma_{cp} {{{span(i_sigmacp)}}}
+
+** Reinforcement for crack control in secondary direction (unrestrained slab)
+
+Minimum (1.75-2.5\sigma_{cp})bD^{-3} {{{span(o_cc0)}}}
+
+** Reinforcement for crack control in secondary direction (restrained slab)
+
+Minor (1.75-2.5\sigma_{cp})bD^{-3} {{{span(o_cc1)}}}
+
+Moderate (3.5-2.5\sigma_{cp})bD^{-3} {{{span(o_cc2)}}}
+
+Strong (6.0-2.5\sigma_{cp})bD^{-3} {{{span(o_cc3)}}}
+
+*Note, for exposure classification B1, B2, C1, C2 a strong degree of crack control is always required
+
+* Walls
+
+Wall thickness, t {{{span(i_t)}}}
+
+** Minimum reinforcement
+
+Minimum reo, \rho_w = {{{span(o_rhowmin)}}}
+
+Vertical if N* < 0.03f'_c and < 2 MPa, \rho_w = {{{span(o_rhowv)}}}
+
+Horizontal if unrestrained {{{span(o_rhowh)}}}
+
+** Horizontal reinforcement for crack control (restrained)
+
+Minor \rho_w = {{{span(o_rhow1)}}}
+
+Monderate \rho_w = {{{span(o_rhow2)}}}
+
+Strong \rho_w = {{{span(o_rhow3)}}}
+
+*Note, for exposure classification B1, B2, C1, C2 a strong degree of crack control is always required
+
+* Export on save                                                   :noexport:
+;; Local Variables:
+;; eval: (add-hook 'after-save-hook 'org-html-export-to-html nil t)
+;; End:

@@ -7,32 +7,57 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Structural design applications</title>
 <meta name="generator" content="Org mode" />
+<meta name="author" content="james" />
 <link rel="stylesheet" type="text/css" href="static/index.css" />
 <script type="text/javascript" src="static/general.js"></script>
 <link rel="icon" type="image/ico" href="static/icon/favicon.svg" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="manifest" href="static/manifest.webmanifest" />
 <script type="text/javascript">
-// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
 <!--/*--><![CDATA[/*><!--*/
-     function CodeHighlightOn(elem, id)
-     {
-       var target = document.getElementById(id);
-       if(null != target) {
-         elem.classList.add("code-highlighted");
-         target.classList.add("code-highlighted");
-       }
-     }
-     function CodeHighlightOff(elem, id)
-     {
-       var target = document.getElementById(id);
-       if(null != target) {
-         elem.classList.remove("code-highlighted");
-         target.classList.remove("code-highlighted");
-       }
-     }
-    /*]]>*///-->
-// @license-end
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
 </script>
 </head>
 <body>
@@ -43,109 +68,112 @@
 </div><div id="content">
 <h1 class="title">Structural design applications</h1>
 
-<div id="org0c0c231" class="figure">
+<div class="figure">
 <p><object type="image/svg+xml" data="./static/icon/logo.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 </p>
 </div>
 
-<div id="outline-container-orga0a8bd7" class="outline-2">
-<h2 id="orga0a8bd7">Application index</h2>
-<div class="outline-text-2" id="text-orga0a8bd7">
+<div id="outline-container-org3585485" class="outline-2">
+<h2 id="org3585485">Application index</h2>
+<div class="outline-text-2" id="text-org3585485">
 </div>
-<div id="outline-container-org6992f39" class="outline-3">
-<h3 id="org6992f39">Foundations</h3>
-<div class="outline-text-3" id="text-org6992f39">
+<div id="outline-container-orge7e5ea0" class="outline-3">
+<h3 id="orge7e5ea0">Foundations</h3>
+<div class="outline-text-3" id="text-orge7e5ea0">
 </div>
-<div id="outline-container-org27d12a4" class="outline-4">
-<h4 id="org27d12a4"><a href="posts/pad-footing.html">Pad footings</a></h4>
+<div id="outline-container-org41f5afb" class="outline-4">
+<h4 id="org41f5afb"><a href="posts/pad-footing.html">Pad footings</a></h4>
 </div>
-<div id="outline-container-org1a3b06f" class="outline-4">
-<h4 id="org1a3b06f"><a href="posts/strip-footing.html">Strip footings</a></h4>
+<div id="outline-container-orgda2ac70" class="outline-4">
+<h4 id="orgda2ac70"><a href="posts/strip-footing.html">Strip footings</a></h4>
 </div>
-<div id="outline-container-orgba4061d" class="outline-4">
-<h4 id="orgba4061d"><a href="posts/bored-piles.html">Bored piles</a></h4>
-</div>
-</div>
-<div id="outline-container-org1be8848" class="outline-3">
-<h3 id="org1be8848">Reinforced concrete design</h3>
-<div class="outline-text-3" id="text-org1be8848">
-</div>
-<div id="outline-container-org7986f19" class="outline-4">
-<h4 id="org7986f19"><a href="posts/rc-beam.html">RC Beam</a></h4>
-</div>
-<div id="outline-container-org3d742be" class="outline-4">
-<h4 id="org3d742be"><span class="todo TODO">TODO</span> <a href="posts/rc-columns-rect.html">RC Column (rectangle)</a></h4>
-</div>
-<div id="outline-container-org0593c0f" class="outline-4">
-<h4 id="org0593c0f"><span class="todo TODO">TODO</span> <a href="posts/rc-columns-circle.html">RC Column (circle)</a></h4>
-</div>
-<div id="outline-container-org2aed906" class="outline-4">
-<h4 id="org2aed906"><a href="posts/concrete-cover.html">Concrete cover</a></h4>
+<div id="outline-container-org63d20fd" class="outline-4">
+<h4 id="org63d20fd"><a href="posts/bored-piles.html">Bored piles</a></h4>
 </div>
 </div>
-<div id="outline-container-orgcd6c15e" class="outline-3">
-<h3 id="orgcd6c15e">Slabs</h3>
-<div class="outline-text-3" id="text-orgcd6c15e">
+<div id="outline-container-org6215de1" class="outline-3">
+<h3 id="org6215de1">Reinforced concrete design</h3>
+<div class="outline-text-3" id="text-org6215de1">
 </div>
-<div id="outline-container-org6956624" class="outline-4">
-<h4 id="org6956624"><a href="posts/integrity-reo.html">Integrity reo</a></h4>
+<div id="outline-container-orga1d8230" class="outline-4">
+<h4 id="orga1d8230"><a href="posts/rc-beam.html">RC Beam</a></h4>
 </div>
-<div id="outline-container-org4168a2e" class="outline-4">
-<h4 id="org4168a2e"><a href="posts/top-reo.html">Top reo</a></h4>
+<div id="outline-container-orgdc70c74" class="outline-4">
+<h4 id="orgdc70c74"><span class="todo TODO">TODO</span> <a href="posts/rc-columns-rect.html">RC Column (rectangle)</a></h4>
 </div>
-<div id="outline-container-org6b14e61" class="outline-4">
-<h4 id="org6b14e61"><a href="posts/punching-shear.html">Punching shear</a></h4>
+<div id="outline-container-org5d1f91e" class="outline-4">
+<h4 id="org5d1f91e"><span class="todo TODO">TODO</span> <a href="posts/rc-columns-circle.html">RC Column (circle)</a></h4>
 </div>
+<div id="outline-container-org21b47ec" class="outline-4">
+<h4 id="org21b47ec"><a href="posts/concrete-cover.html">Concrete cover</a></h4>
 </div>
-<div id="outline-container-org37dd48a" class="outline-3">
-<h3 id="org37dd48a">Design actions</h3>
-<div class="outline-text-3" id="text-org37dd48a">
-</div>
-<div id="outline-container-orgcfddb31" class="outline-4">
-<h4 id="orgcfddb31"><span class="todo TODO">TODO</span> <a href="posts/load-combinations.html">Load combinations</a></h4>
-</div>
-<div id="outline-container-orgedee8d1" class="outline-4">
-<h4 id="orgedee8d1"><a href="posts/wind-loading.html">Wind loading</a></h4>
-</div>
-<div id="outline-container-org752e164" class="outline-4">
-<h4 id="org752e164"><span class="todo TODO">TODO</span> <a href="posts/earthquake-loading.html">Earthquake loading</a></h4>
-</div>
-<div id="outline-container-orga25cc60" class="outline-4">
-<h4 id="orga25cc60"><a href="posts/lateral-earth-loading.html">Lateral earth loading</a></h4>
+<div id="outline-container-org9e96ccf" class="outline-4">
+<h4 id="org9e96ccf"><a href="posts/crack-control.html">Crack control</a></h4>
 </div>
 </div>
-<div id="outline-container-org9188e68" class="outline-3">
-<h3 id="org9188e68">Other tools</h3>
-<div class="outline-text-3" id="text-org9188e68">
+<div id="outline-container-orgac1383a" class="outline-3">
+<h3 id="orgac1383a">Slabs</h3>
+<div class="outline-text-3" id="text-orgac1383a">
 </div>
-<div id="outline-container-orgbd6cc63" class="outline-4">
-<h4 id="orgbd6cc63"><a href="posts/sdof-oscillator.html">SDOF oscillator</a></h4>
+<div id="outline-container-org66980a6" class="outline-4">
+<h4 id="org66980a6"><a href="posts/integrity-reo.html">Integrity reo</a></h4>
 </div>
-<div id="outline-container-org86479c4" class="outline-4">
-<h4 id="org86479c4"><a href="posts/rebar-properties.html">Rebar properties</a></h4>
+<div id="outline-container-org8e6d29f" class="outline-4">
+<h4 id="org8e6d29f"><a href="posts/top-reo.html">Top reo</a></h4>
 </div>
-<div id="outline-container-org3e8f42d" class="outline-4">
-<h4 id="org3e8f42d"><a href="posts/steel-sections.html">Hot rolled steel sections</a></h4>
+<div id="outline-container-org09d01c4" class="outline-4">
+<h4 id="org09d01c4"><a href="posts/punching-shear.html">Punching shear</a></h4>
 </div>
-<div id="outline-container-org0490949" class="outline-4">
-<h4 id="org0490949"><span class="todo TODO">TODO</span> <a href="posts/purlin-design.html">Purlin design</a></h4>
+</div>
+<div id="outline-container-org2a2bf9d" class="outline-3">
+<h3 id="org2a2bf9d">Design actions</h3>
+<div class="outline-text-3" id="text-org2a2bf9d">
+</div>
+<div id="outline-container-org338d0e4" class="outline-4">
+<h4 id="org338d0e4"><span class="todo TODO">TODO</span> <a href="posts/load-combinations.html">Load combinations</a></h4>
+</div>
+<div id="outline-container-org705fd22" class="outline-4">
+<h4 id="org705fd22"><a href="posts/wind-loading.html">Wind loading</a></h4>
+</div>
+<div id="outline-container-org25e38da" class="outline-4">
+<h4 id="org25e38da"><span class="todo TODO">TODO</span> <a href="posts/earthquake-loading.html">Earthquake loading</a></h4>
+</div>
+<div id="outline-container-orgda1fc43" class="outline-4">
+<h4 id="orgda1fc43"><a href="posts/lateral-earth-loading.html">Lateral earth loading</a></h4>
+</div>
+</div>
+<div id="outline-container-orgabac63e" class="outline-3">
+<h3 id="orgabac63e">Other tools</h3>
+<div class="outline-text-3" id="text-orgabac63e">
+</div>
+<div id="outline-container-org90cf002" class="outline-4">
+<h4 id="org90cf002"><a href="posts/sdof-oscillator.html">SDOF oscillator</a></h4>
+</div>
+<div id="outline-container-org86a703d" class="outline-4">
+<h4 id="org86a703d"><a href="posts/rebar-properties.html">Rebar properties</a></h4>
+</div>
+<div id="outline-container-org486d672" class="outline-4">
+<h4 id="org486d672"><a href="posts/steel-sections.html">Hot rolled steel sections</a></h4>
+</div>
+<div id="outline-container-org1543c82" class="outline-4">
+<h4 id="org1543c82"><span class="todo TODO">TODO</span> <a href="posts/purlin-design.html">Purlin design</a></h4>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org1ccb139" class="outline-2">
-<h2 id="org1ccb139">Description</h2>
-<div class="outline-text-2" id="text-org1ccb139">
+<div id="outline-container-org19c5caf" class="outline-2">
+<h2 id="org19c5caf">Description</h2>
+<div class="outline-text-2" id="text-org19c5caf">
 <p>
 This is a website created by JM to solve simple structural engineering design problems. There is no warranty of correctness of these applications and results must be checked by other methods by an experienced engineer if they are to be used for design purposes.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgcd924ae" class="outline-2">
-<h2 id="orgcd924ae">Usage</h2>
-<div class="outline-text-2" id="text-orgcd924ae">
+<div id="outline-container-orgaf5bd66" class="outline-2">
+<h2 id="orgaf5bd66">Usage</h2>
+<div class="outline-text-2" id="text-orgaf5bd66">
 <p>
 Input boxes that look like <input value="this" readonly></input> are design inputs. Once an input is changed, the indicator on the top right of the page will show that the analysis must be re-run. To run the analysis press <code>ENTER</code> in any of the input fields.
 </p>

@@ -14,6 +14,7 @@
 *** TODO [[file:posts/rc-columns-rect.org][RC Column (rectangle)]]
 *** TODO [[file:posts/rc-columns-circle.org][RC Column (circle)]]
 *** [[file:posts/concrete-cover.org][Concrete cover]]
+*** [[file:posts/crack-control.org][Crack control]]
 ** Slabs
 *** [[file:posts/integrity-reo.org][Integrity reo]]
 *** [[file:posts/top-reo.org][Top reo]]
