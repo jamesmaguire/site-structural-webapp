@@ -118,15 +118,15 @@ input[type=number] {
   -webkit-appearance: none;
   -moz-appearance: textfield;
 }
-.PASS {
+.PASS, .PASS input {
   background: honeydew;
   color: darkgreen;
 }
-.FAIL {
+.FAIL, .FAIL input{
   background: lightpink;
   color: darkred;
 }
-.DIM {
+.DIM, .DIM input {
   opacity: 0.5;
 }
 hr {
@@ -149,6 +149,15 @@ h1 {
 h2 {
   padding-bottom: 0.7rem;
 }
+h3 {
+  padding-bottom: 0.7rem;
+  font-weight: normal;
+  text-decoration: underline;
+}
+.outline-text-3 {
+  margin-left: 0.8rem;
+}
+
 
 .descbox {
   margin-top: -1rem;
