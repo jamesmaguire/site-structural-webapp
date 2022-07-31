@@ -353,6 +353,18 @@ function runCalcs() {
         plotPts.push(pt);
     }
     plotPts.push(purebend);
+
+    // confinement
+    plotPts.push([0,0]);
+    plotPts.push([0, 0.75*phiNuo]);
+    for (let ku=0.999; ku>0; ku-=0.01) {
+        pt = MNpointx(ku, col, concrete, steel);
+        if(pt[1] < 0.75*phiNuo && pt[1] > 0.65*0.3*col.Ac*concrete.fc/1000) {
+            plotPts.push([0.6*pt[0], pt[1]]);
+        }
+    }
+    plotPts.push([phiMux/0.65, 0.65*0.3*col.Ac*concrete.fc/1000]);
+
     drawPlot('mnxPlot', plotPts, keyPts, designxpt, o_MxCheck.value<1.0);
 
     // Load-moment plot (Y)
