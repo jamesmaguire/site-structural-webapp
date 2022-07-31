@@ -1,8 +1,7 @@
 #+title: Load combinations
 
 #+setupfile: post.setup
-#+HTML_HEAD: <body onload="initPage();">
-#+HTML_HEAD: <script type="text/javascript" src="../static/loadcombinations.js"></script>
+#+HTML_HEAD: <script type="text/javascript" src="../static/loadcombinations.js" defer></script>
 #+include: "../statusicon.org"
 
 Units {{{span(i_unit)}}}

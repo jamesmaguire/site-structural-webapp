@@ -107,3 +107,5 @@ const data = {
     ],
 
 };
+
+initPage();

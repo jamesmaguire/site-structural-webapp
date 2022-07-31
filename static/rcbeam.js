@@ -341,3 +341,5 @@ function bendingPhi(ku) {
     let phi = 1.24 - 13*ku/12;
     return Math.min(Math.max(phi, 0.65), 0.85);
 }
+
+initPage();

@@ -210,3 +210,5 @@ function layoutDiagram (divId, db, Dx, Dy, Lx, Ly, scalenumx, scalenumy) {
     }, `N${db} x${Ly}`);
 
 }
+
+initPage();

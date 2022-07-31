@@ -2,8 +2,7 @@
 #+subtitle: Based on AS1170.2 2011
 
 #+setupfile: post.setup
-#+HTML_HEAD: <body onload="updatePage();">
-#+HTML_HEAD: <script type="text/javascript" src="../static/windload.js"></script>
+#+HTML_HEAD: <script type="text/javascript" src="../static/windload.js" defer></script>
 #+include: "../statusicon.org"
 
 * Inputs

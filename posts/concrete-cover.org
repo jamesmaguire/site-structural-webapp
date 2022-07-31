@@ -2,8 +2,7 @@
 #+subtitle: Based on AS3600 2018(+A2)
 
 #+setupfile: post.setup
-#+HTML_HEAD: <body onload="initPage();">
-#+HTML_HEAD: <script type="text/javascript" src="../static/concretecover.js"></script>
+#+HTML_HEAD: <script type="text/javascript" src="../static/concretecover.js" defer defer></script>
 #+include: "../statusicon.org"
 
 * Exposure classification

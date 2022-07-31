@@ -1,7 +1,6 @@
 #+title: Strip footings
 #+setupfile: post.setup
-#+HTML_HEAD: <body onload="updatePage();">
-#+HTML_HEAD: <script type="text/javascript" src="../static/strip-footing.js"></script>
+#+HTML_HEAD: <script type="text/javascript" src="../static/strip-footing.js" defer></script>
 #+include: "../statusicon.org"
 
 * Figure

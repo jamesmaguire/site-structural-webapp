@@ -120,3 +120,5 @@ function barCoords(col) {
 function runCalcs() {
 
 }
+
+initPage();

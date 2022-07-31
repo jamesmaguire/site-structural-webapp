@@ -181,3 +181,5 @@ function checkBending()
     barsY.style.width = "12ch";
     
 }
+
+initPage();

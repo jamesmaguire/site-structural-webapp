@@ -88,3 +88,5 @@ function updatePage() {
 
     setStatusUptodate();
 }
+
+initPage();

@@ -1,7 +1,6 @@
 #+title: Rebar properties
 #+setupfile: post.setup
-#+HTML_HEAD: <body onload="updatePage();">
-#+HTML_HEAD: <script type="text/javascript" src="../static/rebar-properties.js"></script>
+#+HTML_HEAD: <script type="text/javascript" src="../static/rebar-properties.js" defer></script>
 #+include: "../statusicon.org"
 
 * Rebar properties

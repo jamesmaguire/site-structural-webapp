@@ -218,3 +218,5 @@ function runCalcs()
     o_Mt.value = Mhcalc.toFixed(2);
 
 }
+
+initPage();

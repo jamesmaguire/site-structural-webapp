@@ -73,3 +73,5 @@ function gentable (bars, cover) {
     html += "</table>";
     return html;
 }
+
+initPage();

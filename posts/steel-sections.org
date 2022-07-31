@@ -1,9 +1,8 @@
 #+title: Steel sections
 
 #+setupfile: post.setup
-#+HTML_HEAD: <body onload="initPage();">
 #+HTML_HEAD: <script type="text/javascript" src="../static/steelsections.json"></script>
-#+HTML_HEAD: <script type="text/javascript" src="../static/steelsections.js"></script>
+#+HTML_HEAD: <script type="text/javascript" src="../static/steelsections.js" defer></script>
 #+include: "../statusicon.org"
 
 * Member selection

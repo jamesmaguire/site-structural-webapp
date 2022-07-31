@@ -2,8 +2,7 @@
 #+subtitle: Based on AS3600 2018(+A2) Clause 9.2
 
 #+setupfile: post.setup
-#+HTML_HEAD: <body onload="initPage();">
-#+HTML_HEAD: <script type="text/javascript" src="../static/topreo.js"></script>
+#+HTML_HEAD: <script type="text/javascript" src="../static/topreo.js" defer></script>
 #+include: "../statusicon.org"
 
 * 9.1.2 Reinforcement and tendon distribution in two-way flat slabs

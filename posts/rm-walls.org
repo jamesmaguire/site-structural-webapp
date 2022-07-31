@@ -1,7 +1,6 @@
 #+title: Reinforced masonry walls
 #+setupfile: post.setup
-#+HTML_HEAD: <body onload="updatePage();">
-#+HTML_HEAD: <script type="text/javascript" src="../static/rm-walls.js"></script>
+#+HTML_HEAD: <script type="text/javascript" src="../static/rm-walls.js" defer></script>
 #+include: "../statusicon.org"
 
 * Wall properties

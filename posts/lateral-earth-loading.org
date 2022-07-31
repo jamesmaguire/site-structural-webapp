@@ -1,7 +1,6 @@
 #+title: Lateral earth loading
 #+setupfile: post.setup
-#+HTML_HEAD: <body onload="initPage();">
-#+HTML_HEAD: <script type="text/javascript" src="../static/lateral-earth-loading.js"></script>
+#+HTML_HEAD: <script type="text/javascript" src="../static/lateral-earth-loading.js" defer></script>
 #+include: "../statusicon.org"
 
 * Figure

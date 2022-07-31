@@ -2,8 +2,7 @@
 #+subtitle: Based on AS1170.4 2007
 
 #+setupfile: post.setup
-#+HTML_HEAD: <body onload="initPage();">
-#+HTML_HEAD: <script type="text/javascript" src="../static/eqkeload.js"></script>
+#+HTML_HEAD: <script type="text/javascript" src="../static/eqkeload.js" defer></script>
 #+include: "../statusicon.org"
 
 * Natural period

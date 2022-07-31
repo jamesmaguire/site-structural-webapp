@@ -97,3 +97,5 @@ function outofplaneShear() {
     opshearcheck.value = (Vd/Vu).toFixed(2);
     setPassFail(opshearcheck);
 }
+
+initPage();

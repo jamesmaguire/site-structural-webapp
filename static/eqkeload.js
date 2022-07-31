@@ -323,3 +323,5 @@ function SpectralShapeFactor(SSC, T) {
         return [];
     }
 }
+
+initPage();

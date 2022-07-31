@@ -136,3 +136,5 @@ function designBars()
     let pitch = Math.floor((15*barDiameter.valueAsNumber) / 50)*50;
     tieBars.value = "R" + tieDiameter.value + "-" + pitch;
 }
+
+initPage();

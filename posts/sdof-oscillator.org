@@ -1,8 +1,7 @@
 #+title: SDOF oscillator
 
 #+setupfile: post.setup
-#+HTML_HEAD: <body onload="initPage();">
-#+HTML_HEAD: <script type="text/javascript" src="../static/sdof-oscillator.js"></script>
+#+HTML_HEAD: <script type="text/javascript" src="../static/sdof-oscillator.js" defer></script>
 #+include: "../statusicon.org"
 
 * System properties

@@ -1,7 +1,6 @@
 #+title: Pad footings
 #+setupfile: post.setup
-#+HTML_HEAD: <body onload="updatePage();">
-#+HTML_HEAD: <script type="text/javascript" src="../static/pad-footing.js"></script>
+#+HTML_HEAD: <script type="text/javascript" src="../static/pad-footing.js" defer></script>
 #+include: "../statusicon.org"
 
 * Figure

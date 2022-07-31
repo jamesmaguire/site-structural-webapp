@@ -130,3 +130,5 @@ function runCalcs() {
     o_Pp.value = Pp.toPrecision(3);
 
 }
+
+initPage();

@@ -1,7 +1,6 @@
 #+title: Bored piles
 #+setupfile: post.setup
-#+HTML_HEAD: <body onload="updatePage();">
-#+HTML_HEAD: <script type="text/javascript" src="../static/bored-pile.js"></script>
+#+HTML_HEAD: <script type="text/javascript" src="../static/bored-pile.js" defer></script>
 #+include: "../statusicon.org"
 
 * Figure

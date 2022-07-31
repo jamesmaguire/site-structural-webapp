@@ -2,8 +2,7 @@
 #+subtitle: Based on AS3600 2018(+A2) Clause 9.2
 
 #+setupfile: post.setup
-#+HTML_HEAD: <body onload="initPage();">
-#+HTML_HEAD: <script type="text/javascript" src="../static/integrityreo.js"></script>
+#+HTML_HEAD: <script type="text/javascript" src="../static/integrityreo.js" defer></script>
 #+include: "../statusicon.org"
 
 * 9.2.2   Minimum structural integrity reinforcement 

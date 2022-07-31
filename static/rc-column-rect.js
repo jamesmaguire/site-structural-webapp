@@ -635,3 +635,5 @@ function drawPlot(plotid, points, labelledpts, designpt, pass) {
     svgElemAppend(svg, 'path', {'class': 'plotline', 'd': linepath});
 
 }
+
+initPage();

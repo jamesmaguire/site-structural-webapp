@@ -148,3 +148,5 @@ function checkBending()
     bars.style.width = "12ch";
 
 }
+
+initPage();

@@ -238,3 +238,5 @@ function UArelpath(sec) {
     path+=`z`;
     return path;
 }
+
+initPage();

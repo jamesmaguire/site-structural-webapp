@@ -286,3 +286,5 @@ function fTriangularImpulse(t, P, td)
         return 0;
     }
 }
+
+initPage();

@@ -1,7 +1,6 @@
 #+title: Reinforced Concrete Column (Circle)
 #+setupfile: post.setup
-#+HTML_HEAD: <body onload="initPage();">
-#+HTML_HEAD: <script type="text/javascript" src="../static/rc-column-circ.js"></script>
+#+HTML_HEAD: <script type="text/javascript" src="../static/rc-column-circ.js" defer></script>
 #+include: "../statusicon.org"
 
 
