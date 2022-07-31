@@ -193,13 +193,13 @@ table {
   table-layout: fixed;
   min-width: 100%;
   border-collapse: collapse;
-  border: 1px #aaa solid;
+  border: 1px #ccc solid;
   border-radius: 5px;
   margin-bottom: 0.8rem;
-  box-shadow: 2px 2px #aaa;
+  box-shadow: 1px 1px #ccc;
 }
 th {
-  border: 1px #aaa solid;
+  border: 1px #ccc solid;
   font-weight: bold;
   text-align: center;
   padding: 0.2rem;
@@ -214,7 +214,7 @@ tr.selected {
 td {
   text-align: center;
   padding: 0.2rem;
-  border: 1px #aaa solid;
+  border: 1px #ccc solid;
 }
 .org-left {
   text-align: left;
