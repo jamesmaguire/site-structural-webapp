@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-12-29 Wed 18:44 -->
+<!-- 2022-07-31 Sun 17:49 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Wind loading</title>
@@ -13,8 +13,7 @@
 <script type="text/javascript" src="../static/general.js"></script>
 <link rel="icon" type="image/ico" href="../static/icon/favicon.svg" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<body onload="updatePage();">
-<script type="text/javascript" src="../static/windload.js"></script>
+<script type="text/javascript" src="../static/windload.js" defer></script>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -72,9 +71,9 @@ for the JavaScript code in this tag.
 <button id='statusbutton' onclick='updatePage();'>▶ Run analysis</button>
 </p>
 
-<div id="outline-container-org2a8a846" class="outline-2">
-<h2 id="org2a8a846">Inputs</h2>
-<div class="outline-text-2" id="text-org2a8a846">
+<div id="outline-container-org1d70f8f" class="outline-2">
+<h2 id="org1d70f8f">Inputs</h2>
+<div class="outline-text-2" id="text-org1d70f8f">
 <p>
 Region
 
@@ -124,9 +123,9 @@ Dynamic response factor factor, C<sub>dyn</sub> <span class="inputspan"><input i
 </div>
 </div>
 
-<div id="outline-container-org1186ad5" class="outline-2">
-<h2 id="org1186ad5">Multipliers</h2>
-<div class="outline-text-2" id="text-org1186ad5">
+<div id="outline-container-org445f862" class="outline-2">
+<h2 id="org445f862">Multipliers</h2>
+<div class="outline-text-2" id="text-org445f862">
 <p>
 Terrain height multiplier, M<sub>z,cat</sub> <span class="inputspan"><input id="i_Mzcat" class="right" type="number" value="1.0" onkeypress="eventHandler(event)" onblur="updatePage()"> </span>
 </p>
@@ -141,9 +140,9 @@ Topographic multiplier, M<sub>t</sub> <span class="inputspan"><input id="i_Mt" c
 </div>
 </div>
 
-<div id="outline-container-orgb5815b2" class="outline-2">
-<h2 id="orgb5815b2">Design wind</h2>
-<div class="outline-text-2" id="text-orgb5815b2">
+<div id="outline-container-org20048f8" class="outline-2">
+<h2 id="org20048f8">Design wind</h2>
+<div class="outline-text-2" id="text-org20048f8">
 <p>
 Density of air, &rho;<sub>air</sub> <span class="outputspan"><input id="o_rho" class="right" type="number" value="0" readonly> kg/m<sup>3</sup></span>
 </p>
@@ -174,9 +173,9 @@ p - Design wind pressure
 </div>
 </div>
 
-<div id="outline-container-org70cec82" class="outline-2">
-<h2 id="org70cec82">Figure</h2>
-<div class="outline-text-2" id="text-org70cec82">
+<div id="outline-container-orgf46bb4d" class="outline-2">
+<h2 id="orgf46bb4d">Figure</h2>
+<div class="outline-text-2" id="text-orgf46bb4d">
 <p>
 North direction <span class="inputspan"><input id="i_northdir" class="right" type="number" value="90" onkeypress="eventHandler(event)" onblur="updatePage()"> &deg</span>
 </p>
@@ -195,9 +194,9 @@ Structure Y dim <span class="inputspan"><input id="i_ydim" class="right" type="n
 </div>
 </div>
 
-<div id="outline-container-orge40be9d" class="outline-2">
-<h2 id="orge40be9d">Terrain height multiplier calculator</h2>
-<div class="outline-text-2" id="text-orge40be9d">
+<div id="outline-container-orgf8b1542" class="outline-2">
+<h2 id="orgf8b1542">Terrain height multiplier calculator</h2>
+<div class="outline-text-2" id="text-orgf8b1542">
 <p>
 Terrain height multiplier, M<sub>z,cat</sub> <span class="outputspan"><input id="o_Mzcatcalc" class="right" type="number" value="0" readonly> </span>
 </p>
@@ -224,9 +223,9 @@ Height, z <span class="inputspan"><input id="i_zz" class="right" type="number" v
 </div>
 </div>
 
-<div id="outline-container-org9ef829f" class="outline-2">
-<h2 id="org9ef829f">Shielding multiplier calculator</h2>
-<div class="outline-text-2" id="text-org9ef829f">
+<div id="outline-container-org28d97d6" class="outline-2">
+<h2 id="org28d97d6">Shielding multiplier calculator</h2>
+<div class="outline-text-2" id="text-org28d97d6">
 <p>
 Avg roof height of shielding bldgs, h<sub>s</sub> <span class="inputspan"><input id="i_hs" class="right" type="number" value="5" onkeypress="eventHandler(event)" onblur="updatePage()"> m</span>
 </p>
@@ -253,9 +252,9 @@ Shielding multiplier, M<sub>s</sub> <span class="outputspan"><input id="o_Mscalc
 </div>
 </div>
 
-<div id="outline-container-orgf04fa5e" class="outline-2">
-<h2 id="orgf04fa5e">Topographic multiplier calculator</h2>
-<div class="outline-text-2" id="text-orgf04fa5e">
+<div id="outline-container-orge753c38" class="outline-2">
+<h2 id="orge753c38">Topographic multiplier calculator</h2>
+<div class="outline-text-2" id="text-orge753c38">
 <p>
 
 <select id="i_hilltype" value="hill" onchange="updatePage();">

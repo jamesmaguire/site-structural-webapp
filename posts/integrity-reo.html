@@ -3,38 +3,62 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-03-03 Thu 11:51 -->
+<!-- 2022-07-31 Sun 17:49 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Integrity reinforcement</title>
 <meta name="generator" content="Org mode" />
+<meta name="author" content="james" />
 <link rel="stylesheet" type="text/css" href="../static/post.css" />
 <script type="text/javascript" src="../static/general.js"></script>
 <link rel="icon" type="image/ico" href="../static/icon/favicon.svg" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<body onload="initPage();">
-<script type="text/javascript" src="../static/integrityreo.js"></script>
+<script type="text/javascript" src="../static/integrityreo.js" defer></script>
 <script type="text/javascript">
-// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
 <!--/*--><![CDATA[/*><!--*/
-     function CodeHighlightOn(elem, id)
-     {
-       var target = document.getElementById(id);
-       if(null != target) {
-         elem.classList.add("code-highlighted");
-         target.classList.add("code-highlighted");
-       }
-     }
-     function CodeHighlightOff(elem, id)
-     {
-       var target = document.getElementById(id);
-       if(null != target) {
-         elem.classList.remove("code-highlighted");
-         target.classList.remove("code-highlighted");
-       }
-     }
-    /*]]>*///-->
-// @license-end
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
 </script>
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -69,9 +93,9 @@
 <button id='statusbutton' onclick='updatePage();'>▶ Run analysis</button>
 </p>
 
-<div id="outline-container-orgb6aa89d" class="outline-2">
-<h2 id="orgb6aa89d">9.2.2   Minimum structural integrity reinforcement</h2>
-<div class="outline-text-2" id="text-orgb6aa89d">
+<div id="outline-container-orgb150cf0" class="outline-2">
+<h2 id="orgb150cf0">9.2.2   Minimum structural integrity reinforcement</h2>
+<div class="outline-text-2" id="text-orgb150cf0">
 <p>
 The summation of the area of bottom reinforcement connecting the slab, drop panel, or slab band to the column or column capital on all faces of the periphery of a column or column capital shall be not less than, 
 </p>
@@ -86,9 +110,9 @@ in which N* is the column reaction from the floor slab at the ultimate limit sta
 </div>
 </div>
 
-<div id="outline-container-orgf2516c3" class="outline-2">
-<h2 id="orgf2516c3">Inputs</h2>
-<div class="outline-text-2" id="text-orgf2516c3">
+<div id="outline-container-orge97545d" class="outline-2">
+<h2 id="orge97545d">Inputs</h2>
+<div class="outline-text-2" id="text-orge97545d">
 <p>
 Slab reaction, N<sup>*</sup> <span id="i_Nstar"></span>
 </p>
@@ -107,9 +131,9 @@ Strength reduction factor, &Phi; <span id="i_phi"></span>
 </div>
 </div>
 
-<div id="outline-container-org842f525" class="outline-2">
-<h2 id="org842f525">Column geometry</h2>
-<div class="outline-text-2" id="text-org842f525">
+<div id="outline-container-orga19e7ff" class="outline-2">
+<h2 id="orga19e7ff">Column geometry</h2>
+<div class="outline-text-2" id="text-orga19e7ff">
 <p>
 Column D<sub>x</sub> <span id="i_Dx"></span>
 </p>
@@ -136,9 +160,9 @@ c<sub>d</sub> (straight) <span id="o_cds"></span>
 </div>
 </div>
 
-<div id="outline-container-org0840351" class="outline-2">
-<h2 id="org0840351">Design option 1</h2>
-<div class="outline-text-2" id="text-org0840351">
+<div id="outline-container-org5c440c2" class="outline-2">
+<h2 id="org5c440c2">Design option 1</h2>
+<div class="outline-text-2" id="text-org5c440c2">
 <p>
 Bar size <span id="i_db1"></span>
 </p>
@@ -165,9 +189,9 @@ Length Y-Y <span id="o_Lyy1"></span>
 </div>
 </div>
 
-<div id="outline-container-org6835469" class="outline-2">
-<h2 id="org6835469">Design option 2</h2>
-<div class="outline-text-2" id="text-org6835469">
+<div id="outline-container-orga3059a3" class="outline-2">
+<h2 id="orga3059a3">Design option 2</h2>
+<div class="outline-text-2" id="text-orga3059a3">
 <p>
 Bar size <span id="i_db2"></span>
 </p>
@@ -194,9 +218,9 @@ Length Y-Y <span id="o_Lyy2"></span>
 </div>
 </div>
 
-<div id="outline-container-org7701e79" class="outline-2">
-<h2 id="org7701e79">Design option 3</h2>
-<div class="outline-text-2" id="text-org7701e79">
+<div id="outline-container-org06f4b34" class="outline-2">
+<h2 id="org06f4b34">Design option 3</h2>
+<div class="outline-text-2" id="text-org06f4b34">
 <p>
 Bar size <span id="i_db3"></span>
 </p>

@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-05-21 Sat 10:55 -->
+<!-- 2022-07-31 Sun 17:49 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Reinforced Concrete Column (rectangle)</title>
@@ -13,8 +13,7 @@
 <script type="text/javascript" src="../static/general.js"></script>
 <link rel="icon" type="image/ico" href="../static/icon/favicon.svg" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<body onload="initPage();">
-<script type="text/javascript" src="../static/rc-column-rect.js"></script>
+<script type="text/javascript" src="../static/rc-column-rect.js" defer></script>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -72,18 +71,18 @@ for the JavaScript code in this tag.
 <button id='statusbutton' onclick='updatePage();'>▶ Run analysis</button>
 </p>
 
-<div id="outline-container-orgc311126" class="outline-2">
-<h2 id="orgc311126">Figure</h2>
-<div class="outline-text-2" id="text-orgc311126">
+<div id="outline-container-org803ac5d" class="outline-2">
+<h2 id="org803ac5d">Figure</h2>
+<div class="outline-text-2" id="text-org803ac5d">
 <p>
 <div id="columnFigure"></div>
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgd41bcaa" class="outline-2">
-<h2 id="orgd41bcaa">Column geometry</h2>
-<div class="outline-text-2" id="text-orgd41bcaa">
+<div id="outline-container-org84fbf88" class="outline-2">
+<h2 id="org84fbf88">Column geometry</h2>
+<div class="outline-text-2" id="text-org84fbf88">
 <p>
 Height <span id="i_L"></span>
 </p>
@@ -114,9 +113,9 @@ Concrete area, A<sub>c</sub> <span id="o_Ac"></span>
 </div>
 </div>
 
-<div id="outline-container-org8f2311c" class="outline-2">
-<h2 id="org8f2311c">Concrete</h2>
-<div class="outline-text-2" id="text-org8f2311c">
+<div id="outline-container-orga0f6438" class="outline-2">
+<h2 id="orga0f6438">Concrete</h2>
+<div class="outline-text-2" id="text-orga0f6438">
 <p>
 Concrete strength <span id="i_fc"></span>
 </p>
@@ -147,9 +146,9 @@ Ultimate strain, &epsilon;<sub>cu</sub> <span id="o_ecu"></span>
 </div>
 </div>
 
-<div id="outline-container-orgb28bbab" class="outline-2">
-<h2 id="orgb28bbab">Longitudinal steel</h2>
-<div class="outline-text-2" id="text-orgb28bbab">
+<div id="outline-container-org9963987" class="outline-2">
+<h2 id="org9963987">Longitudinal steel</h2>
+<div class="outline-text-2" id="text-org9963987">
 <p>
 Bar diameter <span id="i_db"></span>
 </p>
@@ -184,9 +183,9 @@ Steel ult. strain, &epsilon;<sub>su</sub> <span id="o_esu"></span>
 </div>
 </div>
 
-<div id="outline-container-orgcb79120" class="outline-2">
-<h2 id="orgcb79120">Steel ties</h2>
-<div class="outline-text-2" id="text-orgcb79120">
+<div id="outline-container-org50ddfae" class="outline-2">
+<h2 id="org50ddfae">Steel ties</h2>
+<div class="outline-text-2" id="text-org50ddfae">
 <p>
 Bar diameter <span id="i_dbt"></span> @ <span id="i_tieSpacing"></span>
 </p>
@@ -201,9 +200,9 @@ Min tie spacing, S <span id="o_minTieSpacing"></span>
 </div>
 </div>
 
-<div id="outline-container-org674a2de" class="outline-2">
-<h2 id="org674a2de">Column properties</h2>
-<div class="outline-text-2" id="text-org674a2de">
+<div id="outline-container-org589f695" class="outline-2">
+<h2 id="org589f695">Column properties</h2>
+<div class="outline-text-2" id="text-org589f695">
 <p>
 Rad. gyration, r<sub>x</sub> <span id="o_rx"></span>, r<sub>y</sub> <span id="o_ry"></span>
 </p>
@@ -222,9 +221,9 @@ Slenderness, &lambda; <span id="o_lambda"></span> <span class="outputspan"><inpu
 </div>
 </div>
 
-<div id="outline-container-org2c369f5" class="outline-2">
-<h2 id="org2c369f5">Design load</h2>
-<div class="outline-text-2" id="text-org2c369f5">
+<div id="outline-container-orgdae37c6" class="outline-2">
+<h2 id="orgdae37c6">Design load</h2>
+<div class="outline-text-2" id="text-orgdae37c6">
 <p>
 Dead load, G <span id="i_G"></span>
 </p>
@@ -255,9 +254,9 @@ Ultimate, M*<sub>x</sub> <span id="o_Mstarx"></span> M*<sub>y</sub> <span id="o_
 </div>
 </div>
 
-<div id="outline-container-org0a44dbb" class="outline-2">
-<h2 id="org0a44dbb">Strength design</h2>
-<div class="outline-text-2" id="text-org0a44dbb">
+<div id="outline-container-orgc73f418" class="outline-2">
+<h2 id="orgc73f418">Strength design</h2>
+<div class="outline-text-2" id="text-orgc73f418">
 <p>
 Buckling capacity, N<sub>c</sub> <span id="o_Nc"></span>, &Phi;N<sub>c</sub> <span id="o_phiNc"></span>
 </p>
@@ -284,27 +283,27 @@ Moment capacity, &Phi;M<sub>uy</sub> <span id="o_phiMuy"></span> M*<sub>y</sub>/
 </div>
 </div>
 
-<div id="outline-container-org913ad4d" class="outline-2">
-<h2 id="org913ad4d">M-N plot (x)</h2>
-<div class="outline-text-2" id="text-org913ad4d">
+<div id="outline-container-org5bbd2e0" class="outline-2">
+<h2 id="org5bbd2e0">M-N plot (x)</h2>
+<div class="outline-text-2" id="text-org5bbd2e0">
 <p>
 <div id="mnxPlot"></div>
 </p>
 </div>
 </div>
 
-<div id="outline-container-org350f62c" class="outline-2">
-<h2 id="org350f62c">M-N plot (y)</h2>
-<div class="outline-text-2" id="text-org350f62c">
+<div id="outline-container-org71af635" class="outline-2">
+<h2 id="org71af635">M-N plot (y)</h2>
+<div class="outline-text-2" id="text-org71af635">
 <p>
 <div id="mnyPlot"></div>
 </p>
 </div>
 </div>
 
-<div id="outline-container-orge83fb02" class="outline-2">
-<h2 id="orge83fb02">Rates</h2>
-<div class="outline-text-2" id="text-orge83fb02">
+<div id="outline-container-orgf797d63" class="outline-2">
+<h2 id="orgf797d63">Rates</h2>
+<div class="outline-text-2" id="text-orgf797d63">
 <p>
 Steel density <span id="i_rhos"></span>
 </p>
