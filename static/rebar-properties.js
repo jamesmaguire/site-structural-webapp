@@ -105,4 +105,4 @@ function calcMomentCapacity(fsy, db) {
     return fsy*calcSectionModulus(db)/1000**2; // kNm
 }
 
-initPage();
+updatePage();

@@ -137,4 +137,4 @@ function designBars()
     tieBars.value = "R" + tieDiameter.value + "-" + pitch;
 }
 
-initPage();
+updatePage();

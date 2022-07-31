@@ -219,4 +219,4 @@ function runCalcs()
 
 }
 
-initPage();
+updatePage();

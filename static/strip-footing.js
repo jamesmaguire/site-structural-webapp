@@ -149,4 +149,4 @@ function checkBending()
 
 }
 
-initPage();
+updatePage();

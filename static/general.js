@@ -126,5 +126,3 @@ function svgElemAppend(parent, type, dict, content='')
     parent.appendChild(element);
     return element;
 }
-
-initPage();
