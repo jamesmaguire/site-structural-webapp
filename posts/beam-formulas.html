@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2022-08-13 Sat 21:48 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Beam Design Formulas</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="james" />
+<link rel="stylesheet" type="text/css" href="../static/post.css" />
+<script type="text/javascript" src="../static/general.js"></script>
+<link rel="icon" type="image/ico" href="../static/icon/favicon.svg" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script type="text/javascript" src="../static/beamformulas.js" defer></script>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up"> <img src="../static/icon/logo.svg" /> <a href="../index.html"> Home </a> </div><div id="content">
+<h1 class="title">Beam Design Formulas</h1>
+<p>
+<button id='statusbutton' onclick='updatePage();'>▶ Run analysis</button>
+</p>
+
+<div id="outline-container-org42db9fd" class="outline-2">
+<h2 id="org42db9fd">Beam properties</h2>
+<div class="outline-text-2" id="text-org42db9fd">
+<p>
+Beam type <span id="i_beamtype"></span>
+</p>
+
+<p>
+Uniformly distributed load, w <span id="i_w"></span>
+</p>
+
+<p>
+Length, L <span id="i_L"></span>
+</p>
+
+<p>
+Modulus, E <span id="i_E"></span>
+</p>
+
+<p>
+Second moment, I <span id="i_I"></span>
+</p>
+
+<p>
+Location, x <span id="i_x"></span>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org5912598" class="outline-2">
+<h2 id="org5912598">Simply supported beam with UDL</h2>
+<div class="outline-text-2" id="text-org5912598">
+<p>
+Shear, V<sub>max</sub>=wL/2 <span id="o_Vmax"></span>
+</p>
+
+<p>
+Shear, V<sub>x</sub>=w(L/2-x) <span id="o_Vx"></span>
+</p>
+
+<p>
+Moment, M<sub>max</sub>=wL<sup>2</sup>/8 <span id="o_Mmax"></span>
+</p>
+
+<p>
+Moment, M<sub>x</sub>=wx(L-x)/2 <span id="o_Mx"></span>
+</p>
+
+<p>
+Displacement, &delta;<sub>max</sub>=5wL<sup>4</sup>/384EI <span id="o_dmax"></span>
+</p>
+
+<p>
+Displacement, &delta;<sub>x</sub>=wx(L<sup>3</sup>-2Lx<sup>2</sup>+x<sup>3</sup>)/24EI <span id="o_dx"></span>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orged1059d" class="outline-2">
+<h2 id="orged1059d">Diagram</h2>
+<div class="outline-text-2" id="text-orged1059d">
+<p>
+<div id="beamDiagram"></div>
+</p>
+</div>
+</div>
+</div>
+</body>
+</html>

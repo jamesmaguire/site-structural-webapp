@@ -1,0 +1,42 @@
+#+title: Beam Design Formulas
+
+#+setupfile: post.setup
+#+HTML_HEAD: <script type="text/javascript" src="../static/beamformulas.js" defer></script>
+#+include: "../statusicon.org"
+
+* Beam properties
+
+Beam type {{{span(i_beamtype)}}}
+
+Uniformly distributed load, w {{{span(i_w)}}}
+
+Length, L {{{span(i_L)}}}
+
+Modulus, E {{{span(i_E)}}}
+
+Second moment, I {{{span(i_I)}}}
+
+Location, x {{{span(i_x)}}}
+
+* Simply supported beam with UDL
+
+Shear, V_{max}=wL/2 {{{span(o_Vmax)}}}
+
+Shear, V_x=w(L/2-x) {{{span(o_Vx)}}}
+
+Moment, M_{max}=wL^2/8 {{{span(o_Mmax)}}}
+
+Moment, M_x=wx(L-x)/2 {{{span(o_Mx)}}}
+
+Displacement, \delta_{max}=5wL^4/384EI {{{span(o_dmax)}}}
+
+Displacement, \delta_x=wx(L^3-2Lx^2+x^3)/24EI {{{span(o_dx)}}}
+
+* Diagram
+
+{{{div(beamDiagram)}}}
+
+* Export on save                                                   :noexport:
+;; Local Variables:
+;; eval: (add-hook 'after-save-hook 'org-html-export-to-html nil t)
+;; End:

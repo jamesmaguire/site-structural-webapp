@@ -24,6 +24,7 @@
 *** [[file:posts/wind-loading.org][Wind loading]]
 *** TODO [[file:posts/earthquake-loading.org][Earthquake loading]]
 *** [[file:posts/lateral-earth-loading.org][Lateral earth loading]]
+*** TODO [[file:posts/beam-formulas.org][Beam design formulas]]
 ** Other tools
 *** [[file:posts/sdof-oscillator.html][SDOF oscillator]]
 *** [[file:posts/rebar-properties.org][Rebar properties]]

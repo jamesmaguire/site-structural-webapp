@@ -386,3 +386,16 @@ svg text {
   stroke: black;
   stroke-width: 2;
 }
+
+.diagramaxis {
+  stroke: black;
+  stroke-width: 3;
+}
+.diagramarea {
+  stroke: black;
+  fill: #fafafa;
+}
+.diagramx {
+  stroke: orange;
+  stroke-width: 3;
+}
