@@ -1,6 +1,6 @@
 const steelSectionData = [
     {
-        "Designation": "200x200x26EA",
+        "Designation": "200x26EA",
         "Mass": 76.8,
         "t": 26,
         "r1": 18,
@@ -27,7 +27,7 @@ const steelSectionData = [
         "J": 2250,
     },
     {
-        "Designation": "200x200x20EA",
+        "Designation": "200x20EA",
         "Mass": 60.1,
         "t": 20,
         "r1": 18,
@@ -54,7 +54,7 @@ const steelSectionData = [
         "J": 1060,
     },
     {
-        "Designation": "200x200x18EA",
+        "Designation": "200x18EA",
         "Mass": 54.4,
         "t": 18,
         "r1": 18,
@@ -81,7 +81,7 @@ const steelSectionData = [
         "J": 778,
     },
     {
-        "Designation": "200x200x16EA",
+        "Designation": "200x16EA",
         "Mass": 48.7,
         "t": 16,
         "r1": 18,
@@ -108,7 +108,7 @@ const steelSectionData = [
         "J": 554,
     },
     {
-        "Designation": "200x200x13EA",
+        "Designation": "200x13EA",
         "Mass": 40,
         "t": 13,
         "r1": 18,
@@ -135,7 +135,7 @@ const steelSectionData = [
         "J": 304,
     },
     {
-        "Designation": "150x150x19EA",
+        "Designation": "150x19EA",
         "Mass": 42.1,
         "t": 19,
         "r1": 13,
@@ -162,7 +162,7 @@ const steelSectionData = [
         "J": 657,
     },
     {
-        "Designation": "150x150x16EA",
+        "Designation": "150x16EA",
         "Mass": 35.4,
         "t": 15.8,
         "r1": 13,
@@ -189,7 +189,7 @@ const steelSectionData = [
         "J": 386,
     },
     {
-        "Designation": "150x150x12EA",
+        "Designation": "150x12EA",
         "Mass": 27.3,
         "t": 12,
         "r1": 13,
@@ -216,7 +216,7 @@ const steelSectionData = [
         "J": 174,
     },
     {
-        "Designation": "150x150x10EA",
+        "Designation": "150x10EA",
         "Mass": 21.9,
         "t": 9.5,
         "r1": 13,
@@ -243,7 +243,7 @@ const steelSectionData = [
         "J": 88.9,
     },
     {
-        "Designation": "125x125x16EA",
+        "Designation": "125x16EA",
         "Mass": 29.1,
         "t": 15.8,
         "r1": 10,
@@ -270,7 +270,7 @@ const steelSectionData = [
         "J": 313,
     },
     {
-        "Designation": "125x125x12EA",
+        "Designation": "125x12EA",
         "Mass": 22.5,
         "t": 12,
         "r1": 10,
@@ -297,7 +297,7 @@ const steelSectionData = [
         "J": 141,
     },
     {
-        "Designation": "125x125x10EA",
+        "Designation": "125x10EA",
         "Mass": 18,
         "t": 9.5,
         "r1": 10,
@@ -324,7 +324,7 @@ const steelSectionData = [
         "J": 71.9,
     },
     {
-        "Designation": "125x125x8EA",
+        "Designation": "125x8EA",
         "Mass": 14.9,
         "t": 7.8,
         "r1": 10,
@@ -351,7 +351,7 @@ const steelSectionData = [
         "J": 40.6,
     },
     {
-        "Designation": "100x100x12EA",
+        "Designation": "100x12EA",
         "Mass": 17.7,
         "t": 12,
         "r1": 8,
@@ -378,7 +378,7 @@ const steelSectionData = [
         "J": 110,
     },
     {
-        "Designation": "100x100x10EA",
+        "Designation": "100x10EA",
         "Mass": 14.2,
         "t": 9.5,
         "r1": 8,
@@ -405,7 +405,7 @@ const steelSectionData = [
         "J": 56.2,
     },
     {
-        "Designation": "100x100x8EA",
+        "Designation": "100x8EA",
         "Mass": 11.8,
         "t": 7.8,
         "r1": 8,
@@ -432,7 +432,7 @@ const steelSectionData = [
         "J": 31.7,
     },
     {
-        "Designation": "100x100x6EA",
+        "Designation": "100x6EA",
         "Mass": 9.16,
         "t": 6,
         "r1": 8,
@@ -459,7 +459,7 @@ const steelSectionData = [
         "J": 14.8,
     },
     {
-        "Designation": "90x90x10EA",
+        "Designation": "90x10EA",
         "Mass": 12.7,
         "t": 9.5,
         "r1": 8,
@@ -486,7 +486,7 @@ const steelSectionData = [
         "J": 50.5,
     },
     {
-        "Designation": "90x90x8EA",
+        "Designation": "90x8EA",
         "Mass": 10.6,
         "t": 7.8,
         "r1": 8,
@@ -513,7 +513,7 @@ const steelSectionData = [
         "J": 28.6,
     },
     {
-        "Designation": "90x90x6EA",
+        "Designation": "90x6EA",
         "Mass": 8.22,
         "t": 6,
         "r1": 8,
@@ -540,7 +540,7 @@ const steelSectionData = [
         "J": 13.4,
     },
     {
-        "Designation": "75x75x10EA",
+        "Designation": "75x10EA",
         "Mass": 10.5,
         "t": 9.5,
         "r1": 8,
@@ -567,7 +567,7 @@ const steelSectionData = [
         "J": 41.9,
     },
     {
-        "Designation": "75x75x8EA",
+        "Designation": "75x8EA",
         "Mass": 8.73,
         "t": 7.8,
         "r1": 8,
@@ -594,7 +594,7 @@ const steelSectionData = [
         "J": 23.8,
     },
     {
-        "Designation": "75x75x6EA",
+        "Designation": "75x6EA",
         "Mass": 6.81,
         "t": 6,
         "r1": 8,
@@ -621,7 +621,7 @@ const steelSectionData = [
         "J": 11.2,
     },
     {
-        "Designation": "75x75x5EA",
+        "Designation": "75x5EA",
         "Mass": 5.27,
         "t": 4.6,
         "r1": 8,
@@ -648,7 +648,7 @@ const steelSectionData = [
         "J": 5.28,
     },
     {
-        "Designation": "65x65x10EA",
+        "Designation": "65x10EA",
         "Mass": 9.02,
         "t": 9.5,
         "r1": 6,
@@ -675,7 +675,7 @@ const steelSectionData = [
         "J": 35.1,
     },
     {
-        "Designation": "65x65x8EA",
+        "Designation": "65x8EA",
         "Mass": 7.51,
         "t": 7.8,
         "r1": 6,
@@ -702,7 +702,7 @@ const steelSectionData = [
         "J": 20,
     },
     {
-        "Designation": "65x65x6EA",
+        "Designation": "65x6EA",
         "Mass": 5.87,
         "t": 6,
         "r1": 6,
@@ -729,7 +729,7 @@ const steelSectionData = [
         "J": 9.37,
     },
     {
-        "Designation": "65x65x5EA",
+        "Designation": "65x5EA",
         "Mass": 4.56,
         "t": 4.6,
         "r1": 6,
@@ -756,7 +756,7 @@ const steelSectionData = [
         "J": 4.36,
     },
     {
-        "Designation": "55x55x6EA",
+        "Designation": "55x6EA",
         "Mass": 4.93,
         "t": 6,
         "r1": 6,
@@ -783,7 +783,7 @@ const steelSectionData = [
         "J": 7.93,
     },
     {
-        "Designation": "55x55x5EA",
+        "Designation": "55x5EA",
         "Mass": 3.84,
         "t": 4.6,
         "r1": 6,
@@ -810,7 +810,7 @@ const steelSectionData = [
         "J": 3.71,
     },
     {
-        "Designation": "50x50x8EA",
+        "Designation": "50x8EA",
         "Mass": 5.68,
         "t": 7.8,
         "r1": 6,
@@ -837,7 +837,7 @@ const steelSectionData = [
         "J": 15.2,
     },
     {
-        "Designation": "50x50x6EA",
+        "Designation": "50x6EA",
         "Mass": 4.46,
         "t": 6,
         "r1": 6,
@@ -864,7 +864,7 @@ const steelSectionData = [
         "J": 7.21,
     },
     {
-        "Designation": "50x50x5EA",
+        "Designation": "50x5EA",
         "Mass": 3.48,
         "t": 4.6,
         "r1": 6,
@@ -891,7 +891,7 @@ const steelSectionData = [
         "J": 3.38,
     },
     {
-        "Designation": "50x50x3EA",
+        "Designation": "50x3EA",
         "Mass": 2.31,
         "t": 3,
         "r1": 6,
@@ -918,7 +918,7 @@ const steelSectionData = [
         "J": 1.01,
     },
     {
-        "Designation": "45x45x6EA",
+        "Designation": "45x6EA",
         "Mass": 3.97,
         "t": 6,
         "r1": 5,
@@ -945,7 +945,7 @@ const steelSectionData = [
         "J": 6.32,
     },
     {
-        "Designation": "45x45x5EA",
+        "Designation": "45x5EA",
         "Mass": 3.1,
         "t": 4.6,
         "r1": 5,
@@ -972,7 +972,7 @@ const steelSectionData = [
         "J": 2.96,
     },
     {
-        "Designation": "45x45x3EA",
+        "Designation": "45x3EA",
         "Mass": 2.06,
         "t": 3,
         "r1": 5,
@@ -999,7 +999,7 @@ const steelSectionData = [
         "J": 0.875,
     },
     {
-        "Designation": "40x40x6EA",
+        "Designation": "40x6EA",
         "Mass": 3.5,
         "t": 6,
         "r1": 5,
@@ -1026,7 +1026,7 @@ const steelSectionData = [
         "J": 5.6,
     },
     {
-        "Designation": "40x40x5EA",
+        "Designation": "40x5EA",
         "Mass": 2.73,
         "t": 4.6,
         "r1": 5,
@@ -1053,7 +1053,7 @@ const steelSectionData = [
         "J": 2.63,
     },
     {
-        "Designation": "40x40x3EA",
+        "Designation": "40x3EA",
         "Mass": 1.83,
         "t": 3,
         "r1": 5,
@@ -1080,7 +1080,7 @@ const steelSectionData = [
         "J": 0.785,
     },
     {
-        "Designation": "30x30x6EA",
+        "Designation": "30x6EA",
         "Mass": 2.56,
         "t": 6,
         "r1": 5,
@@ -1107,7 +1107,7 @@ const steelSectionData = [
         "J": 4.16,
     },
     {
-        "Designation": "30x30x5EA",
+        "Designation": "30x5EA",
         "Mass": 2.01,
         "t": 4.6,
         "r1": 5,
@@ -1134,7 +1134,7 @@ const steelSectionData = [
         "J": 1.98,
     },
     {
-        "Designation": "30x30x3EA",
+        "Designation": "30x3EA",
         "Mass": 1.35,
         "t": 3,
         "r1": 5,
@@ -1161,7 +1161,7 @@ const steelSectionData = [
         "J": 0.605,
     },
     {
-        "Designation": "25x25x6EA",
+        "Designation": "25x6EA",
         "Mass": 2.08,
         "t": 6,
         "r1": 5,
@@ -1188,7 +1188,7 @@ const steelSectionData = [
         "J": 3.44,
     },
     {
-        "Designation": "25x25x5EA",
+        "Designation": "25x5EA",
         "Mass": 1.65,
         "t": 4.6,
         "r1": 5,
@@ -1215,7 +1215,7 @@ const steelSectionData = [
         "J": 1.66,
     },
     {
-        "Designation": "25x25x3EA",
+        "Designation": "25x3EA",
         "Mass": 1.12,
         "t": 3,
         "r1": 5,
