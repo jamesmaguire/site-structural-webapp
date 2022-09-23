@@ -1,0 +1,40 @@
+#+title: Steel sections
+#+subtitle: to AS4100 1998(+A1)
+
+#+setupfile: post.setup
+#+HTML_HEAD: <script type="text/javascript" src="../static/steelsections.json"></script>
+#+HTML_HEAD: <script type="text/javascript" src="../static/steelcapacities.js" defer></script>
+#+include: "../statusicon.org"
+
+* Member selection
+
+Section: {{{span(i_sectionType)}}}
+
+Yield strength, f_y {{{span(i_fy)}}}
+
+Elastic modulus, E {{{span(i_E)}}}
+
+Shear Modulus, G {{{span(i_G)}}}
+
+* Members subject to bending (Section 5)
+
+Design moment, M* {{{span(i_Mstar)}}}
+
+(F)ull/(E)nd/(U)nrestrained lateral restraint {{{span(i_latRestraint)}}}
+
+* Members subject to axial compression (Section 6)
+
+Design axial load, N* {{{span(i_Nstar)}}}
+
+Effective length, l_e {{{span(i_le)}}}
+
+Form factor, k_f {{{span(i_kf)}}}
+
+* Members table 
+
+{{{div(o_table)}}}
+
+* Export on save                                                   :noexport:
+;; Local Variables:
+;; eval: (add-hook 'after-save-hook 'org-html-export-to-html nil t)
+;; End:
