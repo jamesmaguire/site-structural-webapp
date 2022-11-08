@@ -3,83 +3,36 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-07-31 Sun 17:49 -->
+<!-- 2022-11-08 Tue 13:25 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Lateral earth loading</title>
-<meta name="generator" content="Org mode" />
-<meta name="author" content="james" />
+<meta name="generator" content="Org Mode" />
 <link rel="stylesheet" type="text/css" href="../static/post.css" />
 <script type="text/javascript" src="../static/general.js"></script>
 <link rel="icon" type="image/ico" href="../static/icon/favicon.svg" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script type="text/javascript" src="../static/lateral-earth-loading.js" defer></script>
-<script type="text/javascript">
-/*
-@licstart  The following is the entire license notice for the
-JavaScript code in this tag.
-
-Copyright (C) 2012-2020 Free Software Foundation, Inc.
-
-The JavaScript code in this tag is free software: you can
-redistribute it and/or modify it under the terms of the GNU
-General Public License (GNU GPL) as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.  The code is distributed WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-As additional permission under GNU GPL version 3 section 7, you
-may distribute non-source (e.g., minimized or compacted) forms of
-that code without the copy of the GNU GPL normally required by
-section 4, provided you include this license notice and a URL
-through which recipients can access the Corresponding Source.
-
-
-@licend  The above is the entire license notice
-for the JavaScript code in this tag.
-*/
-<!--/*--><![CDATA[/*><!--*/
- function CodeHighlightOn(elem, id)
- {
-   var target = document.getElementById(id);
-   if(null != target) {
-     elem.cacheClassElem = elem.className;
-     elem.cacheClassTarget = target.className;
-     target.className = "code-highlighted";
-     elem.className   = "code-highlighted";
-   }
- }
- function CodeHighlightOff(elem, id)
- {
-   var target = document.getElementById(id);
-   if(elem.cacheClassElem)
-     elem.className = elem.cacheClassElem;
-   if(elem.cacheClassTarget)
-     target.className = elem.cacheClassTarget;
- }
-/*]]>*///-->
-</script>
 </head>
 <body>
-<div id="org-div-home-and-up"> <img src="../static/icon/logo.svg" /> <a href="../index.html"> Home </a> </div><div id="content">
+<div id="org-div-home-and-up"> <img src="../static/icon/logo.svg" /> <a href="../index.html"> Home </a> </div><div id="content" class="content">
 <h1 class="title">Lateral earth loading</h1>
 <p>
 <button id='statusbutton' onclick='updatePage();'>▶ Run analysis</button>
 </p>
 
-<div id="outline-container-org0731667" class="outline-2">
-<h2 id="org0731667">Figure</h2>
-<div class="outline-text-2" id="text-org0731667">
+<div id="outline-container-orgc04cd33" class="outline-2">
+<h2 id="orgc04cd33">Figure</h2>
+<div class="outline-text-2" id="text-orgc04cd33">
 <p>
 <span id="soilFigure"></span>
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgbde3634" class="outline-2">
-<h2 id="orgbde3634">Properties</h2>
-<div class="outline-text-2" id="text-orgbde3634">
+<div id="outline-container-org773f64b" class="outline-2">
+<h2 id="org773f64b">Properties</h2>
+<div class="outline-text-2" id="text-org773f64b">
 <p>
 Soil unit weight, &gamma; <span id="i_gamma"></span>
 </p>
@@ -88,8 +41,15 @@ Soil unit weight, &gamma; <span id="i_gamma"></span>
 Soil depth, z <span id="i_z"></span>
 </p>
 
-<hr />
+<p>
+Surcharge load <span id="i_surcharge"></span>
+</p>
+</div>
+</div>
 
+<div id="outline-container-org679562c" class="outline-2">
+<h2 id="org679562c">Soil coefficients</h2>
+<div class="outline-text-2" id="text-org679562c">
 <p>
 Pressure coefficient method <span id="i_theory"></span>
 </p>
@@ -120,9 +80,9 @@ Passive pressure coefficient, K<sub>p</sub> <span id="o_Kp"></span>
 </div>
 </div>
 
-<div id="outline-container-org64f2cba" class="outline-2">
-<h2 id="org64f2cba">Loading</h2>
-<div class="outline-text-2" id="text-org64f2cba">
+<div id="outline-container-orgc90af9e" class="outline-2">
+<h2 id="orgc90af9e">Loading</h2>
+<div class="outline-text-2" id="text-orgc90af9e">
 <p>
 Force (active), P<sub>a</sub> <span id="o_Pa"></span>
 </p>

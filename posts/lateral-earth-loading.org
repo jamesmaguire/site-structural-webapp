@@ -13,7 +13,9 @@ Soil unit weight, \gamma{} {{{span(i_gamma)}}}
 
 Soil depth, z {{{span(i_z)}}}
 
------
+Surcharge load {{{span(i_surcharge)}}}
+
+* Soil coefficients
 
 Pressure coefficient method {{{span(i_theory)}}}
 

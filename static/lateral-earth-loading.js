@@ -11,6 +11,7 @@ function initPage()
     // Geometry
     input('i_gamma', {initval:20, units:'kN/m<sup>2</sup>'});
     input('i_z', {initval:5, units:'m'});
+    input('i_surcharge', {initval:0, units:'kPa'});
 
     // Outputs
     output('o_Ka');
@@ -103,6 +104,7 @@ function runCalcs() {
     let phi = i_phi.valueAsNumber;
     let beta = i_beta.valueAsNumber;
     let theory = i_theory.value;
+    let surcharge = i_surcharge.valueAsNumber;
 
     // Pressure coefficients
     if (theory === 'Manual') {
@@ -123,9 +125,10 @@ function runCalcs() {
     o_Kp.value = Kp.toPrecision(2);
 
     // Forces
-    let Pa = 0.5 * Ka * gamma * z**2;
-    o_Pa.value = Pa.toPrecision(3);
-    o_Ma.value = (Pa*z/3).toPrecision(3);
+    let Pa_soil = 0.5*Ka*gamma*z**2;
+    let Pa_surcharge = Ka*surcharge*z;
+    o_Pa.value = (Pa_soil+Pa_surcharge).toPrecision(3);
+    o_Ma.value = (Pa_soil*z/3 + Pa_surcharge*z/2).toPrecision(3);
     let Pp = 0.5 * Kp * gamma * z**2;
     o_Pp.value = Pp.toPrecision(3);
 
