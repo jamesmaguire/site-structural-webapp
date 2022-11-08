@@ -22,7 +22,7 @@
 *** TODO [[file:posts/load-combinations.org][Load combinations]]
 *** [[file:posts/wind-loading.org][Wind loading]]
 *** TODO [[file:posts/earthquake-loading.org][Earthquake loading]]
-*** [[file:posts/lateral-earth-loading.org][Lateral earth loading]]
+*** [[file:posts/earth-retaining.org][Earth retaining]]
 *** TODO [[file:posts/beam-formulas.org][Beam design formulas]]
 ** Steel
 *** [[file:posts/rebar-properties.org][Rebar properties]]

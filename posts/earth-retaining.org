@@ -1,6 +1,6 @@
-#+title: Lateral earth loading
+#+title: Earth Retaining
 #+setupfile: post.setup
-#+HTML_HEAD: <script type="text/javascript" src="../static/lateral-earth-loading.js" defer></script>
+#+HTML_HEAD: <script type="text/javascript" src="../static/earth-retaining.js" defer></script>
 #+include: "../statusicon.org"
 
 * Figure
