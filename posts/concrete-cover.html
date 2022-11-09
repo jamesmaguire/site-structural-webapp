@@ -3,67 +3,20 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-07-31 Sun 17:49 -->
+<!-- 2022-11-09 Wed 13:10 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Concrete cover</title>
-<meta name="generator" content="Org mode" />
-<meta name="author" content="james" />
+<title>Concrete cover (slabs)</title>
+<meta name="generator" content="Org Mode" />
 <link rel="stylesheet" type="text/css" href="../static/post.css" />
 <script type="text/javascript" src="../static/general.js"></script>
 <link rel="icon" type="image/ico" href="../static/icon/favicon.svg" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script type="text/javascript" src="../static/concretecover.js" defer defer></script>
-<script type="text/javascript">
-/*
-@licstart  The following is the entire license notice for the
-JavaScript code in this tag.
-
-Copyright (C) 2012-2020 Free Software Foundation, Inc.
-
-The JavaScript code in this tag is free software: you can
-redistribute it and/or modify it under the terms of the GNU
-General Public License (GNU GPL) as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.  The code is distributed WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-As additional permission under GNU GPL version 3 section 7, you
-may distribute non-source (e.g., minimized or compacted) forms of
-that code without the copy of the GNU GPL normally required by
-section 4, provided you include this license notice and a URL
-through which recipients can access the Corresponding Source.
-
-
-@licend  The above is the entire license notice
-for the JavaScript code in this tag.
-*/
-<!--/*--><![CDATA[/*><!--*/
- function CodeHighlightOn(elem, id)
- {
-   var target = document.getElementById(id);
-   if(null != target) {
-     elem.cacheClassElem = elem.className;
-     elem.cacheClassTarget = target.className;
-     target.className = "code-highlighted";
-     elem.className   = "code-highlighted";
-   }
- }
- function CodeHighlightOff(elem, id)
- {
-   var target = document.getElementById(id);
-   if(elem.cacheClassElem)
-     elem.className = elem.cacheClassElem;
-   if(elem.cacheClassTarget)
-     target.className = elem.cacheClassTarget;
- }
-/*]]>*///-->
-</script>
 </head>
 <body>
-<div id="org-div-home-and-up"> <img src="../static/icon/logo.svg" /> <a href="../index.html"> Home </a> </div><div id="content">
-<h1 class="title">Concrete cover
+<div id="org-div-home-and-up"> <img src="../static/icon/logo.svg" /> <a href="../index.html"> Home </a> </div><div id="content" class="content">
+<h1 class="title">Concrete cover (slabs)
 <br />
 <span class="subtitle">Based on AS3600 2018(+A2)</span>
 </h1>
@@ -71,9 +24,9 @@ for the JavaScript code in this tag.
 <button id='statusbutton' onclick='updatePage();'>▶ Run analysis</button>
 </p>
 
-<div id="outline-container-org7ce6418" class="outline-2">
-<h2 id="org7ce6418">Exposure classification</h2>
-<div class="outline-text-2" id="text-org7ce6418">
+<div id="outline-container-orga25cd3f" class="outline-2">
+<h2 id="orga25cd3f">Exposure classification</h2>
+<div class="outline-text-2" id="text-orga25cd3f">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -145,11 +98,11 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org765c226" class="outline-2">
-<h2 id="org765c226">Inputs</h2>
-<div class="outline-text-2" id="text-org765c226">
+<div id="outline-container-org4aad9ea" class="outline-2">
+<h2 id="org4aad9ea">Inputs</h2>
+<div class="outline-text-2" id="text-org4aad9ea">
 <p>
-Exposure classification <span id="i_class"></span>
+Exposure classification, Top: <span id="i_class"></span> Btm: <span id="i_classbtm"></span>
 </p>
 
 <p>
@@ -166,9 +119,9 @@ Slab depth, D <span id="i_D"></span>
 </div>
 </div>
 
-<div id="outline-container-orga0bbc09" class="outline-2">
-<h2 id="orga0bbc09">Post tensioning</h2>
-<div class="outline-text-2" id="text-orga0bbc09">
+<div id="outline-container-org33ce706" class="outline-2">
+<h2 id="org33ce706">Post tensioning</h2>
+<div class="outline-text-2" id="text-org33ce706">
 <p>
 Strand diameter, d<sub>p</sub> <span id="i_dp"></span>
 </p>
@@ -191,11 +144,11 @@ Bottom cover to pan <span id="o_ptpan"></span> <i>(CL 100 below top)</i>
 </div>
 </div>
 
-<div id="outline-container-org91aba9a" class="outline-2">
-<h2 id="org91aba9a">Cover</h2>
-<div class="outline-text-2" id="text-org91aba9a">
+<div id="outline-container-org11c5965" class="outline-2">
+<h2 id="org11c5965">Cover</h2>
+<div class="outline-text-2" id="text-org11c5965">
 <p>
-Cover (corrosion) <span id="o_ccorrosion"></span>
+Cover (corrosion), Top: <span id="o_ccorrosion"></span> Btm: <span id="o_ccorrosionbtm"></span>
 </p>
 
 <p>

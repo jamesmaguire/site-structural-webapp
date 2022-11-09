@@ -7,6 +7,7 @@ function updatePage()
 function initPage()
 {
     dropdown('i_class', ["A1", "A2", "B1", "B2", "C1", "C2"]);
+    dropdown('i_classbtm', ["A1", "A2", "B1", "B2", "C1", "C2"]);
     dropdown('i_FRP', [30,60,90,120,180,240]);
     input('i_fc', {initval:40, units:'MPa'});
     input('i_D', {initval:200, units:'mm'});
@@ -18,6 +19,7 @@ function initPage()
     output('o_ptpan', {units:'mm'});
 
     output('o_ccorrosion', {units:'mm'});
+    output('o_ccorrosionbtm', {units:'mm'});
     output('o_afire', {units:'mm'});
 
     updatePage();
@@ -26,6 +28,7 @@ function initPage()
 function updatePage() {
 
     const classification = i_class.value;
+    const classificationbtm = i_classbtm.value;
     const FRP = i_FRP.value;
     const fc = i_fc.valueAsNumber;
     const D = i_D.valueAsNumber;
@@ -42,7 +45,9 @@ function updatePage() {
                             "C2": {50: 65},
                            };
     const ccorrosion = corrosiontable[classification][fc];
+    const ccorrosionbtm = corrosiontable[classificationbtm][fc];
     o_ccorrosion.value = ccorrosion;
+    o_ccorrosionbtm.value = ccorrosionbtm;
 
     // Axis dist for fire
     const afire = {30: 10, 60:15, 90:25, 120:35, 180:45, 240:50}[FRP];
@@ -50,24 +55,26 @@ function updatePage() {
 
     // PT
     o_pttc.value = ccorrosion;
-    o_ptbc.value = 5*Math.floor((Math.max(afire+15+dp/2-ductheight, ccorrosion)-0.01)/5)+5;
+    o_ptbc.value = 5*Math.floor((Math.max(afire+15+dp/2-ductheight, ccorrosionbtm)-0.01)/5)+5;
     o_ptpan.value = D - 100 - ductheight/2;
 
     // Bar table
     const bars = [12, 16, 20, 24, 28, 32];
     const cover = bars.map(db => 5*Math.floor((Math.max(afire-db/2, ccorrosion)-0.01)/5)+5);
-    bartable.innerHTML = gentable(bars, cover);
+    const coverbtm = bars.map(db => 5*Math.floor((Math.max(afire-db/2, ccorrosionbtm)-0.01)/5)+5);
+    bartable.innerHTML = gentable(bars, cover, coverbtm);
 
     setStatusUptodate();
 }
 
-function gentable (bars, cover) {
+function gentable (bars, cover, coverbtm) {
     let html = "<table>";
-    html += "<tr><th>Bar diameter</th><th>Cover</th></tr>";
+    html += "<tr><th>Bar diameter</th><th>Top cover</th><th>Bottom cover</th></tr>";
     for (let row=0; row<bars.length; row++) {
         html += `<tr>`;
         html += `<td>N${bars[row]}</td>`;
         html += `<td>${cover[row]} mm</td>`;
+        html += `<td>${coverbtm[row]} mm</td>`;
         html += "</tr>";
     }
     html += "</table>";

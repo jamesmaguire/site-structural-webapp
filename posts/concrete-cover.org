@@ -1,4 +1,4 @@
-#+title: Concrete cover
+#+title: Concrete cover (slabs)
 #+subtitle: Based on AS3600 2018(+A2)
 
 #+setupfile: post.setup
@@ -21,7 +21,7 @@
 
 * Inputs
 
-Exposure classification {{{span(i_class)}}}
+Exposure classification, Top: {{{span(i_class)}}} Btm: {{{span(i_classbtm)}}}
 
 Fire resistance period, FRP {{{span(i_FRP)}}}
 
@@ -43,7 +43,7 @@ Bottom cover to pan {{{span(o_ptpan)}}} /(CL 100 below top)/
 
 * Cover
 
-Cover (corrosion) {{{span(o_ccorrosion)}}}
+Cover (corrosion), Top: {{{span(o_ccorrosion)}}} Btm: {{{span(o_ccorrosionbtm)}}}
 
 Axis dist. (fire) {{{span(o_afire)}}}
 
