@@ -1,0 +1,58 @@
+#+title: Secant Pile Wall Properties
+
+#+setupfile: post.setup
+#+HTML_HEAD: <script type="text/javascript" src="../static/secant-pile-properties.js" defer></script>
+#+include: "../statusicon.org"
+
+* Figure
+
+{{{div(wallFigure)}}}
+
+* Geometry
+
+Pile diameter, D {{{span(i_D)}}}
+
+Overlap {{{span(i_overlap)}}}
+
+Hard pile spacing {{{span(o_spc)}}}
+
+Angle @ overlap {{{span(o_alpha)}}}
+
+Overlap height {{{span(o_overlapH)}}}
+
+Overlap area {{{span(o_overlapA)}}}
+
+* Material properties
+
+Hard pile strength, f'_c {{{span(i_fch)}}}
+
+Soft pile strength, f'_{c,soft} {{{span(i_fcs)}}}
+
+Stiffness (hard), E_{hard} {{{span(o_Eh)}}}
+
+Stiffness (soft), E_{soft} {{{span(o_Es)}}}
+
+* Wall stiffness
+
+Method {{{span(i_method)}}}
+
+Hard Pile I, I_{hard} {{{span(o_Ih)}}}
+
+Moment of inertia, I {{{span(o_I)}}}
+
+EI per unit length {{{span(o_EI)}}}
+
+* Free length calculator
+
+Anchor angle {{{span(i_theta)}}}
+
+BEL RL {{{span(i_RLBEL)}}}
+
+Anchor RL {{{span(i_RLAnchor)}}}
+
+Free length {{{span(o_Lfree)}}}
+
+* Export on save                                                   :noexport:
+;; Local Variables:
+;; eval: (add-hook 'after-save-hook 'org-html-export-to-html nil t)
+;; End:

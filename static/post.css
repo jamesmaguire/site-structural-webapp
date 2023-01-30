@@ -399,3 +399,18 @@ svg text {
   stroke: orange;
   stroke-width: 3;
 }
+.softpile {
+  stroke: grey;
+  stroke-dasharray: 10 10;
+  stroke-width: 3;
+  fill: none;
+}
+.hardpile {
+  stroke: black;
+  stroke-width: 3;
+  fill: none;
+}
+.stiffnessmethod {
+  stroke: none;
+  fill: rgba(0,0,0,0.15);
+}

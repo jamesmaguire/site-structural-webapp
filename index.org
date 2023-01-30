@@ -29,7 +29,10 @@
 *** [[file:posts/steel-sections.org][Structural steel sections]]
 *** TODO [[file:posts/steel-capacities.org][Structural steel capacities]] (needs verification)
 ** Other tools
-*** [[file:posts/sdof-oscillator.html][SDOF oscillator]]
+*** [[file:posts/sdof-oscillator.org][SDOF oscillator]]
+*** [[file:posts/secant-pile-properties.org][Secant pile properties]]
+* Blog posts
+*** [[file:blog/blast-loading.org][Blast loading of precast panels]]
 * Description
 This is a website that solves simple structural engineering design problems. There is no warranty of correctness of these applications and results should be checked by by an experienced engineer.
 
