@@ -54,21 +54,20 @@ body {
 
 /* Main area */
 #content {
-  padding-left: 5%;
-  padding-top: 4rem;
+  margin: 2rem min(5rem,5%);
+  border: 1px #ddd solid;
+  box-shadow: 5px 5px 25px #eee;
+  padding: min(4%,4rem);
 }
 
 /* Sections */
 .outline-2 {
-  border: 1px #dcdcdc solid;
   display: inline-block;
   vertical-align: top;
-  min-width: 45ch;
-  width: 40%;
-  max-width: 70ch;
-  margin-bottom: 1rem;
-  margin-right: 2%;
-  padding: 0.5rem;
+  min-width: 48ch;
+  width: min(70ch, 40%);
+  margin-bottom: 1.5rem;
+  margin-right: 3rem;
 }
 canvas, svg {
   max-width: 100%;
@@ -140,6 +139,7 @@ h1 {
   text-transform: uppercase;
   font-size: 130%;
   font-weight: bold;
+  margin-bottom: 2rem;
 }
 .subtitle {
   font-size: 80%;
