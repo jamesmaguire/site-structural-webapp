@@ -356,9 +356,8 @@ svg text {
   fill: black;
 }
 .backfill {
-  stroke-width: 1;
-  stroke: #825a2a;
-  fill: #825a2a22;
+  stroke: none;
+  fill: #9B765366;
 }
 .concretewall {
   stroke-width: 1;

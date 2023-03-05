@@ -1,0 +1,75 @@
+#+title: Retaining wall
+#+setupfile: post.setup
+#+HTML_HEAD: <script type="text/javascript" src="../static/retaining-wall.js" defer></script>
+#+include: "../statusicon.org"
+
+* Figure
+
+{{{span(soilFigure)}}}
+
+* Wall dimensions
+
+Retaining side {{{span(i_side)}}}
+
+Retaining height, H {{{span(i_H)}}}
+
+Base width, B {{{span(i_B)}}}
+
+Base thickness, D_b {{{span(i_Db)}}}
+
+Toe depth, D_t {{{span(i_Dt)}}}
+
+Toe width, B_t {{{span(i_Bt)}}}
+
+Wall thickness, D_w {{{span(i_Dw)}}}
+
+Wall offset {{{span(i_offset)}}}
+
+* Properties
+
+Soil unit weight, \gamma{} {{{span(i_gamma)}}}
+
+Surcharge load {{{span(i_surcharge)}}}
+
+* Soil coefficients
+
+Pressure coefficient method {{{span(i_theory)}}}
+
+Friction angle, \phi{}' {{{span(i_phi)}}}
+
+Backfill angle, \beta{} {{{span(i_beta)}}}
+
+Active pressure coefficient, K_a {{{span(i_Ka)}}} 
+
+Active pressure coefficient, K_a {{{span(o_Ka)}}}
+
+Passive pressure coefficient, K_p {{{span(i_Kp)}}}
+
+Passive pressure coefficient, K_p {{{span(o_Kp)}}}
+
+* Loading
+
+Force (active), P_a {{{span(o_Pa)}}}
+
+Moment (active), M_a {{{span(o_Ma)}}}
+
+Force (passive), P_p {{{span(o_Pp)}}}
+
+* TODO Wall bending capacity
+
+Bars {{{span(i_dbw)}}}-{{{span(i_spw)}}}
+
+Cover {{{span(i_cw)}}}
+
+* TODO Footing bending capacity
+
+Bars {{{span(i_dbf)}}}-{{{span(i_spf)}}}
+
+Cover {{{span(i_cf)}}}
+
+* TODO Sliding
+* TODO Overturning
+* Export on save                                                   :noexport:
+;; Local Variables:
+;; eval: (add-hook 'after-save-hook 'org-html-export-to-html nil t)
+;; End:

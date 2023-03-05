@@ -19,9 +19,9 @@
 *** [[file:posts/top-reo.org][Top reo]]
 *** [[file:posts/punching-shear.org][Punching shear]]
 ** Design actions
-*** TODO [[file:posts/load-combinations.org][Load combinations]]
+*** [[file:posts/load-combinations.org][Load combinations]]
 *** [[file:posts/wind-loading.org][Wind loading]]
-*** TODO [[file:posts/earthquake-loading.org][Earthquake loading]]
+*** [[file:posts/earthquake-loading.org][Earthquake loading]]
 *** [[file:posts/earth-retaining.org][Earth retaining]]
 *** TODO [[file:posts/beam-formulas.org][Beam design formulas]]
 ** Steel
@@ -29,6 +29,7 @@
 *** [[file:posts/steel-sections.org][Structural steel sections]]
 *** TODO [[file:posts/steel-capacities.org][Structural steel capacities]] (needs verification)
 ** Other tools
+*** TODO [[file:posts/retaining-wall.org][Retaining wall]]
 *** [[file:posts/sdof-oscillator.org][SDOF oscillator]]
 *** [[file:posts/secant-pile-properties.org][Secant pile properties]]
 * Blog posts
