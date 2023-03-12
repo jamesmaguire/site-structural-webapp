@@ -2,7 +2,6 @@ function initPage()
 {
     // Wall dimensions
     dropdown('i_side', ['Left', 'Right']);
-    input('i_H', {initval:1000, units:'mm'});
     input('i_B', {initval:850, units:'mm'});
     input('i_Db', {initval:250, units:'mm'});
     input('i_Dt', {initval:450, units:'mm'});
@@ -19,24 +18,41 @@ function initPage()
 
     // Soil properties
     input('i_gamma', {initval:20, units:'kN/m<sup>2</sup>'});
-    input('i_surcharge', {initval:0, units:'kPa'});
+    input('i_fsy', {initval:500, units:'MPa'});
     output('o_Ka');
     output('o_Kp');
 
     // Loading
+    input('i_H', {initval:1000, units:'mm'});
+    input('i_surcharge', {initval:5, units:'kPa'});
     output('o_Pa', {units:'kN/m'});
+    // output('o_Pp', {units:'kN/m'});
     output('o_Ma', {units:'kNm/m'});
-    output('o_Pp', {units:'kN/m'});
+    output('o_Mstar', {units:'kNm/m'});
 
     // Wall bending
+    input('i_fc', {initval:20, units:'MPa'});
     input('i_dbw', {initval:16, prefix:'N', align:'left'});
     input('i_spw', {initval:400, units:'mm'});
     input('i_cw', {initval:55, units:'mm'});
+    output('o_d', {units:'mm'});
+    output('o_alpha');
+    output('o_gammac');
+    output('o_ku');
+    output('o_phiMu', {units:'kNm/m'});
+    output('wallMomemntCheck');
     
     // Footing bending
+    input('i_fcf', {initval:20, units:'MPa'});
     input('i_dbf', {initval:16, prefix:'N', align:'left'});
     input('i_spf', {initval:400, units:'mm'});
     input('i_cf', {initval:50, units:'mm'});
+    output('o_df', {units:'mm'});
+    output('o_alphaf');
+    output('o_gammacf');
+    output('o_kuf');
+    output('o_phiMuf', {units:'kNm/m'});
+    output('footMomemntCheck');
     
     updatePage();
 }
@@ -221,10 +237,57 @@ function runCalcs() {
     let Pa_soil = 0.5*Ka*gamma*z**2;
     let Pa_surcharge = Ka*surcharge*z;
     o_Pa.value = (Pa_soil+Pa_surcharge).toPrecision(3);
+    // let Pp = 0.5 * Kp * gamma * z**2;
+    // o_Pp.value = Pp.toPrecision(3);
     o_Ma.value = (Pa_soil*z/3 + Pa_surcharge*z/2).toPrecision(3);
-    let Pp = 0.5 * Kp * gamma * z**2;
-    o_Pp.value = Pp.toPrecision(3);
+    const Mstar = (1.25*Pa_soil*z/3 + 1.5*Pa_surcharge*z/2);
+    o_Mstar.value = Mstar.toPrecision(3);
 
+    // Wall bending
+    const fc = i_fc.valueAsNumber;
+    const fsy = i_fsy.valueAsNumber;
+    const dbw = i_dbw.valueAsNumber;
+    const spw = i_spw.valueAsNumber;
+    const Dw = i_Dw.valueAsNumber;
+    const cover = i_cw.valueAsNumber;
+
+    const alpha = Math.max(0.85-0.0015*fc, 0.67);
+    const gammac = Math.max(0.97-0.0025*fc, 0.67);
+    o_alpha.value = alpha.toFixed(2);
+    o_gammac.value = gammac.toFixed(2);
+    const d = Dw-cover-dbw/2;
+    o_d.value = d.toFixed(1);
+
+    const Ast = Math.PI*dbw**2/4 / (spw/1000);
+    ku = Ast*fsy / (alpha*fc*1000*gammac*d);
+    o_ku.value = ku.toFixed(3);
+    const Mu = Ast*fsy * (d - gammac*ku*d/2) /1000**2;
+    const phibend = 0.85;
+    o_phiMu.value = (phibend*Mu).toPrecision(3);
+    wallMomemntCheck.value = (Mstar/(phibend*Mu)).toFixed(2);
+    setPassFail(wallMomemntCheck);
+
+    // Footing bending
+    const fcf = i_fcf.valueAsNumber;
+    const dbf = i_dbf.valueAsNumber;
+    const spf = i_spf.valueAsNumber;
+    const Db = i_Db.valueAsNumber;
+    const cf = i_cf.valueAsNumber;
+
+    const alphaf = Math.max(0.85-0.0015*fcf, 0.67);
+    const gammacf = Math.max(0.97-0.0025*fcf, 0.67);
+    o_alphaf.value = alphaf.toFixed(2);
+    o_gammacf.value = gammacf.toFixed(2);
+    const df = Db-cf-dbf/2;
+    o_df.value = df.toFixed(1);
+
+    const Astf = Math.PI*dbf**2/4 / (spf/1000);
+    kuf = Astf*fsy / (alphaf*fcf*1000*gammacf*df);
+    o_kuf.value = kuf.toFixed(3);
+    const Muf = Astf*fsy * (df - gammacf*kuf*df/2) /1000**2;
+    o_phiMuf.value = (phibend*Muf).toPrecision(3);
+    footMomemntCheck.value = (Mstar/(phibend*Muf)).toFixed(2);
+    setPassFail(footMomemntCheck);
 }
 
 initPage();

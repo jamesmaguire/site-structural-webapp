@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-03-05 Sun 15:53 -->
+<!-- 2023-03-12 Sun 15:49 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Retaining wall</title>
@@ -68,68 +68,26 @@ for the JavaScript code in this tag.
 <button id='statusbutton' onclick='updatePage();'>▶ Run analysis</button>
 </p>
 
-<div id="outline-container-orgd8deed2" class="outline-2">
-<h2 id="orgd8deed2">Figure</h2>
-<div class="outline-text-2" id="text-orgd8deed2">
+<div id="outline-container-orga89301c" class="outline-2">
+<h2 id="orga89301c">Figure</h2>
+<div class="outline-text-2" id="text-orga89301c">
 <p>
 <span id="soilFigure"></span>
 </p>
 </div>
 </div>
 
-<div id="outline-container-org81e1c37" class="outline-2">
-<h2 id="org81e1c37">Wall dimensions</h2>
-<div class="outline-text-2" id="text-org81e1c37">
+<div id="outline-container-orgc690cd1" class="outline-2">
+<h2 id="orgc690cd1">Soil Properties</h2>
+<div class="outline-text-2" id="text-orgc690cd1">
 <p>
 Retaining side <span id="i_side"></span>
 </p>
 
 <p>
-Retaining height, H <span id="i_H"></span>
-</p>
-
-<p>
-Base width, B <span id="i_B"></span>
-</p>
-
-<p>
-Base thickness, D<sub>b</sub> <span id="i_Db"></span>
-</p>
-
-<p>
-Toe depth, D<sub>t</sub> <span id="i_Dt"></span>
-</p>
-
-<p>
-Toe width, B<sub>t</sub> <span id="i_Bt"></span>
-</p>
-
-<p>
-Wall thickness, D<sub>w</sub> <span id="i_Dw"></span>
-</p>
-
-<p>
-Wall offset <span id="i_offset"></span>
-</p>
-</div>
-</div>
-
-<div id="outline-container-orgaebb905" class="outline-2">
-<h2 id="orgaebb905">Properties</h2>
-<div class="outline-text-2" id="text-orgaebb905">
-<p>
 Soil unit weight, &gamma; <span id="i_gamma"></span>
 </p>
 
-<p>
-Surcharge load <span id="i_surcharge"></span>
-</p>
-</div>
-</div>
-
-<div id="outline-container-org76c38e0" class="outline-2">
-<h2 id="org76c38e0">Soil coefficients</h2>
-<div class="outline-text-2" id="text-org76c38e0">
 <p>
 Pressure coefficient method <span id="i_theory"></span>
 </p>
@@ -160,9 +118,46 @@ Passive pressure coefficient, K<sub>p</sub> <span id="o_Kp"></span>
 </div>
 </div>
 
-<div id="outline-container-org4633d84" class="outline-2">
-<h2 id="org4633d84">Loading</h2>
-<div class="outline-text-2" id="text-org4633d84">
+<div id="outline-container-org1b1d372" class="outline-2">
+<h2 id="org1b1d372">Footing dimensions</h2>
+<div class="outline-text-2" id="text-org1b1d372">
+<p>
+Base width, B <span id="i_B"></span>
+</p>
+
+<p>
+Base thickness, D<sub>b</sub> <span id="i_Db"></span>
+</p>
+
+<p>
+Toe depth, D<sub>t</sub> <span id="i_Dt"></span>
+</p>
+
+<p>
+Toe width, B<sub>t</sub> <span id="i_Bt"></span>
+</p>
+
+<p>
+Wall thickness, D<sub>w</sub> <span id="i_Dw"></span>
+</p>
+
+<p>
+Wall offset <span id="i_offset"></span>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org51ae9c0" class="outline-2">
+<h2 id="org51ae9c0">Loading</h2>
+<div class="outline-text-2" id="text-org51ae9c0">
+<p>
+Retaining height, H <span id="i_H"></span>
+</p>
+
+<p>
+Surcharge load <span id="i_surcharge"></span>
+</p>
+
 <p>
 Force (active), P<sub>a</sub> <span id="o_Pa"></span>
 </p>
@@ -172,42 +167,90 @@ Moment (active), M<sub>a</sub> <span id="o_Ma"></span>
 </p>
 
 <p>
-Force (passive), P<sub>p</sub> <span id="o_Pp"></span>
+ULS moment, M* <span id="o_Mstar"></span>
+</p>
+
+<p>
+ULS load factors: &psi;<sub>soil</sub> = 1.25, &psi;<sub>surcharge</sub> = 1.5
 </p>
 </div>
 </div>
 
-<div id="outline-container-orge5d9f01" class="outline-2">
-<h2 id="orge5d9f01"><span class="todo TODO">TODO</span> Wall bending capacity</h2>
-<div class="outline-text-2" id="text-orge5d9f01">
+<div id="outline-container-orgc74df0b" class="outline-2">
+<h2 id="orgc74df0b">Wall bending capacity</h2>
+<div class="outline-text-2" id="text-orgc74df0b">
+<p>
+Concrete strength, f'<sub>c.wall</sub> <span id="i_fc"></span>
+</p>
+
+<p>
+&alpha;<sub>2</sub> <span id="o_alpha"></span>, &gamma; <span id="o_gammac"></span>
+</p>
+
+<p>
+Steel strength, f<sub>sy</sub> <span id="i_fsy"></span>
+</p>
+
 <p>
 Bars <span id="i_dbw"></span>-<span id="i_spw"></span>
 </p>
 
 <p>
-Cover <span id="i_cw"></span>
+Cover <span id="i_cw"></span>, d <span id="o_d"></span>
+</p>
+
+<p>
+Neutral axis ratio, k<sub>u</sub> <span id="o_ku"></span>
+</p>
+
+<p>
+Moment capacity, &Phi;M<sub>u.wall</sub> <span id="o_phiMu"></span> (&Phi; = 0.85)
+</p>
+
+<p>
+Moment capacity check, M*/&Phi;M<sub>u.wall</sub> <span id="wallMomemntCheck"></span>
 </p>
 </div>
 </div>
 
-<div id="outline-container-org2618fc9" class="outline-2">
-<h2 id="org2618fc9"><span class="todo TODO">TODO</span> Footing bending capacity</h2>
-<div class="outline-text-2" id="text-org2618fc9">
+<div id="outline-container-org8162187" class="outline-2">
+<h2 id="org8162187">Footing bending capacity</h2>
+<div class="outline-text-2" id="text-org8162187">
+<p>
+Concrete strength, f'<sub>c.foot</sub> <span id="i_fcf"></span>
+</p>
+
+<p>
+&alpha;<sub>2</sub> <span id="o_alphaf"></span>, &gamma; <span id="o_gammacf"></span>
+</p>
+
 <p>
 Bars <span id="i_dbf"></span>-<span id="i_spf"></span>
 </p>
 
 <p>
-Cover <span id="i_cf"></span>
+Cover <span id="i_cf"></span>, d <span id="o_df"></span>
+</p>
+
+<p>
+Neutral axis ratio, k<sub>u</sub> <span id="o_kuf"></span>
+</p>
+
+<p>
+Moment capacity, &Phi;M<sub>u.foot</sub> <span id="o_phiMuf"></span> (&Phi; = 0.85)
+</p>
+
+<p>
+Moment capacity check, M*/&Phi;M<sub>u.foot</sub> <span id="footMomemntCheck"></span>
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgefdfd77" class="outline-2">
-<h2 id="orgefdfd77"><span class="todo TODO">TODO</span> Sliding</h2>
+<div id="outline-container-orgb02a32f" class="outline-2">
+<h2 id="orgb02a32f"><span class="todo TODO">TODO</span> Sliding</h2>
 </div>
-<div id="outline-container-org2358944" class="outline-2">
-<h2 id="org2358944"><span class="todo TODO">TODO</span> Overturning</h2>
+<div id="outline-container-org8823365" class="outline-2">
+<h2 id="org8823365"><span class="todo TODO">TODO</span> Overturning</h2>
 </div>
 </div>
 </body>

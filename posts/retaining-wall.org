@@ -7,31 +7,11 @@
 
 {{{span(soilFigure)}}}
 
-* Wall dimensions
+* Soil Properties
 
 Retaining side {{{span(i_side)}}}
 
-Retaining height, H {{{span(i_H)}}}
-
-Base width, B {{{span(i_B)}}}
-
-Base thickness, D_b {{{span(i_Db)}}}
-
-Toe depth, D_t {{{span(i_Dt)}}}
-
-Toe width, B_t {{{span(i_Bt)}}}
-
-Wall thickness, D_w {{{span(i_Dw)}}}
-
-Wall offset {{{span(i_offset)}}}
-
-* Properties
-
 Soil unit weight, \gamma{} {{{span(i_gamma)}}}
-
-Surcharge load {{{span(i_surcharge)}}}
-
-* Soil coefficients
 
 Pressure coefficient method {{{span(i_theory)}}}
 
@@ -47,25 +27,69 @@ Passive pressure coefficient, K_p {{{span(i_Kp)}}}
 
 Passive pressure coefficient, K_p {{{span(o_Kp)}}}
 
+* Footing dimensions
+
+Base width, B {{{span(i_B)}}}
+
+Base thickness, D_b {{{span(i_Db)}}}
+
+Toe depth, D_t {{{span(i_Dt)}}}
+
+Toe width, B_t {{{span(i_Bt)}}}
+
+Wall thickness, D_w {{{span(i_Dw)}}}
+
+Wall offset {{{span(i_offset)}}}
+
 * Loading
+
+Retaining height, H {{{span(i_H)}}}
+
+Surcharge load {{{span(i_surcharge)}}}
 
 Force (active), P_a {{{span(o_Pa)}}}
 
+# Force (passive), P_p {{{span(o_Pp)}}}
+
 Moment (active), M_a {{{span(o_Ma)}}}
 
-Force (passive), P_p {{{span(o_Pp)}}}
+ULS moment, M* {{{span(o_Mstar)}}}
 
-* TODO Wall bending capacity
+ULS load factors: \psi{}_soil = 1.25, \psi{}_surcharge = 1.5
+
+* Wall bending capacity
+
+Concrete strength, f'_c.wall {{{span(i_fc)}}}
+
+\alpha_2 {{{span(o_alpha)}}}, \gamma {{{span(o_gammac)}}}
+
+Steel strength, f_{sy} {{{span(i_fsy)}}}
 
 Bars {{{span(i_dbw)}}}-{{{span(i_spw)}}}
 
-Cover {{{span(i_cw)}}}
+Cover {{{span(i_cw)}}}, d {{{span(o_d)}}}
 
-* TODO Footing bending capacity
+Neutral axis ratio, k_u {{{span(o_ku)}}}
+
+Moment capacity, \Phi{}M_u.wall {{{span(o_phiMu)}}} (\Phi = 0.85)
+
+Moment capacity check, M*/\Phi{}M_u.wall {{{span(wallMomemntCheck)}}}
+
+* Footing bending capacity
+
+Concrete strength, f'_c.foot {{{span(i_fcf)}}}
+
+\alpha_2 {{{span(o_alphaf)}}}, \gamma {{{span(o_gammacf)}}}
 
 Bars {{{span(i_dbf)}}}-{{{span(i_spf)}}}
 
-Cover {{{span(i_cf)}}}
+Cover {{{span(i_cf)}}}, d {{{span(o_df)}}}
+
+Neutral axis ratio, k_u {{{span(o_kuf)}}}
+
+Moment capacity, \Phi{}M_u.foot {{{span(o_phiMuf)}}} (\Phi = 0.85)
+
+Moment capacity check, M*/\Phi{}M_u.foot {{{span(footMomemntCheck)}}}
 
 * TODO Sliding
 * TODO Overturning
