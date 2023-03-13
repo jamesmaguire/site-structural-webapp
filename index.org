@@ -4,17 +4,19 @@
 [[file:./static/icon/logo.svg]]
 
 * Application index
-** Foundations
+** Foundations and retaining
+*** [[file:posts/retaining-wall.org][Retaining wall]]
 *** [[file:posts/pad-footing.org][Pad footings]]
 *** [[file:posts/strip-footing.org][Strip footings]]
 *** [[file:posts/bored-piles.org][Bored piles]]
+*** [[file:posts/secant-pile-properties.org][Secant pile properties]]
 ** Reinforced concrete design
 *** [[file:posts/rc-beam.org][RC Beam]]
 *** TODO [[file:posts/rc-columns-rect.org][RC Column (rectangle)]]
 *** TODO [[file:posts/rc-columns-circle.org][RC Column (circle)]]
 *** [[file:posts/concrete-cover.org][Concrete cover]]
 *** [[file:posts/crack-control.org][Crack control]]
-** Slabs
+** Slab design
 *** [[file:posts/integrity-reo.org][Integrity reo]]
 *** [[file:posts/top-reo.org][Top reo]]
 *** [[file:posts/punching-shear.org][Punching shear]]
@@ -28,9 +30,7 @@
 *** [[file:posts/steel-sections.org][Structural steel sections]]
 *** TODO [[file:posts/steel-capacities.org][Structural steel capacities]] (needs verification)
 ** Other tools
-*** TODO [[file:posts/retaining-wall.org][Retaining wall]]
 *** [[file:posts/sdof-oscillator.org][SDOF oscillator]]
-*** [[file:posts/secant-pile-properties.org][Secant pile properties]]
 * Blog posts
 *** [[file:blog/blast-loading.org][Blast loading of precast panels]]
 * Description
