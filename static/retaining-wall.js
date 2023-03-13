@@ -53,6 +53,22 @@ function initPage()
     output('o_kuf');
     output('o_phiMuf', {units:'kNm/m'});
     output('footMomemntCheck');
+
+    // Sliding
+    output('o_Rv', {units:'kN/m'});
+    output('o_delta', {units:'&deg;'});
+    output('o_Ppbase', {units:'kN/m'});
+    output('o_Ppkey', {units:'kN/m'});
+    output('o_Pp', {units:'kN/m'});
+    output('slideCheck');
+
+    // Overturning/bearing
+    output('o_MR', {units:'kNm/m'});
+    output('overturnCheck');
+    input('i_q', {initval:150, units:'kPa'});
+    output('o_qSW', {units:'kPa'});
+    output('o_qstar', {units:'kPa'});
+    output('bearingCheck');
     
     updatePage();
 }
@@ -288,6 +304,78 @@ function runCalcs() {
     o_phiMuf.value = (phibend*Muf).toPrecision(3);
     footMomemntCheck.value = (Mstar/(phibend*Muf)).toFixed(2);
     setPassFail(footMomemntCheck);
+
+    // Sliding
+    const B = i_B.valueAsNumber;
+    const Dt = i_Dt.valueAsNumber;
+    const Bt = i_Bt.valueAsNumber;
+    const H = i_H.valueAsNumber;
+    const offset = i_offset.valueAsNumber;
+    const side = i_side.value;
+    // Vertical reaction = weight base + weight stem + load on heel
+    let Rv;
+    if (side === 'Left') {
+        Rv = 25*(B*Db + (Dt-Db)*Bt + Dw*H)/1000**2
+            + H*offset*gamma/1000**2
+            + surcharge*offset/1000;
+    } else if (side === 'Right') {
+        Rv = 25*(B*Db + (Dt-Db)*Bt + Dw*H)/1000**2
+            + H*(B-Dw-offset)*gamma/1000**2
+            + surcharge*(B-Dw-offset)/1000;
+    }
+    o_Rv.value = Rv.toPrecision(3);
+    let delta;
+    if (theory === 'Manual') {
+        delta = (2/3) * 2*(Math.atan(Math.sqrt(Kp))*180/Math.PI - 45);
+    }
+    if (theory === 'Rankine') {
+        delta = 2*i_phi.valueAsNumber/3;
+    }
+    o_delta.value = delta.toFixed(1);
+    let Ppbase = Rv*Math.tan(delta*Math.PI/180);
+    o_Ppbase.value = Ppbase.toPrecision(3);
+    // Key resistance
+    let Ppkey = 0.5*Kp*gamma*(Dt/1000)**2;
+    o_Ppkey.value = Ppkey.toPrecision(3);
+    let Pp = Ppbase + Ppkey;
+    o_Pp.value = Pp.toPrecision(3);
+    slideCheck.value = ((Pa_soil+Pa_surcharge)/Pp).toFixed(2);
+    setPassFail(slideCheck);
+
+    // Overturning/bearing
+    const q = i_q.valueAsNumber;
+    const qSW = 25*Db/1000;
+    let Ma = (Pa_soil*z/3 + Pa_surcharge*z/2);
+    let qstar, MR;
+    if (side === 'Left') {
+        [o_MR, overturnCheck].forEach(x => visible(x, false));
+        [o_qSW].forEach(x => visible(x, true));
+        let qresist = Ma / (0.5*B*(2/3)*B/1000**2);
+        qstar = qresist + qSW;
+    } else if (side === 'Right') {
+        [o_MR, overturnCheck].forEach(x => visible(x, true));
+        [o_qSW].forEach(x => visible(x, false));
+        // Resisting moment
+        let Mfoot = qSW*B*B/2/1000**2;
+        let Mwall = 25*H*Dw*(offset+Dw/2)/1000**3;
+        let Msoil = (B-(B-Dw-offset)/2)*H*(B-Dw-offset)*gamma/1000**3;
+        let MR = Mfoot + Msoil + Mwall;
+        o_MR.value = MR.toPrecision(3);
+        overturnCheck.value = (Ma/MR).toFixed(2);
+        setPassFail(overturnCheck);
+        // Bearing
+        let x = (MR - Ma)/Rv;
+        let e = (B/1000)/2 - x;
+        console.log(x, e);
+        x > (B/1000)/3
+            ? qstar = (2/3)*Rv/x
+            : qstar = Rv/(B/1000) * (1+(6*e/(B/1000)));
+    }
+    o_qSW.value = qSW.toPrecision(3);
+    o_qstar.value = qstar.toPrecision(3);
+    bearingCheck.value = (qstar/q).toFixed(2);
+    setPassFail(bearingCheck);
+
 }
 
 initPage();

@@ -91,8 +91,34 @@ Moment capacity, \Phi{}M_u.foot {{{span(o_phiMuf)}}} (\Phi = 0.85)
 
 Moment capacity check, M*/\Phi{}M_u.foot {{{span(footMomemntCheck)}}}
 
-* TODO Sliding
-* TODO Overturning
+* Sliding
+
+Vertical reation, R_v {{{span(o_Rv)}}}
+
+Angle of wall friction, \delta {{{span(o_delta)}}} (2\phi{}'/3 insitu concrete)
+
+Base friction, P_p.base {{{span(o_Ppbase)}}} (R_{v}tan\delta)
+
+Key reaction, P_p.key {{{span(o_Ppkey)}}}
+
+Total reaction, P_p {{{span(o_Pp)}}}
+
+Sliding check, P_a/P_p {{{span(slideCheck)}}}
+
+* Overturning and bearing
+
+Resisting moment, M_R {{{span(o_MR)}}}
+
+Overturning check, M_a/M_R {{{span(overturnCheck)}}}
+
+Allowable bearing pressure, q_B {{{span(i_q)}}}
+
+Footing weight, q_SW {{{span(o_qSW)}}}
+
+Peak bearing pressure, q* {{{span(o_qstar)}}}
+
+Bearing check, q*/q_B {{{span(bearingCheck)}}}
+
 * Export on save                                                   :noexport:
 ;; Local Variables:
 ;; eval: (add-hook 'after-save-hook 'org-html-export-to-html nil t)
