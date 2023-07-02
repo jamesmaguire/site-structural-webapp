@@ -31,6 +31,7 @@
 *** TODO [[file:posts/steel-capacities.org][Structural steel capacities]] (needs verification)
 ** Other tools
 *** [[file:posts/sdof-oscillator.org][SDOF oscillator]]
+*** TODO [[file:posts/rates-columns.org][Columns steel rates]]
 * Blog posts
 *** [[file:blog/blast-loading.org][Blast loading of precast panels]]
 * Description

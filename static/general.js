@@ -77,6 +77,11 @@ function dropdown(id, values, initval=0) {
     document.getElementById(id).outerHTML = html;
 }
 
+function checkbox(id, initval) {
+    let html = ` = <input id="${id}" type="checkbox" ${initval ? "checked" : ""} oninput="updatePage()"></input>`;
+    document.getElementById(id).outerHTML = html;
+}
+
 function input(id, {initval=0, units='', prefix='', align='right'}={}) {
     let html = `<span class="inputspan">${prefix}`;
     html += `<input id='${id}' class='${align}' type='number' value=${initval}`;

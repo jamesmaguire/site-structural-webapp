@@ -1,0 +1,73 @@
+#+title: Column steel rates
+#+setupfile: post.setup
+#+HTML_HEAD: <script type="text/javascript" src="../static/rates-columns.js" defer></script>
+#+include: "../statusicon.org"
+
+* Figure
+
+{{{span(colFigure)}}}
+
+* Tie figure
+
+{{{span(tieFigure)}}}
+
+* Column properties
+
+Shape {{{span(i_shape)}}}
+
+Width {{{span(i_Dx)}}}
+
+Length {{{span(i_Dy)}}}
+
+Height {{{span(i_H)}}}
+
+Column area {{{span(o_area)}}}
+
+Column volume {{{span(o_vol)}}}
+
+* Slabs
+
+Top terminating {{{span(i_termtop)}}}
+
+Slab thickness top {{{span(i_Dst)}}}
+
+Slab thickness bottom {{{span(i_Dsb)}}}
+
+Bottom terminating {{{span(i_termbtm)}}}
+
+Cog length {{{span(i_cog)}}}
+
+* Steel
+
+Steel density {{{span(o_density)}}}
+
+Vertical bars {{{span(i_nv)}}}{{{span(i_dbv)}}}
+
+Ties {{{span(i_dbt)}}}-{{{span(i_spct)}}}
+
+Double top tie {{{span(i_doubletop)}}}
+
+Ties in btm lap {{{span(i_btmties)}}}
+
+Ligs {{{span(i_nligs)}}}
+
+Cover {{{span(i_cover)}}}
+
+Lap length {{{span(o_lap)}}}
+
+* Rates
+
+Vertical reo {{{span(o_vmass)}}}
+
+Starter reo {{{span(o_smass)}}}
+
+Ties {{{span(o_tmass)}}}
+
+Total steel {{{span(o_masstotal)}}}
+
+Steel rate {{{span(o_rate)}}}
+
+* Export on save                                                   :noexport:
+;; Local Variables:
+;; eval: (add-hook 'after-save-hook 'org-html-export-to-html nil t)
+;; End:
