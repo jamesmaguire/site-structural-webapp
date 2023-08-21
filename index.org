@@ -26,10 +26,10 @@
 *** [[file:posts/wind-loading.org][Wind loading]]
 *** [[file:posts/earthquake-loading.org][Earthquake loading]]
 *** TODO [[file:posts/beam-formulas.org][Beam design formulas]]
-** Steel
+** Structural steel
 *** [[file:posts/rebar-properties.org][Rebar properties]]
-*** [[file:posts/steel-sections.org][Structural steel sections]]
-*** TODO [[file:posts/steel-capacities.org][Structural steel capacities]] (needs verification)
+*** [[file:posts/steel-sections.org][Steel sections]]
+*** TODO [[file:posts/steel-capacities.org][Steel capacities]]
 ** Other tools
 *** [[file:posts/sdof-oscillator.org][SDOF oscillator]]
 *** TODO [[file:posts/rates-columns.org][Columns steel rates]]
