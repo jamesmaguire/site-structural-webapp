@@ -12,7 +12,7 @@
 *** [[file:posts/secant-pile-properties.org][Secant pile properties]]
 ** Reinforced concrete design
 *** [[file:posts/rc-beam.org][RC Beam]]
-*** TODO [[file:posts/rc-columns-rect.org][RC Column (rectangle)]]
+*** TODO [[file:posts/rc-columns-rect.org][RC Column (rect)]]
 *** TODO [[file:posts/rc-columns-circle.org][RC Column (circle)]]
 *** [[file:posts/concrete-cover.org][Concrete cover]]
 *** [[file:posts/crack-control.org][Crack control]]
