@@ -90,15 +90,6 @@ function drawFigure()
         preserveAspectRatio:"xMidYMid",
     });
 
-    // Shade compression zone
-    const compZone = svgElemAppend(svg, 'path', {
-        class:'shadedzone',
-        d: `M${xmap(0)},${ymap(beam.D)}`
-            +` L${xmap(0)},${ymap(beam.D-beam.dn)}`
-            +` L${xmap(beam.B)},${ymap(beam.D-beam.dn)}`
-            +` L${xmap(beam.B)},${ymap(beam.D)} z`,
-    });
-
     // Concrete outline
     const beamOutline = svgElemAppend(svg, 'path', {
         class:'concrete',
@@ -106,6 +97,13 @@ function drawFigure()
             +` L${xmap(0)},${ymap(beam.D)}`
             +` L${xmap(beam.B)},${ymap(beam.D)}`
             +` L${xmap(beam.B)},${ymap(0)} z`,
+    });
+
+    // Shade compression zone
+    const compZone = svgElemAppend(svg, 'path', {
+        class:'shadedzone',
+        d: `M${xmap(0)},${ymap(beam.D-beam.dn)}`
+            +` L${xmap(beam.B)},${ymap(beam.D-beam.dn)}`
     });
 
     // Rebar
