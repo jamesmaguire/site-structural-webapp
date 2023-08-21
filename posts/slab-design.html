@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2023-08-21 Mon 21:23 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Slab design</title>
+<meta name="author" content="james" />
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" type="text/css" href="../static/post.css" />
+<script type="text/javascript" src="../static/general.js"></script>
+<link rel="icon" type="image/ico" href="../static/icon/favicon.svg" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script type="text/javascript" src="../static/slabdesign.js" defer></script>
+</head>
+<body>
+<div id="org-div-home-and-up"> <img src="../static/icon/logo.svg" /> <a href="../index.html"> Home </a> </div><div id="content" class="content">
+<h1 class="title">Slab design
+<br />
+<span class="subtitle">Based on AS3600 2018</span>
+</h1>
+<p>
+<button id='statusbutton' onclick='updatePage();'>▶ Run analysis</button>
+</p>
+
+<div id="outline-container-org3748c7b" class="outline-2">
+<h2 id="org3748c7b">Image</h2>
+<div class="outline-text-2" id="text-org3748c7b">
+<p>
+<div id="slabFigure"></div>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org4e86713" class="outline-2">
+<h2 id="org4e86713">Slab parameters</h2>
+<div class="outline-text-2" id="text-org4e86713">
+<p>
+Slab width <span id="i_B"></span>
+</p>
+
+<p>
+Slab depth <span id="i_D"></span>
+</p>
+
+<p>
+Top reo <span id="i_dbc"></span> <span id="i_spcc"></span>
+</p>
+
+<p>
+Bottom reo  <span id="i_dbt"></span> <span id="i_spct"></span>
+</p>
+
+<p>
+Cover <span id="i_c"></span>
+</p>
+
+<p>
+Effective depth <span id="o_d"></span>
+</p>
+
+<p>
+Axis depth <span id="o_a"></span>
+</p>
+
+<p>
+Number bars <span id="o_nbc"></span> <span id="o_nbt"></span>
+</p>
+
+<p>
+Area steel <span id="o_Asc"></span> <span id="o_Ast"></span>
+</p>
+
+<p>
+Reinforcement ratio <span id="o_reoratio"></span>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf5587b3" class="outline-2">
+<h2 id="orgf5587b3">Material properties</h2>
+<div class="outline-text-2" id="text-orgf5587b3">
+<p>
+Concrete strength <span id="i_fc"></span>
+</p>
+
+<p>
+Concrete ult. strain, &epsilon;<sub>cu</sub> <span id="i_ecu"></span>
+</p>
+
+<p>
+&alpha;<sub>2</sub> <span id="o_alpha2"></span>, &gamma; <span id="o_gamma"></span>
+</p>
+
+<p>
+Steel strength <span id="i_fsy"></span>
+</p>
+
+<p>
+Steel modulus <span id="i_Es"></span>
+</p>
+
+<p>
+Steel ult. strain, &epsilon;<sub>su</sub> <span id="o_esu"></span>
+</p>
+
+<p>
+Steel density <span id="i_steelrho"></span>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgfe6e78f" class="outline-2">
+<h2 id="orgfe6e78f">Bending capacity</h2>
+<div class="outline-text-2" id="text-orgfe6e78f">
+<p>
+Applied moment, M* <span id="i_Mstar"></span>
+</p>
+
+<p>
+Neutral axis parameter, k<sub>u</sub> <span id="o_ku"></span>
+</p>
+
+<p>
+Plastic neutral axis, d<sub>n</sub> <span id="o_dn"></span>
+</p>
+
+<p>
+Moment capacity, M<sub>uo</sub> <span id="o_Muo"></span>
+</p>
+
+<p>
+Capacity reduction factor, &Phi; <span id="o_phi"></span>
+</p>
+
+<p>
+Design moment capacity, &Phi;M<sub>uo</sub> <span id="o_phiMuo"></span>
+</p>
+
+<p>
+Moment check, M*/&Phi;M<sub>uo</sub> <span id="momentCheck"></span>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge4e4f5a" class="outline-2">
+<h2 id="orge4e4f5a">Crack control</h2>
+<div class="outline-text-2" id="text-orge4e4f5a">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Type</th>
+<th scope="col" class="org-right">Bar dia. (mm)</th>
+<th scope="col" class="org-right">Spacing (mm)</th>
+<th scope="col" class="org-right">Rate (mm<sup>2</sup>/m)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">SL72</td>
+<td class="org-right">6.75</td>
+<td class="org-right">200</td>
+<td class="org-right">179</td>
+</tr>
+
+<tr>
+<td class="org-left">SL82</td>
+<td class="org-right">7.60</td>
+<td class="org-right">200</td>
+<td class="org-right">227</td>
+</tr>
+
+<tr>
+<td class="org-left">SL92</td>
+<td class="org-right">8.55</td>
+<td class="org-right">200</td>
+<td class="org-right">287</td>
+</tr>
+
+<tr>
+<td class="org-left">N12-200</td>
+<td class="org-right">12</td>
+<td class="org-right">200</td>
+<td class="org-right">565</td>
+</tr>
+
+<tr>
+<td class="org-left">N16-200</td>
+<td class="org-right">16</td>
+<td class="org-right">200</td>
+<td class="org-right">1005</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Average prestress, &sigma;<sub>cp</sub> <span id="i_sigmacp"></span>
+</p>
+
+<p>
+Area steel <span id="o_ccrate"></span>
+</p>
+</div>
+
+<div id="outline-container-org5afdd96" class="outline-3">
+<h3 id="org5afdd96">Reinforcement for crack control in secondary direction (unrestrained slab)</h3>
+<div class="outline-text-3" id="text-org5afdd96">
+<p>
+Minimum (1.75-2.5&sigma;<sub>cp</sub>)bD<sup>-3</sup> <span id="o_cc0"></span>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga72f935" class="outline-3">
+<h3 id="orga72f935">Reinforcement for crack control in secondary direction (restrained slab)</h3>
+<div class="outline-text-3" id="text-orga72f935">
+<p>
+Minor (1.75-2.5&sigma;<sub>cp</sub>)bD<sup>-3</sup> <span id="o_cc1"></span>
+</p>
+
+<p>
+Moderate (3.5-2.5&sigma;<sub>cp</sub>)bD<sup>-3</sup> <span id="o_cc2"></span>
+</p>
+
+<p>
+Strong (6.0-2.5&sigma;<sub>cp</sub>)bD<sup>-3</sup> <span id="o_cc3"></span>
+</p>
+
+<p>
+*Note, for exposure classification B1, B2, C1, C2 a strong degree of crack control is always required
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org0a898b6" class="outline-2">
+<h2 id="org0a898b6">Tonnage</h2>
+<div class="outline-text-2" id="text-org0a898b6">
+</div>
+<div id="outline-container-orga8f2cca" class="outline-3">
+<h3 id="orga8f2cca">One way</h3>
+<div class="outline-text-3" id="text-orga8f2cca">
+<p>
+Rate <span id="o_tonnagem2"></span> <span id="o_tonnagem3"></span>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc2f0d77" class="outline-3">
+<h3 id="orgc2f0d77">Two way</h3>
+<div class="outline-text-3" id="text-orgc2f0d77">
+<p>
+Rate <span id="o_tonnagem2tw"></span> <span id="o_tonnagem3tw"></span>
+</p>
+
+<p>
+*Assuming same reo in secondary direction
+</p>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

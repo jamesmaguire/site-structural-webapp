@@ -1,0 +1,109 @@
+#+title: Slab design
+#+subtitle: Based on AS3600 2018
+
+#+setupfile: post.setup
+#+HTML_HEAD: <script type="text/javascript" src="../static/slabdesign.js" defer></script>
+#+include: "../statusicon.org"
+
+* Image
+ 
+{{{div(slabFigure)}}}
+
+* Slab parameters
+
+Slab width {{{span(i_B)}}}
+
+Slab depth {{{span(i_D)}}}
+
+Top reo {{{span(i_dbc)}}} {{{span(i_spcc)}}}
+
+Bottom reo  {{{span(i_dbt)}}} {{{span(i_spct)}}}
+
+Cover {{{span(i_c)}}}
+
+Effective depth {{{span(o_d)}}}
+
+Axis depth {{{span(o_a)}}}
+
+Number bars {{{span(o_nbc)}}} {{{span(o_nbt)}}}
+
+Area steel {{{span(o_Asc)}}} {{{span(o_Ast)}}}
+
+Reinforcement ratio {{{span(o_reoratio)}}}
+
+* Material properties
+
+Concrete strength {{{span(i_fc)}}}
+
+Concrete ult. strain, \varepsilon_{cu} {{{span(i_ecu)}}}
+
+\alpha_2 {{{span(o_alpha2)}}}, \gamma {{{span(o_gamma)}}}
+
+Steel strength {{{span(i_fsy)}}}
+
+Steel modulus {{{span(i_Es)}}}
+
+Steel ult. strain, \varepsilon_{su} {{{span(o_esu)}}}
+
+Steel density {{{span(i_steelrho)}}}
+
+* Bending capacity
+
+Applied moment, M* {{{span(i_Mstar)}}}
+
+Neutral axis parameter, k_u {{{span(o_ku)}}}
+
+Plastic neutral axis, d_n {{{span(o_dn)}}}
+
+Moment capacity, M_{uo} {{{span(o_Muo)}}}
+
+Capacity reduction factor, \Phi {{{span(o_phi)}}}
+
+Design moment capacity, \Phi{}M_{uo} {{{span(o_phiMuo)}}}
+
+Moment check, M*/\Phi{}M_{uo} {{{span(momentCheck)}}}
+
+* Crack control
+
+| Type    | Bar dia. (mm) | Spacing (mm) | Rate (mm^2/m) |
+|---------+---------------+--------------+---------------|
+| SL72    |          6.75 |          200 |           179 |
+| SL82    |          7.60 |          200 |           227 |
+| SL92    |          8.55 |          200 |           287 |
+| N12-200 |            12 |          200 |           565 |
+| N16-200 |            16 |          200 |          1005 |
+
+Average prestress, \sigma_{cp} {{{span(i_sigmacp)}}}
+
+Area steel {{{span(o_ccrate)}}}
+
+** Reinforcement for crack control in secondary direction (unrestrained slab)
+
+Minimum (1.75-2.5\sigma_{cp})bD^{-3} {{{span(o_cc0)}}}
+
+** Reinforcement for crack control in secondary direction (restrained slab)
+
+Minor (1.75-2.5\sigma_{cp})bD^{-3} {{{span(o_cc1)}}}
+
+Moderate (3.5-2.5\sigma_{cp})bD^{-3} {{{span(o_cc2)}}}
+
+Strong (6.0-2.5\sigma_{cp})bD^{-3} {{{span(o_cc3)}}}
+
+*Note, for exposure classification B1, B2, C1, C2 a strong degree of crack control is always required
+
+* Tonnage
+
+** One way
+
+Rate {{{span(o_tonnagem2)}}} {{{span(o_tonnagem3)}}}
+
+** Two way
+
+Rate {{{span(o_tonnagem2tw)}}} {{{span(o_tonnagem3tw)}}}
+
+*Assuming same reo in secondary direction
+
+* Export on save                                                   :noexport:
+;; Local Variables:
+;; eval: (add-hook 'after-save-hook 'org-html-export-to-html nil t)
+;; End:

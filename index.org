@@ -20,6 +20,7 @@
 *** [[file:posts/integrity-reo.org][Integrity reo]]
 *** [[file:posts/top-reo.org][Top reo]]
 *** [[file:posts/punching-shear.org][Punching shear]]
+*** [[file:posts/slab-design.org][Slab design]]
 ** Design actions
 *** [[file:posts/load-combinations.org][Load combinations]]
 *** [[file:posts/wind-loading.org][Wind loading]]
