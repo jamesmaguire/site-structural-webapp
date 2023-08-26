@@ -28,8 +28,9 @@ function initPage()
 
     // Loading
     input('i_Mstar', {initval:50, units:'kNm'});
+    input('i_Vstar', {initval:150, units:'kN'});
 
-    // // Bending capacity
+    // Bending capacity
     output('o_ku');
     output('o_dn', {units:'mm'});
     output('o_Muo', {units:'kNm'});
@@ -37,11 +38,27 @@ function initPage()
     output('o_phiMuo', {units:'kNm'});
     output('momentCheck');
 
-    // // // Min strength
+    // Min strength
     output('o_Z', {units:'mm<sup>3</sup>'});
     output('o_fctf', {units:'MPa'});
     output('o_Muomin', {units:'kNm'});
     output('momentminCheck');
+
+    // Shear capacity
+    input('i_nlegs', {initval:2});
+    input('i_alphav', {initval:90, units:'&deg'});
+    output('o_Asv', {units:'mm<sup>2</sup>'});
+    output('o_Asvmin', {units:'mm<sup>2</sup>'});
+    textoutput('o_Asvminreq');
+    output('o_epsilonx');
+    output('o_thetav', {units:'&deg'});
+    output('o_kv');
+    output('o_Vuc', {units:'kN'});
+    output('o_Vus', {units:'kN'});
+    output('o_phiV');
+    output('o_phiVumax', {units:'kN'});
+    output('o_phiVu', {units:'kN'});
+    output('shearCheck');
 
     updatePage();
 }
@@ -200,6 +217,7 @@ function runCalcs() {
     o_esu.value = steel.esu;
 
     // Bending
+    const Mstar = i_Mstar.valueAsNumber;
     let ku = determineku(beam, concrete, steel);
     let dn = beam.d*ku;
     let Muo = momentCapacity(beam, concrete, steel, ku);
@@ -209,10 +227,10 @@ function runCalcs() {
     o_Muo.value = Muo.toPrecision(3);
     o_phi.value = phi.toFixed(2);
     o_phiMuo.value = (phi*Muo).toPrecision(3);
-    momentCheck.value = (i_Mstar.valueAsNumber/(phi*Muo)).toFixed(2);
+    momentCheck.value = (Mstar/(phi*Muo)).toFixed(2);
     setPassFail(momentCheck);
     o_ku.parentElement.classList.remove('FAIL');
-    if (ku > 0.36 && i_Mstar.valueAsNumber > 0.8*phi*Muo) {
+    if (ku > 0.36 && Mstar > 0.8*phi*Muo) {
         setPassFail(o_ku, 0.36);
     }
 
@@ -227,6 +245,71 @@ function runCalcs() {
 
     sumCSFforces(0.15, beam, concrete, steel, true);
 
+    // Shear
+    const Vstar = i_Vstar.valueAsNumber;
+    let bv = beam.B;
+    const dv = Math.max(0.72*beam.D, 0.92*beam.d);
+    let s = beam.dbspc;
+    let nlegs = i_nlegs.valueAsNumber;
+    const Asv = nlegs*Math.PI*beam.dbs**2/4;
+    const Asvmin = 0.08*Math.sqrt(concrete.fc)*bv*s/steel.fsy;
+    const alphav = i_alphav.valueAsNumber;
+
+    const epsilonx = Math.min((Mstar/dv + Vstar) / (2*steel.Es*beam.Ast), 3*10**-3);
+    const thetav = 29 + 7000*epsilonx;
+    let kv;
+    let kdg;
+    let dg = 20; // Nom aggregate size (affects fc > 65)
+    if (Asv < Asvmin) {
+        concrete.fc <= 65 ? kdg=Math.max(32/(16+dg),1.0) : kdg=2.0;
+        kv = (0.4/(1+1500*epsilonx))*(1300/(1000+kdg*dv));
+    } else {
+        kv = 0.4/(1+1500*epsilonx);
+    }
+    const Vuc = kv*bv*dv*Math.min(8,Math.sqrt(concrete.fc))/1000;
+
+    const radians = a => a*Math.PI/180;
+    const cosav = Math.cos(radians(alphav));
+    const sinav = Math.sin(radians(alphav));
+    const cotav = 1/Math.tan(radians(alphav));
+    const cottv = 1/Math.tan(radians(thetav));
+    const Vus = (Asv*steel.fsy*dv/s)*(sinav*cottv + cosav)/1000;
+
+    const Vumax = 0.55*0.9*concrete.fc*bv*dv*((cottv + cotav)/(1 + cottv**2))/1000;
+    const Vu = Math.min(Vuc+Vus, Vumax);
+
+    const phiV = Asv > Asvmin ? 0.75 : 0.7;
+
+    let ks;
+    if (beam.D <= 300) {
+        ks = 1;
+    } else if (beam.D < 650) {
+        ks = (1000-beam.D)/700;
+    } else {
+        ks = 0.5;
+    }
+    let Asvminreq = Vstar > ks*0.75*Vuc ? 'Yes' : 'No';
+    if (beam.D >= 750) {Asvminreq='Yes';}
+    o_Asvminreq.value = Asvminreq;
+
+    o_Asv.value = Asv.toFixed(0);
+    o_Asvmin.value = Asvmin.toFixed(0);
+    if (Asvminreq === 'Yes') {
+        setPassFail(o_Asv, threshold=Asvmin, inverse=true);
+    } else {
+        o_Asv.parentElement.className = 'outputspan';
+    }
+    o_thetav.value = thetav.toFixed(1);
+    o_epsilonx.value = epsilonx.toFixed(4);
+    o_kv.value = kv.toFixed(2);
+    o_Vuc.value = Vuc.toFixed(1);
+    o_Vus.value = Vus.toFixed(1);
+    o_phiV.value = phiV.toFixed(2);
+    o_phiVumax.value = (phiV*Vumax).toFixed(0);
+    o_phiVu.value = (phiV*Vu).toFixed(0);
+
+    shearCheck.value = (Vstar/(phiV*Vu)).toFixed(2);
+    setPassFail(shearCheck);
 }
 
 // Function that determines bar locations

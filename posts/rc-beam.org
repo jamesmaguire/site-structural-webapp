@@ -21,7 +21,7 @@ Bottom reo {{{span(i_nbt)}}} {{{span(i_dbt)}}}
 
 Edge bars {{{span(i_nbe)}}} {{{span(i_dbe)}}}
 
-Stirrups {{{span(i_dbs)}}} {{{span(i_dbspc)}}}
+Ties {{{span(i_dbs)}}} {{{span(i_dbspc)}}}
 
 Cover {{{span(i_c)}}}
 
@@ -53,6 +53,8 @@ Steel ult. strain, \varepsilon_{su} {{{span(o_esu)}}}
 
 Applied moment, M* {{{span(i_Mstar)}}}
 
+Applied shear, V* {{{span(i_Vstar)}}}
+
 * Bending capacity
 
 Neutral axis parameter, k_u {{{span(o_ku)}}}
@@ -76,6 +78,28 @@ Concrete flex.ten. strength, f'_{ct.f} {{{span(o_fctf)}}}
 Minimum bending strength, M_{uo,min} {{{span(o_Muomin)}}}
 
 Min strength check, M_{uo,min}/M_{uo} {{{span(momentminCheck)}}}
+
+* Shear strength
+
+Shear reo legs {{{span(i_nlegs)}}}, angle {{{span(i_alphav)}}}
+ 
+Transverse reo, A_{sv} {{{span(o_Asv)}}}
+
+A_{sv.min} {{{span(o_Asvmin)}}}, required? {{{span(o_Asvminreq)}}}
+
+\epsilon_x {{{span(o_epsilonx)}}}, \theta_v {{{span(o_thetav)}}}, k_v {{{span(o_kv)}}}
+
+Shear capacity (concrete), V_{uc} {{{span(o_Vuc)}}}
+
+Shear capacity (steel), V_{us} {{{span(o_Vus)}}}
+
+Capacity reduction factor, \Phi {{{span(o_phiV)}}}
+
+Web crushing, \Phi{}V_{u.max} {{{span(o_phiVumax)}}}
+
+Shear capacity, \Phi{}Vu {{{span(o_phiVu)}}}
+
+Shear check, V*/\Phi{}V_{u} {{{span(shearCheck)}}}
 
 * Export on save                                                   :noexport:
 ;; Local Variables:
