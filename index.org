@@ -15,7 +15,6 @@
 *** TODO [[file:posts/rc-columns-rect.org][RC Column (rect)]]
 *** TODO [[file:posts/rc-columns-circle.org][RC Column (circle)]]
 *** [[file:posts/concrete-cover.org][Concrete cover]]
-*** [[file:posts/crack-control.org][Crack control]]
 *** [[file:posts/rc-wall.org][RC Wall]]
 ** Slab design
 *** [[file:posts/integrity-reo.org][Integrity reo]]
@@ -58,6 +57,9 @@ Input boxes that look like @@html:<input value="this" readonly></input>@@ are de
 - roundedrect function
 ** TODO Add input calculations to text box
 (Type 1000/200 in input and gives 5)
+
+* Superseded                                                       :noexport:
+** [[file:posts/crack-control.org][Crack control]]
 
 * Export on save                                                   :noexport:
 ;; Local Variables:
