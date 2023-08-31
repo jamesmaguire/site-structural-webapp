@@ -1,0 +1,111 @@
+#+title: Reinforced Concrete Wall
+#+subtitle: Based on AS3600 2018
+
+#+setupfile: post.setup
+#+HTML_HEAD: <script type="text/javascript" src="../static/rcwall.js" defer></script>
+#+include: "../statusicon.org"
+
+* Image
+
+{{{div(wallFigure)}}}
+
+* Wall parameters
+
+Wall height, H_w {{{span(i_Hw)}}}
+
+Wall length {{{span(i_L)}}}
+
+Wall thickness {{{span(i_t)}}}
+
+Vertical reo {{{span(i_dbv)}}} {{{span(i_vspc)}}} {{{span(o_rhov)}}}
+
+Horizontal reo {{{span(i_dbh)}}} {{{span(i_hspc)}}} {{{span(o_rhoh)}}}
+
+Layers {{{span(i_layers)}}}
+
+Cover {{{span(i_c)}}}
+
+Area steel {{{span(o_Ast)}}}
+
+Concrete strength {{{span(i_fc)}}}
+
+Steel strength {{{span(i_fsy)}}}
+
+* Effective height
+
+Vertical lateral restraint {{{span(i_restraint)}}}
+
+Rotational restraint {{{span(i_fixfix)}}}
+
+k {{{span(o_k)}}}, H_{we}=kH_{we} {{{span(o_Hwe)}}}
+
+* Simplified design method
+
+Applied axial load, N* {{{span(i_Nstar)}}}
+
+Design axial stress {{{span(o_stress)}}}
+
+H_{we} / t {{{span(o_Hwetot)}}} 
+
+Simplified method allowed? {{{span(o_simplified)}}}
+
+* Axial loading (simplified method)
+
+Slab continuity {{{span(i_slabcontinuity)}}}
+
+Percentage load from floors above {{{span(i_slabloadpercentage)}}}
+
+Eccentricity {{{span(o_e)}}}
+
+Additional eccentricity, e_a=H_{we}^2/2500t_w {{{span(o_ea)}}}
+
+Capacity reduction factor, \Phi {{{span(o_phi)}}}
+
+Design capacity, \Phi{}N_u {{{span(o_phiNu)}}}
+
+Axial check, N*/\Phi{}N_u {{{span(axialCheck)}}}
+
+* In Plane Shear loading (simplified method)
+
+Applied shear, V* {{{span(i_Vstar)}}}
+
+Max capacity, V_{u,max} {{{span(o_Vumax)}}}
+
+Concrete shear, V_{uc} {{{span(o_Vuc)}}}
+
+Steel shear, V_{us} {{{span(o_Vus)}}}
+
+Capacity reduction factor, \Phi {{{span(o_phishear)}}}
+
+Shear capacity, \Phi{}V_u {{{span(o_phiVu)}}}
+
+Shear check, V*/\Phi{}V_u {{{span(shearCheck)}}}
+
+* Minimum reinforcement
+
+Vertical, \rho_{v,min} = {{{span(o_rhovmin)}}}
+
+Horizontal unrestrained, \rho_{h,min} {{{span(o_rhohmin)}}}
+
+Horizontal restrained, \rho_{h,minor} = {{{span(o_rhow1)}}}
+
+Horizontal restrained, \rho_{h,moderate} = {{{span(o_rhow2)}}}
+
+Horizontal restrained, \rho_{h,strong} = {{{span(o_rhow3)}}}
+
+*Note, for exposure classification B1, B2, C1, C2 a strong degree of crack control is always required
+
+* Dowels in prefabricated walls
+
+Area vertical reo, A_{st,wall} {{{span(o_Astwall)}}}
+
+Ductility factor \mu > 1.0? {{{span(i_uaboveone)}}}
+
+Dowel diameter, d_{b,dowel} {{{span(i_dbd)}}}
+
+Dowel min spacing {{{span(o_dspc)}}}
+
+* Export on save                                                   :noexport:
+;; Local Variables:
+;; eval: (add-hook 'after-save-hook 'org-html-export-to-html nil t)
+;; End:

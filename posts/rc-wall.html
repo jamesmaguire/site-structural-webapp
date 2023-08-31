@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2023-08-31 Thu 22:14 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Reinforced Concrete Wall</title>
+<meta name="author" content="james" />
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" type="text/css" href="../static/post.css" />
+<script type="text/javascript" src="../static/general.js"></script>
+<link rel="icon" type="image/ico" href="../static/icon/favicon.svg" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script type="text/javascript" src="../static/rcwall.js" defer></script>
+</head>
+<body>
+<div id="org-div-home-and-up"> <img src="../static/icon/logo.svg" /> <a href="../index.html"> Home </a> </div><div id="content" class="content">
+<h1 class="title">Reinforced Concrete Wall
+<br />
+<span class="subtitle">Based on AS3600 2018</span>
+</h1>
+<p>
+<button id='statusbutton' onclick='updatePage();'>▶ Run analysis</button>
+</p>
+
+<div id="outline-container-org52cc32c" class="outline-2">
+<h2 id="org52cc32c">Image</h2>
+<div class="outline-text-2" id="text-org52cc32c">
+<p>
+<div id="wallFigure"></div>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb9cd925" class="outline-2">
+<h2 id="orgb9cd925">Wall parameters</h2>
+<div class="outline-text-2" id="text-orgb9cd925">
+<p>
+Wall height, H<sub>w</sub> <span id="i_Hw"></span>
+</p>
+
+<p>
+Wall length <span id="i_L"></span>
+</p>
+
+<p>
+Wall thickness <span id="i_t"></span>
+</p>
+
+<p>
+Vertical reo <span id="i_dbv"></span> <span id="i_vspc"></span> <span id="o_rhov"></span>
+</p>
+
+<p>
+Horizontal reo <span id="i_dbh"></span> <span id="i_hspc"></span> <span id="o_rhoh"></span>
+</p>
+
+<p>
+Layers <span id="i_layers"></span>
+</p>
+
+<p>
+Cover <span id="i_c"></span>
+</p>
+
+<p>
+Area steel <span id="o_Ast"></span>
+</p>
+
+<p>
+Concrete strength <span id="i_fc"></span>
+</p>
+
+<p>
+Steel strength <span id="i_fsy"></span>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org9ae8b12" class="outline-2">
+<h2 id="org9ae8b12">Effective height</h2>
+<div class="outline-text-2" id="text-org9ae8b12">
+<p>
+Vertical lateral restraint <span id="i_restraint"></span>
+</p>
+
+<p>
+Rotational restraint <span id="i_fixfix"></span>
+</p>
+
+<p>
+k <span id="o_k"></span>, H<sub>we</sub>=kH<sub>we</sub> <span id="o_Hwe"></span>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga906d62" class="outline-2">
+<h2 id="orga906d62">Simplified design method</h2>
+<div class="outline-text-2" id="text-orga906d62">
+<p>
+Applied axial load, N* <span id="i_Nstar"></span>
+</p>
+
+<p>
+Design axial stress <span id="o_stress"></span>
+</p>
+
+<p>
+H<sub>we</sub> / t <span id="o_Hwetot"></span> 
+</p>
+
+<p>
+Simplified method allowed? <span id="o_simplified"></span>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge04e84e" class="outline-2">
+<h2 id="orge04e84e">Axial loading (simplified method)</h2>
+<div class="outline-text-2" id="text-orge04e84e">
+<p>
+Slab continuity <span id="i_slabcontinuity"></span>
+</p>
+
+<p>
+Percentage load from floors above <span id="i_slabloadpercentage"></span>
+</p>
+
+<p>
+Eccentricity <span id="o_e"></span>
+</p>
+
+<p>
+Additional eccentricity, e<sub>a</sub>=H<sub>we</sub><sup>2</sup>/2500t<sub>w</sub> <span id="o_ea"></span>
+</p>
+
+<p>
+Capacity reduction factor, &Phi; <span id="o_phi"></span>
+</p>
+
+<p>
+Design capacity, &Phi;N<sub>u</sub> <span id="o_phiNu"></span>
+</p>
+
+<p>
+Axial check, N*/&Phi;N<sub>u</sub> <span id="axialCheck"></span>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgdea734f" class="outline-2">
+<h2 id="orgdea734f">In Plane Shear loading (simplified method)</h2>
+<div class="outline-text-2" id="text-orgdea734f">
+<p>
+Applied shear, V* <span id="i_Vstar"></span>
+</p>
+
+<p>
+Max capacity, V<sub>u,max</sub> <span id="o_Vumax"></span>
+</p>
+
+<p>
+Concrete shear, V<sub>uc</sub> <span id="o_Vuc"></span>
+</p>
+
+<p>
+Steel shear, V<sub>us</sub> <span id="o_Vus"></span>
+</p>
+
+<p>
+Capacity reduction factor, &Phi; <span id="o_phishear"></span>
+</p>
+
+<p>
+Shear capacity, &Phi;V<sub>u</sub> <span id="o_phiVu"></span>
+</p>
+
+<p>
+Shear check, V*/&Phi;V<sub>u</sub> <span id="shearCheck"></span>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf223b2e" class="outline-2">
+<h2 id="orgf223b2e">Minimum reinforcement</h2>
+<div class="outline-text-2" id="text-orgf223b2e">
+<p>
+Vertical, &rho;<sub>v,min</sub> = <span id="o_rhovmin"></span>
+</p>
+
+<p>
+Horizontal unrestrained, &rho;<sub>h,min</sub> <span id="o_rhohmin"></span>
+</p>
+
+<p>
+Horizontal restrained, &rho;<sub>h,minor</sub> = <span id="o_rhow1"></span>
+</p>
+
+<p>
+Horizontal restrained, &rho;<sub>h,moderate</sub> = <span id="o_rhow2"></span>
+</p>
+
+<p>
+Horizontal restrained, &rho;<sub>h,strong</sub> = <span id="o_rhow3"></span>
+</p>
+
+<p>
+*Note, for exposure classification B1, B2, C1, C2 a strong degree of crack control is always required
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc378049" class="outline-2">
+<h2 id="orgc378049">Dowels in prefabricated walls</h2>
+<div class="outline-text-2" id="text-orgc378049">
+<p>
+Area vertical reo, A<sub>st,wall</sub> <span id="o_Astwall"></span>
+</p>
+
+<p>
+Ductility factor &mu; &gt; 1.0? <span id="i_uaboveone"></span>
+</p>
+
+<p>
+Dowel diameter, d<sub>b,dowel</sub> <span id="i_dbd"></span>
+</p>
+
+<p>
+Dowel min spacing <span id="o_dspc"></span>
+</p>
+</div>
+</div>
+</div>
+</body>
+</html>
