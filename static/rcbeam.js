@@ -59,6 +59,17 @@ function initPage()
     output('o_phiVumax', {units:'kN'});
     output('o_phiVu', {units:'kN'});
     output('shearCheck');
+    output('webCrushCheck');
+
+    // Torsion
+    input('i_Tstar', {units:'kNm', initval:0});
+    output('o_Acp', {units:'m<sup>2</sup>'});
+    output('o_uc', {units:'m'});
+    output('o_Tcr', {units:'kNm'});
+    textoutput('o_torsionConsidered');
+    output('o_Ao', {units:'m<sup>2</sup>'});
+    output('o_phiTus', {units:'kNm'});
+    output('torsionCheck');
 
     updatePage();
 }
@@ -279,6 +290,7 @@ function runCalcs() {
     const Vu = Math.min(Vuc+Vus, Vumax);
 
     const phiV = Asv > Asvmin ? 0.75 : 0.7;
+    if (Vu === Vumax) {phiV = 0.7;}
 
     let ks;
     if (beam.D <= 300) {
@@ -310,6 +322,39 @@ function runCalcs() {
 
     shearCheck.value = (Vstar/(phiV*Vu)).toFixed(2);
     setPassFail(shearCheck);
+
+    // Torsion
+    const Tstar = i_Tstar.valueAsNumber;
+    const phiT = 0.75;
+    const Acp = (beam.D-2*beam.c)*(beam.B-2*beam.c)/1000**2;
+    const uc = 2*(beam.D + beam.B - 4*beam.c)/1000;
+    const Tcr = 0.33*Math.sqrt(concrete.fc)*Acp**2/uc*1000;
+    Tstar > 0.25*phiT*Tcr
+        ? o_torsionConsidered.value = 'Yes'
+        : o_torsionConsidered.value = 'No';
+    const Aoh = (beam.D-2*beam.c-beam.dbs)*(beam.B-2*beam.c-beam.dbs)/1000**2;
+    const Ao = 0.85*Aoh;
+    const Asw = Math.PI*beam.dbs**2/4/1000**2;
+    const Tus = 2*Ao*Asw*steel.fsy*cottv/s*1000**2;
+    let phiTus = phiT*Tus;
+    if (beam.dbs === 0) {phiTus = 0;}
+
+    o_Acp.value = Acp.toFixed(3);
+    o_uc.value = uc.toFixed(2);
+    o_Tcr.value = Tcr.toFixed(2);
+    o_Ao.value = Ao.toFixed(3);
+    o_phiTus.value = phiTus.toFixed(2);
+    torsionCheck.value = (Tstar/phiTus).toFixed(2);
+    setPassFail(torsionCheck);
+
+    // Web crushing check
+    const uh = 2*(beam.D + beam.B - 4*beam.c - 2*beam.dbs)/1000;
+    const LHS = Math.sqrt((Vstar/(beam.B*dv/1000**2))**2
+                          +(Tstar*uh/(1.7*Aoh**2))**2);
+    const RHS = 0.7*Vumax/(beam.B*dv/1000**2);
+    webCrushCheck.value = (LHS/RHS).toFixed(2);
+    setPassFail(webCrushCheck);
+
 }
 
 // Function that determines bar locations

@@ -55,6 +55,8 @@ Applied moment, M* {{{span(i_Mstar)}}}
 
 Applied shear, V* {{{span(i_Vstar)}}}
 
+Applied torsion, T* {{{span(i_Tstar)}}}
+
 * Bending capacity
 
 Neutral axis parameter, k_u {{{span(o_ku)}}}
@@ -100,6 +102,25 @@ Web crushing, \Phi{}V_{u.max} {{{span(o_phiVumax)}}}
 Shear capacity, \Phi{}Vu {{{span(o_phiVu)}}}
 
 Shear check, V*/\Phi{}V_{u} {{{span(shearCheck)}}}
+
+Web crushing check {{{span(webCrushCheck)}}}
+
+* Torsion
+
+Area within ties, A_{cp} {{{span(o_Acp)}}}
+
+Perimeter of ties, u_c {{{span(o_uc)}}}
+
+Torsion cracking moment, T_{cr} {{{span(o_Tcr)}}} 
+
+Torsion considered if min ties, T*>0.25\Phi{}T_{cr} {{{span(o_torsionConsidered)}}}
+
+Area in shear flow path, A_o {{{span(o_Ao)}}}
+
+Torsion capacity, \Phi{}T_{us} {{{span(o_phiTus)}}}
+
+Torsion check, T*/\Phi{}T_{us} {{{span(torsionCheck)}}}
+
 
 * Export on save                                                   :noexport:
 ;; Local Variables:
