@@ -5,10 +5,10 @@ function initPage()
     input('i_D', {initval:200, units:'mm'});
     input('i_dbc', {initval:12, prefix:'N', align:'left'});
     input('i_spcc', {initval:200, units:'mm'});
-    output('o_nbc', {units:'bars/m (TOP)'});
+    output('o_nbc', {units:'bars (TOP)'});
     input('i_dbt', {initval:12, prefix:'N', align:'left'});
     input('i_spct', {initval:200, units:'mm'});
-    output('o_nbt', {units:'bars/m (BTM)'});
+    output('o_nbt', {units:'bars (BTM)'});
     input('i_c', {initval:30, units:'mm'});
     output('o_d', {units:'mm'});
     output('o_a', {units:'mm'});
