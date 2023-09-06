@@ -216,7 +216,7 @@ function runCalcs() {
     o_tonnagem3tw.value = (2*tonnagem3).toFixed(1);
 
     // Crack control
-    const ccrate = slab.Ast+slab.Asc;
+    const ccrate = (slab.Ast+slab.Asc)*1000/slab.B;
     o_ccrate.value = ccrate.toFixed(0);
     const ccD = Math.min(i_D.valueAsNumber, 500);
     const sigmacp = i_sigmacp.valueAsNumber;
