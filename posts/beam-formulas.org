@@ -6,13 +6,10 @@
 
 * TODO list                                                        :noexport:
 - [ ] Diagram of beam loading
-- [ ] Convert location, x to slider
 
 * Beam properties
 
 Beam type {{{span(i_beamtype)}}}
-
-Uniformly distributed load, w {{{span(i_w)}}}
 
 Load, w1 {{{span(i_w1)}}}, w2 {{{span(i_w2)}}}
 
@@ -22,7 +19,7 @@ Modulus, E {{{span(i_E)}}}
 
 Second moment, I {{{span(i_I)}}}
 
-Location, x {{{span(i_x)}}}
+Location, x {{{span(i_x)}}} {{{span(o_x)}}}
 
 * Results
 

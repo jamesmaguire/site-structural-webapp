@@ -17,7 +17,8 @@ function initPage()
     input('i_L', {initval:6, units:'m'});
     input('i_E', {initval:200, units:'GPa'});
     input('i_I', {initval:300e6, units:'mm<sup>4</sup>'});
-    input('i_x', {initval:3, units:'m'});
+    slider('i_x');
+    output('o_x', {units:'m'});
     
     output('o_RA', {units:'kN'});
     output('o_RB', {units:'kN'});
@@ -38,7 +39,8 @@ function runCalcs() {
     const L = i_L.valueAsNumber;
     const E = i_E.valueAsNumber;
     const I = i_I.valueAsNumber;
-    const x = i_x.valueAsNumber;
+    const x = i_x.valueAsNumber*L/100;
+    o_x.value = x.toFixed(2);
     let wx, Vmax, Vx, Mmax, Mx, dmax, dx;
     let RA, RB, MA;
     let samples = 100, xs = [...Array(samples+1).keys()].map(n => n*L/samples);

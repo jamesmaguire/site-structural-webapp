@@ -82,6 +82,12 @@ function checkbox(id, initval) {
     document.getElementById(id).outerHTML = html;
 }
 
+function slider(id, initval=0, max=100) {
+    let html = `<input type='range' class='slider' id='${id}' value='${initval}' min='0', max='${max}', onchange='updatePage();'>`;
+    html += `</input>`;
+    document.getElementById(id).outerHTML = html;
+}
+
 function input(id, {initval=0, units='', prefix='', align='right'}={}) {
     let html = `<span class="inputspan">${prefix}`;
     html += `<input id='${id}' class='${align}' type='number' value=${initval}`;
