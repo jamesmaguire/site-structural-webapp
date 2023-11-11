@@ -4,11 +4,17 @@
 #+HTML_HEAD: <script type="text/javascript" src="../static/beamformulas.js" defer></script>
 #+include: "../statusicon.org"
 
+* TODO list                                                        :noexport:
+- [ ] Diagram of beam loading
+- [ ] Convert location, x to slider
+
 * Beam properties
 
 Beam type {{{span(i_beamtype)}}}
 
 Uniformly distributed load, w {{{span(i_w)}}}
+
+Load, w1 {{{span(i_w1)}}}, w2 {{{span(i_w2)}}}
 
 Length, L {{{span(i_L)}}}
 
@@ -18,19 +24,15 @@ Second moment, I {{{span(i_I)}}}
 
 Location, x {{{span(i_x)}}}
 
-* Simply supported beam with UDL
+* Results
 
-Shear, V_{max}=wL/2 {{{span(o_Vmax)}}}
+Reactions, R_A {{{span(o_RA)}}}, R_B {{{span(o_RB)}}}
 
-Shear, V_x=w(L/2-x) {{{span(o_Vx)}}}
+Shear, V_{max} {{{span(o_Vmax)}}}, V_{@x} {{{span(o_Vx)}}}
 
-Moment, M_{max}=wL^2/8 {{{span(o_Mmax)}}}
+Moment, M_{max} {{{span(o_Mmax)}}}, M_{@x} {{{span(o_Mx)}}}
 
-Moment, M_x=wx(L-x)/2 {{{span(o_Mx)}}}
-
-Displacement, \delta_{max}=5wL^4/384EI {{{span(o_dmax)}}}
-
-Displacement, \delta_x=wx(L^3-2Lx^2+x^3)/24EI {{{span(o_dx)}}}
+Displacement, \delta_{max} {{{span(o_dmax)}}}, \delta_{@x} {{{span(o_dx)}}}
 
 * Diagram
 

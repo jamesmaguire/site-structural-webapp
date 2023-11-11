@@ -8,16 +8,19 @@ function initPage()
 {
 
     dropdown('i_beamtype', [
-        'Simply supported with UDL',
-        'Cantilever with UDL'
+        'Cantilever',
+        'Simply supported',
     ]);
     
-    input('i_w', {initval:10, units:'kN/m'});
+    input('i_w1', {initval:10, units:'kN/m'});
+    input('i_w2', {initval:10, units:'kN/m'});
     input('i_L', {initval:6, units:'m'});
     input('i_E', {initval:200, units:'GPa'});
-    input('i_I', {initval:2000e3, units:'mm<sup>4</sup>'});
+    input('i_I', {initval:300e6, units:'mm<sup>4</sup>'});
     input('i_x', {initval:3, units:'m'});
     
+    output('o_RA', {units:'kN'});
+    output('o_RB', {units:'kN'});
     output('o_Vmax', {units:'kN'});
     output('o_Vx', {units:'kN'});
     output('o_Mmax', {units:'kNm'});
@@ -30,32 +33,50 @@ function initPage()
 
 function runCalcs() {
 
-    const w = i_w.valueAsNumber;
+    const w1 = i_w1.valueAsNumber;
+    const w2 = i_w2.valueAsNumber;
     const L = i_L.valueAsNumber;
     const E = i_E.valueAsNumber;
     const I = i_I.valueAsNumber;
     const x = i_x.valueAsNumber;
-    let Vmax, Vx, Mmax, Mx, dmax, dx;
-    
+    let wx, Vmax, Vx, Mmax, Mx, dmax, dx;
+    let RA, RB, MA;
+    let samples = 100, xs = [...Array(samples+1).keys()].map(n => n*L/samples);
+
     // Simply supported beam with UDL
     const beamtype = i_beamtype.value;
-    if (beamtype === 'Simply supported with UDL') {
-        Vmax = w*L/2;
-        Vx = x => w*(L/2 - x);
-        Mmax = w*L**2/8;
-        Mx = x => w*x*(L-x)/2;
-        dmax = 5*w*L**4/(384*E*I)*1000**3;
-        dx = x => w*x*(L**3 - 2*L*x**2 + x**3)/(24*E*I)*1000**3;
-    } else if (beamtype === 'Cantilever with UDL') {
-        Vmax = w*L;
-        Vx = x => w*x;
-        Mmax = w*L**2/2;
-        Mx = x => w*x**2/2;
-        dmax = w*L**4/(8*E*I)*1000**3;
-        dx = x => w*(x**4-4*L**3*x-3*x**4)/(48*E*I)*1000**3;
+    if (beamtype === 'Simply supported') {
+        // Formulas: https://calcresource.com/statics-simple-beam.html#anchor-17
+        showInput(o_RB);
+        RA = (2*w1+w2)*L/6;
+        RB = (w1+2*w2)*L/6;
+        wx = x => w1 + (w2-w1)*x/L;
+        Vx = x => RA - (w1+wx(x))*x/2;
+        Mx = x => RA*x - (2*w1+wx(x))*x**2/6;
+        dx = x => (((8*w1)+(7*w2))*x*L**3/(360*E*I) - RA*x**3/(6*E*I) + (4*w1+wx(x))*x**4/(120*E*I))*1000**3;
+        // Maximums
+        Vmax = Math.max(RA,RB);
+        Mmax = xs.map(x => Mx(x)).reduce((a,b) => Math.max(a,b));
+        dmax = xs.map(x => dx(x)).reduce((a,b) => Math.max(a,b));
+    } else if (beamtype === 'Cantilever') {
+        // Formulas: https://calcresource.com/statics-cantilever-beam.html#anchor-15
+        hideInput(o_RB);
+        RA = (w1+w2)*L/2;
+        MA = -(w1+2*w2)*L**2/6;
+        RB = 0;
+        wx = x => w1 + (w2-w1)*x/L;
+        Vx = x => RA - (w1+w2)*x/2;
+        Mx = x => RA*x + MA - (2*w1+wx(x))*x**2/6;
+        dx = x => (-RA*x**3/(6*E*I) - MA*x**2/(2*E*I) + (4*w1+wx(x))*x**4/(120*E*I))*1000**3;
+        // Maximums
+        Vmax = RA;
+        Mmax = MA;
+        dmax = xs.map(x => dx(x)).reduce((a,b) => Math.max(a,b));
     }
 
     // Set outputs
+    o_RA.value = RA.toFixed(0);
+    o_RB.value = RB.toFixed(0);
     o_dx.value = dx(x).toFixed(1);
     o_Vmax.value = Vmax.toFixed(1);
     o_Vx.value = Vx(x).toFixed(1);
