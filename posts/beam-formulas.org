@@ -1,11 +1,8 @@
-#+title: Beam Design Formulas
+#+title: Beam Load Formulas
 
 #+setupfile: post.setup
 #+HTML_HEAD: <script type="text/javascript" src="../static/beamformulas.js" defer></script>
 #+include: "../statusicon.org"
-
-* TODO list                                                        :noexport:
-- [ ] Diagram of beam loading
 
 * Beam properties
 
@@ -33,7 +30,11 @@ Displacement, \delta_{max} {{{span(o_dmax)}}}, \delta_{@x} {{{span(o_dx)}}}
 
 * Diagram
 
-{{{div(beamDiagram)}}}
+{{{div(loadDiagram)}}}
+
+* Internal forces
+
+{{{div(outputDiagram)}}}
 
 * Export on save                                                   :noexport:
 ;; Local Variables:

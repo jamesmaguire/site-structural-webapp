@@ -25,7 +25,7 @@
 *** [[file:posts/load-combinations.org][Load combinations]]
 *** [[file:posts/wind-loading.org][Wind loading]]
 *** [[file:posts/earthquake-loading.org][Earthquake loading]]
-*** TODO [[file:posts/beam-formulas.org][Beam design formulas]]
+*** [[file:posts/beam-formulas.org][Beam load formulas]]
 ** Structural steel
 *** [[file:posts/rebar-properties.org][Rebar properties]]
 *** [[file:posts/steel-sections.org][Steel sections]]

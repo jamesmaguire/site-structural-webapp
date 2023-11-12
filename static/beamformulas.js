@@ -8,8 +8,8 @@ function initPage()
 {
 
     dropdown('i_beamtype', [
-        'Cantilever',
         'Simply supported',
+        'Cantilever',
     ]);
     
     input('i_w1', {initval:10, units:'kN/m'});
@@ -86,8 +86,8 @@ function runCalcs() {
     o_Mx.value = Mx(x).toFixed(1);
     o_dmax.value = dmax.toFixed(1);
 
-    // Diagram
-    document.getElementById('beamDiagram').innerHTML='';
+    // Diagrams
+    document.getElementById('outputDiagram').innerHTML='';
     const svgNS = 'http://www.w3.org/2000/svg';
 
     const margin = {left:50, right:50, top:50, bottom:50},
@@ -99,7 +99,7 @@ function runCalcs() {
     const xmap = n => margin.left + sf*n;
     const ymap = n => margin.top  - sf*n;
 
-    const svg = svgElemAppend(beamDiagram, 'svg', {
+    const svg = svgElemAppend(outputDiagram, 'svg', {
         width: width + margin.left + margin.right,
         height: height + margin.top + margin.bottom,
         viewBox:`0 0 `
@@ -177,7 +177,65 @@ function runCalcs() {
     svgElemAppend(svg, 'text',
                   {x:xmap(L), y:ymap(-5*L/6), dy: 7, dx: 20,}, `dx`);
 
-    
+    // Load diagram
+    document.getElementById('loadDiagram').innerHTML='';
+    const svg2 = svgElemAppend(loadDiagram, 'svg', {
+        width: width + margin.left + margin.right,
+        height: height + margin.top + margin.bottom,
+        viewBox:`0 0 `
+            +`${width + margin.left + margin.top} `
+            +`${height + margin.top + margin.bottom}`,
+        preserveAspectRatio:"xMidYMid",
+    });
+
+    svgElemAppend(svg2, 'line', {
+        class:'diagramaxis', x1:xmap(0), x2:xmap(L), y1:ymap(-L/2), y2:ymap(-L/2)
+    });
+    const sfw = L/4/Math.max(w1,w2);
+    let loadcurve = `M${xmap(0)},${ymap(-L/2)}`;
+    loadcurve += `L${xmap(0)},${ymap(-L/2+sfw*w1)}`;
+    loadcurve += `L${xmap(L)},${ymap(-L/2+sfw*w2)}`;
+    loadcurve += `L${xmap(L)},${ymap(-L/2)} Z`;
+    svgElemAppend(svg2, 'path', {
+        class:'diagramarea', d:loadcurve
+    });
+    svgElemAppend(svg2, 'text',
+                  {x:xmap(0), y:ymap(-L/2+sfw*w1), dy: -10, dx: -10}, `w1`);
+    svgElemAppend(svg2, 'text',
+                  {x:xmap(L), y:ymap(-L/2+sfw*w2), dy: -10, dx: -10}, `w2`);
+    // RA + arrow
+    let sfR = L/4/Math.max(RA,RB);
+    svgElemAppend(svg2, 'text',
+                  {x:xmap(0), y:ymap(-L/2-sfR*RA), dy: 25, dx: -10}, `RA`);
+    let arrowhead = `M${xmap(0)},${ymap(-L/2-sfR*RA)}`;
+    arrowhead += `L${xmap(0)},${ymap(-L/2 - L/50)}`;
+    arrowhead += 'l5,10 l-10,0 l5,-10 z';
+    svgElemAppend(svg2, 'path', {
+        class:'arrow', d:arrowhead
+    });
+    // RB + arrow
+    if (beamtype === 'Simply supported') {
+        svgElemAppend(svg2, 'text',
+                      {x:xmap(L), y:ymap(-L/2-sfR*RB), dy: 25, dx: -10}, `RB`);
+        arrowhead = `M${xmap(L)},${ymap(-L/2-sfR*RB)}`;
+        arrowhead += `L${xmap(L)},${ymap(-L/2 - L/50)}`;
+        arrowhead += 'l5,10 l-10,0 l5,-10 z';
+        svgElemAppend(svg2, 'path', {
+            class:'arrow', d:arrowhead
+        });
+    }
+    // MA + arrow
+    if (beamtype === 'Cantilever') {
+        svgElemAppend(svg2, 'text',
+                      {x:xmap(-2*L/20), y:ymap(-L/2), dy: 5, dx: -30}, `MA`);
+        arrowhead = `M${xmap(-L/20)},${ymap(-L/2-L/10)}`;
+        arrowhead += `Q${xmap(-2*L/20)},${ymap(-L/2)} ${xmap(-L/20)},${ymap(-L/2+L/10)}`;
+        arrowhead += 'l2,10 l-10,-1 l8,-9';
+        svgElemAppend(svg2, 'path', {
+            class:'arrow', d:arrowhead
+        });
+    }
+
 }
 
 initPage();

@@ -111,6 +111,10 @@ input {
   border: none;
   max-width: 7ch;
 }
+.slider {
+  max-width: 100%;
+  cursor: pointer;
+}
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button,
 input[type=number] {
@@ -397,6 +401,11 @@ svg text {
 .diagramx {
   stroke: orange;
   stroke-width: 3;
+}
+.arrow {
+  stroke: black;
+  stroke-width: 3;
+  fill: none;
 }
 .softpile {
   stroke: grey;
