@@ -45,6 +45,8 @@ Wall offset {{{span(i_offset)}}}
 
 Retaining height, H {{{span(i_H)}}}
 
+Footing cover, h_c {{{span(i_hc)}}}
+
 Surcharge load {{{span(i_surcharge)}}}
 
 Force (active), P_a {{{span(o_Pa)}}}
@@ -53,9 +55,12 @@ Force (active), P_a {{{span(o_Pa)}}}
 
 Moment (active), M_a {{{span(o_Ma)}}}
 
+ULS load factors: \psi{}_soil = 1.25, \psi{}_surcharge = 1.5
+
+ULS sliding, P* {{{span(o_Pstar)}}}
+
 ULS moment, M* {{{span(o_Mstar)}}}
 
-ULS load factors: \psi{}_soil = 1.25, \psi{}_surcharge = 1.5
 
 * Wall bending capacity
 
@@ -93,7 +98,7 @@ Moment capacity check, M*/\Phi{}M_u.foot {{{span(footMomemntCheck)}}}
 
 * Sliding
 
-Vertical reation, R_v {{{span(o_Rv)}}}
+Factored weight, 0.8R_v {{{span(o_Rv)}}}
 
 Angle of wall friction, \delta {{{span(o_delta)}}} (2\phi{}'/3 insitu concrete)
 
@@ -103,7 +108,7 @@ Key reaction, P_p.key {{{span(o_Ppkey)}}}
 
 Total reaction, P_p {{{span(o_Pp)}}}
 
-Sliding check, P_a/P_p {{{span(slideCheck)}}}
+Sliding check, P*/P_p {{{span(slideCheck)}}}
 
 * Overturning and bearing
 

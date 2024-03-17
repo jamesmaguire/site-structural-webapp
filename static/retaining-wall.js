@@ -17,17 +17,19 @@ function initPage()
     input('i_Kp', {initval:2.5});
 
     // Soil properties
-    input('i_gamma', {initval:20, units:'kN/m<sup>2</sup>'});
+    input('i_gamma', {initval:20, units:'kN/m<sup>3</sup>'});
     input('i_fsy', {initval:500, units:'MPa'});
     output('o_Ka');
     output('o_Kp');
 
     // Loading
     input('i_H', {initval:1000, units:'mm'});
+    input('i_hc', {initval:200, units:'mm'});
     input('i_surcharge', {initval:5, units:'kPa'});
     output('o_Pa', {units:'kN/m'});
     // output('o_Pp', {units:'kN/m'});
     output('o_Ma', {units:'kNm/m'});
+    output('o_Pstar', {units:'kNm/m'});
     output('o_Mstar', {units:'kNm/m'});
 
     // Wall bending
@@ -88,6 +90,7 @@ function drawFigure()
 
     let side = i_side.value,
         H = i_H.valueAsNumber,
+        hc = i_hc.valueAsNumber,
         B = i_B.valueAsNumber,
         Db = i_Db.valueAsNumber,
         Dt = i_Dt.valueAsNumber,
@@ -165,6 +168,26 @@ function drawFigure()
         d: bfillpath
     });
 
+    // Soil cover
+    let cfillpath;
+    if (side === 'Left') {
+        cfillpath = `M${xmap(offset+Dw)} ${ymap(Dt)}`
+            + `L${xmap(offset+Dw)} ${ymap(Dt+hc)}`
+            + `L${xmap(B+soilwidth)} ${ymap(Dt+hc)}`
+            + `L${xmap(B+soilwidth)} ${ymap(Dt)}`
+            + `Z`;
+    } else if (side === 'Right') {
+        cfillpath = `M${xmap(offset)} ${ymap(Dt)}`
+            + `L${xmap(offset)} ${ymap(Dt+hc)}`
+            + `L${xmap(-soilwidth)} ${ymap(Dt+hc)}`
+            + `L${xmap(-soilwidth)} ${ymap(Dt)}`
+            + `Z`;
+    }
+    svgElemAppend(svg, 'path', {
+        class: 'backfill',
+        d: cfillpath
+    });
+
     // Footing
     svgElemAppend(svg, 'path', {
         class: 'concrete',
@@ -226,6 +249,7 @@ function runCalcs() {
     let Ka = i_Ka.valueAsNumber;
     let Kp = i_Kp.valueAsNumber;
     let z = i_H.valueAsNumber/1000;
+    let hc = i_hc.valueAsNumber/1000;
     let phi = i_phi.valueAsNumber;
     let beta = i_beta.valueAsNumber;
     let theory = i_theory.value;
@@ -253,10 +277,11 @@ function runCalcs() {
     let Pa_soil = 0.5*Ka*gamma*z**2;
     let Pa_surcharge = Ka*surcharge*z;
     o_Pa.value = (Pa_soil+Pa_surcharge).toPrecision(3);
-    // let Pp = 0.5 * Kp * gamma * z**2;
-    // o_Pp.value = Pp.toPrecision(3);
-    o_Ma.value = (Pa_soil*z/3 + Pa_surcharge*z/2).toPrecision(3);
-    const Mstar = (1.25*Pa_soil*z/3 + 1.5*Pa_surcharge*z/2);
+    let Phc = 0.5*Kp*gamma*hc**2;
+    o_Ma.value = (Pa_soil*z/3 + Pa_surcharge*z/2 - Phc*hc/3).toPrecision(3);
+    const Pstar = (1.25*Pa_soil + 1.5*Pa_surcharge);
+    o_Pstar.value = Pstar.toPrecision(3);
+    const Mstar = (1.25*Pa_soil*z/3 + 1.5*Pa_surcharge*z/2 - 0.8*Phc*hc/3);
     o_Mstar.value = Mstar.toPrecision(3);
 
     // Wall bending
@@ -312,18 +337,19 @@ function runCalcs() {
     const H = i_H.valueAsNumber;
     const offset = i_offset.valueAsNumber;
     const side = i_side.value;
-    // Vertical reaction = weight base + weight stem + load on heel
+    // Vertical reaction = weight base + weight stem + load on heel + weight of soil cover
     let Rv;
     if (side === 'Left') {
         Rv = 25*(B*Db + (Dt-Db)*Bt + Dw*H)/1000**2
             + H*offset*gamma/1000**2
-            + surcharge*offset/1000;
+            + surcharge*offset/1000
+            + gamma*hc/1000*(B-Dw-offset);
     } else if (side === 'Right') {
         Rv = 25*(B*Db + (Dt-Db)*Bt + Dw*H)/1000**2
             + H*(B-Dw-offset)*gamma/1000**2
             + surcharge*(B-Dw-offset)/1000;
     }
-    o_Rv.value = Rv.toPrecision(3);
+    o_Rv.value = (0.8*Rv).toPrecision(3);
     let delta;
     if (theory === 'Manual') {
         delta = (2/3) * 2*(Math.atan(Math.sqrt(Kp))*180/Math.PI - 45);
@@ -332,14 +358,15 @@ function runCalcs() {
         delta = 2*i_phi.valueAsNumber/3;
     }
     o_delta.value = delta.toFixed(1);
-    let Ppbase = Rv*Math.tan(delta*Math.PI/180);
+    let Ppbase = 0.8*Rv*Math.tan(delta*Math.PI/180);
     o_Ppbase.value = Ppbase.toPrecision(3);
     // Key resistance
-    let Ppkey = 0.5*Kp*gamma*(Dt/1000)**2;
+    let Ppkey = 0.5*Kp*gamma*((Dt/1000)+hc)**2;
+    console.log(Dt, hc);
     o_Ppkey.value = Ppkey.toPrecision(3);
     let Pp = Ppbase + Ppkey;
     o_Pp.value = Pp.toPrecision(3);
-    slideCheck.value = ((Pa_soil+Pa_surcharge)/Pp).toFixed(2);
+    slideCheck.value = (Pstar/Pp).toFixed(2);
     setPassFail(slideCheck);
 
     // Overturning/bearing

@@ -3,83 +3,36 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-03-13 Mon 16:56 -->
+<!-- 2024-03-17 Sun 16:22 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Retaining wall</title>
-<meta name="generator" content="Org mode" />
-<meta name="author" content="james" />
+<meta name="generator" content="Org Mode" />
 <link rel="stylesheet" type="text/css" href="../static/post.css" />
 <script type="text/javascript" src="../static/general.js"></script>
 <link rel="icon" type="image/ico" href="../static/icon/favicon.svg" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script type="text/javascript" src="../static/retaining-wall.js" defer></script>
-<script type="text/javascript">
-/*
-@licstart  The following is the entire license notice for the
-JavaScript code in this tag.
-
-Copyright (C) 2012-2020 Free Software Foundation, Inc.
-
-The JavaScript code in this tag is free software: you can
-redistribute it and/or modify it under the terms of the GNU
-General Public License (GNU GPL) as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.  The code is distributed WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-As additional permission under GNU GPL version 3 section 7, you
-may distribute non-source (e.g., minimized or compacted) forms of
-that code without the copy of the GNU GPL normally required by
-section 4, provided you include this license notice and a URL
-through which recipients can access the Corresponding Source.
-
-
-@licend  The above is the entire license notice
-for the JavaScript code in this tag.
-*/
-<!--/*--><![CDATA[/*><!--*/
- function CodeHighlightOn(elem, id)
- {
-   var target = document.getElementById(id);
-   if(null != target) {
-     elem.cacheClassElem = elem.className;
-     elem.cacheClassTarget = target.className;
-     target.className = "code-highlighted";
-     elem.className   = "code-highlighted";
-   }
- }
- function CodeHighlightOff(elem, id)
- {
-   var target = document.getElementById(id);
-   if(elem.cacheClassElem)
-     elem.className = elem.cacheClassElem;
-   if(elem.cacheClassTarget)
-     target.className = elem.cacheClassTarget;
- }
-/*]]>*///-->
-</script>
 </head>
 <body>
-<div id="org-div-home-and-up"> <img src="../static/icon/logo.svg" /> <a href="../index.html"> Home </a> </div><div id="content">
+<div id="org-div-home-and-up"> <img src="../static/icon/logo.svg" /> <a href="../index.html"> Home </a> </div><div id="content" class="content">
 <h1 class="title">Retaining wall</h1>
 <p>
 <button id='statusbutton' onclick='updatePage();'>▶ Run analysis</button>
 </p>
 
-<div id="outline-container-orge9c8193" class="outline-2">
-<h2 id="orge9c8193">Figure</h2>
-<div class="outline-text-2" id="text-orge9c8193">
+<div id="outline-container-orgb9230f1" class="outline-2">
+<h2 id="orgb9230f1">Figure</h2>
+<div class="outline-text-2" id="text-orgb9230f1">
 <p>
 <span id="soilFigure"></span>
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgd46759f" class="outline-2">
-<h2 id="orgd46759f">Soil Properties</h2>
-<div class="outline-text-2" id="text-orgd46759f">
+<div id="outline-container-org0a4dc76" class="outline-2">
+<h2 id="org0a4dc76">Soil Properties</h2>
+<div class="outline-text-2" id="text-org0a4dc76">
 <p>
 Retaining side <span id="i_side"></span>
 </p>
@@ -118,9 +71,9 @@ Passive pressure coefficient, K<sub>p</sub> <span id="o_Kp"></span>
 </div>
 </div>
 
-<div id="outline-container-orge9fb40d" class="outline-2">
-<h2 id="orge9fb40d">Footing dimensions</h2>
-<div class="outline-text-2" id="text-orge9fb40d">
+<div id="outline-container-org6d6d0cb" class="outline-2">
+<h2 id="org6d6d0cb">Footing dimensions</h2>
+<div class="outline-text-2" id="text-org6d6d0cb">
 <p>
 Base width, B <span id="i_B"></span>
 </p>
@@ -147,11 +100,15 @@ Wall offset <span id="i_offset"></span>
 </div>
 </div>
 
-<div id="outline-container-orgdef8288" class="outline-2">
-<h2 id="orgdef8288">Loading</h2>
-<div class="outline-text-2" id="text-orgdef8288">
+<div id="outline-container-org005685c" class="outline-2">
+<h2 id="org005685c">Loading</h2>
+<div class="outline-text-2" id="text-org005685c">
 <p>
 Retaining height, H <span id="i_H"></span>
+</p>
+
+<p>
+Footing cover, h<sub>c</sub> <span id="i_hc"></span>
 </p>
 
 <p>
@@ -167,18 +124,23 @@ Moment (active), M<sub>a</sub> <span id="o_Ma"></span>
 </p>
 
 <p>
-ULS moment, M* <span id="o_Mstar"></span>
+ULS load factors: &psi;<sub>soil</sub> = 1.25, &psi;<sub>surcharge</sub> = 1.5
 </p>
 
 <p>
-ULS load factors: &psi;<sub>soil</sub> = 1.25, &psi;<sub>surcharge</sub> = 1.5
+ULS sliding, P* <span id="o_Pstar"></span>
+</p>
+
+<p>
+ULS moment, M* <span id="o_Mstar"></span>
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgb37e680" class="outline-2">
-<h2 id="orgb37e680">Wall bending capacity</h2>
-<div class="outline-text-2" id="text-orgb37e680">
+
+<div id="outline-container-org37feb72" class="outline-2">
+<h2 id="org37feb72">Wall bending capacity</h2>
+<div class="outline-text-2" id="text-org37feb72">
 <p>
 Concrete strength, f'<sub>c.wall</sub> <span id="i_fc"></span>
 </p>
@@ -213,9 +175,9 @@ Moment capacity check, M*/&Phi;M<sub>u.wall</sub> <span id="wallMomemntCheck"></
 </div>
 </div>
 
-<div id="outline-container-org16938c3" class="outline-2">
-<h2 id="org16938c3">Footing bending capacity</h2>
-<div class="outline-text-2" id="text-org16938c3">
+<div id="outline-container-org5bd6b86" class="outline-2">
+<h2 id="org5bd6b86">Footing bending capacity</h2>
+<div class="outline-text-2" id="text-org5bd6b86">
 <p>
 Concrete strength, f'<sub>c.foot</sub> <span id="i_fcf"></span>
 </p>
@@ -246,11 +208,11 @@ Moment capacity check, M*/&Phi;M<sub>u.foot</sub> <span id="footMomemntCheck"></
 </div>
 </div>
 
-<div id="outline-container-org1fa730e" class="outline-2">
-<h2 id="org1fa730e">Sliding</h2>
-<div class="outline-text-2" id="text-org1fa730e">
+<div id="outline-container-orgc03487a" class="outline-2">
+<h2 id="orgc03487a">Sliding</h2>
+<div class="outline-text-2" id="text-orgc03487a">
 <p>
-Vertical reation, R<sub>v</sub> <span id="o_Rv"></span>
+Factored weight, 0.8R<sub>v</sub> <span id="o_Rv"></span>
 </p>
 
 <p>
@@ -270,14 +232,14 @@ Total reaction, P<sub>p</sub> <span id="o_Pp"></span>
 </p>
 
 <p>
-Sliding check, P<sub>a</sub>/P<sub>p</sub> <span id="slideCheck"></span>
+Sliding check, P*/P<sub>p</sub> <span id="slideCheck"></span>
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgf7f2dab" class="outline-2">
-<h2 id="orgf7f2dab">Overturning and bearing</h2>
-<div class="outline-text-2" id="text-orgf7f2dab">
+<div id="outline-container-org1521bb9" class="outline-2">
+<h2 id="org1521bb9">Overturning and bearing</h2>
+<div class="outline-text-2" id="text-org1521bb9">
 <p>
 Resisting moment, M<sub>R</sub> <span id="o_MR"></span>
 </p>
