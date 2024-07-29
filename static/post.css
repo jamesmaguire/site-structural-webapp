@@ -422,3 +422,14 @@ svg text {
   stroke: none;
   fill: rgba(0,0,0,0.15);
 }
+.lateralsupport {
+  stroke: #e5a122;
+  stroke-width: 5;
+  stroke-dasharray: 15 5;
+}
+.behind {
+  opacity: 0.3;
+}
+#FRLtable td {
+  height: 3rem;
+}

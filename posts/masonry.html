@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2024-07-29 Mon 15:30 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Masonry</title>
+<meta name="author" content="james" />
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" type="text/css" href="../static/post.css" />
+<script type="text/javascript" src="../static/general.js"></script>
+<link rel="icon" type="image/ico" href="../static/icon/favicon.svg" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script type="text/javascript" src="../static/masonry.js" defer></script>
+</head>
+<body>
+<div id="org-div-home-and-up"> <img src="../static/icon/logo.svg" /> <a href="../index.html"> Home </a> </div><div id="content" class="content">
+<h1 class="title">Masonry</h1>
+<p>
+<button id='statusbutton' onclick='updatePage();'>▶ Run analysis</button>
+</p>
+
+<div id="outline-container-org9b86f53" class="outline-2">
+<h2 id="org9b86f53">Figure</h2>
+<div class="outline-text-2" id="text-org9b86f53">
+<p>
+<div id="wallFigure"></div>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgeb27b05" class="outline-2">
+<h2 id="orgeb27b05">Wall properties</h2>
+<div class="outline-text-2" id="text-orgeb27b05">
+<p>
+Block thickness, t <span id="i_t"></span>
+</p>
+
+<p>
+Wall height, H <span id="i_H"></span>
+</p>
+
+<p>
+Wall length, L <span id="i_L"></span>
+</p>
+
+<p>
+Lateral support left <span id="i_supportleft"></span>
+</p>
+
+<p>
+Lateral support right <span id="i_supportright"></span>
+</p>
+
+<p>
+Lateral support top <span id="i_supporttop"></span>
+</p>
+
+<p>
+Reinforced <span id="i_reo"></span>
+</p>
+
+<p>
+Vertical reo <span id="i_vbar"></span> <span id="i_vspc"></span>
+</p>
+
+<p>
+Horizontal reo <span id="i_hbar"></span> <span id="i_hspc"></span>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb2aa9a5" class="outline-2">
+<h2 id="orgb2aa9a5">FRL (structural adequacy)</h2>
+<div class="outline-text-2" id="text-orgb2aa9a5">
+<p>
+Slenderness coefficient (fire), a<sub>vf</sub> <span id="o_avf"></span>
+</p>
+
+<p>
+Slenderness coefficient, a<sub>h</sub> <span id="o_ah"></span>
+</p>
+
+<p>
+Slenderness ratio, S<sub>rf</sub> <span id="o_Srf"></span>
+</p>
+
+<table id="FRLtable" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Fire resistance period</th>
+<th scope="col" class="org-right">30</th>
+<th scope="col" class="org-right">60</th>
+<th scope="col" class="org-right">90</th>
+<th scope="col" class="org-right">120</th>
+<th scope="col" class="org-right">180</th>
+<th scope="col" class="org-right">240</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Clay units</td>
+<td class="org-right">25.0</td>
+<td class="org-right">22.5</td>
+<td class="org-right">21.0</td>
+<td class="org-right">20.0</td>
+<td class="org-right">18.0</td>
+<td class="org-right">17.0</td>
+</tr>
+
+<tr>
+<td class="org-left">Calcium silicate units (&lt;45% aggregate)</td>
+<td class="org-right">20.5</td>
+<td class="org-right">19.0</td>
+<td class="org-right">18.0</td>
+<td class="org-right">17.5</td>
+<td class="org-right">16.5</td>
+<td class="org-right">15.5</td>
+</tr>
+
+<tr>
+<td class="org-left">Calcium silicate units (&gt;45% aggregate)</td>
+<td class="org-right">25.0</td>
+<td class="org-right">22.5</td>
+<td class="org-right">21.0</td>
+<td class="org-right">20.0</td>
+<td class="org-right">18.0</td>
+<td class="org-right">17.0</td>
+</tr>
+
+<tr>
+<td class="org-left">Concrete units (&lt;45% aggregate)</td>
+<td class="org-right">19.5</td>
+<td class="org-right">18.0</td>
+<td class="org-right">17.0</td>
+<td class="org-right">16.0</td>
+<td class="org-right">15.5</td>
+<td class="org-right">15.0</td>
+</tr>
+
+<tr>
+<td class="org-left">Concrete units (&gt;45% aggregate)</td>
+<td class="org-right">25.0</td>
+<td class="org-right">22.5</td>
+<td class="org-right">21.0</td>
+<td class="org-right">20.0</td>
+<td class="org-right">18.0</td>
+<td class="org-right">17.0</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left">Reinforced masonry</td>
+<td class="org-right">36.0</td>
+<td class="org-right">36.0</td>
+<td class="org-right">36.0</td>
+<td class="org-right">36.0</td>
+<td class="org-right">36.0</td>
+<td class="org-right">36.0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</body>
+</html>

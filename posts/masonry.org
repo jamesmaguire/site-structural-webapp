@@ -1,0 +1,52 @@
+#+title: Masonry
+#+setupfile: post.setup
+#+HTML_HEAD: <script type="text/javascript" src="../static/masonry.js" defer></script>
+#+include: "../statusicon.org"
+
+* Figure
+
+{{{div(wallFigure)}}}
+
+* Wall properties
+
+Block thickness, t {{{span(i_t)}}}
+
+Wall height, H {{{span(i_H)}}}
+
+Wall length, L {{{span(i_L)}}}
+
+Lateral support left {{{span(i_supportleft)}}}
+
+Lateral support right {{{span(i_supportright)}}}
+
+Lateral support top {{{span(i_supporttop)}}}
+
+Reinforced {{{span(i_reo)}}}
+
+Vertical reo {{{span(i_vbar)}}} {{{span(i_vspc)}}}
+
+Horizontal reo {{{span(i_hbar)}}} {{{span(i_hspc)}}}
+
+* FRL (structural adequacy)
+
+Slenderness coefficient (fire), a_{vf} {{{span(o_avf)}}}
+
+Slenderness coefficient, a_h {{{span(o_ah)}}}
+
+Slenderness ratio, S_{rf} {{{span(o_Srf)}}}
+
+#+attr_html: :id FRLtable
+| Fire resistance period                  |   30 |   60 |   90 |  120 |  180 |  240 |
+|-----------------------------------------+------+------+------+------+------+------|
+| Clay units                              | 25.0 | 22.5 | 21.0 | 20.0 | 18.0 | 17.0 |
+| Calcium silicate units (<45% aggregate) | 20.5 | 19.0 | 18.0 | 17.5 | 16.5 | 15.5 |
+| Calcium silicate units (>45% aggregate) | 25.0 | 22.5 | 21.0 | 20.0 | 18.0 | 17.0 |
+| Concrete units (<45% aggregate)         | 19.5 | 18.0 | 17.0 | 16.0 | 15.5 | 15.0 |
+| Concrete units (>45% aggregate)         | 25.0 | 22.5 | 21.0 | 20.0 | 18.0 | 17.0 |
+|-----------------------------------------+------+------+------+------+------+------|
+| Reinforced masonry                      | 36.0 | 36.0 | 36.0 | 36.0 | 36.0 | 36.0 |
+
+* Export on save                                                   :noexport:
+;; Local Variables:
+;; eval: (add-hook 'after-save-hook 'org-html-export-to-html nil t)
+;; End:
