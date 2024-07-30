@@ -12,6 +12,7 @@ function initPage()
 
     // Reo
     checkbox('i_reo', false);
+    checkbox('i_grout', false);
     input('i_vbar', {initval:16, prefix:'N', align:'left'});
     input('i_vspc', {initval:400, units:'mm'});
     input('i_hbar', {initval:16, prefix:'N', align:'left'});
@@ -21,6 +22,24 @@ function initPage()
     output('o_avf');
     output('o_ah');
     output('o_Srf');
+
+    // Compression
+    input('i_Fd', {initval:100, units:'kN/m'});
+    output('o_phi_rF');
+    output('o_ks');
+    dropdown('i_eccentricitytype', ['Concrete slab', 'Framing/other', 'Face supported']);
+    output('o_k');
+    input('i_fm', {initval:6.1, units:'MPa'});
+    input('i_tshell', {initval: 30, units:'mm'});
+    output('o_Ab', {units:'mm<sup>2</sup>/m'});
+    checkbox('i_densehollow');
+    output('o_kc');
+    input('i_fcg', {initval:20, units:'MPa'});
+    output('o_Ag', {units:'mm<sup>2</sup>/m'});
+    input('i_fsy', {initval:500, units:'MPa'});
+    output('o_As', {units:'mm<sup>2</sup>/m'});
+    output('o_phiFu', {units:'kN/m'});
+    output('o_compressionratio');
     
     updatePage();
 }
@@ -146,19 +165,41 @@ function runCalcs() {
         supportleft:i_supportleft.checked,
         supporttop:i_supporttop.checked,
         reo: i_reo.checked,
+        grout: i_grout.checked,
         vbar: i_vbar.valueAsNumber,
         vspc: i_vspc.valueAsNumber,
         hbar: i_hbar.valueAsNumber,
-        hspc: i_hspc.valueAsNumber
+        hspc: i_hspc.valueAsNumber,
+        tshell: i_tshell.valueAsNumber,
+        eccentricitytype: i_eccentricitytype.value
     };
     
     if (wall.reo) {
         showInput(i_vbar);
         showInput(i_hbar);
+        showInput(i_fsy);
+        showInput(o_As);
+        i_grout.checked = true;
     } else {
         hideInput(i_vbar);
         hideInput(i_hbar);
+        hideInput(i_fsy);
+        hideInput(o_As);
     }
+
+    // Design properties
+    const fm = i_fm.valueAsNumber;
+    const Ab = 2*wall.tshell*1000;
+    const kc = i_densehollow.checked ? 1.4 : 1.2;
+    const fcg = i_fcg.valueAsNumber;
+    const Ac = wall.t*1000; // Combined cross-sectional area
+    const Ag = Ac - Ab;
+    const fsy = i_fsy.valueAsNumber;
+    const As = Math.PI*wall.vbar**2/4 * 1000/wall.vspc;
+    o_Ab.value = Ab.toFixed(0);
+    o_kc.value = kc.toFixed(1);
+    o_Ag.value = Ag.toFixed(0);
+    o_As.value = As.toFixed(1);
 
     // FRL
     let avf, ah, Srf;
@@ -192,11 +233,38 @@ function runCalcs() {
         }
     }
 
-    // setPassFail(o_rhovmin, threshold=rhov, inverse=false);
-    // setPassFail(o_rhohmin, threshold=rhoh, inverse=false);
-    // setPassFail(o_rhow1, threshold=rhoh, inverse=false);
-    // setPassFail(o_rhow2, threshold=rhoh, inverse=false);
-    // setPassFail(o_rhow3, threshold=rhoh, inverse=false);
+    // Compression
+    let phi, ks, Fu, k, Fo;
+    const av = wall.supporttop ? 1.0 : 2.5; // Simplified
+    if (wall.reo) {
+        phi = 0.75;
+        const Sr = av*wall.H/wall.t; //Slenderness to 7.3.4.3 (simplified)
+        ks = Math.min(1.18-0.03*Sr, 1.0);
+        o_ks.value = ks.toFixed(1);
+        Fu = phi*ks*(fm*Ab + kc*Math.sqrt(fcg/1.3)*Ag + fsy*As)/1000;
+        hideInput(o_k);
+        showInput(o_ks);
+    } else {
+        phi = 0.5;
+        Fo = wall.grout ? phi*(fm*Ab + kc*Math.sqrt(fcg/1.3)*Ac) : phi*fm*Ab;
+        let Srs = av*wall.H/wall.t; //Slenderness to 7.3.3.4 (simplified)
+        if (wall.eccentricitytype === 'Concrete slab') {
+            k = Math.min(0.67 - 0.02*(Srs-14), 0.67);
+        } else if (wall.eccentricitytype === 'Framing/other') {
+            k = Math.min(0.67 - 0.025*(Srs-10), 0.67);
+        } else if (wall.eccentricitytype === 'Face supported') {
+            k = Math.min(0.67 - 0.002*(Srs-14), 0.67);
+        }
+        o_k.value = k.toFixed(1);
+        Fu = k*Fo/1000;
+        hideInput(o_ks);
+        showInput(o_k);
+    }
+
+    o_phi_rF.value = phi.toFixed(2);
+    o_phiFu.value = Fu.toFixed(1);
+    o_compressionratio.value = (i_Fd.valueAsNumber/Fu).toFixed(2);
+    setPassFail(o_compressionratio);
 
 }
 

@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-07-29 Mon 15:30 -->
+<!-- 2024-07-30 Tue 17:24 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Masonry</title>
@@ -22,18 +22,18 @@
 <button id='statusbutton' onclick='updatePage();'>▶ Run analysis</button>
 </p>
 
-<div id="outline-container-org9b86f53" class="outline-2">
-<h2 id="org9b86f53">Figure</h2>
-<div class="outline-text-2" id="text-org9b86f53">
+<div id="outline-container-orgd0c2209" class="outline-2">
+<h2 id="orgd0c2209">Figure</h2>
+<div class="outline-text-2" id="text-orgd0c2209">
 <p>
 <div id="wallFigure"></div>
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgeb27b05" class="outline-2">
-<h2 id="orgeb27b05">Wall properties</h2>
-<div class="outline-text-2" id="text-orgeb27b05">
+<div id="outline-container-org9360d8f" class="outline-2">
+<h2 id="org9360d8f">Wall properties</h2>
+<div class="outline-text-2" id="text-org9360d8f">
 <p>
 Block thickness, t <span id="i_t"></span>
 </p>
@@ -59,7 +59,7 @@ Lateral support top <span id="i_supporttop"></span>
 </p>
 
 <p>
-Reinforced <span id="i_reo"></span>
+Reinforced <span id="i_reo"></span>, Grouted <span id="i_grout"></span>
 </p>
 
 <p>
@@ -69,12 +69,20 @@ Vertical reo <span id="i_vbar"></span> <span id="i_vspc"></span>
 <p>
 Horizontal reo <span id="i_hbar"></span> <span id="i_hspc"></span>
 </p>
+
+<p>
+Steel strength, f<sub>sy</sub> <span id="i_fsy"></span>
+</p>
+
+<p>
+Steel area, A<sub>s</sub> <span id="o_As"></span>
+</p>
 </div>
 </div>
 
-<div id="outline-container-orgb2aa9a5" class="outline-2">
-<h2 id="orgb2aa9a5">FRL (structural adequacy)</h2>
-<div class="outline-text-2" id="text-orgb2aa9a5">
+<div id="outline-container-org4e3dce3" class="outline-2">
+<h2 id="org4e3dce3">FRL (structural adequacy)</h2>
+<div class="outline-text-2" id="text-org4e3dce3">
 <p>
 Slenderness coefficient (fire), a<sub>vf</sub> <span id="o_avf"></span>
 </p>
@@ -179,6 +187,84 @@ Slenderness ratio, S<sub>rf</sub> <span id="o_Srf"></span>
 </tr>
 </tbody>
 </table>
+</div>
+</div>
+
+<div id="outline-container-org375831b" class="outline-2">
+<h2 id="org375831b">Design properties</h2>
+<div class="outline-text-2" id="text-org375831b">
+<p>
+Masonry compressive strength, f'<sub>m</sub> <span id="i_fm"></span>
+</p>
+
+<p>
+Face shell thickness <span id="i_tshell"></span>
+</p>
+
+<p>
+Bedded area, A<sub>b</sub> <span id="o_Ab"></span>
+</p>
+
+<p>
+Hollow concrete with &rho;&gt;2000kg/m<sup>3</sup> <span id="i_densehollow"></span>
+</p>
+
+<p>
+Grout strength factor, k<sub>c</sub> <span id="o_kc"></span>
+</p>
+
+<p>
+Grout compressive strength, f'<sub>cg</sub> <span id="i_fcg"></span>
+</p>
+
+<p>
+Grout area, A<sub>g</sub> <span id="o_Ag"></span>
+</p>
+
+<p>
+Supporting concrete slab <span id="i_eccentricitytype"></span>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org40286d2" class="outline-2">
+<h2 id="org40286d2">Compression</h2>
+<div class="outline-text-2" id="text-org40286d2">
+<p>
+Design load, F<sub>d</sub> <span id="i_Fd"></span>
+</p>
+
+<p>
+Capacity reduction factor, &Phi; <span id="o_phi_rF"></span>
+</p>
+
+<p>
+Reduction factor, k<sub>s</sub> <span id="o_ks"></span>
+</p>
+
+<p>
+Reduction factor, k <span id="o_k"></span>
+</p>
+
+<p>
+Capacity, &Phi;F<sub>u</sub> <span id="o_phiFu"></span>
+</p>
+
+<p>
+Ratio, F<sub>d</sub>/&Phi;F<sub>u</sub> <span id="o_compressionratio"></span>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org6e88efc" class="outline-2">
+<h2 id="org6e88efc">Bending</h2>
+<div class="outline-text-2" id="text-org6e88efc">
+</div>
+<div id="outline-container-org19d63e7" class="outline-3">
+<h3 id="org19d63e7">Out-of-plane</h3>
+</div>
+<div id="outline-container-orga06b1dc" class="outline-3">
+<h3 id="orga06b1dc">In-plane</h3>
 </div>
 </div>
 </div>
