@@ -3,96 +3,60 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-07-31 Sun 17:49 -->
+<!-- 2024-08-10 Sat 14:52 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Reinforced masonry walls</title>
-<meta name="generator" content="Org mode" />
 <meta name="author" content="james" />
+<meta name="generator" content="Org Mode" />
 <link rel="stylesheet" type="text/css" href="../static/post.css" />
 <script type="text/javascript" src="../static/general.js"></script>
 <link rel="icon" type="image/ico" href="../static/icon/favicon.svg" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script type="text/javascript" src="../static/rm-walls.js" defer></script>
-<script type="text/javascript">
-/*
-@licstart  The following is the entire license notice for the
-JavaScript code in this tag.
-
-Copyright (C) 2012-2020 Free Software Foundation, Inc.
-
-The JavaScript code in this tag is free software: you can
-redistribute it and/or modify it under the terms of the GNU
-General Public License (GNU GPL) as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.  The code is distributed WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-As additional permission under GNU GPL version 3 section 7, you
-may distribute non-source (e.g., minimized or compacted) forms of
-that code without the copy of the GNU GPL normally required by
-section 4, provided you include this license notice and a URL
-through which recipients can access the Corresponding Source.
-
-
-@licend  The above is the entire license notice
-for the JavaScript code in this tag.
-*/
-<!--/*--><![CDATA[/*><!--*/
- function CodeHighlightOn(elem, id)
- {
-   var target = document.getElementById(id);
-   if(null != target) {
-     elem.cacheClassElem = elem.className;
-     elem.cacheClassTarget = target.className;
-     target.className = "code-highlighted";
-     elem.className   = "code-highlighted";
-   }
- }
- function CodeHighlightOff(elem, id)
- {
-   var target = document.getElementById(id);
-   if(elem.cacheClassElem)
-     elem.className = elem.cacheClassElem;
-   if(elem.cacheClassTarget)
-     target.className = elem.cacheClassTarget;
- }
-/*]]>*///-->
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
 </script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        displayAlign: "center",
-        displayIndent: "0em",
 
-        "HTML-CSS": { scale: 100,
-                        linebreaks: { automatic: "false" },
-                        webFont: "TeX"
-                       },
-        SVG: {scale: 100,
-              linebreaks: { automatic: "false" },
-              font: "TeX"},
-        NativeMML: {scale: 100},
-        TeX: { equationNumbers: {autoNumber: "AMS"},
-               MultLineWidth: "85%",
-               TagSide: "right",
-               TagIndent: ".8em"
-             }
-});
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
 </script>
-<script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
 </head>
 <body>
-<div id="org-div-home-and-up"> <img src="../static/icon/logo.svg" /> <a href="../index.html"> Home </a> </div><div id="content">
+<div id="org-div-home-and-up"> <img src="../static/icon/logo.svg" /> <a href="../index.html"> Home </a> </div><div id="content" class="content">
 <h1 class="title">Reinforced masonry walls</h1>
 <p>
 <button id='statusbutton' onclick='updatePage();'>▶ Run analysis</button>
 </p>
 
-<div id="outline-container-orgca6d1c8" class="outline-2">
-<h2 id="orgca6d1c8">Wall properties</h2>
-<div class="outline-text-2" id="text-orgca6d1c8">
+<div id="outline-container-org9c6f2b0" class="outline-2">
+<h2 id="org9c6f2b0">Wall properties</h2>
+<div class="outline-text-2" id="text-org9c6f2b0">
 <p>
 Wall height <span class="inputspan"><input id="height" class="right" type="number" value="1.2" onkeypress="eventHandler(event)" onblur="updatePage()"> m</span>
 </p>
@@ -111,9 +75,9 @@ Compressive strength, f'<sub>m</sub> <span class="inputspan"><input id="compress
 </div>
 </div>
 
-<div id="outline-container-org4f343ed" class="outline-2">
-<h2 id="org4f343ed">Reinforcement</h2>
-<div class="outline-text-2" id="text-org4f343ed">
+<div id="outline-container-orgc38c185" class="outline-2">
+<h2 id="orgc38c185">Reinforcement</h2>
+<div class="outline-text-2" id="text-orgc38c185">
 <p>
 Vertical reinforcement <span class="inputspan">N<input id="vbarsize" class="left" type="number" value="16" onkeypress="eventHandler(event)" onblur="updatePage()"></span> @ <span class="inputspan"><input id="vbarspc" class="right" type="number" value="400" onkeypress="eventHandler(event)" onblur="updatePage()"> mm</span>
 </p>
@@ -128,9 +92,9 @@ Yield strength <span class="inputspan"><input id="yieldstrength" class="right" t
 </div>
 </div>
 
-<div id="outline-container-org5c14d4a" class="outline-2">
-<h2 id="org5c14d4a">Loading</h2>
-<div class="outline-text-2" id="text-org5c14d4a">
+<div id="outline-container-org8e83f4b" class="outline-2">
+<h2 id="org8e83f4b">Loading</h2>
+<div class="outline-text-2" id="text-org8e83f4b">
 <p>
 Design bending moment, M<sub>d</sub>/L <span class="inputspan"><input id="designMoment" class="right" type="number" value="0" onkeypress="eventHandler(event)" onblur="updatePage()"> kNm/m</span>
 </p>
@@ -153,17 +117,17 @@ Applied vertical load, P<sub>v</sub>/L <span class="inputspan"><input id="vertlo
 </div>
 </div>
 
-<div id="outline-container-org96030ba" class="outline-2">
-<h2 id="org96030ba">8.4 General reinforcement requirement</h2>
+<div id="outline-container-org657567b" class="outline-2">
+<h2 id="org657567b">8.4 General reinforcement requirement</h2>
 </div>
 
-<div id="outline-container-org487d259" class="outline-2">
-<h2 id="org487d259">8.5 Design of members in compression</h2>
+<div id="outline-container-orgb61702a" class="outline-2">
+<h2 id="orgb61702a">8.5 Design of members in compression</h2>
 </div>
 
-<div id="outline-container-org91f8380" class="outline-2">
-<h2 id="org91f8380">8.6 Design of members in bending</h2>
-<div class="outline-text-2" id="text-org91f8380">
+<div id="outline-container-org08f515a" class="outline-2">
+<h2 id="org08f515a">8.6 Design of members in bending</h2>
+<div class="outline-text-2" id="text-org08f515a">
 <p>
 \[ M_d \le \phi f_{sy}A_{sd}d \left[ 1- \frac{0.6f_{sy}A_{sd}}{(1.3f'_m)bd} \right] \]
 </p>
@@ -186,9 +150,9 @@ Moment check, M<sub>d</sub>/M<sub>u</sub> <span class="outputspan"><input id="mo
 </div>
 </div>
 
-<div id="outline-container-org600390d" class="outline-2">
-<h2 id="org600390d">8.7 Design of walls for in-plane shear</h2>
-<div class="outline-text-2" id="text-org600390d">
+<div id="outline-container-org0afbd7a" class="outline-2">
+<h2 id="org0afbd7a">8.7 Design of walls for in-plane shear</h2>
+<div class="outline-text-2" id="text-org0afbd7a">
 <p>
 Long wall check, H/L &lt; 2.3 <span class="outputspan"><input id="longwallp" class="right" type="text" value="0" readonly></span>
 </p>
@@ -227,9 +191,9 @@ In-plane stability check, V<sub>d,ip</sub>/V<sub>u,stable</sub> <span class="out
 </div>
 </div>
 
-<div id="outline-container-org836bcb0" class="outline-2">
-<h2 id="org836bcb0">8.8 Design of walls for out-of-plane shear</h2>
-<div class="outline-text-2" id="text-org836bcb0">
+<div id="outline-container-org3d81b31" class="outline-2">
+<h2 id="org3d81b31">8.8 Design of walls for out-of-plane shear</h2>
+<div class="outline-text-2" id="text-org3d81b31">
 <p>
 Capacity reduction factor, &Phi; <span class="outputspan"><input id="shearphiop" class="right" type="number" value="0" readonly> </span>
 </p>

@@ -15,11 +15,11 @@ Compressive strength, f'_m {{{input(compressivestrength,5.5,MPa)}}}
 
 * Reinforcement
 
-Vertical reinforcement {{{barinput(vbarsize,16)}}} @ {{{input(vbarspc,400,mm)}}}
+Vertical reinforcement {{{input-bar(vbarsize,16)}}} @ {{{input(vbarspc,400,mm)}}}
 
-Horizontal reinforcement {{{barinput(hbarsize,16)}}} @ {{{input(hbarspc,400,mm)}}}
+Horizontal reinforcement {{{input-bar(hbarsize,16)}}} @ {{{input(hbarspc,400,mm)}}}
 
-Yield strength {{{input(yieldstrength,500,MPa)}}}
+Yield strength {{{input-unit(yieldstrength,500,MPa)}}}
 
 * Loading
 

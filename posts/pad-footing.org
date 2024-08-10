@@ -34,7 +34,7 @@ Eccentricity (y) {{{input(eccentricityY,0,mm)}}}
 
 Steel strength {{{input(fsy,500,MPa)}}}
 
-Bar diameter {{{barinput(barDiameter,12)}}}
+Bar diameter {{{input-bar(barDiameter,12)}}}
 
 Cover {{{input(cover,50,mm)}}}
 

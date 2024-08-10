@@ -3,83 +3,37 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-07-31 Sun 17:49 -->
+<!-- 2024-08-10 Sat 16:35 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Pad footings</title>
-<meta name="generator" content="Org mode" />
 <meta name="author" content="james" />
+<meta name="generator" content="Org Mode" />
 <link rel="stylesheet" type="text/css" href="../static/post.css" />
 <script type="text/javascript" src="../static/general.js"></script>
 <link rel="icon" type="image/ico" href="../static/icon/favicon.svg" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script type="text/javascript" src="../static/pad-footing.js" defer></script>
-<script type="text/javascript">
-/*
-@licstart  The following is the entire license notice for the
-JavaScript code in this tag.
-
-Copyright (C) 2012-2020 Free Software Foundation, Inc.
-
-The JavaScript code in this tag is free software: you can
-redistribute it and/or modify it under the terms of the GNU
-General Public License (GNU GPL) as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.  The code is distributed WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-As additional permission under GNU GPL version 3 section 7, you
-may distribute non-source (e.g., minimized or compacted) forms of
-that code without the copy of the GNU GPL normally required by
-section 4, provided you include this license notice and a URL
-through which recipients can access the Corresponding Source.
-
-
-@licend  The above is the entire license notice
-for the JavaScript code in this tag.
-*/
-<!--/*--><![CDATA[/*><!--*/
- function CodeHighlightOn(elem, id)
- {
-   var target = document.getElementById(id);
-   if(null != target) {
-     elem.cacheClassElem = elem.className;
-     elem.cacheClassTarget = target.className;
-     target.className = "code-highlighted";
-     elem.className   = "code-highlighted";
-   }
- }
- function CodeHighlightOff(elem, id)
- {
-   var target = document.getElementById(id);
-   if(elem.cacheClassElem)
-     elem.className = elem.cacheClassElem;
-   if(elem.cacheClassTarget)
-     target.className = elem.cacheClassTarget;
- }
-/*]]>*///-->
-</script>
 </head>
 <body>
-<div id="org-div-home-and-up"> <img src="../static/icon/logo.svg" /> <a href="../index.html"> Home </a> </div><div id="content">
+<div id="org-div-home-and-up"> <img src="../static/icon/logo.svg" /> <a href="../index.html"> Home </a> </div><div id="content" class="content">
 <h1 class="title">Pad footings</h1>
 <p>
 <button id='statusbutton' onclick='updatePage();'>▶ Run analysis</button>
 </p>
 
-<div id="outline-container-org7c7f7a2" class="outline-2">
-<h2 id="org7c7f7a2">Figure</h2>
-<div class="outline-text-2" id="text-org7c7f7a2">
+<div id="outline-container-orgc8a8afc" class="outline-2">
+<h2 id="orgc8a8afc">Figure</h2>
+<div class="outline-text-2" id="text-orgc8a8afc">
 <p>
 <canvas id="padFootingFigure" width="250" height="250" draggable="true"></canvas>
 </p>
 </div>
 </div>
 
-<div id="outline-container-org17326ed" class="outline-2">
-<h2 id="org17326ed">Footing parameters</h2>
-<div class="outline-text-2" id="text-org17326ed">
+<div id="outline-container-org3f7fcc0" class="outline-2">
+<h2 id="org3f7fcc0">Footing parameters</h2>
+<div class="outline-text-2" id="text-org3f7fcc0">
 <p>
 Footing height <span class="inputspan"><input id="footingHeight" class="right" type="number" value="500" onkeypress="eventHandler(event)" onblur="updatePage()"> mm</span>
 </p>
@@ -106,9 +60,9 @@ Concrete unit weight <span class="inputspan"><input id="gammac" class="right" ty
 </div>
 </div>
 
-<div id="outline-container-org98eba94" class="outline-2">
-<h2 id="org98eba94">Column parameters</h2>
-<div class="outline-text-2" id="text-org98eba94">
+<div id="outline-container-orgb315f98" class="outline-2">
+<h2 id="orgb315f98">Column parameters</h2>
+<div class="outline-text-2" id="text-orgb315f98">
 <p>
 Column length (x) <span class="inputspan"><input id="Lcx" class="right" type="number" value="300" onkeypress="eventHandler(event)" onblur="updatePage()"> mm</span>
 </p>
@@ -127,9 +81,9 @@ Eccentricity (y) <span class="inputspan"><input id="eccentricityY" class="right"
 </div>
 </div>
 
-<div id="outline-container-orgcb25cdd" class="outline-2">
-<h2 id="orgcb25cdd">Steel parameters</h2>
-<div class="outline-text-2" id="text-orgcb25cdd">
+<div id="outline-container-org7048655" class="outline-2">
+<h2 id="org7048655">Steel parameters</h2>
+<div class="outline-text-2" id="text-org7048655">
 <p>
 Steel strength <span class="inputspan"><input id="fsy" class="right" type="number" value="500" onkeypress="eventHandler(event)" onblur="updatePage()"> MPa</span>
 </p>
@@ -148,9 +102,9 @@ Cover <span class="inputspan"><input id="cover" class="right" type="number" valu
 </div>
 </div>
 
-<div id="outline-container-org02c2eb7" class="outline-2">
-<h2 id="org02c2eb7">Loading</h2>
-<div class="outline-text-2" id="text-org02c2eb7">
+<div id="outline-container-orgf4a7459" class="outline-2">
+<h2 id="orgf4a7459">Loading</h2>
+<div class="outline-text-2" id="text-orgf4a7459">
 <p>
 Dead load <span class="inputspan"><input id="deadLoad" class="right" type="number" value="800" onkeypress="eventHandler(event)" onblur="updatePage()"> kN</span>
 </p>
@@ -173,9 +127,9 @@ Pressure (ULS) <span class="outputspan"><input id="pressureULS" class="right" ty
 </div>
 </div>
 
-<div id="outline-container-org05a6b8f" class="outline-2">
-<h2 id="org05a6b8f">Bearing</h2>
-<div class="outline-text-2" id="text-org05a6b8f">
+<div id="outline-container-org8574c47" class="outline-2">
+<h2 id="org8574c47">Bearing</h2>
+<div class="outline-text-2" id="text-org8574c47">
 <p>
 Soil bearing capacity <span class="inputspan"><input id="qs" class="right" type="number" value="250" onkeypress="eventHandler(event)" onblur="updatePage()"> kPa</span>
 </p>
@@ -190,9 +144,9 @@ Bearing check <span class="outputspan"><input id="bearingCheck" class="right" ty
 </div>
 </div>
 
-<div id="outline-container-org2a11b6b" class="outline-2">
-<h2 id="org2a11b6b">Punching shear</h2>
-<div class="outline-text-2" id="text-org2a11b6b">
+<div id="outline-container-org7cb2af1" class="outline-2">
+<h2 id="org7cb2af1">Punching shear</h2>
+<div class="outline-text-2" id="text-org7cb2af1">
 <p>
 Shear applied V* <span class="outputspan"><input id="shearLoad" class="right" type="number" value="0" readonly> kN</span>
 </p>
@@ -207,9 +161,9 @@ Punching shear check <span class="outputspan"><input id="punchingCheck" class="r
 </div>
 </div>
 
-<div id="outline-container-org8c11fe7" class="outline-2">
-<h2 id="org8c11fe7">Moment check</h2>
-<div class="outline-text-2" id="text-org8c11fe7">
+<div id="outline-container-orgd1e8176" class="outline-2">
+<h2 id="orgd1e8176">Moment check</h2>
+<div class="outline-text-2" id="text-orgd1e8176">
 <p>
 Moment applied, M*<sub>x</sub> <span class="outputspan"><input id="momentX" class="right" type="number" value="0" readonly> kNm</span>, M*<sub>y</sub> <span class="outputspan"><input id="momentY" class="right" type="number" value="0" readonly> kNm</span>
 </p>
@@ -224,9 +178,9 @@ Bars in Y <span class="outputspan"><input id="barsY" class="right" type="text" v
 </div>
 </div>
 
-<div id="outline-container-orge2cf915" class="outline-2">
-<h2 id="orge2cf915">Shear check</h2>
-<div class="outline-text-2" id="text-orge2cf915">
+<div id="outline-container-org783a4a1" class="outline-2">
+<h2 id="org783a4a1">Shear check</h2>
+<div class="outline-text-2" id="text-org783a4a1">
 <p>
 Shear applied, V*<sub>x</sub> <span class="outputspan"><input id="shearX" class="right" type="number" value="0" readonly> kN</span>, V*<sub>y</sub> <span class="outputspan"><input id="shearY" class="right" type="number" value="0" readonly> kN</span>
 </p>

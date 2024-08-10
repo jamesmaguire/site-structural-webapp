@@ -5,7 +5,7 @@
 
 * Rebar properties
 
-Rebar diameter, d_b {{{barinput(i_db,16)}}}
+Rebar diameter, d_b {{{input-bar(i_db,16)}}}
 
 Yield strength, f_sy {{{input(i_fsy,500,MPa)}}}
 
