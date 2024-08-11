@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-07-30 Tue 17:24 -->
+<!-- 2024-08-11 Sun 12:24 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Masonry</title>
@@ -22,77 +22,77 @@
 <button id='statusbutton' onclick='updatePage();'>▶ Run analysis</button>
 </p>
 
-<div id="outline-container-orgd0c2209" class="outline-2">
-<h2 id="orgd0c2209">Figure</h2>
-<div class="outline-text-2" id="text-orgd0c2209">
+<div id="outline-container-orgb742738" class="outline-2">
+<h2 id="orgb742738">Figure</h2>
+<div class="outline-text-2" id="text-orgb742738">
 <p>
 <div id="wallFigure"></div>
 </p>
 </div>
 </div>
 
-<div id="outline-container-org9360d8f" class="outline-2">
-<h2 id="org9360d8f">Wall properties</h2>
-<div class="outline-text-2" id="text-org9360d8f">
+<div id="outline-container-org252a64a" class="outline-2">
+<h2 id="org252a64a">Wall properties</h2>
+<div class="outline-text-2" id="text-org252a64a">
 <p>
-Block thickness, t <span id="i_t"></span>
+Block thickness, t <span class="inputspan"><input id="i_t" class="right" type="number" value="190" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> mm</span>
 </p>
 
 <p>
-Wall height, H <span id="i_H"></span>
+Wall height, H <span class="inputspan"><input id="i_H" class="right" type="number" value="2800" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> mm</span>
 </p>
 
 <p>
-Wall length, L <span id="i_L"></span>
+Wall length, L <span class="inputspan"><input id="i_L" class="right" type="number" value="4000" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> mm</span>
 </p>
 
 <p>
-Lateral support left <span id="i_supportleft"></span>
+Lateral support left <input id="i_supportleft" type="checkbox" autocomplete="off"  oninput="updatePage()"></input>
 </p>
 
 <p>
-Lateral support right <span id="i_supportright"></span>
+Lateral support right <input id="i_supportright" type="checkbox" autocomplete="off"  oninput="updatePage()"></input>
 </p>
 
 <p>
-Lateral support top <span id="i_supporttop"></span>
+Lateral support top <input id="i_supporttop" type="checkbox" autocomplete="off" checked oninput="updatePage()"></input>
 </p>
 
 <p>
-Reinforced <span id="i_reo"></span>, Grouted <span id="i_grout"></span>
+Reinforced <input id="i_reo" type="checkbox" autocomplete="off" false oninput="updatePage()"></input>, Grouted <input id="i_grout" type="checkbox" autocomplete="off"  oninput="updatePage()"></input>
 </p>
 
 <p>
-Vertical reo <span id="i_vbar"></span> <span id="i_vspc"></span>
+Vertical reo <span class="inputspan">N<input id="i_vbar" class="left" type="number" value="16" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"></span> <span class="inputspan"><input id="i_vspc" class="right" type="number" value="400" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> mm</span>
 </p>
 
 <p>
-Horizontal reo <span id="i_hbar"></span> <span id="i_hspc"></span>
+Horizontal reo <span class="inputspan">N<input id="i_hbar" class="left" type="number" value="16" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"></span> <span class="inputspan"><input id="i_hspc" class="right" type="number" value="400" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> mm</span>
 </p>
 
 <p>
-Steel strength, f<sub>sy</sub> <span id="i_fsy"></span>
+Steel strength, f<sub>sy</sub> <span class="inputspan"><input id="i_fsy" class="right" type="number" value="500" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> MPa</span>
 </p>
 
 <p>
-Steel area, A<sub>s</sub> <span id="o_As"></span>
+Steel area, A<sub>s</sub> <span class="outputspan"><input id="o_As" class="right" type="number" value="0" readonly> mm<sup>2</sup>/m</span>
 </p>
 </div>
 </div>
 
-<div id="outline-container-org4e3dce3" class="outline-2">
-<h2 id="org4e3dce3">FRL (structural adequacy)</h2>
-<div class="outline-text-2" id="text-org4e3dce3">
+<div id="outline-container-org5e90f25" class="outline-2">
+<h2 id="org5e90f25">FRL (structural adequacy)</h2>
+<div class="outline-text-2" id="text-org5e90f25">
 <p>
-Slenderness coefficient (fire), a<sub>vf</sub> <span id="o_avf"></span>
+Slenderness coefficient (fire), a<sub>vf</sub> <span class="outputspan"><input id="o_avf" class="right" type="number" value="0" readonly> </span>
 </p>
 
 <p>
-Slenderness coefficient, a<sub>h</sub> <span id="o_ah"></span>
+Slenderness coefficient, a<sub>h</sub> <span class="outputspan"><input id="o_ah" class="right" type="number" value="0" readonly> </span>
 </p>
 
 <p>
-Slenderness ratio, S<sub>rf</sub> <span id="o_Srf"></span>
+Slenderness ratio, S<sub>rf</sub> <span class="outputspan"><input id="o_Srf" class="right" type="number" value="0" readonly> </span>
 </p>
 
 <table id="FRLtable" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
@@ -190,81 +190,81 @@ Slenderness ratio, S<sub>rf</sub> <span id="o_Srf"></span>
 </div>
 </div>
 
-<div id="outline-container-org375831b" class="outline-2">
-<h2 id="org375831b">Design properties</h2>
-<div class="outline-text-2" id="text-org375831b">
+<div id="outline-container-orgaf07740" class="outline-2">
+<h2 id="orgaf07740">Design properties</h2>
+<div class="outline-text-2" id="text-orgaf07740">
 <p>
-Masonry compressive strength, f'<sub>m</sub> <span id="i_fm"></span>
+Masonry compressive strength, f'<sub>m</sub> <span class="inputspan"><input id="i_fm" class="right" type="number" value="6.1" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> MPa</span>
 </p>
 
 <p>
-Face shell thickness <span id="i_tshell"></span>
+Face shell thickness <span class="inputspan"><input id="i_tshell" class="right" type="number" value="30" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> mm</span>
 </p>
 
 <p>
-Bedded area, A<sub>b</sub> <span id="o_Ab"></span>
+Bedded area, A<sub>b</sub> <span class="outputspan"><input id="o_Ab" class="right" type="number" value="0" readonly> mm<sup>2</sup>/m</span>
 </p>
 
 <p>
-Hollow concrete with &rho;&gt;2000kg/m<sup>3</sup> <span id="i_densehollow"></span>
+Hollow concrete with &rho;&gt;2000kg/m<sup>3</sup> <input id="i_densehollow" type="checkbox" autocomplete="off"  oninput="updatePage()"></input>
 </p>
 
 <p>
-Grout strength factor, k<sub>c</sub> <span id="o_kc"></span>
+Grout strength factor, k<sub>c</sub> <span class="outputspan"><input id="o_kc" class="right" type="number" value="0" readonly> </span>
 </p>
 
 <p>
-Grout compressive strength, f'<sub>cg</sub> <span id="i_fcg"></span>
+Grout compressive strength, f'<sub>cg</sub> <span class="inputspan"><input id="i_fcg" class="right" type="number" value="20" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> MPa</span>
 </p>
 
 <p>
-Grout area, A<sub>g</sub> <span id="o_Ag"></span>
+Grout area, A<sub>g</sub> <span class="outputspan"><input id="o_Ag" class="right" type="number" value="0" readonly> mm<sup>2</sup>/m</span>
 </p>
 
 <p>
-Supporting concrete slab <span id="i_eccentricitytype"></span>
-</p>
-</div>
-</div>
-
-<div id="outline-container-org40286d2" class="outline-2">
-<h2 id="org40286d2">Compression</h2>
-<div class="outline-text-2" id="text-org40286d2">
-<p>
-Design load, F<sub>d</sub> <span id="i_Fd"></span>
-</p>
-
-<p>
-Capacity reduction factor, &Phi; <span id="o_phi_rF"></span>
-</p>
-
-<p>
-Reduction factor, k<sub>s</sub> <span id="o_ks"></span>
-</p>
-
-<p>
-Reduction factor, k <span id="o_k"></span>
-</p>
-
-<p>
-Capacity, &Phi;F<sub>u</sub> <span id="o_phiFu"></span>
-</p>
-
-<p>
-Ratio, F<sub>d</sub>/&Phi;F<sub>u</sub> <span id="o_compressionratio"></span>
+Supporting concrete slab <select id="i_eccentricitytype" autocomplete="off" oninput="updatePage()"><option value="Concrete slab">Concrete slab</option><option value="Framing/other">Framing/other</option><option value="Face supported">Face supported</option></select>
 </p>
 </div>
 </div>
 
-<div id="outline-container-org6e88efc" class="outline-2">
-<h2 id="org6e88efc">Bending</h2>
-<div class="outline-text-2" id="text-org6e88efc">
+<div id="outline-container-org35f2d19" class="outline-2">
+<h2 id="org35f2d19">Compression</h2>
+<div class="outline-text-2" id="text-org35f2d19">
+<p>
+Design load, F<sub>d</sub> <span class="inputspan"><input id="i_Fd" class="right" type="number" value="100" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> kN/m</span>
+</p>
+
+<p>
+Capacity reduction factor, &Phi; <span class="outputspan"><input id="o_phi_rF" class="right" type="number" value="0" readonly> </span>
+</p>
+
+<p>
+Reduction factor, k<sub>s</sub> <span class="outputspan"><input id="o_ks" class="right" type="number" value="0" readonly> </span>
+</p>
+
+<p>
+Reduction factor, k <span class="outputspan"><input id="o_k" class="right" type="number" value="0" readonly> </span>
+</p>
+
+<p>
+Capacity, &Phi;F<sub>u</sub> <span class="outputspan"><input id="o_phiFu" class="right" type="number" value="0" readonly> kN/m</span>
+</p>
+
+<p>
+Ratio, F<sub>d</sub>/&Phi;F<sub>u</sub> <span class="outputspan"><input id="o_compressionratio" class="right" type="number" value="0" readonly> </span>
+</p>
 </div>
-<div id="outline-container-org19d63e7" class="outline-3">
-<h3 id="org19d63e7">Out-of-plane</h3>
 </div>
-<div id="outline-container-orga06b1dc" class="outline-3">
-<h3 id="orga06b1dc">In-plane</h3>
+
+<div id="outline-container-org672cbb7" class="outline-2">
+<h2 id="org672cbb7">Bending</h2>
+<div class="outline-text-2" id="text-org672cbb7">
+</div>
+<div id="outline-container-org00689ec" class="outline-3">
+<h3 id="org00689ec">Out-of-plane</h3>
+</div>
+<div id="outline-container-orgca78710" class="outline-3">
+<h3 id="orgca78710">In-plane</h3>
 </div>
 </div>
 </div>

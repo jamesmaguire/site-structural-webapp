@@ -1,49 +1,3 @@
-function initPage()
-{
-    // Wall parameters
-    input('i_t', {initval:190, units:'mm'});
-    input('i_H', {initval:2800, units:'mm'});
-    input('i_L', {initval:4000, units:'mm'});
-
-    // Lateral support
-    checkbox('i_supportleft', false);
-    checkbox('i_supportright', false);
-    checkbox('i_supporttop', true);
-
-    // Reo
-    checkbox('i_reo', false);
-    checkbox('i_grout', false);
-    input('i_vbar', {initval:16, prefix:'N', align:'left'});
-    input('i_vspc', {initval:400, units:'mm'});
-    input('i_hbar', {initval:16, prefix:'N', align:'left'});
-    input('i_hspc', {initval:400, units:'mm'});
-
-    // FRL
-    output('o_avf');
-    output('o_ah');
-    output('o_Srf');
-
-    // Compression
-    input('i_Fd', {initval:100, units:'kN/m'});
-    output('o_phi_rF');
-    output('o_ks');
-    dropdown('i_eccentricitytype', ['Concrete slab', 'Framing/other', 'Face supported']);
-    output('o_k');
-    input('i_fm', {initval:6.1, units:'MPa'});
-    input('i_tshell', {initval: 30, units:'mm'});
-    output('o_Ab', {units:'mm<sup>2</sup>/m'});
-    checkbox('i_densehollow');
-    output('o_kc');
-    input('i_fcg', {initval:20, units:'MPa'});
-    output('o_Ag', {units:'mm<sup>2</sup>/m'});
-    input('i_fsy', {initval:500, units:'MPa'});
-    output('o_As', {units:'mm<sup>2</sup>/m'});
-    output('o_phiFu', {units:'kN/m'});
-    output('o_compressionratio');
-    
-    updatePage();
-}
-
 function updatePage()
 {
     runCalcs();
@@ -268,4 +222,4 @@ function runCalcs() {
 
 }
 
-initPage();
+updatePage();

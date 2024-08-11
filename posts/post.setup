@@ -18,9 +18,13 @@
 #+macro: div @@html:<div id="$1"></div>@@
 
 # Input macros
-#+macro: input @@html:<span class="inputspan"><input id="$1" class="right" type="number" value="$2" onkeypress="eventHandler(event)" onblur="updatePage()"> $3</span>@@
+#+macro: input @@html:<span class="inputspan"><input id="$1" class="right" type="number" value="$2" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> $3</span>@@
 
-#+macro: input-bar @@html:<span class="inputspan">N<input id="$1" class="left" type="number" value="$2" onkeypress="eventHandler(event)" onblur="updatePage()"></span>@@
+#+macro: input-bar @@html:<span class="inputspan">N<input id="$1" class="left" type="number" value="$2" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"></span>@@
+
+#+macro: checkbox @@html:<input id="$1" type="checkbox" autocomplete="off" $2 oninput="updatePage()"></input>@@
+
+#+macro: dropdown3 @@html:<select id="$1" autocomplete="off" oninput="updatePage()"><option value="$2">$2</option><option value="$3">$3</option><option value="$4">$4</option></select>@@
 
 #+macro: output @@html:<span class="outputspan"><input id="$1" class="right" type="number" value="0" readonly> $2</span>@@
 

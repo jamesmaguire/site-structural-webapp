@@ -9,35 +9,35 @@
 
 * Wall properties
 
-Block thickness, t {{{span(i_t)}}}
+Block thickness, t {{{input(i_t,190,mm)}}}
 
-Wall height, H {{{span(i_H)}}}
+Wall height, H {{{input(i_H,2800,mm)}}}
 
-Wall length, L {{{span(i_L)}}}
+Wall length, L {{{input(i_L,4000,mm)}}}
 
-Lateral support left {{{span(i_supportleft)}}}
+Lateral support left {{{checkbox(i_supportleft)}}}
 
-Lateral support right {{{span(i_supportright)}}}
+Lateral support right {{{checkbox(i_supportright)}}}
 
-Lateral support top {{{span(i_supporttop)}}}
+Lateral support top {{{checkbox(i_supporttop,checked)}}}
 
-Reinforced {{{span(i_reo)}}}, Grouted {{{span(i_grout)}}}
+Reinforced {{{checkbox(i_reo,false)}}}, Grouted {{{checkbox(i_grout)}}}
 
-Vertical reo {{{span(i_vbar)}}} {{{span(i_vspc)}}}
+Vertical reo {{{input-bar(i_vbar,16)}}} {{{input(i_vspc,400,mm)}}}
 
-Horizontal reo {{{span(i_hbar)}}} {{{span(i_hspc)}}}
+Horizontal reo {{{input-bar(i_hbar,16)}}} {{{input(i_hspc,400,mm)}}}
 
-Steel strength, f_{sy} {{{span(i_fsy)}}}
+Steel strength, f_{sy} {{{input(i_fsy,500,MPa)}}}
 
-Steel area, A_s {{{span(o_As)}}}
+Steel area, A_s {{{output(o_As,mm<sup>2</sup>/m)}}}
 
 * FRL (structural adequacy)
 
-Slenderness coefficient (fire), a_{vf} {{{span(o_avf)}}}
+Slenderness coefficient (fire), a_{vf} {{{output(o_avf)}}}
 
-Slenderness coefficient, a_h {{{span(o_ah)}}}
+Slenderness coefficient, a_h {{{output(o_ah)}}}
 
-Slenderness ratio, S_{rf} {{{span(o_Srf)}}}
+Slenderness ratio, S_{rf} {{{output(o_Srf)}}}
 
 #+attr_html: :id FRLtable
 | Fire resistance period                  |   30 |   60 |   90 |  120 |  180 |  240 |
@@ -52,35 +52,35 @@ Slenderness ratio, S_{rf} {{{span(o_Srf)}}}
 
 * Design properties
 
-Masonry compressive strength, f'_m {{{span(i_fm)}}}
+Masonry compressive strength, f'_m {{{input(i_fm,6.1,MPa)}}}
 
-Face shell thickness {{{span(i_tshell)}}}
+Face shell thickness {{{input(i_tshell,30,mm)}}}
 
-Bedded area, A_b {{{span(o_Ab)}}}
+Bedded area, A_b {{{output(o_Ab,mm<sup>2</sup>/m)}}}
 
-Hollow concrete with \rho{}>2000kg/m^3 {{{span(i_densehollow)}}}
+Hollow concrete with \rho{}>2000kg/m^3 {{{checkbox(i_densehollow)}}}
 
-Grout strength factor, k_c {{{span(o_kc)}}}
+Grout strength factor, k_c {{{output(o_kc)}}}
 
-Grout compressive strength, f'_{cg} {{{span(i_fcg)}}}
+Grout compressive strength, f'_{cg} {{{input(i_fcg,20,MPa)}}}
 
-Grout area, A_g {{{span(o_Ag)}}}
+Grout area, A_g {{{output(o_Ag,mm<sup>2</sup>/m)}}}
 
-Supporting concrete slab {{{span(i_eccentricitytype)}}}
+Supporting concrete slab {{{dropdown3(i_eccentricitytype,Concrete slab,Framing/other,Face supported)}}}
 
 * Compression
 
-Design load, F_d {{{span(i_Fd)}}}
+Design load, F_d {{{input(i_Fd,100,kN/m)}}}
 
-Capacity reduction factor, \Phi {{{span(o_phi_rF)}}}
+Capacity reduction factor, \Phi {{{output(o_phi_rF)}}}
 
-Reduction factor, k_s {{{span(o_ks)}}}
+Reduction factor, k_s {{{output(o_ks)}}}
 
-Reduction factor, k {{{span(o_k)}}}
+Reduction factor, k {{{output(o_k)}}}
 
-Capacity, \Phi{}F_u {{{span(o_phiFu)}}}
+Capacity, \Phi{}F_u {{{output(o_phiFu,kN/m)}}}
 
-Ratio, F_d/\Phi{}F_u {{{span(o_compressionratio)}}}
+Ratio, F_d/\Phi{}F_u {{{output(o_compressionratio)}}}
 
 * Bending
 ** Out-of-plane
