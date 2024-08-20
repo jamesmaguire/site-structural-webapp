@@ -1,9 +1,10 @@
 # -*- mode: org; -*-
 
-#+options: toc:nil num:nil
+#+options: toc:1 num:nil
 #+options: html-postamble:nil
 #+options: html-style:nil
 #+html_head: <link rel="stylesheet" type="text/css" href="../static/post.css" />
+#+html_head: <link rel="stylesheet" type="text/css" href="../static/print.css" media="print" />
 #+html_head: <script type="text/javascript" src="../static/general.js"></script>
 #+html_head: <link rel="icon" type="image/ico" href="../static/icon/favicon.svg" />
 #+html_head: <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,11 +14,12 @@
 #+html_link_up: ../index.html
 #+bind: org-html-home/up-format "<div id=\"org-div-home-and-up\"> <img src=\"../static/icon/logo.svg\" /> <a href=\"%s\"> Home </a> </div>"
 
-# Macros
+# Macros -----------------------------------------------------------------------
+
 #+macro: span @@html:<span id="$1"></span>@@
+
 #+macro: div @@html:<div id="$1"></div>@@
 
-# Input macros
 #+macro: input @@html:<span class="inputspan"><input id="$1" class="right" type="number" value="$2" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> $3</span>@@
 
 #+macro: input-bar @@html:<span class="inputspan">N<input id="$1" class="left" type="number" value="$2" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"></span>@@
@@ -31,3 +33,5 @@
 #+macro: textoutput @@html:<span class="outputspan"><input id="$1" class="right" type="text" value="0" readonly></span>@@
 
 #+macro: tooltip @@html:<span class="tooltip">$1 <span class="tooltiptext">$2</span></span>@@
+
+#+macro: ref @@html:<span class="reference">$1</span>@@

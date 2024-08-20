@@ -9,7 +9,7 @@
 html { min-height: 100vh; }
 body {
   min-height: 100vh;
-  background: #eeeef2;
+  background: #eeeef1;
 }
 
 /* Header */
@@ -24,6 +24,25 @@ body {
 #org-div-home-and-up img {
   height: 100%;
   padding-right: 1rem;
+}
+
+/* TOC */
+#table-of-contents {
+  text-align: center;
+}
+#table-of-contents h2 {
+  display: none;
+}
+#table-of-contents ul li {
+  display: inline-block;
+  padding: 0.4rem;
+  margin: 0.4rem;
+  min-width: 15ch;
+  border: 1px solid #d3d3d3;
+  text-align: center;
+}
+#table-of-contents ul li:hover {
+  background-color: #ddd5;
 }
 
 /* Status button */
@@ -54,18 +73,19 @@ body {
 
 /* Main area */
 #content {
-  margin: 2rem min(5rem,5%);
+  margin: auto;
+  margin-bottom: 5rem;
   border: 1px #ddd solid;
   box-shadow: 5px 5px 25px #eee;
-  padding: min(4%,4rem);
+  padding: min(4%,6rem);
+  max-width: 150ch;
 }
 
 /* Sections */
 .outline-2 {
-  display: inline-block;
+  display: block;
   vertical-align: top;
   min-width: 48ch;
-  width: min(70ch, 40%);
   margin-bottom: 1.5rem;
   margin-right: 3rem;
 }
@@ -137,21 +157,30 @@ hr {
   border-top: 1px solid #d3d3d3;
   padding: 0.5rem;
 }
+.reference {
+  color: grey;
+  padding-left: 2ch;
+  font-size: 80%;
+}
 
 /* Title/headings */
 h1 {
   text-transform: uppercase;
   font-size: 130%;
   font-weight: bold;
+  text-align: center;
   margin-bottom: 2rem;
 }
 .subtitle {
+  text-transform: none;
   font-size: 80%;
   color: #444;
   font-weight: normal;
 }
 h2 {
+  padding-top: 1rem;
   padding-bottom: 0.7rem;
+  font-size: 110%;
 }
 h3 {
   padding-bottom: 0.7rem;
