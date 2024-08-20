@@ -209,7 +209,7 @@ function runCalcs() {
         } else if (wall.eccentricitytype === 'Face supported') {
             k = Math.min(0.67 - 0.002*(Srs-14), 0.67);
         }
-        o_k.value = k.toFixed(1);
+        o_k.value = k.toFixed(2);
         Fu = k*Fo/1000;
         hideInput(o_ks);
         showInput(o_k);
