@@ -1,4 +1,5 @@
-#+title: Masonry
+#+title: Masonry structures
+#+subtitle: to AS 3700-2011(+A1)
 #+setupfile: post.setup
 #+HTML_HEAD: <script type="text/javascript" src="../static/masonry.js" defer></script>
 #+include: "../statusicon.org"
@@ -9,7 +10,7 @@
 
 * Wall properties
 
-Block thickness, t {{{input(i_t,190,mm)}}}
+Block thickness, t {{{input(i_t,190,mm)}}} {{{ref(Clause 3.2.1)}}}
 
 Wall height, H {{{input(i_H,2800,mm)}}}
 
@@ -33,11 +34,11 @@ Steel area, A_s {{{output(o_As,mm<sup>2</sup>/m)}}}
 
 * FRL (structural adequacy)
 
-Slenderness coefficient (fire), a_{vf} {{{output(o_avf)}}}
+Slenderness coefficient (fire), a_{vf} {{{output(o_avf)}}} {{{ref(Clause 6.3.2.2)}}}
 
-Slenderness coefficient, a_h {{{output(o_ah)}}}
+Slenderness coefficient, a_h {{{output(o_ah)}}} {{{ref(Clause 6.3.2.2)}}}
 
-Slenderness ratio, S_{rf} {{{output(o_Srf)}}}
+Slenderness ratio, S_{rf} {{{output(o_Srf)}}} {{{ref(Clause 6.3.2.2)}}}
 
 #+attr_html: :id FRLtable
 | Fire resistance period                  |   30 |   60 |   90 |  120 |  180 |  240 |
@@ -49,36 +50,37 @@ Slenderness ratio, S_{rf} {{{output(o_Srf)}}}
 | Concrete units (>45% aggregate)         | 25.0 | 22.5 | 21.0 | 20.0 | 18.0 | 17.0 |
 |-----------------------------------------+------+------+------+------+------+------|
 | Reinforced masonry                      | 36.0 | 36.0 | 36.0 | 36.0 | 36.0 | 36.0 |
+{{{ref(Table 6.1)}}}
 
 * Design properties
 
-Masonry compressive strength, f'_m {{{input(i_fm,6.1,MPa)}}}
+Masonry compressive strength, f'_m {{{input(i_fm,6.1,MPa)}}} {{{ref(Clause 3.3.2)}}}
 
 Face shell thickness {{{input(i_tshell,30,mm)}}}
 
-Bedded area, A_b {{{output(o_Ab,mm<sup>2</sup>/m)}}}
+Bedded area, A_b {{{output(o_Ab,mm<sup>2</sup>/m)}}} {{{ref(Clause 4.5.4)}}}
 
-Hollow concrete with \rho{}>2000kg/m^3 {{{checkbox(i_densehollow)}}}
+Hollow concrete with \rho{}>2000kg/m^3 {{{checkbox(i_densehollow)}}} {{{ref(Clause 7.3.2)}}}
 
-Grout strength factor, k_c {{{output(o_kc)}}}
+Grout strength factor, k_c {{{output(o_kc)}}} {{{ref(Clause 7.3.2)}}}
 
-Grout compressive strength, f'_{cg} {{{input(i_fcg,20,MPa)}}}
+Grout compressive strength, f'_{cg} {{{input(i_fcg,20,MPa)}}} {{{ref(Clause 3.5)}}}
 
-Grout area, A_g {{{output(o_Ag,mm<sup>2</sup>/m)}}}
+Grout area, A_g {{{output(o_Ag,mm<sup>2</sup>/m)}}} {{{ref(Clause 4.5.7)}}}
 
-Supporting concrete slab {{{dropdown3(i_eccentricitytype,Concrete slab,Framing/other,Face supported)}}}
+Supporting concrete slab {{{dropdown3(i_eccentricitytype,Concrete slab,Framing/other,Face supported)}}} {{{ref(Clause 7.3.3.3)}}}
 
 * Compression
 
 Design load, F_d {{{input(i_Fd,100,kN/m)}}}
 
-Capacity reduction factor, \Phi {{{output(o_phi_rF)}}}
+Capacity reduction factor, \Phi {{{output(o_phi_rF)}}} {{{ref(Clause 4.4)}}}
 
-Reduction factor, k_s {{{output(o_ks)}}}
+Reduction factor, k_s {{{output(o_ks)}}} {{{ref(Clause 8.5)}}}
 
-Reduction factor, k {{{output(o_k)}}}
+Reduction factor, k {{{output(o_k)}}} {{{ref(Clause 7.3.3.3)}}}
 
-Capacity, \Phi{}F_u {{{output(o_phiFu,kN/m)}}}
+Capacity, \Phi{}F_u {{{output(o_phiFu,kN/m)}}} {{{ref(Clasue 7.3.2)}}}
 
 Ratio, F_d/\Phi{}F_u {{{output(o_compressionratio)}}}
 

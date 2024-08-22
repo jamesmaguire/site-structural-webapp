@@ -3,13 +3,13 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-08-11 Sun 12:24 -->
+<!-- 2024-08-20 Tue 13:50 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Masonry</title>
-<meta name="author" content="james" />
+<title>Masonry structures</title>
 <meta name="generator" content="Org Mode" />
 <link rel="stylesheet" type="text/css" href="../static/post.css" />
+<link rel="stylesheet" type="text/css" href="../static/print.css" media="print" />
 <script type="text/javascript" src="../static/general.js"></script>
 <link rel="icon" type="image/ico" href="../static/icon/favicon.svg" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,25 +17,41 @@
 </head>
 <body>
 <div id="org-div-home-and-up"> <img src="../static/icon/logo.svg" /> <a href="../index.html"> Home </a> </div><div id="content" class="content">
-<h1 class="title">Masonry</h1>
+<h1 class="title">Masonry structures
+<br />
+<span class="subtitle">to AS 3700-2011(+A1)</span>
+</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org8f294ad">Figure</a></li>
+<li><a href="#org063f560">Wall properties</a></li>
+<li><a href="#orge98a370">FRL (structural adequacy)</a></li>
+<li><a href="#org489c66c">Design properties</a></li>
+<li><a href="#org55b9736">Compression</a></li>
+<li><a href="#org3222549">Bending</a></li>
+</ul>
+</div>
+</div>
 <p>
 <button id='statusbutton' onclick='updatePage();'>▶ Run analysis</button>
 </p>
 
-<div id="outline-container-orgb742738" class="outline-2">
-<h2 id="orgb742738">Figure</h2>
-<div class="outline-text-2" id="text-orgb742738">
+<div id="outline-container-org8f294ad" class="outline-2">
+<h2 id="org8f294ad">Figure</h2>
+<div class="outline-text-2" id="text-org8f294ad">
 <p>
 <div id="wallFigure"></div>
 </p>
 </div>
 </div>
 
-<div id="outline-container-org252a64a" class="outline-2">
-<h2 id="org252a64a">Wall properties</h2>
-<div class="outline-text-2" id="text-org252a64a">
+<div id="outline-container-org063f560" class="outline-2">
+<h2 id="org063f560">Wall properties</h2>
+<div class="outline-text-2" id="text-org063f560">
 <p>
-Block thickness, t <span class="inputspan"><input id="i_t" class="right" type="number" value="190" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> mm</span>
+Block thickness, t <span class="inputspan"><input id="i_t" class="right" type="number" value="190" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> mm</span> <span class="reference">Clause 3.2.1</span>
 </p>
 
 <p>
@@ -80,19 +96,19 @@ Steel area, A<sub>s</sub> <span class="outputspan"><input id="o_As" class="right
 </div>
 </div>
 
-<div id="outline-container-org5e90f25" class="outline-2">
-<h2 id="org5e90f25">FRL (structural adequacy)</h2>
-<div class="outline-text-2" id="text-org5e90f25">
+<div id="outline-container-orge98a370" class="outline-2">
+<h2 id="orge98a370">FRL (structural adequacy)</h2>
+<div class="outline-text-2" id="text-orge98a370">
 <p>
-Slenderness coefficient (fire), a<sub>vf</sub> <span class="outputspan"><input id="o_avf" class="right" type="number" value="0" readonly> </span>
+Slenderness coefficient (fire), a<sub>vf</sub> <span class="outputspan"><input id="o_avf" class="right" type="number" value="0" readonly> </span> <span class="reference">Clause 6.3.2.2</span>
 </p>
 
 <p>
-Slenderness coefficient, a<sub>h</sub> <span class="outputspan"><input id="o_ah" class="right" type="number" value="0" readonly> </span>
+Slenderness coefficient, a<sub>h</sub> <span class="outputspan"><input id="o_ah" class="right" type="number" value="0" readonly> </span> <span class="reference">Clause 6.3.2.2</span>
 </p>
 
 <p>
-Slenderness ratio, S<sub>rf</sub> <span class="outputspan"><input id="o_Srf" class="right" type="number" value="0" readonly> </span>
+Slenderness ratio, S<sub>rf</sub> <span class="outputspan"><input id="o_Srf" class="right" type="number" value="0" readonly> </span> <span class="reference">Clause 6.3.2.2</span>
 </p>
 
 <table id="FRLtable" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
@@ -187,14 +203,17 @@ Slenderness ratio, S<sub>rf</sub> <span class="outputspan"><input id="o_Srf" cla
 </tr>
 </tbody>
 </table>
+<p>
+<span class="reference">Table 6.1</span>
+</p>
 </div>
 </div>
 
-<div id="outline-container-orgaf07740" class="outline-2">
-<h2 id="orgaf07740">Design properties</h2>
-<div class="outline-text-2" id="text-orgaf07740">
+<div id="outline-container-org489c66c" class="outline-2">
+<h2 id="org489c66c">Design properties</h2>
+<div class="outline-text-2" id="text-org489c66c">
 <p>
-Masonry compressive strength, f'<sub>m</sub> <span class="inputspan"><input id="i_fm" class="right" type="number" value="6.1" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> MPa</span>
+Masonry compressive strength, f'<sub>m</sub> <span class="inputspan"><input id="i_fm" class="right" type="number" value="6.1" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> MPa</span> <span class="reference">Clause 3.3.2</span>
 </p>
 
 <p>
@@ -202,52 +221,52 @@ Face shell thickness <span class="inputspan"><input id="i_tshell" class="right" 
 </p>
 
 <p>
-Bedded area, A<sub>b</sub> <span class="outputspan"><input id="o_Ab" class="right" type="number" value="0" readonly> mm<sup>2</sup>/m</span>
+Bedded area, A<sub>b</sub> <span class="outputspan"><input id="o_Ab" class="right" type="number" value="0" readonly> mm<sup>2</sup>/m</span> <span class="reference">Clause 4.5.4</span>
 </p>
 
 <p>
-Hollow concrete with &rho;&gt;2000kg/m<sup>3</sup> <input id="i_densehollow" type="checkbox" autocomplete="off"  oninput="updatePage()"></input>
+Hollow concrete with &rho;&gt;2000kg/m<sup>3</sup> <input id="i_densehollow" type="checkbox" autocomplete="off"  oninput="updatePage()"></input> <span class="reference">Clause 7.3.2</span>
 </p>
 
 <p>
-Grout strength factor, k<sub>c</sub> <span class="outputspan"><input id="o_kc" class="right" type="number" value="0" readonly> </span>
+Grout strength factor, k<sub>c</sub> <span class="outputspan"><input id="o_kc" class="right" type="number" value="0" readonly> </span> <span class="reference">Clause 7.3.2</span>
 </p>
 
 <p>
-Grout compressive strength, f'<sub>cg</sub> <span class="inputspan"><input id="i_fcg" class="right" type="number" value="20" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> MPa</span>
+Grout compressive strength, f'<sub>cg</sub> <span class="inputspan"><input id="i_fcg" class="right" type="number" value="20" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> MPa</span> <span class="reference">Clause 3.5</span>
 </p>
 
 <p>
-Grout area, A<sub>g</sub> <span class="outputspan"><input id="o_Ag" class="right" type="number" value="0" readonly> mm<sup>2</sup>/m</span>
+Grout area, A<sub>g</sub> <span class="outputspan"><input id="o_Ag" class="right" type="number" value="0" readonly> mm<sup>2</sup>/m</span> <span class="reference">Clause 4.5.7</span>
 </p>
 
 <p>
-Supporting concrete slab <select id="i_eccentricitytype" autocomplete="off" oninput="updatePage()"><option value="Concrete slab">Concrete slab</option><option value="Framing/other">Framing/other</option><option value="Face supported">Face supported</option></select>
+Supporting concrete slab <select id="i_eccentricitytype" autocomplete="off" oninput="updatePage()"><option value="Concrete slab">Concrete slab</option><option value="Framing/other">Framing/other</option><option value="Face supported">Face supported</option></select> <span class="reference">Clause 7.3.3.3</span>
 </p>
 </div>
 </div>
 
-<div id="outline-container-org35f2d19" class="outline-2">
-<h2 id="org35f2d19">Compression</h2>
-<div class="outline-text-2" id="text-org35f2d19">
+<div id="outline-container-org55b9736" class="outline-2">
+<h2 id="org55b9736">Compression</h2>
+<div class="outline-text-2" id="text-org55b9736">
 <p>
 Design load, F<sub>d</sub> <span class="inputspan"><input id="i_Fd" class="right" type="number" value="100" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> kN/m</span>
 </p>
 
 <p>
-Capacity reduction factor, &Phi; <span class="outputspan"><input id="o_phi_rF" class="right" type="number" value="0" readonly> </span>
+Capacity reduction factor, &Phi; <span class="outputspan"><input id="o_phi_rF" class="right" type="number" value="0" readonly> </span> <span class="reference">Clause 4.4</span>
 </p>
 
 <p>
-Reduction factor, k<sub>s</sub> <span class="outputspan"><input id="o_ks" class="right" type="number" value="0" readonly> </span>
+Reduction factor, k<sub>s</sub> <span class="outputspan"><input id="o_ks" class="right" type="number" value="0" readonly> </span> <span class="reference">Clause 8.5</span>
 </p>
 
 <p>
-Reduction factor, k <span class="outputspan"><input id="o_k" class="right" type="number" value="0" readonly> </span>
+Reduction factor, k <span class="outputspan"><input id="o_k" class="right" type="number" value="0" readonly> </span> <span class="reference">Clause 7.3.3.3</span>
 </p>
 
 <p>
-Capacity, &Phi;F<sub>u</sub> <span class="outputspan"><input id="o_phiFu" class="right" type="number" value="0" readonly> kN/m</span>
+Capacity, &Phi;F<sub>u</sub> <span class="outputspan"><input id="o_phiFu" class="right" type="number" value="0" readonly> kN/m</span> <span class="reference">Clasue 7.3.2</span>
 </p>
 
 <p>
@@ -256,15 +275,15 @@ Ratio, F<sub>d</sub>/&Phi;F<sub>u</sub> <span class="outputspan"><input id="o_co
 </div>
 </div>
 
-<div id="outline-container-org672cbb7" class="outline-2">
-<h2 id="org672cbb7">Bending</h2>
-<div class="outline-text-2" id="text-org672cbb7">
+<div id="outline-container-org3222549" class="outline-2">
+<h2 id="org3222549">Bending</h2>
+<div class="outline-text-2" id="text-org3222549">
 </div>
-<div id="outline-container-org00689ec" class="outline-3">
-<h3 id="org00689ec">Out-of-plane</h3>
+<div id="outline-container-org6c6eb18" class="outline-3">
+<h3 id="org6c6eb18">Out-of-plane</h3>
 </div>
-<div id="outline-container-orgca78710" class="outline-3">
-<h3 id="orgca78710">In-plane</h3>
+<div id="outline-container-orge7ef9f6" class="outline-3">
+<h3 id="orge7ef9f6">In-plane</h3>
 </div>
 </div>
 </div>
