@@ -3,13 +3,14 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-09-06 Wed 19:45 -->
+<!-- 2024-08-31 Sat 14:52 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Slab design</title>
 <meta name="author" content="james" />
 <meta name="generator" content="Org Mode" />
 <link rel="stylesheet" type="text/css" href="../static/post.css" />
+<link rel="stylesheet" type="text/css" href="../static/print.css" media="print" />
 <script type="text/javascript" src="../static/general.js"></script>
 <link rel="icon" type="image/ico" href="../static/icon/favicon.svg" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,22 +22,35 @@
 <br />
 <span class="subtitle">Based on AS3600 2018</span>
 </h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org612c991">Image</a></li>
+<li><a href="#orga023be8">Slab parameters</a></li>
+<li><a href="#orge1375ec">Material properties</a></li>
+<li><a href="#org6013b0b">Bending capacity</a></li>
+<li><a href="#org90d6eec">Crack control</a></li>
+<li><a href="#orgf20e009">Tonnage</a></li>
+</ul>
+</div>
+</div>
 <p>
 <button id='statusbutton' onclick='updatePage();'>▶ Run analysis</button>
 </p>
 
-<div id="outline-container-orgc72c2ca" class="outline-2">
-<h2 id="orgc72c2ca">Image</h2>
-<div class="outline-text-2" id="text-orgc72c2ca">
+<div id="outline-container-org612c991" class="outline-2">
+<h2 id="org612c991">Image</h2>
+<div class="outline-text-2" id="text-org612c991">
 <p>
 <div id="slabFigure"></div>
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgea0a71a" class="outline-2">
-<h2 id="orgea0a71a">Slab parameters</h2>
-<div class="outline-text-2" id="text-orgea0a71a">
+<div id="outline-container-orga023be8" class="outline-2">
+<h2 id="orga023be8">Slab parameters</h2>
+<div class="outline-text-2" id="text-orga023be8">
 <p>
 Slab width <span id="i_B"></span>
 </p>
@@ -79,9 +93,9 @@ Reinforcement ratio <span id="o_reoratio"></span>
 </div>
 </div>
 
-<div id="outline-container-orgc09adc6" class="outline-2">
-<h2 id="orgc09adc6">Material properties</h2>
-<div class="outline-text-2" id="text-orgc09adc6">
+<div id="outline-container-orge1375ec" class="outline-2">
+<h2 id="orge1375ec">Material properties</h2>
+<div class="outline-text-2" id="text-orge1375ec">
 <p>
 Concrete strength <span id="i_fc"></span>
 </p>
@@ -112,9 +126,9 @@ Steel density <span id="i_steelrho"></span>
 </div>
 </div>
 
-<div id="outline-container-org3e8d5d9" class="outline-2">
-<h2 id="org3e8d5d9">Bending capacity</h2>
-<div class="outline-text-2" id="text-org3e8d5d9">
+<div id="outline-container-org6013b0b" class="outline-2">
+<h2 id="org6013b0b">Bending capacity</h2>
+<div class="outline-text-2" id="text-org6013b0b">
 <p>
 Applied moment, M* <span id="i_Mstar"></span>
 </p>
@@ -145,9 +159,9 @@ Moment check, M*/&Phi;M<sub>uo</sub> <span id="momentCheck"></span>
 </div>
 </div>
 
-<div id="outline-container-orgf379a89" class="outline-2">
-<h2 id="orgf379a89">Crack control</h2>
-<div class="outline-text-2" id="text-orgf379a89">
+<div id="outline-container-org90d6eec" class="outline-2">
+<h2 id="org90d6eec">Crack control</h2>
+<div class="outline-text-2" id="text-org90d6eec">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -229,18 +243,18 @@ Area steel <span id="o_ccrate"></span>
 </p>
 </div>
 
-<div id="outline-container-org82b434e" class="outline-3">
-<h3 id="org82b434e">Reinforcement for crack control in secondary direction (unrestrained slab)</h3>
-<div class="outline-text-3" id="text-org82b434e">
+<div id="outline-container-orgcdf01f3" class="outline-3">
+<h3 id="orgcdf01f3">Reinforcement for crack control in secondary direction (unrestrained slab)</h3>
+<div class="outline-text-3" id="text-orgcdf01f3">
 <p>
 Minimum (1.75-2.5&sigma;<sub>cp</sub>)bD<sup>-3</sup> <span id="o_cc0"></span>
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgde22266" class="outline-3">
-<h3 id="orgde22266">Reinforcement for crack control in secondary direction (restrained slab)</h3>
-<div class="outline-text-3" id="text-orgde22266">
+<div id="outline-container-org0bf71dc" class="outline-3">
+<h3 id="org0bf71dc">Reinforcement for crack control in secondary direction (restrained slab)</h3>
+<div class="outline-text-3" id="text-org0bf71dc">
 <p>
 Minor (1.75-2.5&sigma;<sub>cp</sub>)bD<sup>-3</sup> <span id="o_cc1"></span>
 </p>
@@ -260,22 +274,22 @@ Strong (6.0-2.5&sigma;<sub>cp</sub>)bD<sup>-3</sup> <span id="o_cc3"></span>
 </div>
 </div>
 
-<div id="outline-container-org6d7ed53" class="outline-2">
-<h2 id="org6d7ed53">Tonnage</h2>
-<div class="outline-text-2" id="text-org6d7ed53">
+<div id="outline-container-orgf20e009" class="outline-2">
+<h2 id="orgf20e009">Tonnage</h2>
+<div class="outline-text-2" id="text-orgf20e009">
 </div>
-<div id="outline-container-orgc5047d5" class="outline-3">
-<h3 id="orgc5047d5">One way</h3>
-<div class="outline-text-3" id="text-orgc5047d5">
+<div id="outline-container-org42d0553" class="outline-3">
+<h3 id="org42d0553">One way</h3>
+<div class="outline-text-3" id="text-org42d0553">
 <p>
 Rate <span id="o_tonnagem2"></span> <span id="o_tonnagem3"></span>
 </p>
 </div>
 </div>
 
-<div id="outline-container-org5855e13" class="outline-3">
-<h3 id="org5855e13">Two way</h3>
-<div class="outline-text-3" id="text-org5855e13">
+<div id="outline-container-org65354f3" class="outline-3">
+<h3 id="org65354f3">Two way</h3>
+<div class="outline-text-3" id="text-org65354f3">
 <p>
 Rate <span id="o_tonnagem2tw"></span> <span id="o_tonnagem3tw"></span>
 </p>

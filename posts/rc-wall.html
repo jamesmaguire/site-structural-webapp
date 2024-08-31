@@ -3,13 +3,14 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-08-31 Thu 22:14 -->
+<!-- 2024-08-31 Sat 14:53 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Reinforced Concrete Wall</title>
 <meta name="author" content="james" />
 <meta name="generator" content="Org Mode" />
 <link rel="stylesheet" type="text/css" href="../static/post.css" />
+<link rel="stylesheet" type="text/css" href="../static/print.css" media="print" />
 <script type="text/javascript" src="../static/general.js"></script>
 <link rel="icon" type="image/ico" href="../static/icon/favicon.svg" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,22 +22,37 @@
 <br />
 <span class="subtitle">Based on AS3600 2018</span>
 </h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org6335b09">Image</a></li>
+<li><a href="#org44446d8">Wall parameters</a></li>
+<li><a href="#orgacd5902">Effective height</a></li>
+<li><a href="#orgb3ea55f">Simplified design method</a></li>
+<li><a href="#org91d4137">Axial loading (simplified method)</a></li>
+<li><a href="#org5fa8bdb">In Plane Shear loading (simplified method)</a></li>
+<li><a href="#orga6bddd7">Minimum reinforcement</a></li>
+<li><a href="#orgd03a9ea">Dowels in prefabricated walls</a></li>
+</ul>
+</div>
+</div>
 <p>
 <button id='statusbutton' onclick='updatePage();'>▶ Run analysis</button>
 </p>
 
-<div id="outline-container-org52cc32c" class="outline-2">
-<h2 id="org52cc32c">Image</h2>
-<div class="outline-text-2" id="text-org52cc32c">
+<div id="outline-container-org6335b09" class="outline-2">
+<h2 id="org6335b09">Image</h2>
+<div class="outline-text-2" id="text-org6335b09">
 <p>
 <div id="wallFigure"></div>
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgb9cd925" class="outline-2">
-<h2 id="orgb9cd925">Wall parameters</h2>
-<div class="outline-text-2" id="text-orgb9cd925">
+<div id="outline-container-org44446d8" class="outline-2">
+<h2 id="org44446d8">Wall parameters</h2>
+<div class="outline-text-2" id="text-org44446d8">
 <p>
 Wall height, H<sub>w</sub> <span id="i_Hw"></span>
 </p>
@@ -79,9 +95,9 @@ Steel strength <span id="i_fsy"></span>
 </div>
 </div>
 
-<div id="outline-container-org9ae8b12" class="outline-2">
-<h2 id="org9ae8b12">Effective height</h2>
-<div class="outline-text-2" id="text-org9ae8b12">
+<div id="outline-container-orgacd5902" class="outline-2">
+<h2 id="orgacd5902">Effective height</h2>
+<div class="outline-text-2" id="text-orgacd5902">
 <p>
 Vertical lateral restraint <span id="i_restraint"></span>
 </p>
@@ -96,9 +112,9 @@ k <span id="o_k"></span>, H<sub>we</sub>=kH<sub>we</sub> <span id="o_Hwe"></span
 </div>
 </div>
 
-<div id="outline-container-orga906d62" class="outline-2">
-<h2 id="orga906d62">Simplified design method</h2>
-<div class="outline-text-2" id="text-orga906d62">
+<div id="outline-container-orgb3ea55f" class="outline-2">
+<h2 id="orgb3ea55f">Simplified design method</h2>
+<div class="outline-text-2" id="text-orgb3ea55f">
 <p>
 Applied axial load, N* <span id="i_Nstar"></span>
 </p>
@@ -117,9 +133,9 @@ Simplified method allowed? <span id="o_simplified"></span>
 </div>
 </div>
 
-<div id="outline-container-orge04e84e" class="outline-2">
-<h2 id="orge04e84e">Axial loading (simplified method)</h2>
-<div class="outline-text-2" id="text-orge04e84e">
+<div id="outline-container-org91d4137" class="outline-2">
+<h2 id="org91d4137">Axial loading (simplified method)</h2>
+<div class="outline-text-2" id="text-org91d4137">
 <p>
 Slab continuity <span id="i_slabcontinuity"></span>
 </p>
@@ -150,9 +166,9 @@ Axial check, N*/&Phi;N<sub>u</sub> <span id="axialCheck"></span>
 </div>
 </div>
 
-<div id="outline-container-orgdea734f" class="outline-2">
-<h2 id="orgdea734f">In Plane Shear loading (simplified method)</h2>
-<div class="outline-text-2" id="text-orgdea734f">
+<div id="outline-container-org5fa8bdb" class="outline-2">
+<h2 id="org5fa8bdb">In Plane Shear loading (simplified method)</h2>
+<div class="outline-text-2" id="text-org5fa8bdb">
 <p>
 Applied shear, V* <span id="i_Vstar"></span>
 </p>
@@ -183,9 +199,9 @@ Shear check, V*/&Phi;V<sub>u</sub> <span id="shearCheck"></span>
 </div>
 </div>
 
-<div id="outline-container-orgf223b2e" class="outline-2">
-<h2 id="orgf223b2e">Minimum reinforcement</h2>
-<div class="outline-text-2" id="text-orgf223b2e">
+<div id="outline-container-orga6bddd7" class="outline-2">
+<h2 id="orga6bddd7">Minimum reinforcement</h2>
+<div class="outline-text-2" id="text-orga6bddd7">
 <p>
 Vertical, &rho;<sub>v,min</sub> = <span id="o_rhovmin"></span>
 </p>
@@ -212,9 +228,9 @@ Horizontal restrained, &rho;<sub>h,strong</sub> = <span id="o_rhow3"></span>
 </div>
 </div>
 
-<div id="outline-container-orgc378049" class="outline-2">
-<h2 id="orgc378049">Dowels in prefabricated walls</h2>
-<div class="outline-text-2" id="text-orgc378049">
+<div id="outline-container-orgd03a9ea" class="outline-2">
+<h2 id="orgd03a9ea">Dowels in prefabricated walls</h2>
+<div class="outline-text-2" id="text-orgd03a9ea">
 <p>
 Area vertical reo, A<sub>st,wall</sub> <span id="o_Astwall"></span>
 </p>

@@ -3,77 +3,43 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-07-31 Sun 17:49 -->
+<!-- 2024-08-31 Sat 14:52 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Earthquake loading</title>
-<meta name="generator" content="Org mode" />
 <meta name="author" content="james" />
+<meta name="generator" content="Org Mode" />
 <link rel="stylesheet" type="text/css" href="../static/post.css" />
+<link rel="stylesheet" type="text/css" href="../static/print.css" media="print" />
 <script type="text/javascript" src="../static/general.js"></script>
 <link rel="icon" type="image/ico" href="../static/icon/favicon.svg" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script type="text/javascript" src="../static/eqkeload.js" defer></script>
-<script type="text/javascript">
-/*
-@licstart  The following is the entire license notice for the
-JavaScript code in this tag.
-
-Copyright (C) 2012-2020 Free Software Foundation, Inc.
-
-The JavaScript code in this tag is free software: you can
-redistribute it and/or modify it under the terms of the GNU
-General Public License (GNU GPL) as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.  The code is distributed WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-As additional permission under GNU GPL version 3 section 7, you
-may distribute non-source (e.g., minimized or compacted) forms of
-that code without the copy of the GNU GPL normally required by
-section 4, provided you include this license notice and a URL
-through which recipients can access the Corresponding Source.
-
-
-@licend  The above is the entire license notice
-for the JavaScript code in this tag.
-*/
-<!--/*--><![CDATA[/*><!--*/
- function CodeHighlightOn(elem, id)
- {
-   var target = document.getElementById(id);
-   if(null != target) {
-     elem.cacheClassElem = elem.className;
-     elem.cacheClassTarget = target.className;
-     target.className = "code-highlighted";
-     elem.className   = "code-highlighted";
-   }
- }
- function CodeHighlightOff(elem, id)
- {
-   var target = document.getElementById(id);
-   if(elem.cacheClassElem)
-     elem.className = elem.cacheClassElem;
-   if(elem.cacheClassTarget)
-     target.className = elem.cacheClassTarget;
- }
-/*]]>*///-->
-</script>
 </head>
 <body>
-<div id="org-div-home-and-up"> <img src="../static/icon/logo.svg" /> <a href="../index.html"> Home </a> </div><div id="content">
+<div id="org-div-home-and-up"> <img src="../static/icon/logo.svg" /> <a href="../index.html"> Home </a> </div><div id="content" class="content">
 <h1 class="title">Earthquake loading
 <br />
 <span class="subtitle">Based on AS1170.4 2007</span>
 </h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgaf76f91">Natural period</a></li>
+<li><a href="#org7031679">Spectral shape factor</a></li>
+<li><a href="#org1efd5f6">Base shear</a></li>
+<li><a href="#org11b650d">Equivalent static forces</a></li>
+</ul>
+</div>
+</div>
 <p>
 <button id='statusbutton' onclick='updatePage();'>▶ Run analysis</button>
 </p>
 
-<div id="outline-container-org2fafd58" class="outline-2">
-<h2 id="org2fafd58">Natural period</h2>
-<div class="outline-text-2" id="text-org2fafd58">
+<div id="outline-container-orgaf76f91" class="outline-2">
+<h2 id="orgaf76f91">Natural period</h2>
+<div class="outline-text-2" id="text-orgaf76f91">
 <p>
 Frame type <span id="i_frametype"></span>
 </p>
@@ -100,9 +66,9 @@ TODO: Check that base shear is within 70% of the value using Tn=6.2(7)
 </div>
 </div>
 
-<div id="outline-container-orgaaa7e94" class="outline-2">
-<h2 id="orgaaa7e94">Spectral shape factor</h2>
-<div class="outline-text-2" id="text-orgaaa7e94">
+<div id="outline-container-org7031679" class="outline-2">
+<h2 id="org7031679">Spectral shape factor</h2>
+<div class="outline-text-2" id="text-org7031679">
 <p>
 Site sub-soil class <span id="i_SSC"></span>
 </p>
@@ -113,9 +79,9 @@ Site sub-soil class <span id="i_SSC"></span>
 </div>
 </div>
 
-<div id="outline-container-orgf74e9d1" class="outline-2">
-<h2 id="orgf74e9d1">Base shear</h2>
-<div class="outline-text-2" id="text-orgf74e9d1">
+<div id="outline-container-org1efd5f6" class="outline-2">
+<h2 id="org1efd5f6">Base shear</h2>
+<div class="outline-text-2" id="text-org1efd5f6">
 <p>
 Probability factor, k<sub>p</sub> <span id="i_kp"></span>
 </p>
@@ -138,9 +104,9 @@ Base shear, V <span id="o_V"></span>
 </div>
 </div>
 
-<div id="outline-container-orgcecdc4b" class="outline-2">
-<h2 id="orgcecdc4b">Equivalent static forces</h2>
-<div class="outline-text-2" id="text-orgcecdc4b">
+<div id="outline-container-org11b650d" class="outline-2">
+<h2 id="org11b650d">Equivalent static forces</h2>
+<div class="outline-text-2" id="text-org11b650d">
 <p>
 Number of levels <span id="i_nlevels"></span>
 </p>

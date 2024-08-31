@@ -3,67 +3,37 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-07-31 Sun 17:49 -->
+<!-- 2024-08-31 Sat 14:53 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Strip footings</title>
-<meta name="generator" content="Org mode" />
 <meta name="author" content="james" />
+<meta name="generator" content="Org Mode" />
 <link rel="stylesheet" type="text/css" href="../static/post.css" />
+<link rel="stylesheet" type="text/css" href="../static/print.css" media="print" />
 <script type="text/javascript" src="../static/general.js"></script>
 <link rel="icon" type="image/ico" href="../static/icon/favicon.svg" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script type="text/javascript" src="../static/strip-footing.js" defer></script>
-<script type="text/javascript">
-/*
-@licstart  The following is the entire license notice for the
-JavaScript code in this tag.
-
-Copyright (C) 2012-2020 Free Software Foundation, Inc.
-
-The JavaScript code in this tag is free software: you can
-redistribute it and/or modify it under the terms of the GNU
-General Public License (GNU GPL) as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.  The code is distributed WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-As additional permission under GNU GPL version 3 section 7, you
-may distribute non-source (e.g., minimized or compacted) forms of
-that code without the copy of the GNU GPL normally required by
-section 4, provided you include this license notice and a URL
-through which recipients can access the Corresponding Source.
-
-
-@licend  The above is the entire license notice
-for the JavaScript code in this tag.
-*/
-<!--/*--><![CDATA[/*><!--*/
- function CodeHighlightOn(elem, id)
- {
-   var target = document.getElementById(id);
-   if(null != target) {
-     elem.cacheClassElem = elem.className;
-     elem.cacheClassTarget = target.className;
-     target.className = "code-highlighted";
-     elem.className   = "code-highlighted";
-   }
- }
- function CodeHighlightOff(elem, id)
- {
-   var target = document.getElementById(id);
-   if(elem.cacheClassElem)
-     elem.className = elem.cacheClassElem;
-   if(elem.cacheClassTarget)
-     target.className = elem.cacheClassTarget;
- }
-/*]]>*///-->
-</script>
 </head>
 <body>
-<div id="org-div-home-and-up"> <img src="../static/icon/logo.svg" /> <a href="../index.html"> Home </a> </div><div id="content">
+<div id="org-div-home-and-up"> <img src="../static/icon/logo.svg" /> <a href="../index.html"> Home </a> </div><div id="content" class="content">
 <h1 class="title">Strip footings</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org13d3084">Figure</a></li>
+<li><a href="#orgc820301">Footing parameters</a></li>
+<li><a href="#org56fe1ee">Wall parameters</a></li>
+<li><a href="#org904fe0a">Steel parameters</a></li>
+<li><a href="#org972e27f">Loading</a></li>
+<li><a href="#org10beb6c">Bearing</a></li>
+<li><a href="#org4e2d2c7">Moment check</a></li>
+<li><a href="#orgdd5a42a">Shear check</a></li>
+</ul>
+</div>
+</div>
 <p>
 <button id='statusbutton' onclick='updatePage();'>▶ Run analysis</button>
 </p>
@@ -81,19 +51,19 @@ for the JavaScript code in this tag.
 <h2 id="orgc820301">Footing parameters</h2>
 <div class="outline-text-2" id="text-orgc820301">
 <p>
-Footing height <span class="inputspan"><input id="footingHeight" class="right" type="number" value="500" onkeypress="eventHandler(event)" onblur="updatePage()"> mm</span>
+Footing height <span class="inputspan"><input id="footingHeight" class="right" type="number" value="500" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> mm</span>
 </p>
 
 <p>
-Footing width <span class="inputspan"><input id="footingWidth" class="right" type="number" value="2400" onkeypress="eventHandler(event)" onblur="updatePage()"> mm</span>
+Footing width <span class="inputspan"><input id="footingWidth" class="right" type="number" value="2400" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> mm</span>
 </p>
 
 <p>
-Concrete strength <span class="inputspan"><input id="concreteStrength" class="right" type="number" value="32" onkeypress="eventHandler(event)" onblur="updatePage()"> MPa</span>
+Concrete strength <span class="inputspan"><input id="concreteStrength" class="right" type="number" value="32" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> MPa</span>
 </p>
 
 <p>
-Concrete unit weight <span class="inputspan"><input id="gammac" class="right" type="number" value="25" onkeypress="eventHandler(event)" onblur="updatePage()"> kN/m<sup>3</sup></span>
+Concrete unit weight <span class="inputspan"><input id="gammac" class="right" type="number" value="25" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> kN/m<sup>3</sup></span>
 </p>
 </div>
 </div>
@@ -102,11 +72,11 @@ Concrete unit weight <span class="inputspan"><input id="gammac" class="right" ty
 <h2 id="org56fe1ee">Wall parameters</h2>
 <div class="outline-text-2" id="text-org56fe1ee">
 <p>
-Wall width <span class="inputspan"><input id="wallWidth" class="right" type="number" value="300" onkeypress="eventHandler(event)" onblur="updatePage()"> mm</span>
+Wall width <span class="inputspan"><input id="wallWidth" class="right" type="number" value="300" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> mm</span>
 </p>
 
 <p>
-Eccentricity <span class="inputspan"><input id="eccentricity" class="right" type="number" value="0" onkeypress="eventHandler(event)" onblur="updatePage()"> mm</span>
+Eccentricity <span class="inputspan"><input id="eccentricity" class="right" type="number" value="0" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> mm</span>
 </p>
 </div>
 </div>
@@ -115,15 +85,15 @@ Eccentricity <span class="inputspan"><input id="eccentricity" class="right" type
 <h2 id="org904fe0a">Steel parameters</h2>
 <div class="outline-text-2" id="text-org904fe0a">
 <p>
-Steel strength <span class="inputspan"><input id="fsy" class="right" type="number" value="500" onkeypress="eventHandler(event)" onblur="updatePage()"> MPa</span>
+Steel strength <span class="inputspan"><input id="fsy" class="right" type="number" value="500" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> MPa</span>
 </p>
 
 <p>
-Bar diameter <span class="inputspan"><input id="barDiameter" class="right" type="number" value="12" onkeypress="eventHandler(event)" onblur="updatePage()"> mm</span>
+Bar diameter <span class="inputspan"><input id="barDiameter" class="right" type="number" value="12" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> mm</span>
 </p>
 
 <p>
-Cover <span class="inputspan"><input id="cover" class="right" type="number" value="50" onkeypress="eventHandler(event)" onblur="updatePage()"> mm</span>
+Cover <span class="inputspan"><input id="cover" class="right" type="number" value="50" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> mm</span>
 </p>
 </div>
 </div>
@@ -132,19 +102,19 @@ Cover <span class="inputspan"><input id="cover" class="right" type="number" valu
 <h2 id="org972e27f">Loading</h2>
 <div class="outline-text-2" id="text-org972e27f">
 <p>
-Dead load <span class="inputspan"><input id="deadLoad" class="right" type="number" value="250" onkeypress="eventHandler(event)" onblur="updatePage()"> kN/m</span>
+Dead load <span class="inputspan"><input id="deadLoad" class="right" type="number" value="250" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> kN/m</span>
 </p>
 
 <p>
-Live load <span class="inputspan"><input id="liveLoad" class="right" type="number" value="50" onkeypress="eventHandler(event)" onblur="updatePage()"> kN/m</span>
+Live load <span class="inputspan"><input id="liveLoad" class="right" type="number" value="50" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> kN/m</span>
 </p>
 
 <p>
-Dead load factor Ψ<sub>G</sub> <span class="inputspan"><input id="psiG" class="right" type="number" value="1.2" onkeypress="eventHandler(event)" onblur="updatePage()"> </span>
+Dead load factor Ψ<sub>G</sub> <span class="inputspan"><input id="psiG" class="right" type="number" value="1.2" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> </span>
 </p>
 
 <p>
-Live load factor Ψ<sub>Q</sub> <span class="inputspan"><input id="psiQ" class="right" type="number" value="1.5" onkeypress="eventHandler(event)" onblur="updatePage()"> </span>
+Live load factor Ψ<sub>Q</sub> <span class="inputspan"><input id="psiQ" class="right" type="number" value="1.5" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> </span>
 </p>
 
 <p>
@@ -157,7 +127,7 @@ Pressure (ULS) <span class="outputspan"><input id="pressureULS" class="right" ty
 <h2 id="org10beb6c">Bearing</h2>
 <div class="outline-text-2" id="text-org10beb6c">
 <p>
-Soil bearing capacity <span class="inputspan"><input id="qs" class="right" type="number" value="250" onkeypress="eventHandler(event)" onblur="updatePage()"> kPa</span>
+Soil bearing capacity <span class="inputspan"><input id="qs" class="right" type="number" value="250" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> kPa</span>
 </p>
 
 <p>

@@ -3,13 +3,14 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-08-10 Sat 16:35 -->
+<!-- 2024-08-31 Sat 14:37 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Pad footings</title>
 <meta name="author" content="james" />
 <meta name="generator" content="Org Mode" />
 <link rel="stylesheet" type="text/css" href="../static/post.css" />
+<link rel="stylesheet" type="text/css" href="../static/print.css" media="print" />
 <script type="text/javascript" src="../static/general.js"></script>
 <link rel="icon" type="image/ico" href="../static/icon/favicon.svg" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,32 +19,48 @@
 <body>
 <div id="org-div-home-and-up"> <img src="../static/icon/logo.svg" /> <a href="../index.html"> Home </a> </div><div id="content" class="content">
 <h1 class="title">Pad footings</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org4aa904d">Figure</a></li>
+<li><a href="#orgec47c8c">Footing parameters</a></li>
+<li><a href="#orgfab2141">Column parameters</a></li>
+<li><a href="#org3825c62">Steel parameters</a></li>
+<li><a href="#org3720c4d">Loading</a></li>
+<li><a href="#org88edf83">Bearing</a></li>
+<li><a href="#orgf7b8ead">Punching shear</a></li>
+<li><a href="#org26f3629">Moment check</a></li>
+<li><a href="#orgb1ee940">Shear check</a></li>
+</ul>
+</div>
+</div>
 <p>
 <button id='statusbutton' onclick='updatePage();'>▶ Run analysis</button>
 </p>
 
-<div id="outline-container-orgc8a8afc" class="outline-2">
-<h2 id="orgc8a8afc">Figure</h2>
-<div class="outline-text-2" id="text-orgc8a8afc">
+<div id="outline-container-org4aa904d" class="outline-2">
+<h2 id="org4aa904d">Figure</h2>
+<div class="outline-text-2" id="text-org4aa904d">
 <p>
 <canvas id="padFootingFigure" width="250" height="250" draggable="true"></canvas>
 </p>
 </div>
 </div>
 
-<div id="outline-container-org3f7fcc0" class="outline-2">
-<h2 id="org3f7fcc0">Footing parameters</h2>
-<div class="outline-text-2" id="text-org3f7fcc0">
+<div id="outline-container-orgec47c8c" class="outline-2">
+<h2 id="orgec47c8c">Footing parameters</h2>
+<div class="outline-text-2" id="text-orgec47c8c">
 <p>
-Footing height <span class="inputspan"><input id="footingHeight" class="right" type="number" value="500" onkeypress="eventHandler(event)" onblur="updatePage()"> mm</span>
+Footing height <span class="inputspan"><input id="footingHeight" class="right" type="number" value="500" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> mm</span>
 </p>
 
 <p>
-Footing length (x) <span class="inputspan"><input id="Lx" class="right" type="number" value="2400" onkeypress="eventHandler(event)" onblur="updatePage()"> mm</span>
+Footing length (x) <span class="inputspan"><input id="Lx" class="right" type="number" value="2400" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> mm</span>
 </p>
 
 <p>
-Footing length (y) <span class="inputspan"><input id="Ly" class="right" type="number" value="2400" onkeypress="eventHandler(event)" onblur="updatePage()"> mm</span>
+Footing length (y) <span class="inputspan"><input id="Ly" class="right" type="number" value="2400" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> mm</span>
 </p>
 
 <p>
@@ -51,49 +68,49 @@ Footing area <span class="outputspan"><input id="footingArea" class="right" type
 </p>
 
 <p>
-Concrete strength <span class="inputspan"><input id="concreteStrength" class="right" type="number" value="25" onkeypress="eventHandler(event)" onblur="updatePage()"> MPa</span>
+Concrete strength <span class="inputspan"><input id="concreteStrength" class="right" type="number" value="25" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> MPa</span>
 </p>
 
 <p>
-Concrete unit weight <span class="inputspan"><input id="gammac" class="right" type="number" value="25" onkeypress="eventHandler(event)" onblur="updatePage()"> kN/m<sup>3</sup></span>
-</p>
-</div>
-</div>
-
-<div id="outline-container-orgb315f98" class="outline-2">
-<h2 id="orgb315f98">Column parameters</h2>
-<div class="outline-text-2" id="text-orgb315f98">
-<p>
-Column length (x) <span class="inputspan"><input id="Lcx" class="right" type="number" value="300" onkeypress="eventHandler(event)" onblur="updatePage()"> mm</span>
-</p>
-
-<p>
-Column length (y) <span class="inputspan"><input id="Lcy" class="right" type="number" value="1000" onkeypress="eventHandler(event)" onblur="updatePage()"> mm</span>
-</p>
-
-<p>
-Eccentricity (x) <span class="inputspan"><input id="eccentricityX" class="right" type="number" value="0" onkeypress="eventHandler(event)" onblur="updatePage()"> mm</span>
-</p>
-
-<p>
-Eccentricity (y) <span class="inputspan"><input id="eccentricityY" class="right" type="number" value="0" onkeypress="eventHandler(event)" onblur="updatePage()"> mm</span>
+Concrete unit weight <span class="inputspan"><input id="gammac" class="right" type="number" value="25" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> kN/m<sup>3</sup></span>
 </p>
 </div>
 </div>
 
-<div id="outline-container-org7048655" class="outline-2">
-<h2 id="org7048655">Steel parameters</h2>
-<div class="outline-text-2" id="text-org7048655">
+<div id="outline-container-orgfab2141" class="outline-2">
+<h2 id="orgfab2141">Column parameters</h2>
+<div class="outline-text-2" id="text-orgfab2141">
 <p>
-Steel strength <span class="inputspan"><input id="fsy" class="right" type="number" value="500" onkeypress="eventHandler(event)" onblur="updatePage()"> MPa</span>
+Column length (x) <span class="inputspan"><input id="Lcx" class="right" type="number" value="300" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> mm</span>
 </p>
 
 <p>
-Bar diameter <span class="inputspan">N<input id="barDiameter" class="left" type="number" value="12" onkeypress="eventHandler(event)" onblur="updatePage()"></span>
+Column length (y) <span class="inputspan"><input id="Lcy" class="right" type="number" value="1000" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> mm</span>
 </p>
 
 <p>
-Cover <span class="inputspan"><input id="cover" class="right" type="number" value="50" onkeypress="eventHandler(event)" onblur="updatePage()"> mm</span>
+Eccentricity (x) <span class="inputspan"><input id="eccentricityX" class="right" type="number" value="0" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> mm</span>
+</p>
+
+<p>
+Eccentricity (y) <span class="inputspan"><input id="eccentricityY" class="right" type="number" value="0" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> mm</span>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3825c62" class="outline-2">
+<h2 id="org3825c62">Steel parameters</h2>
+<div class="outline-text-2" id="text-org3825c62">
+<p>
+Steel strength <span class="inputspan"><input id="fsy" class="right" type="number" value="500" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> MPa</span>
+</p>
+
+<p>
+Bar diameter <span class="inputspan">N<input id="barDiameter" class="left" type="number" value="12" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"></span>
+</p>
+
+<p>
+Cover <span class="inputspan"><input id="cover" class="right" type="number" value="50" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> mm</span>
 </p>
 
 <p>
@@ -102,23 +119,23 @@ Cover <span class="inputspan"><input id="cover" class="right" type="number" valu
 </div>
 </div>
 
-<div id="outline-container-orgf4a7459" class="outline-2">
-<h2 id="orgf4a7459">Loading</h2>
-<div class="outline-text-2" id="text-orgf4a7459">
+<div id="outline-container-org3720c4d" class="outline-2">
+<h2 id="org3720c4d">Loading</h2>
+<div class="outline-text-2" id="text-org3720c4d">
 <p>
-Dead load <span class="inputspan"><input id="deadLoad" class="right" type="number" value="800" onkeypress="eventHandler(event)" onblur="updatePage()"> kN</span>
+Dead load <span class="inputspan"><input id="deadLoad" class="right" type="number" value="800" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> kN</span>
 </p>
 
 <p>
-Live load <span class="inputspan"><input id="liveLoad" class="right" type="number" value="200" onkeypress="eventHandler(event)" onblur="updatePage()"> kN</span>
+Live load <span class="inputspan"><input id="liveLoad" class="right" type="number" value="200" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> kN</span>
 </p>
 
 <p>
-Dead load factor Ψ<sub>G</sub> <span class="inputspan"><input id="psiG" class="right" type="number" value="1.2" onkeypress="eventHandler(event)" onblur="updatePage()"> </span>
+Dead load factor Ψ<sub>G</sub> <span class="inputspan"><input id="psiG" class="right" type="number" value="1.2" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> </span>
 </p>
 
 <p>
-Live load factor Ψ<sub>Q</sub> <span class="inputspan"><input id="psiQ" class="right" type="number" value="1.5" onkeypress="eventHandler(event)" onblur="updatePage()"> </span>
+Live load factor Ψ<sub>Q</sub> <span class="inputspan"><input id="psiQ" class="right" type="number" value="1.5" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> </span>
 </p>
 
 <p>
@@ -127,11 +144,11 @@ Pressure (ULS) <span class="outputspan"><input id="pressureULS" class="right" ty
 </div>
 </div>
 
-<div id="outline-container-org8574c47" class="outline-2">
-<h2 id="org8574c47">Bearing</h2>
-<div class="outline-text-2" id="text-org8574c47">
+<div id="outline-container-org88edf83" class="outline-2">
+<h2 id="org88edf83">Bearing</h2>
+<div class="outline-text-2" id="text-org88edf83">
 <p>
-Soil bearing capacity <span class="inputspan"><input id="qs" class="right" type="number" value="250" onkeypress="eventHandler(event)" onblur="updatePage()"> kPa</span>
+Soil bearing capacity <span class="inputspan"><input id="qs" class="right" type="number" value="250" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> kPa</span>
 </p>
 
 <p>
@@ -144,9 +161,9 @@ Bearing check <span class="outputspan"><input id="bearingCheck" class="right" ty
 </div>
 </div>
 
-<div id="outline-container-org7cb2af1" class="outline-2">
-<h2 id="org7cb2af1">Punching shear</h2>
-<div class="outline-text-2" id="text-org7cb2af1">
+<div id="outline-container-orgf7b8ead" class="outline-2">
+<h2 id="orgf7b8ead">Punching shear</h2>
+<div class="outline-text-2" id="text-orgf7b8ead">
 <p>
 Shear applied V* <span class="outputspan"><input id="shearLoad" class="right" type="number" value="0" readonly> kN</span>
 </p>
@@ -161,9 +178,9 @@ Punching shear check <span class="outputspan"><input id="punchingCheck" class="r
 </div>
 </div>
 
-<div id="outline-container-orgd1e8176" class="outline-2">
-<h2 id="orgd1e8176">Moment check</h2>
-<div class="outline-text-2" id="text-orgd1e8176">
+<div id="outline-container-org26f3629" class="outline-2">
+<h2 id="org26f3629">Moment check</h2>
+<div class="outline-text-2" id="text-org26f3629">
 <p>
 Moment applied, M*<sub>x</sub> <span class="outputspan"><input id="momentX" class="right" type="number" value="0" readonly> kNm</span>, M*<sub>y</sub> <span class="outputspan"><input id="momentY" class="right" type="number" value="0" readonly> kNm</span>
 </p>
@@ -178,9 +195,9 @@ Bars in Y <span class="outputspan"><input id="barsY" class="right" type="text" v
 </div>
 </div>
 
-<div id="outline-container-org783a4a1" class="outline-2">
-<h2 id="org783a4a1">Shear check</h2>
-<div class="outline-text-2" id="text-org783a4a1">
+<div id="outline-container-orgb1ee940" class="outline-2">
+<h2 id="orgb1ee940">Shear check</h2>
+<div class="outline-text-2" id="text-orgb1ee940">
 <p>
 Shear applied, V*<sub>x</sub> <span class="outputspan"><input id="shearX" class="right" type="number" value="0" readonly> kN</span>, V*<sub>y</sub> <span class="outputspan"><input id="shearY" class="right" type="number" value="0" readonly> kN</span>
 </p>
