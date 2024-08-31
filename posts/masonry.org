@@ -40,6 +40,7 @@ Slenderness coefficient, a_h {{{output(o_ah)}}} {{{ref(Clause 6.3.2.2)}}}
 
 Slenderness ratio, S_{rf} {{{output(o_Srf)}}} {{{ref(Clause 6.3.2.2)}}}
 
+{{{reference(Table 6.1)}}}
 #+attr_html: :id FRLtable
 | Fire resistance period                  |   30 |   60 |   90 |  120 |  180 |  240 |
 |-----------------------------------------+------+------+------+------+------+------|
@@ -50,7 +51,6 @@ Slenderness ratio, S_{rf} {{{output(o_Srf)}}} {{{ref(Clause 6.3.2.2)}}}
 | Concrete units (>45% aggregate)         | 25.0 | 22.5 | 21.0 | 20.0 | 18.0 | 17.0 |
 |-----------------------------------------+------+------+------+------+------+------|
 | Reinforced masonry                      | 36.0 | 36.0 | 36.0 | 36.0 | 36.0 | 36.0 |
-{{{ref(Table 6.1)}}}
 
 * Design properties
 

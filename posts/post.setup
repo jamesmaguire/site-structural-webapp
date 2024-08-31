@@ -34,4 +34,5 @@
 
 #+macro: tooltip @@html:<span class="tooltip">$1 <span class="tooltiptext">$2</span></span>@@
 
-#+macro: ref @@html:<span class="reference">$1</span>@@
+#+macro: ref @@html:<span class="reference refpad">$1</span>@@
+#+macro: reference @@html:<span class="reference">$1</span>@@
