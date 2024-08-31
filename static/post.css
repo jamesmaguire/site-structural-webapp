@@ -225,8 +225,7 @@ sup, sub {
   max-height: 50vh;
 }
 table {
-  table-layout: fixed;
-  min-width: 100%;
+  table-layout: auto;
   border-collapse: collapse;
   border: 1px #ccc solid;
   border-radius: 5px;
@@ -237,8 +236,8 @@ th {
   border: 1px #ccc solid;
   font-weight: bold;
   text-align: center;
-  padding: 0.2rem;
-  min-width: 6ch;
+  padding: 0.2rem 0.5rem;
+  min-width: 12ch;
 }
 /* tr:nth-child(even) {
   background-color: white;
@@ -248,7 +247,7 @@ tr.selected {
 }
 td {
   text-align: center;
-  padding: 0.2rem;
+  padding: 0.2rem 0.5rem;
   border: 1px #ccc solid;
 }
 .org-left {
