@@ -1,42 +1,3 @@
-
-function updatePage()
-{
-    runCalcs();
-    setStatusUptodate();
-}
-
-function initPage()
-{
-    input('i_Nstar', {initval:400, units:'kN'});
-    input('i_fc', {initval:40, units:'MPa'});
-    input('i_fsy', {initval:500, units:'MPa'});
-    input('i_phi', {initval:0.85});
-
-    input('i_Dx', {initval:1000, units:'mm'});
-    input('i_Dy', {initval:300, units:'mm'});
-    input('i_c', {initval:30, units:'mm'});
-    input('i_a', {initval:100, units:'mm'});
-    output('o_k1', {});
-    output('o_cds', {});
-
-    input('i_db1', {prefix:'N', initval:12, align:'left'});
-    output('o_Lsytb1', {units:'mm'});
-    output('o_Lxx1', {units:'mm'});
-    output('o_Lyy1', {units:'mm'});
-
-    input('i_db2', {prefix:'N', initval:16, align:'left'});
-    output('o_Lsytb2', {units:'mm'});
-    output('o_Lxx2', {units:'mm'});
-    output('o_Lyy2', {units:'mm'});
-
-    input('i_db3', {prefix:'N', initval:20, align:'left'});
-    output('o_Lsytb3', {units:'mm'});
-    output('o_Lxx3', {units:'mm'});
-    output('o_Lyy3', {units:'mm'});
-
-    updatePage();
-}
-
 function updatePage() {
     const fc = i_fc.valueAsNumber;
     const fsy = i_fsy.valueAsNumber;
@@ -77,52 +38,10 @@ function updatePage() {
     // Generate table
     o_bar1.innerHTML = gentable(bars, As, N);
     
-    // Design option 2
-    const db2 = i_db2.valueAsNumber;
-    k2 = (132-db2)/100;
-    k3 = Math.min(Math.max(1-0.15*(cds-db2)/db2, 0.7), 1);
-    let Lsytb2 = Math.max(0.5*k1*k3*fsy*db2/(k2*Math.sqrt(fc)),
-                          0.058*fsy*k1*db2);
-    o_Lsytb2.value = Lsytb2.toFixed(0);
-    let Lxx2 = 4*Lsytb2 + Dx;
-    Lxx2 = (Lxx2 / roundto | 0)*roundto + roundto;
-    o_Lxx2.value = Lxx2;
-    let Lyy2 = 4*Lsytb2 + Dy;
-    Lyy2 = (Lyy2 / roundto | 0)*roundto + roundto;
-    o_Lyy2.value = Lyy2;
-    As = nbars.map(n => 2*n*Math.PI*db2**2/4);
-    // As = 2* since bar passes column face twice
-    bars = nbars.map(n => `${n} N${db2}s`);
-    N = As.map(A => A*phi*fsy/2/1000); // kN
-    // Generate table
-    o_bar2.innerHTML = gentable(bars, As, N);
-    
-    // Design option 3
-    const db3 = i_db3.valueAsNumber;
-    k2 = (132-db3)/100;
-    k3 = Math.min(Math.max(1-0.15*(cds-db3)/db3, 0.7), 1);
-    let Lsytb3 = Math.max(0.5*k1*k3*fsy*db3/(k2*Math.sqrt(fc)),
-                          0.058*fsy*k1*db3);
-    o_Lsytb3.value = Lsytb3.toFixed(0);
-    let Lxx3 = 4*Lsytb3 + Dx;
-    Lxx3 = (Lxx3 / roundto | 0)*roundto + roundto;
-    o_Lxx3.value = Lxx3;
-    let Lyy3 = 4*Lsytb3 + Dy;
-    Lyy3 = (Lyy3 / roundto | 0)*roundto + roundto;
-    o_Lyy3.value = Lyy3;
-    As = nbars.map(n => 2*n*Math.PI*db3**2/4);
-    // As = 2* since bar passes column face twice
-    bars = nbars.map(n => `${n} N${db3}s`);
-    N = As.map(A => A*phi*fsy/2/1000); // kN
-    // Generate table
-    o_bar3.innerHTML = gentable(bars, As, N);
-    
     // Generate figure
-    const scalenumx = Math.max(Lxx1, Lxx2, Lxx3);
-    const scalenumy = Math.max(Lyy1, Lyy2, Lyy3);
+    const scalenumx = Math.max(Lxx1,4000);
+    const scalenumy = Math.max(Lyy1,4000);
     integrityDiagram(fig1, db1, Dx, Dy, Lxx1, Lyy1, scalenumx, scalenumy);
-    integrityDiagram(fig2, db2, Dx, Dy, Lxx2, Lyy2, scalenumx, scalenumy);
-    integrityDiagram(fig3, db3, Dx, Dy, Lxx3, Lyy3, scalenumx, scalenumy);
 
     setStatusUptodate();
 }
@@ -206,4 +125,4 @@ function integrityDiagram (divId, db, Dx, Dy, Lx, Ly, scalenumx, scalenumy) {
 
 }
 
-initPage();
+updatePage();

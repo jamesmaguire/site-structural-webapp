@@ -29,14 +29,6 @@ function initPage()
     output('o_Lxx1', {units:'mm'});
     output('o_Lyy1', {units:'mm'});
 
-    input('i_db2', {prefix:'N', initval:20, align:'left'});
-    output('o_Lxx2', {units:'mm'});
-    output('o_Lyy2', {units:'mm'});
-
-    input('i_db3', {prefix:'N', initval:24, align:'left'});
-    output('o_Lxx3', {units:'mm'});
-    output('o_Lyy3', {units:'mm'});
-
     updatePage();
 }
 
@@ -86,48 +78,10 @@ function updatePage() {
     // Generate table
     o_bar1.innerHTML = gentable(bars, As, Mu25, Mu);
     
-    // Design option 2
-    const db2 = i_db2.valueAsNumber;
-    let Lxx2 = 2*40*db2 + 2*(D-c) + Dx;
-    Lxx2 = (Lxx2 / roundto | 0)*roundto + roundto;
-    o_Lxx2.value = Lxx2;
-    let Lyy2 = 2*40*db2 + 2*(D-c) + Dy;
-    Lyy2 = (Lyy2 / roundto | 0)*roundto + roundto;
-    o_Lyy2.value = Lyy2;
-    As = nbars.map(n => n*Math.PI*db2**2/4);
-    bars = nbars.map(n => `${n} N${db2}s`);
-    d = D-c-db2/2;
-    dn = 0.545*d;
-    Mu25 = As.map(A => phi*fsy*A*(d-(gamma*dn/2))/1000**2
-                     + phi*fpy*Ap*((pthh+dp/2)-(gamma*dn/2))/1000**2);
-    Mu = Mu25.map(M => 4*M);
-    // Generate table
-    o_bar2.innerHTML = gentable(bars, As, Mu25, Mu);
-    
-    // Design option 3
-    const db3 = i_db3.valueAsNumber;
-    let Lxx3 = 2*40*db3 + 2*(D-c) + Dx;
-    Lxx3 = (Lxx3 / roundto | 0)*roundto + roundto;
-    o_Lxx3.value = Lxx3;
-    let Lyy3 = 2*40*db3 + 2*(D-c) + Dy;
-    Lyy3 = (Lyy3 / roundto | 0)*roundto + roundto;
-    o_Lyy3.value = Lyy3;
-    As = nbars.map(n => n*Math.PI*db3**2/4);
-    bars = nbars.map(n => `${n} N${db3}s`);
-    d = D-c-db3/2;
-    dn = 0.545*d;
-    Mu25 = As.map(A => phi*fsy*A*(d-(gamma*dn/2))/1000**2
-                     + phi*fpy*Ap*((pthh+dp/2)-(gamma*dn/2))/1000**2);
-    Mu = Mu25.map(M => 4*M);
-    // Generate table
-    o_bar3.innerHTML = gentable(bars, As, Mu25, Mu);
-    
     // Generate figure
-    const scalenumx = Math.max(Lxx1, Lxx2, Lxx3);
-    const scalenumy = Math.max(Lyy1, Lyy2, Lyy3);
+    const scalenumx = Math.max(Lxx1, 4000);
+    const scalenumy = Math.max(Lyy1, 4000);
     layoutDiagram(fig1, db1, Dx, Dy, Lxx1, Lyy1, scalenumx, scalenumy);
-    layoutDiagram(fig2, db2, Dx, Dy, Lxx2, Lyy2, scalenumx, scalenumy);
-    layoutDiagram(fig3, db3, Dx, Dy, Lxx3, Lyy3, scalenumx, scalenumy);
 
     setStatusUptodate();
 }

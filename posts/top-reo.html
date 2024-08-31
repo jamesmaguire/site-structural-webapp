@@ -3,86 +3,56 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-07-31 Sun 17:49 -->
+<!-- 2024-08-31 Sat 14:29 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Top reinforcement over columns</title>
-<meta name="generator" content="Org mode" />
 <meta name="author" content="james" />
+<meta name="generator" content="Org Mode" />
 <link rel="stylesheet" type="text/css" href="../static/post.css" />
+<link rel="stylesheet" type="text/css" href="../static/print.css" media="print" />
 <script type="text/javascript" src="../static/general.js"></script>
 <link rel="icon" type="image/ico" href="../static/icon/favicon.svg" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script type="text/javascript" src="../static/topreo.js" defer></script>
-<script type="text/javascript">
-/*
-@licstart  The following is the entire license notice for the
-JavaScript code in this tag.
-
-Copyright (C) 2012-2020 Free Software Foundation, Inc.
-
-The JavaScript code in this tag is free software: you can
-redistribute it and/or modify it under the terms of the GNU
-General Public License (GNU GPL) as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.  The code is distributed WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-As additional permission under GNU GPL version 3 section 7, you
-may distribute non-source (e.g., minimized or compacted) forms of
-that code without the copy of the GNU GPL normally required by
-section 4, provided you include this license notice and a URL
-through which recipients can access the Corresponding Source.
-
-
-@licend  The above is the entire license notice
-for the JavaScript code in this tag.
-*/
-<!--/*--><![CDATA[/*><!--*/
- function CodeHighlightOn(elem, id)
- {
-   var target = document.getElementById(id);
-   if(null != target) {
-     elem.cacheClassElem = elem.className;
-     elem.cacheClassTarget = target.className;
-     target.className = "code-highlighted";
-     elem.className   = "code-highlighted";
-   }
- }
- function CodeHighlightOff(elem, id)
- {
-   var target = document.getElementById(id);
-   if(elem.cacheClassElem)
-     elem.className = elem.cacheClassElem;
-   if(elem.cacheClassTarget)
-     target.className = elem.cacheClassTarget;
- }
-/*]]>*///-->
-</script>
 </head>
 <body>
-<div id="org-div-home-and-up"> <img src="../static/icon/logo.svg" /> <a href="../index.html"> Home </a> </div><div id="content">
+<div id="org-div-home-and-up"> <img src="../static/icon/logo.svg" /> <a href="../index.html"> Home </a> </div><div id="content" class="content">
 <h1 class="title">Top reinforcement over columns
 <br />
 <span class="subtitle">Based on AS3600 2018(+A2) Clause 9.2</span>
 </h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orga395106">Background</a></li>
+<li><a href="#org375e34a">Inputs</a></li>
+<li><a href="#org161b36e">Column geometry</a></li>
+<li><a href="#org2fdc3aa">Design option 1</a></li>
+</ul>
+</div>
+</div>
 <p>
 <button id='statusbutton' onclick='updatePage();'>▶ Run analysis</button>
 </p>
 
-<div id="outline-container-orgc2c8610" class="outline-2">
-<h2 id="orgc2c8610">9.1.2 Reinforcement and tendon distribution in two-way flat slabs</h2>
-<div class="outline-text-2" id="text-orgc2c8610">
+<div id="outline-container-orga395106" class="outline-2">
+<h2 id="orga395106">Background</h2>
+<div class="outline-text-2" id="text-orga395106">
+<p>
+<span class="reference">9.1.2 Reinforcement and tendon distribution in two-way flat slabs</span>
+</p>
+
 <p>
 In two-way flat slabs, at least 25% of the total of the design negative moment in a column-strip and adjacent half middle-strips shall be resisted by reinforcement or tendons or both, located in a cross-section of slab centred on the column and of a width equal to twice the overall depth of the slab or drop panel plus the width of the column. 
 </p>
 </div>
 </div>
 
-<div id="outline-container-orge71bd39" class="outline-2">
-<h2 id="orge71bd39">Inputs</h2>
-<div class="outline-text-2" id="text-orge71bd39">
+<div id="outline-container-org375e34a" class="outline-2">
+<h2 id="org375e34a">Inputs</h2>
+<div class="outline-text-2" id="text-org375e34a">
 <p>
 Moment, M<sup>*</sup> <span id="i_Mstar"></span>
 </p>
@@ -121,9 +91,9 @@ Stress block factor, &gamma; <span id="o_gamma"></span>
 </div>
 </div>
 
-<div id="outline-container-org61a97fa" class="outline-2">
-<h2 id="org61a97fa">Column geometry</h2>
-<div class="outline-text-2" id="text-org61a97fa">
+<div id="outline-container-org161b36e" class="outline-2">
+<h2 id="org161b36e">Column geometry</h2>
+<div class="outline-text-2" id="text-org161b36e">
 <p>
 Column D<sub>x</sub> <span id="i_Dx"></span>
 </p>
@@ -150,9 +120,9 @@ PT yield stress <span id="o_fpy"></span>
 </div>
 </div>
 
-<div id="outline-container-org61a5fd9" class="outline-2">
-<h2 id="org61a5fd9">Design option 1</h2>
-<div class="outline-text-2" id="text-org61a5fd9">
+<div id="outline-container-org2fdc3aa" class="outline-2">
+<h2 id="org2fdc3aa">Design option 1</h2>
+<div class="outline-text-2" id="text-org2fdc3aa">
 <p>
 Bar size <span id="i_db1"></span>
 </p>
@@ -171,56 +141,6 @@ Length Y-Y <span id="o_Lyy1"></span>
 
 <p>
 <div id="fig1"></div>
-</p>
-</div>
-</div>
-
-<div id="outline-container-org64d99c8" class="outline-2">
-<h2 id="org64d99c8">Design option 2</h2>
-<div class="outline-text-2" id="text-org64d99c8">
-<p>
-Bar size <span id="i_db2"></span>
-</p>
-
-<p>
-Length X-X <span id="o_Lxx2"></span>
-</p>
-
-<p>
-Length Y-Y <span id="o_Lyy2"></span>
-</p>
-
-<p>
-<div id="o_bar2"></div>
-</p>
-
-<p>
-<div id="fig2"></div>
-</p>
-</div>
-</div>
-
-<div id="outline-container-org77b86a8" class="outline-2">
-<h2 id="org77b86a8">Design option 3</h2>
-<div class="outline-text-2" id="text-org77b86a8">
-<p>
-Bar size <span id="i_db3"></span>
-</p>
-
-<p>
-Length X-X <span id="o_Lxx3"></span>
-</p>
-
-<p>
-Length Y-Y <span id="o_Lyy3"></span>
-</p>
-
-<p>
-<div id="o_bar3"></div>
-</p>
-
-<p>
-<div id="fig3"></div>
 </p>
 </div>
 </div>

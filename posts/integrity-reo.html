@@ -3,99 +3,79 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-07-31 Sun 17:49 -->
+<!-- 2024-08-31 Sat 14:34 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Integrity reinforcement</title>
-<meta name="generator" content="Org mode" />
 <meta name="author" content="james" />
+<meta name="generator" content="Org Mode" />
 <link rel="stylesheet" type="text/css" href="../static/post.css" />
+<link rel="stylesheet" type="text/css" href="../static/print.css" media="print" />
 <script type="text/javascript" src="../static/general.js"></script>
 <link rel="icon" type="image/ico" href="../static/icon/favicon.svg" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script type="text/javascript" src="../static/integrityreo.js" defer></script>
-<script type="text/javascript">
-/*
-@licstart  The following is the entire license notice for the
-JavaScript code in this tag.
-
-Copyright (C) 2012-2020 Free Software Foundation, Inc.
-
-The JavaScript code in this tag is free software: you can
-redistribute it and/or modify it under the terms of the GNU
-General Public License (GNU GPL) as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.  The code is distributed WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-As additional permission under GNU GPL version 3 section 7, you
-may distribute non-source (e.g., minimized or compacted) forms of
-that code without the copy of the GNU GPL normally required by
-section 4, provided you include this license notice and a URL
-through which recipients can access the Corresponding Source.
-
-
-@licend  The above is the entire license notice
-for the JavaScript code in this tag.
-*/
-<!--/*--><![CDATA[/*><!--*/
- function CodeHighlightOn(elem, id)
- {
-   var target = document.getElementById(id);
-   if(null != target) {
-     elem.cacheClassElem = elem.className;
-     elem.cacheClassTarget = target.className;
-     target.className = "code-highlighted";
-     elem.className   = "code-highlighted";
-   }
- }
- function CodeHighlightOff(elem, id)
- {
-   var target = document.getElementById(id);
-   if(elem.cacheClassElem)
-     elem.className = elem.cacheClassElem;
-   if(elem.cacheClassTarget)
-     target.className = elem.cacheClassTarget;
- }
-/*]]>*///-->
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
 </script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        displayAlign: "center",
-        displayIndent: "0em",
 
-        "HTML-CSS": { scale: 100,
-                        linebreaks: { automatic: "false" },
-                        webFont: "TeX"
-                       },
-        SVG: {scale: 100,
-              linebreaks: { automatic: "false" },
-              font: "TeX"},
-        NativeMML: {scale: 100},
-        TeX: { equationNumbers: {autoNumber: "AMS"},
-               MultLineWidth: "85%",
-               TagSide: "right",
-               TagIndent: ".8em"
-             }
-});
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
 </script>
-<script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
 </head>
 <body>
-<div id="org-div-home-and-up"> <img src="../static/icon/logo.svg" /> <a href="../index.html"> Home </a> </div><div id="content">
+<div id="org-div-home-and-up"> <img src="../static/icon/logo.svg" /> <a href="../index.html"> Home </a> </div><div id="content" class="content">
 <h1 class="title">Integrity reinforcement
 <br />
 <span class="subtitle">Based on AS3600 2018(+A2) Clause 9.2</span>
 </h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgdb05743">Background</a></li>
+<li><a href="#org67fb398">Inputs</a></li>
+<li><a href="#orgac7a8c9">Column geometry</a></li>
+<li><a href="#org4c1b905">Integrity reo</a></li>
+</ul>
+</div>
+</div>
 <p>
 <button id='statusbutton' onclick='updatePage();'>▶ Run analysis</button>
 </p>
 
-<div id="outline-container-orgb150cf0" class="outline-2">
-<h2 id="orgb150cf0">9.2.2   Minimum structural integrity reinforcement</h2>
-<div class="outline-text-2" id="text-orgb150cf0">
+<div id="outline-container-orgdb05743" class="outline-2">
+<h2 id="orgdb05743">Background</h2>
+<div class="outline-text-2" id="text-orgdb05743">
+<p>
+<span class="reference">Clause 9.2.2 Minimum structural integrity reinforcement</span>
+</p>
+
 <p>
 The summation of the area of bottom reinforcement connecting the slab, drop panel, or slab band to the column or column capital on all faces of the periphery of a column or column capital shall be not less than, 
 </p>
@@ -110,73 +90,73 @@ in which N* is the column reaction from the floor slab at the ultimate limit sta
 </div>
 </div>
 
-<div id="outline-container-orge97545d" class="outline-2">
-<h2 id="orge97545d">Inputs</h2>
-<div class="outline-text-2" id="text-orge97545d">
+<div id="outline-container-org67fb398" class="outline-2">
+<h2 id="org67fb398">Inputs</h2>
+<div class="outline-text-2" id="text-org67fb398">
 <p>
-Slab reaction, N<sup>*</sup> <span id="i_Nstar"></span>
+Slab reaction, N<sup>*</sup> <span class="inputspan"><input id="i_Nstar" class="right" type="number" value="400" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> kN</span>
 </p>
 
 <p>
-Concrete strength, f'<sub>c</sub> <span id="i_fc"></span>
+Concrete strength, f'<sub>c</sub> <span class="inputspan"><input id="i_fc" class="right" type="number" value="40" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> MPa</span>
 </p>
 
 <p>
-Rebar strength, f<sub>sy</sub> <span id="i_fsy"></span>
+Rebar strength, f<sub>sy</sub> <span class="inputspan"><input id="i_fsy" class="right" type="number" value="500" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> MPa</span>
 </p>
 
 <p>
-Strength reduction factor, &Phi; <span id="i_phi"></span>
-</p>
-</div>
-</div>
-
-<div id="outline-container-orga19e7ff" class="outline-2">
-<h2 id="orga19e7ff">Column geometry</h2>
-<div class="outline-text-2" id="text-orga19e7ff">
-<p>
-Column D<sub>x</sub> <span id="i_Dx"></span>
-</p>
-
-<p>
-Column D<sub>y</sub> <span id="i_Dy"></span>
-</p>
-
-<p>
-Cover <span id="i_c"></span>
-</p>
-
-<p>
-Spacing, a <span id="i_a"></span>
-</p>
-
-<p>
-k<sub>1</sub> <span id="o_k1"></span>
-</p>
-
-<p>
-c<sub>d</sub> (straight) <span id="o_cds"></span>
+Strength reduction factor, &Phi; <span class="inputspan"><input id="i_phi" class="right" type="number" value="0.85" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> </span>
 </p>
 </div>
 </div>
 
-<div id="outline-container-org5c440c2" class="outline-2">
-<h2 id="org5c440c2">Design option 1</h2>
-<div class="outline-text-2" id="text-org5c440c2">
+<div id="outline-container-orgac7a8c9" class="outline-2">
+<h2 id="orgac7a8c9">Column geometry</h2>
+<div class="outline-text-2" id="text-orgac7a8c9">
 <p>
-Bar size <span id="i_db1"></span>
+Column D<sub>x</sub> <span class="inputspan"><input id="i_Dx" class="right" type="number" value="1000" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> mm</span>
 </p>
 
 <p>
-Basic development length, L<sub>sy.tb</sub> <span id="o_Lsytb1"></span>
+Column D<sub>y</sub> <span class="inputspan"><input id="i_Dy" class="right" type="number" value="300" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> mm</span>
 </p>
 
 <p>
-Length X-X <span id="o_Lxx1"></span>
+Cover <span class="inputspan"><input id="i_c" class="right" type="number" value="30" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> mm</span>
 </p>
 
 <p>
-Length Y-Y <span id="o_Lyy1"></span>
+Spacing, a <span class="inputspan"><input id="i_a" class="right" type="number" value="100" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> mm</span>
+</p>
+
+<p>
+k<sub>1</sub> <span class="outputspan"><input id="o_k1" class="right" type="number" value="0" readonly> </span>
+</p>
+
+<p>
+c<sub>d</sub> (straight) <span class="outputspan"><input id="o_cds" class="right" type="number" value="0" readonly> </span>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org4c1b905" class="outline-2">
+<h2 id="org4c1b905">Integrity reo</h2>
+<div class="outline-text-2" id="text-org4c1b905">
+<p>
+Bar size <span class="inputspan"><input id="i_db1" class="right" type="number" value="16" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> mm</span>
+</p>
+
+<p>
+Basic development length, L<sub>sy.tb</sub> <span class="outputspan"><input id="o_Lsytb1" class="right" type="number" value="0" readonly> </span>
+</p>
+
+<p>
+Length X-X <span class="outputspan"><input id="o_Lxx1" class="right" type="number" value="0" readonly> </span>
+</p>
+
+<p>
+Length Y-Y <span class="outputspan"><input id="o_Lyy1" class="right" type="number" value="0" readonly> </span>
 </p>
 
 <p>
@@ -185,64 +165,6 @@ Length Y-Y <span id="o_Lyy1"></span>
 
 <p>
 <div id="fig1"></div>
-</p>
-</div>
-</div>
-
-<div id="outline-container-orga3059a3" class="outline-2">
-<h2 id="orga3059a3">Design option 2</h2>
-<div class="outline-text-2" id="text-orga3059a3">
-<p>
-Bar size <span id="i_db2"></span>
-</p>
-
-<p>
-Basic development length, L<sub>sy.tb</sub> <span id="o_Lsytb2"></span>
-</p>
-
-<p>
-Length X-X <span id="o_Lxx2"></span>
-</p>
-
-<p>
-Length Y-Y <span id="o_Lyy2"></span>
-</p>
-
-<p>
-<div id="o_bar2"></div>
-</p>
-
-<p>
-<div id="fig2"></div>
-</p>
-</div>
-</div>
-
-<div id="outline-container-org06f4b34" class="outline-2">
-<h2 id="org06f4b34">Design option 3</h2>
-<div class="outline-text-2" id="text-org06f4b34">
-<p>
-Bar size <span id="i_db3"></span>
-</p>
-
-<p>
-Basic development length, L<sub>sy.tb</sub> <span id="o_Lsytb3"></span>
-</p>
-
-<p>
-Length X-X <span id="o_Lxx3"></span>
-</p>
-
-<p>
-Length Y-Y <span id="o_Lyy3"></span>
-</p>
-
-<p>
-<div id="o_bar3"></div>
-</p>
-
-<p>
-<div id="fig3"></div>
 </p>
 </div>
 </div>

@@ -5,7 +5,10 @@
 #+HTML_HEAD: <script type="text/javascript" src="../static/integrityreo.js" defer></script>
 #+include: "../statusicon.org"
 
-* 9.2.2   Minimum structural integrity reinforcement 
+* Background
+
+{{{reference(Clause 9.2.2 Minimum structural integrity reinforcement)}}}
+
 The summation of the area of bottom reinforcement connecting the slab, drop panel, or slab band to the column or column capital on all faces of the periphery of a column or column capital shall be not less than, 
 
 $$ A_{s.min} = \frac{2N^*}{\Phi f_{sy}} $$
@@ -14,69 +17,41 @@ in which N* is the column reaction from the floor slab at the ultimate limit sta
 
 * Inputs
 
-Slab reaction, N^* {{{span(i_Nstar)}}}
+Slab reaction, N^* {{{input(i_Nstar,400,kN)}}}
 
-Concrete strength, f'_c {{{span(i_fc)}}}
+Concrete strength, f'_c {{{input(i_fc,40,MPa)}}}
 
-Rebar strength, f_{sy} {{{span(i_fsy)}}}
+Rebar strength, f_{sy} {{{input(i_fsy,500,MPa)}}}
 
-Strength reduction factor, \Phi {{{span(i_phi)}}}
+Strength reduction factor, \Phi {{{input(i_phi,0.85)}}}
 
 * Column geometry
 
-Column D_x {{{span(i_Dx)}}}
+Column D_x {{{input(i_Dx,1000,mm)}}}
 
-Column D_y {{{span(i_Dy)}}}
+Column D_y {{{input(i_Dy,300,mm)}}}
 
-Cover {{{span(i_c)}}}
+Cover {{{input(i_c,30,mm)}}}
 
-Spacing, a {{{span(i_a)}}}
+Spacing, a {{{input(i_a,100,mm)}}}
 
-k_1 {{{span(o_k1)}}}
+k_1 {{{output(o_k1)}}}
 
-c_d (straight) {{{span(o_cds)}}}
+c_d (straight) {{{output(o_cds)}}}
 
-* Design option 1
+* Integrity reo
 
-Bar size {{{span(i_db1)}}}
+Bar size {{{input(i_db1,16,mm)}}}
 
-Basic development length, L_{sy.tb} {{{span(o_Lsytb1)}}}
+Basic development length, L_{sy.tb} {{{output(o_Lsytb1)}}}
 
-Length X-X {{{span(o_Lxx1)}}}
+Length X-X {{{output(o_Lxx1)}}}
 
-Length Y-Y {{{span(o_Lyy1)}}}
+Length Y-Y {{{output(o_Lyy1)}}}
 
 {{{div(o_bar1)}}}
 
 {{{div(fig1)}}}
-
-* Design option 2
-
-Bar size {{{span(i_db2)}}}
-
-Basic development length, L_{sy.tb} {{{span(o_Lsytb2)}}}
-
-Length X-X {{{span(o_Lxx2)}}}
-
-Length Y-Y {{{span(o_Lyy2)}}}
-
-{{{div(o_bar2)}}}
-
-{{{div(fig2)}}}
-
-* Design option 3
-
-Bar size {{{span(i_db3)}}}
-
-Basic development length, L_{sy.tb} {{{span(o_Lsytb3)}}}
-
-Length X-X {{{span(o_Lxx3)}}}
-
-Length Y-Y {{{span(o_Lyy3)}}}
-
-{{{div(o_bar3)}}}
-
-{{{div(fig3)}}}
 
 * Export on save                                                   :noexport:
 ;; Local Variables:

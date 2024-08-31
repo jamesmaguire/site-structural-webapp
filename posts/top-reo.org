@@ -5,7 +5,10 @@
 #+HTML_HEAD: <script type="text/javascript" src="../static/topreo.js" defer></script>
 #+include: "../statusicon.org"
 
-* 9.1.2 Reinforcement and tendon distribution in two-way flat slabs
+* Background
+
+{{{reference(9.1.2 Reinforcement and tendon distribution in two-way flat slabs)}}}
+
 In two-way flat slabs, at least 25% of the total of the design negative moment in a column-strip and adjacent half middle-strips shall be resisted by reinforcement or tendons or both, located in a cross-section of slab centred on the column and of a width equal to twice the overall depth of the slab or drop panel plus the width of the column. 
 
 * Inputs
@@ -53,31 +56,7 @@ Length Y-Y {{{span(o_Lyy1)}}}
 {{{div(o_bar1)}}}
 
 {{{div(fig1)}}}
-
-* Design option 2
-
-Bar size {{{span(i_db2)}}}
-
-Length X-X {{{span(o_Lxx2)}}}
-
-Length Y-Y {{{span(o_Lyy2)}}}
-
-{{{div(o_bar2)}}}
-
-{{{div(fig2)}}}
-
-* Design option 3
-
-Bar size {{{span(i_db3)}}}
-
-Length X-X {{{span(o_Lxx3)}}}
-
-Length Y-Y {{{span(o_Lyy3)}}}
-
-{{{div(o_bar3)}}}
-
-{{{div(fig3)}}}
-
+ 
 * Export on save                                                   :noexport:
 ;; Local Variables:
 ;; eval: (add-hook 'after-save-hook 'org-html-export-to-html nil t)
