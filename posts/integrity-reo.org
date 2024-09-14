@@ -15,39 +15,43 @@ $$ A_{s.min} = \frac{2N^*}{\Phi f_{sy}} $$
 
 in which N* is the column reaction from the floor slab at the ultimate limit state. Integrity reinforcement shall not be required if there are beams containing shear reinforcement and with at least two bottom bars continuous through the joint in all spans framing into the column. 
 
-* Inputs
+* Strength parameters
 
 Slab reaction, N^* {{{input(i_Nstar,400,kN)}}}
-
-Concrete strength, f'_c {{{input(i_fc,40,MPa)}}}
 
 Rebar strength, f_{sy} {{{input(i_fsy,500,MPa)}}}
 
 Strength reduction factor, \Phi {{{input(i_phi,0.85)}}}
 
-* Column geometry
+* Bar length parameters
 
 Column D_x {{{input(i_Dx,1000,mm)}}}
 
 Column D_y {{{input(i_Dy,300,mm)}}}
 
+Concrete strength, f'_c {{{input(i_fc,40,MPa)}}}
+
 Cover {{{input(i_c,30,mm)}}}
 
 Spacing, a {{{input(i_a,100,mm)}}}
 
-k_1 {{{output(o_k1)}}}
-
-c_d (straight) {{{output(o_cds)}}}
-
 * Integrity reo
 
-Bar size {{{input(i_db1,16,mm)}}}
+{{{div(o_table)}}}
 
-Basic development length, L_{sy.tb} {{{output(o_Lsytb1)}}}
+* Custom bars
 
-Length X-X {{{output(o_Lxx1)}}}
+Bars {{{input(i_nbars,4)}}} {{{input-bar(i_db1,16)}}}
 
-Length Y-Y {{{output(o_Lyy1)}}}
+Bar area, A_s {{{output(o_As1,mm<sup>2</sup>)}}}
+
+Integrity capacity {{{output(o_N1,kN)}}}
+
+Basic development length, L_{sy.tb} {{{output(o_Lsytb1,mm)}}}
+
+Length X-X {{{output(o_Lxx1,mm)}}}
+
+Length Y-Y {{{output(o_Lyy1,mm)}}}
 
 {{{div(o_bar1)}}}
 

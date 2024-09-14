@@ -5,38 +5,71 @@ function updatePage() {
 
     const Dx = i_Dx.valueAsNumber;
     const Dy = i_Dy.valueAsNumber;
-    const c = i_c.valueAsNumber;
-    const a = i_a.valueAsNumber;
 
-    let k1 = (c >= 100) ? 1.3 : 1.0;
-    o_k1.value = k1.toFixed(1);
-    let cds = Math.min(a/2, c);
-    o_cds.value = cds.toFixed(0);
+    // Table
+    function barformat(n, db) {
+        const Nstar = i_Nstar.valueAsNumber;
+        const A = 2*n*Math.PI*db**2/4; // A = 2x since bar passes column face twice
+        const N = A*phi*fsy/2/1000;
+        return `<td${N < Nstar ? ' class="DIM"' : ''}>`
+            +`${N.toFixed(0)} kN`
+            +` ${N > Nstar ? greentick : redcross}`
+            +`</td>`;
+    }
+    const barlist = [4, 5, 6, 7, 8, 9, 10, 11, 12, 'Lx', 'Ly'];
+    const n12s = barlist.map(n => barformat(n, 12));
+    const n16s = barlist.map(n => barformat(n, 16));
+    const n20s = barlist.map(n => barformat(n, 20));
+    const n24s = barlist.map(n => barformat(n, 24));
+    let tableHTML = "<table>";
+    // Header
+    tableHTML += "<tr><th>Bars</th><th>N12</th><th>N16</th><th>N20</th><th>N24</th></tr>";
+    // Capacities
+    for (let row=0; row<barlist.length-2; row++) {
+        tableHTML += `<td>${barlist[row]}</td>`;
+        tableHTML += n12s[row];
+        tableHTML += n16s[row];
+        tableHTML += n20s[row];
+        tableHTML += n24s[row];
+        tableHTML += "</tr>";
+    }
+    // Bar length
+    const barsizelist = [12, 16, 20, 24];
+    const develLens = barsizelist.map(d => Lsytb(d, fsy, fc));
+    const barLengthsX = develLens.map(L => barlength(L, Dx));
+    const barLengthsY = develLens.map(L => barlength(L, Dy));
+    tableHTML += "<tr><th>Length</th><th>N12</th><th>N16</th><th>N20</th><th>N24</th></tr>";
+    tableHTML += "<tr><td>L<sub>sy,tb</sub></td>";
+    for (let row=0; row<barsizelist.length; row++) {
+        tableHTML += `<td>${develLens[row].toFixed(0)} mm</td>`;
+    }
+    tableHTML += "</tr>";
+    tableHTML += "<tr><td>Lx</td>";
+    for (let row=0; row<barsizelist.length; row++) {
+        tableHTML += `<td>${barLengthsX[row]} mm</td>`;
+    }
+    tableHTML += "</tr>";
+    tableHTML += "<tr><td>Ly</td>";
+    for (let row=0; row<barsizelist.length; row++) {
+        tableHTML += `<td>${barLengthsY[row]} mm</td>`;
+    }
+    tableHTML += "</tr>";
+    tableHTML += "</table>";
+    o_table.innerHTML = tableHTML;
 
-    let roundto = 100; // Length to round off to
-
-    // Design options
-    const nbars = [4,6,8,10,12];
-
-    // Design option 1
+    // Custom bars
+    const n1 = i_nbars.valueAsNumber;
     const db1 = i_db1.valueAsNumber;
-    let k2 = (132-db1)/100;
-    let k3 = Math.min(Math.max(1-0.15*(cds-db1)/db1, 0.7), 1);
-    let Lsytb1 = Math.max(0.5*k1*k3*fsy*db1/(k2*Math.sqrt(fc)),
-                          0.058*fsy*k1*db1);
+    const As1 = 2*n1*Math.PI*db1**2/4;
+    o_As1.value = As1.toFixed(0);
+    const N1 = As1*phi*fsy/2/1000;
+    o_N1.value = N1.toFixed(0);
+    const Lsytb1 = Lsytb(db1, fsy, fc);
     o_Lsytb1.value = Lsytb1.toFixed(0);
-    let Lxx1 = 4*Lsytb1 + Dx;
-    Lxx1 = (Lxx1 / roundto | 0)*roundto + roundto;
+    const Lxx1 = barlength(Lsytb1, Dx);
     o_Lxx1.value = Lxx1;
-    let Lyy1 = 4*Lsytb1 + Dy;
-    Lyy1 = (Lyy1 / roundto | 0)*roundto + roundto;
+    const Lyy1 = barlength(Lsytb1, Dy);
     o_Lyy1.value = Lyy1;
-    let As = nbars.map(n => 2*n*Math.PI*db1**2/4);
-    // As = 2* since bar passes column face twice
-    let bars = nbars.map(n => `${n} N${db1}s`);
-    let N = As.map(A => A*phi*fsy/2/1000); // kN
-    // Generate table
-    o_bar1.innerHTML = gentable(bars, As, N);
     
     // Generate figure
     const scalenumx = Math.max(Lxx1,4000);
@@ -46,26 +79,28 @@ function updatePage() {
     setStatusUptodate();
 }
 
-function gentable (bars, As, N) {
-    let html = "<table>";
-    const Nstar = i_Nstar.valueAsNumber;
-    html += "<tr><th>Bars</th><th>A<sub>s.min</sub></th><th>N*</th></tr>";
-    for (let row=0; row<bars.length; row++) {
-        let thisN = N[row];
-        let thisclass = thisN > Nstar ? '' : 'DIM';
-        html += `<tr class='${thisclass}'>`;
-        html += `<td>${bars[row]}</td>`;
-        html += `<td>${As[row].toFixed(0)} mm</td>`;
-        html += `<td>${thisN.toFixed(0)} kN`;
-        html += ` ${thisN > Nstar ? greentick : redcross}</td>`;
-        html += "</tr>";
-    }
-    html += "</table>";
-    return html;
-}
-
 const greentick = '<span style="color: green;">&#10004;</span>';
 const redcross  = '<span style="color: red";>&#10008;</span>';
+
+function Lsytb(db, fsy, fc) {
+    const c = i_c.valueAsNumber;
+    const a = i_a.valueAsNumber;
+    const k1 = (c >= 100) ? 1.3 : 1.0;
+    const cds = Math.min(a/2, c);
+    const k2 = (132-db)/100;
+    const k3 = Math.min(Math.max(1-0.15*(cds-db)/db, 0.7), 1);
+    const Lsytb = Math.max(
+        0.5*k1*k3*fsy*db/(k2*Math.sqrt(fc)),
+        0.058*fsy*k1*db);
+    return Lsytb;
+}
+
+function barlength(Lsytb, colL) {
+    let roundto = 100; // Length to round off to
+    let L = 4*Lsytb + colL;
+    L = (L / roundto | 0)*roundto + roundto;
+    return L;
+}
 
 function integrityDiagram (divId, db, Dx, Dy, Lx, Ly, scalenumx, scalenumy) {
 
