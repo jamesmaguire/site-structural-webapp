@@ -4,38 +4,41 @@
 [[file:./static/icon/logo.svg]]
 
 * Application index
+** AS3600 Concrete Structures
+*** [[file:apps/AS3600Sec8-Beams.org][Section 8 / Beams]]
+*** [[file:apps/AS3600Sec9-2-IntegrityReo.org][Section 9.2 / Integrity reinforcement]]
+
 ** Foundations and retaining
-*** [[file:posts/retaining-wall.org][Retaining wall]]
-*** [[file:posts/pad-footing.org][Pad footings]]
-*** [[file:posts/strip-footing.org][Strip footings]]
-*** [[file:posts/bored-piles.org][Bored piles]]
-*** [[file:posts/secant-pile-properties.org][Secant pile properties]]
+*** [[file:apps/retaining-wall.org][Retaining wall]]
+*** [[file:apps/shallow-footings.org][Shallow footings]]
+*** [[file:apps/pad-footing.org][Pad footings]]
+*** [[file:apps/strip-footing.org][Strip footings]]
+*** [[file:apps/bored-piles.org][Bored piles]]
+*** [[file:apps/secant-pile-properties.org][Secant pile properties]]
 ** Reinforced concrete design
-*** [[file:posts/rc-beam.org][RC Beam]]
-*** TODO [[file:posts/rc-columns-rect.org][RC Column (rect)]]
-*** TODO [[file:posts/rc-columns-circle.org][RC Column (circle)]]
-*** [[file:posts/concrete-cover.org][Concrete cover]]
-*** [[file:posts/rc-wall.org][RC Wall]]
+*** TODO [[file:apps/rc-columns-rect.org][RC Column (rect)]]
+*** TODO [[file:apps/rc-columns-circle.org][RC Column (circle)]]
+*** [[file:apps/concrete-cover.org][Concrete cover]]
+*** [[file:apps/rc-wall.org][RC Wall]]
 ** Slab design
-*** [[file:posts/integrity-reo.org][Integrity reo]]
-*** [[file:posts/top-reo.org][Top reo]]
-*** [[file:posts/punching-shear.org][Punching shear]]
-*** [[file:posts/slab-design.org][Slab design]]
+*** [[file:apps/top-reo.org][Top reo]]
+*** [[file:apps/punching-shear.org][Punching shear]]
+*** [[file:apps/slab-design.org][Slab design]]
 ** Design actions
-*** [[file:posts/load-combinations.org][Load combinations]]
-*** [[file:posts/wind-loading.org][Wind loading]]
-*** [[file:posts/earthquake-loading.org][Earthquake loading]]
-*** [[file:posts/beam-formulas.org][Beam load formulas]]
+*** [[file:apps/load-combinations.org][Load combinations]]
+*** [[file:apps/wind-loading.org][Wind loading]]
+*** [[file:apps/earthquake-loading.org][Earthquake loading]]
+*** [[file:apps/beam-formulas.org][Beam load formulas]]
 ** Structural steel
-*** [[file:posts/rebar-properties.org][Rebar properties]]
-*** [[file:posts/steel-sections.org][Steel sections]]
-*** TODO [[file:posts/steel-capacities.org][Steel capacities]]
+*** [[file:apps/rebar-properties.org][Rebar properties]]
+*** [[file:apps/steel-sections.org][Steel sections]]
+*** TODO [[file:apps/steel-capacities.org][Steel capacities]]
 ** Masonry
-*** [[file:posts/masonry.org][Masonry]]
+*** [[file:apps/masonry.org][Masonry]]
 ** Other tools
-*** [[file:posts/sdof-oscillator.org][SDOF oscillator]]
-*** TODO [[file:posts/rates-columns.org][Columns steel rates]]
-* Blog posts
+*** [[file:apps/sdof-oscillator.org][SDOF oscillator]]
+*** TODO [[file:apps/rates-columns.org][Columns steel rates]]
+* Blog apps
 *** [[file:blog/blast-loading.org][Blast loading of precast panels]]
 * Description
 This is a website that solves simple structural engineering design problems. There is no warranty of correctness of these applications and results should be checked by by an experienced engineer.
@@ -61,7 +64,7 @@ Input boxes that look like @@html:<input value="this" readonly></input>@@ are de
 (Type 1000/200 in input and gives 5)
 
 * Superseded                                                       :noexport:
-** [[file:posts/crack-control.org][Crack control]]
+** [[file:apps/crack-control.org][Crack control]]
 
 * Export on save                                                   :noexport:
 ;; Local Variables:

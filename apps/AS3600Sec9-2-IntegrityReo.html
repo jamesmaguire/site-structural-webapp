@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-09-14 Sat 14:56 -->
+<!-- 2024-10-11 Fri 07:41 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Integrity reinforcement</title>
@@ -14,7 +14,7 @@
 <script type="text/javascript" src="../static/general.js"></script>
 <link rel="icon" type="image/ico" href="../static/icon/favicon.svg" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script type="text/javascript" src="../static/integrityreo.js" defer></script>
+<script type="text/javascript" src="../static/AS3600Sec9-2-IntegrityReo.js" defer></script>
 <script>
   window.MathJax = {
     tex: {
@@ -58,11 +58,11 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgd816b77">Background</a></li>
-<li><a href="#org84a09b1">Strength parameters</a></li>
-<li><a href="#orgb027a73">Bar length parameters</a></li>
-<li><a href="#org950269e">Integrity reo</a></li>
-<li><a href="#orgd489520">Custom bars</a></li>
+<li><a href="#org90c0503">Background</a></li>
+<li><a href="#org664905a">Strength parameters</a></li>
+<li><a href="#org2cbbdc6">Bar length parameters</a></li>
+<li><a href="#orgadbaa1e">Integrity reo</a></li>
+<li><a href="#org9677604">Custom bars</a></li>
 </ul>
 </div>
 </div>
@@ -70,9 +70,9 @@
 <button id='statusbutton' onclick='updatePage();'>▶ Run analysis</button>
 </p>
 
-<div id="outline-container-orgd816b77" class="outline-2">
-<h2 id="orgd816b77">Background</h2>
-<div class="outline-text-2" id="text-orgd816b77">
+<div id="outline-container-org90c0503" class="outline-2">
+<h2 id="org90c0503">Background</h2>
+<div class="outline-text-2" id="text-org90c0503">
 <p>
 <span class="reference">Clause 9.2.2 Minimum structural integrity reinforcement</span>
 </p>
@@ -91,9 +91,9 @@ in which N* is the column reaction from the floor slab at the ultimate limit sta
 </div>
 </div>
 
-<div id="outline-container-org84a09b1" class="outline-2">
-<h2 id="org84a09b1">Strength parameters</h2>
-<div class="outline-text-2" id="text-org84a09b1">
+<div id="outline-container-org664905a" class="outline-2">
+<h2 id="org664905a">Strength parameters</h2>
+<div class="outline-text-2" id="text-org664905a">
 <p>
 Slab reaction, N<sup>*</sup> <span class="inputspan"><input id="i_Nstar" class="right" type="number" value="400" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> kN</span>
 </p>
@@ -108,9 +108,9 @@ Strength reduction factor, &Phi; <span class="inputspan"><input id="i_phi" class
 </div>
 </div>
 
-<div id="outline-container-orgb027a73" class="outline-2">
-<h2 id="orgb027a73">Bar length parameters</h2>
-<div class="outline-text-2" id="text-orgb027a73">
+<div id="outline-container-org2cbbdc6" class="outline-2">
+<h2 id="org2cbbdc6">Bar length parameters</h2>
+<div class="outline-text-2" id="text-org2cbbdc6">
 <p>
 Column D<sub>x</sub> <span class="inputspan"><input id="i_Dx" class="right" type="number" value="1000" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> mm</span>
 </p>
@@ -133,18 +133,18 @@ Spacing, a <span class="inputspan"><input id="i_a" class="right" type="number" v
 </div>
 </div>
 
-<div id="outline-container-org950269e" class="outline-2">
-<h2 id="org950269e">Integrity reo</h2>
-<div class="outline-text-2" id="text-org950269e">
+<div id="outline-container-orgadbaa1e" class="outline-2">
+<h2 id="orgadbaa1e">Integrity reo</h2>
+<div class="outline-text-2" id="text-orgadbaa1e">
 <p>
 <div id="o_table"></div>
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgd489520" class="outline-2">
-<h2 id="orgd489520">Custom bars</h2>
-<div class="outline-text-2" id="text-orgd489520">
+<div id="outline-container-org9677604" class="outline-2">
+<h2 id="org9677604">Custom bars</h2>
+<div class="outline-text-2" id="text-org9677604">
 <p>
 Bars <span class="inputspan"><input id="i_nbars" class="right" type="number" value="4" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> </span> <span class="inputspan">N<input id="i_db1" class="left" type="number" value="16" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"></span>
 </p>

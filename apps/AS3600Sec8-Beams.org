@@ -2,7 +2,7 @@
 #+subtitle: Based on AS3600 2018
 
 #+setupfile: post.setup
-#+HTML_HEAD: <script type="text/javascript" src="../static/rcbeam.js" defer></script>
+#+HTML_HEAD: <script type="text/javascript" src="../static/AS3600Sec8-Beams.js" defer></script>
 #+include: "../statusicon.org"
 
 * Image

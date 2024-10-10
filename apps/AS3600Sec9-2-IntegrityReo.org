@@ -2,7 +2,7 @@
 #+subtitle: Based on AS3600 2018(+A2) Clause 9.2
 
 #+setupfile: post.setup
-#+HTML_HEAD: <script type="text/javascript" src="../static/integrityreo.js" defer></script>
+#+HTML_HEAD: <script type="text/javascript" src="../static/AS3600Sec9-2-IntegrityReo.js" defer></script>
 #+include: "../statusicon.org"
 
 * Background

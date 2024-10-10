@@ -95,6 +95,11 @@ canvas, svg {
   background: white;
   border: 1px solid #d3d3d3;
 }
+.svghalfwidth {
+  display: inline-block;
+  max-width: 48%;
+  padding-right: 2%;
+}
 
 /* Input/output */
 p {
@@ -130,6 +135,9 @@ input {
   background: none;
   border: none;
   max-width: 7ch;
+}
+.wideinput {
+  max-width: 12ch;
 }
 .slider {
   max-width: 100%;
@@ -404,6 +412,11 @@ svg text {
 }
 .dashed {
   stroke-dasharray: 10 10;
+}
+.cldash {
+  stroke: grey;
+  stroke-width: 1;
+  stroke-dasharray: 10 15 40 15;
 }
 .downpipe {
   stroke: grey;
