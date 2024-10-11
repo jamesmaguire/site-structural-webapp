@@ -35,7 +35,7 @@ Area compression steel {{{span(o_Asc)}}}
 
 * Material properties
 
-Concrete strength {{{span(i_fc)}}}
+Concrete strength, f'_c {{{span(i_fc)}}}
 
 Concrete ult. strain, \varepsilon_{cu} {{{span(i_ecu)}}}
 
@@ -43,11 +43,13 @@ Concrete ult. strain, \varepsilon_{cu} {{{span(i_ecu)}}}
 
 \gamma {{{span(o_gamma)}}}
 
-Steel strength {{{span(i_fsy)}}}
+Steel strength, f_{sy} {{{span(i_fsy)}}}
 
-Steel modulus {{{span(i_Es)}}}
+Steel modulus, E_s {{{span(i_Es)}}}
 
 Steel ult. strain, \varepsilon_{su} {{{span(o_esu)}}}
+
+Fitment steel strength, f_{sy.f} {{{input(i_fsyf,500,MPa)}}}
 
 * Loading
 
@@ -65,7 +67,7 @@ Plastic neutral axis, d_n {{{span(o_dn)}}}
 
 Moment capacity, M_{uo} {{{span(o_Muo)}}}
 
-Capacity reduction factor, \Phi {{{span(o_phi)}}}
+Capacity reduction factor, \Phi {{{span(o_phi)}}}  {{{ref(Table 2.2.2)}}}
 
 Design moment capacity, \Phi{}M_{uo} {{{span(o_phiMuo)}}}
 
@@ -75,31 +77,45 @@ Moment check, M*/\Phi{}M_{uo} {{{span(momentCheck)}}}
 
 Section modulus, Z {{{span(o_Z)}}}
 
-Concrete flex.ten. strength, f'_{ct.f} {{{span(o_fctf)}}}
+Concrete flex.ten. strength, f'_{ct.f} {{{span(o_fctf)}}} {{{ref(Section 3.1.1.3)}}}
 
-Minimum bending strength, M_{uo,min} {{{span(o_Muomin)}}}
+Minimum bending strength, M_{uo,min} {{{span(o_Muomin)}}} {{{ref(Equation 8.1.6.1(1))}}}
 
 Min strength check, M_{uo,min}/M_{uo} {{{span(momentminCheck)}}}
 
 * Shear strength
 
-Shear reo legs {{{span(i_nlegs)}}}, angle {{{span(i_alphav)}}}
+Shear reo legs {{{span(i_nlegs)}}}, angle \alpha_v {{{span(i_alphav)}}}
+
+Effective web width, b_v {{{output(o_bv,mm)}}} {{{ref(Section 8.2.1.5)}}}
+
+Effective shear depth, d_v {{{output(o_dv,mm)}}} {{{ref(Section 8.2.1.9)}}}
  
 Transverse reo, A_{sv} {{{span(o_Asv)}}}
 
-A_{sv.min} {{{span(o_Asvmin)}}}, required? {{{span(o_Asvminreq)}}}
+Min transv. reo, A_{sv.min} {{{span(o_Asvmin)}}} {{{ref(Equation 8.2.1.7)}}}
 
-\epsilon_x {{{span(o_epsilonx)}}}, \theta_v {{{span(o_thetav)}}}, k_v {{{span(o_kv)}}}
+Min transv. reo required? {{{span(o_Asvminreq)}}} 
 
-Shear capacity (concrete), V_{uc} {{{span(o_Vuc)}}}
+Nominal max agg. size, d_g {{{input(i_dg,20,mm)}}} {{{ref(Section 8.2.4.2.1)}}}
 
-Shear capacity (steel), V_{us} {{{span(o_Vus)}}}
+Aggregate size factor, k_{dg} {{{output(o_kdg)}}} {{{ref(Equation 8.2.4.2(3))}}}
 
-Capacity reduction factor, \Phi {{{span(o_phiV)}}}
+Longitudinal strain, \epsilon_x {{{span(o_epsilonx)}}} {{{ref(Section 8.2.4.2.2)}}}
 
-Web crushing, \Phi{}V_{u.max} {{{span(o_phiVumax)}}}
+Inclination of compr. strut, \theta_v {{{span(o_thetav)}}} {{{ref(Equation 8.2.4.2(1))}}}
 
-Shear capacity, \Phi{}Vu {{{span(o_phiVu)}}}
+Shear factor, k_v {{{span(o_kv)}}} {{{ref(Equation 8.2.4.2.1)}}}
+
+Shear capacity (concrete), V_{uc} {{{span(o_Vuc)}}} {{{ref(Equation 8.2.4.1)}}}
+
+Shear capacity (steel), V_{us} {{{span(o_Vus)}}} {{{ref(Equation 8.2.5.2(2))}}}
+
+Capacity reduction factor, \Phi {{{span(o_phiV)}}} {{{ref(Table 2.2.2)}}}
+
+Web crushing, \Phi{}V_{u.max} {{{span(o_phiVumax)}}} {{{ref(Equation 8.2.3.3(1))}}}
+
+Shear capacity, \Phi{}Vu {{{span(o_phiVu)}}} {{{ref(Section 8.2.3.1)}}}
 
 Shear check, V*/\Phi{}V_{u} {{{span(shearCheck)}}}
 
@@ -107,17 +123,21 @@ Web crushing check {{{span(webCrushCheck)}}}
 
 * Torsion
 
-Area within ties, A_{cp} {{{span(o_Acp)}}}
+Area of cross section, A_{cp} {{{span(o_Acp)}}}
 
-Perimeter of ties, u_c {{{span(o_uc)}}}
+Perimeter of cross section, u_c {{{span(o_uc)}}}
 
-Torsion cracking moment, T_{cr} {{{span(o_Tcr)}}} 
+Perimeter of ties, u_h {{{output(o_uh,m)}}}
+
+Torsion cracking moment, T_{cr} {{{span(o_Tcr)}}}  {{{ref(Equation 8.2.1.2(2))}}}
 
 Torsion considered if min ties, T*>0.25\Phi{}T_{cr} {{{span(o_torsionConsidered)}}}
 
+Area enclosed by ties, A_oh {{{output(o_Aoh,m<sup>2</sup>)}}}
+
 Area in shear flow path, A_o {{{span(o_Ao)}}}
 
-Torsion capacity, \Phi{}T_{us} {{{span(o_phiTus)}}}
+Torsion capacity, \Phi{}T_{us} {{{span(o_phiTus)}}} {{{ref(Equation 8.2.5.6)}}}
 
 Torsion check, T*/\Phi{}T_{us} {{{span(torsionCheck)}}}
 

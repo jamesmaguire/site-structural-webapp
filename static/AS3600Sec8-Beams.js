@@ -28,7 +28,7 @@ function initPage()
 
     // Loading
     input('i_Mstar', {initval:50, units:'kNm'});
-    input('i_Vstar', {initval:150, units:'kN'});
+    input('i_Vstar', {initval:75, units:'kN'});
 
     // Bending capacity
     output('o_ku');
@@ -223,6 +223,7 @@ function runCalcs() {
     let steel = {
         fsy:i_fsy.valueAsNumber,
         Es:i_Es.valueAsNumber,
+        fsyf:i_fsyf.valueAsNumber,
     };
     steel.esu = steel.fsy/(steel.Es*1000);
     o_esu.value = steel.esu;
@@ -259,20 +260,22 @@ function runCalcs() {
     // Shear
     const Vstar = i_Vstar.valueAsNumber;
     let bv = beam.B;
-    const dv = Math.max(0.72*beam.D, 0.92*beam.d);
+    o_bv.value = bv.toFixed(0);
+    const dv = Math.max(0.72*beam.D, 0.9*beam.d);
+    o_dv.value = dv.toFixed(0);
     let s = beam.dbspc;
     let nlegs = i_nlegs.valueAsNumber;
     const Asv = nlegs*Math.PI*beam.dbs**2/4;
-    const Asvmin = 0.08*Math.sqrt(concrete.fc)*bv*s/steel.fsy;
+    const Asvmin = 0.08*Math.sqrt(concrete.fc)*bv*s/steel.fsyf;
     const alphav = i_alphav.valueAsNumber;
 
-    const epsilonx = Math.min((Mstar/dv + Vstar) / (2*steel.Es*beam.Ast), 3*10**-3);
+    const epsilonx = Math.min((Mstar/(dv/1000) + Vstar) / (2*steel.Es*beam.Ast), 3*10**-3);
     const thetav = 29 + 7000*epsilonx;
     let kv;
-    let kdg;
-    let dg = 20; // Nom aggregate size (affects fc > 65)
+    let dg = i_dg.valueAsNumber;
+    let kdg = concrete.fc <= 65 ? Math.max(32/(16+dg),1.0) : 2.0;
+    o_kdg.value = kdg.toFixed(1);
     if (Asv < Asvmin) {
-        concrete.fc <= 65 ? kdg=Math.max(32/(16+dg),1.0) : kdg=2.0;
         kv = (0.4/(1+1500*epsilonx))*(1300/(1000+kdg*dv));
     } else {
         kv = 0.4/(1+1500*epsilonx);
@@ -284,7 +287,7 @@ function runCalcs() {
     const sinav = Math.sin(radians(alphav));
     const cotav = 1/Math.tan(radians(alphav));
     const cottv = 1/Math.tan(radians(thetav));
-    const Vus = (Asv*steel.fsy*dv/s)*(sinav*cottv + cosav)/1000;
+    const Vus = (Asv*steel.fsyf*dv/s)*(sinav*cottv + cosav)/1000;
 
     const Vumax = 0.55*0.9*concrete.fc*bv*dv*((cottv + cotav)/(1 + cottv**2))/1000;
     const Vu = Math.min(Vuc+Vus, Vumax);
@@ -292,30 +295,13 @@ function runCalcs() {
     const phiV = Asv > Asvmin ? 0.75 : 0.7;
     if (Vu === Vumax) {phiV = 0.7;}
 
-    let ks;
-    if (beam.D <= 300) {
-        ks = 1;
-    } else if (beam.D < 650) {
-        ks = (1000-beam.D)/700;
-    } else {
-        ks = 0.5;
-    }
-    let Asvminreq = Vstar > ks*0.75*Vuc ? 'Yes' : 'No';
-    if (beam.D >= 750) {Asvminreq='Yes';}
-    o_Asvminreq.value = Asvminreq;
-
     o_Asv.value = Asv.toFixed(0);
     o_Asvmin.value = Asvmin.toFixed(0);
-    if (Asvminreq === 'Yes') {
-        setPassFail(o_Asv, threshold=Asvmin, inverse=true);
-    } else {
-        o_Asv.parentElement.className = 'outputspan';
-    }
     o_thetav.value = thetav.toFixed(1);
-    o_epsilonx.value = epsilonx.toFixed(4);
+    o_epsilonx.value = epsilonx.toFixed(5);
     o_kv.value = kv.toFixed(2);
-    o_Vuc.value = Vuc.toFixed(1);
-    o_Vus.value = Vus.toFixed(1);
+    o_Vuc.value = Vuc.toFixed(0);
+    o_Vus.value = Vus.toFixed(0);
     o_phiV.value = phiV.toFixed(2);
     o_phiVumax.value = (phiV*Vumax).toFixed(0);
     o_phiVu.value = (phiV*Vu).toFixed(0);
@@ -326,8 +312,9 @@ function runCalcs() {
     // Torsion
     const Tstar = i_Tstar.valueAsNumber;
     const phiT = 0.75;
-    const Acp = (beam.D-2*beam.c)*(beam.B-2*beam.c)/1000**2;
-    const uc = 2*(beam.D + beam.B - 4*beam.c)/1000;
+    const Acp = beam.D*beam.B/1000**2;
+    const uc = 2*(beam.D + beam.B)/1000;
+    const uh = 2*(beam.D + beam.B - 4*beam.c - 2*beam.dbs)/1000;
     const Tcr = 0.33*Math.sqrt(concrete.fc)*Acp**2/uc*1000;
     Tstar > 0.25*phiT*Tcr
         ? o_torsionConsidered.value = 'Yes'
@@ -335,25 +322,53 @@ function runCalcs() {
     const Aoh = (beam.D-2*beam.c-beam.dbs)*(beam.B-2*beam.c-beam.dbs)/1000**2;
     const Ao = 0.85*Aoh;
     const Asw = Math.PI*beam.dbs**2/4/1000**2;
-    const Tus = 2*Ao*Asw*steel.fsy*cottv/s*1000**2;
+    const Tus = 2*Ao*Asw*steel.fsyf*cottv/s*1000**2;
     let phiTus = phiT*Tus;
     if (beam.dbs === 0) {phiTus = 0;}
 
     o_Acp.value = Acp.toFixed(3);
     o_uc.value = uc.toFixed(2);
-    o_Tcr.value = Tcr.toFixed(2);
+    o_uh.value = uh.toFixed(2);
+    o_Tcr.value = Tcr.toFixed(1);
+    o_Aoh.value = Aoh.toFixed(3);
     o_Ao.value = Ao.toFixed(3);
-    o_phiTus.value = phiTus.toFixed(2);
+    o_phiTus.value = phiTus.toFixed(1);
     torsionCheck.value = (Tstar/phiTus).toFixed(2);
     setPassFail(torsionCheck);
 
     // Web crushing check
-    const uh = 2*(beam.D + beam.B - 4*beam.c - 2*beam.dbs)/1000;
-    const LHS = Math.sqrt((Vstar/(beam.B*dv/1000**2))**2
+    const LHS = Math.sqrt((Vstar/(bv*dv/1000**2))**2
                           +(Tstar*uh/(1.7*Aoh**2))**2);
-    const RHS = 0.7*Vumax/(beam.B*dv/1000**2);
+    const RHS = phiT*Vumax/(bv*dv/1000**2);
     webCrushCheck.value = (LHS/RHS).toFixed(2);
     setPassFail(webCrushCheck);
+
+    // Asvmin requirement check
+    let ks;
+    if (beam.D <= 300) {
+        ks = 1;
+    } else if (beam.D < 650) {
+        ks = (1000-beam.D)/700;
+    } else {
+        ks = 0.5;
+    }
+    let Asvminreq = Vstar > ks*phiT*Vuc ? 'Yes' : 'No';
+    if (Tstar > 0.25*phiT*Tcr) {Asvminreq='Yes';}
+    if (beam.D >= 750) {Asvminreq='Yes';}
+    o_Asvminreq.value = Asvminreq;
+    if (Asvminreq.value === 'No') {
+        o_Asvminreq.parentElement.className = 'outputspan PASS right';
+    } else if (Asv >= Asvmin) {
+        o_Asvminreq.parentElement.className = 'outputspan PASS right';
+    } else {
+        o_Asvminreq.parentElement.className = 'outputspan FAIL right';
+    }
+    if (Asvminreq === 'Yes' && Asvmin >= Asv) {
+        setPassFail(o_Asv, threshold=Asvmin, inverse=true);
+        o_Asv.parentElement.className = 'outputspan FAIL';
+    } else {
+        o_Asv.parentElement.className = 'outputspan';
+    }
 
 }
 
