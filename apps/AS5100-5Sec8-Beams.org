@@ -1,0 +1,150 @@
+#+title: Beam design
+#+subtitle: to AS5100.5-2017(+A2) Section 8
+
+#+setupfile: post.setup
+#+HTML_HEAD: <script type="text/javascript" src="../static/AS5100-5Sec8-Beams.js" defer></script>
+#+include: "../statusicon.org"
+
+* Image
+
+{{{div(beamFigure)}}}
+
+* Beam parameters
+
+Beam width {{{span(i_B)}}}
+
+Beam depth {{{span(i_D)}}}
+
+Top reo {{{span(i_nbc)}}} {{{span(i_dbc)}}}
+
+Bottom reo {{{span(i_nbt)}}} {{{span(i_dbt)}}}
+
+Edge bars {{{span(i_nbe)}}} {{{span(i_dbe)}}}
+
+Ties {{{span(i_dbs)}}} {{{span(i_dbspc)}}}
+
+Cover {{{span(i_c)}}}
+
+Effective depth {{{span(o_d)}}}
+
+Axis depth {{{span(o_a)}}}
+
+Area tensile steel {{{span(o_Ast)}}}
+
+Area compression steel {{{span(o_Asc)}}}
+
+* Material properties
+
+Concrete strength, f'_c {{{span(i_fc)}}}
+
+Concrete ult. strain, \varepsilon_{cu} {{{span(i_ecu)}}}
+
+\alpha_2 {{{span(o_alpha2)}}} {{{ref(Equation 8.1.3(1))}}}
+
+\gamma {{{span(o_gamma)}}} {{{ref(Equation 8.1.3(2))}}}
+
+Steel strength, f_{sy} {{{span(i_fsy)}}}
+
+Steel modulus, E_s {{{span(i_Es)}}}
+
+Steel ult. strain, \varepsilon_{su} {{{span(o_esu)}}}
+
+Fitment steel strength, f_{sy.f} {{{input(i_fsyf,500,MPa)}}}
+
+* Loading
+
+Applied moment, M* {{{span(i_Mstar)}}}
+
+Applied shear, V* {{{span(i_Vstar)}}}
+
+Applied torsion, T* {{{span(i_Tstar)}}}
+
+* Bending capacity
+
+Neutral axis parameter, k_u {{{span(o_ku)}}}
+
+Plastic neutral axis, d_n {{{span(o_dn)}}}
+
+Moment capacity, M_{uo} {{{span(o_Muo)}}}
+
+Capacity reduction factor, \Phi {{{span(o_phi)}}}  {{{ref(Table 2.3.2)}}}
+
+Design moment capacity, \Phi{}M_{uo} {{{span(o_phiMuo)}}}
+
+Moment check, M*/\Phi{}M_{uo} {{{span(momentCheck)}}}
+
+* Minimum strength
+
+Section modulus, Z {{{span(o_Z)}}}
+
+Concrete flex.ten. strength, f'_{ct.f} {{{span(o_fctf)}}} {{{ref(Section 3.1.1.3)}}}
+
+Minimum bending strength, M_{uo,min} {{{span(o_Muomin)}}} {{{ref(Equation 8.1.6.1(1))}}}
+
+Min strength check, M_{uo,min}/M_{uo} {{{span(momentminCheck)}}}
+
+* Shear strength
+
+Shear reo legs {{{span(i_nlegs)}}}, angle \alpha_v {{{span(i_alphav)}}}
+
+Effective web width, b_v {{{output(o_bv,mm)}}} {{{ref(Section 8.2.1.5)}}}
+
+Effective shear depth, d_v {{{output(o_dv,mm)}}} {{{ref(Section 8.2.1.9)}}}
+ 
+Transverse reo, A_{sv} {{{span(o_Asv)}}}
+
+Min transv. reo, A_{sv.min} {{{span(o_Asvmin)}}} {{{ref(Equation 8.2.1.7)}}}
+
+Min transv. reo required? {{{span(o_Asvminreq)}}} 
+
+Nominal max agg. size, d_g {{{input(i_dg,20,mm)}}}
+
+Aggregate size factor, k_{dg} {{{output(o_kdg)}}} {{{ref(Equation 8.2.4.2(2))}}}
+
+Longitudinal strain, \epsilon_x {{{span(o_epsilonx)}}} {{{ref(Section 8.2.4.3(1))}}}
+
+Inclination of compr. strut, \theta_v {{{span(o_thetav)}}} {{{ref(Equation 8.2.4.2)}}}
+
+Shear factor, k_v {{{span(o_kv)}}} {{{ref(Equation 8.2.4.2(1))}}}
+
+Shear capacity (concrete), V_{uc} {{{span(o_Vuc)}}} {{{ref(Equation 8.2.4.1)}}}
+
+Shear capacity (steel), V_{us} {{{span(o_Vus)}}} {{{ref(Equation 8.2.5.2(2))}}}
+
+Capacity reduction factor, \Phi {{{span(o_phiV)}}} {{{ref(Table 2.3.2)}}}
+
+Web crushing, \Phi{}V_{u.max} {{{span(o_phiVumax)}}} {{{ref(Equation 8.2.3.3(1))}}}
+
+Shear capacity, \Phi{}Vu {{{span(o_phiVu)}}} {{{ref(Section 8.2.3.1)}}}
+
+Shear check, V*/\Phi{}V_{u} {{{span(shearCheck)}}}
+
+Web crushing check {{{span(webCrushCheck)}}}
+
+* Torsion
+
+Area of cross section, A_{cp} {{{span(o_Acp)}}}
+
+Perimeter of cross section, u_c {{{span(o_uc)}}}
+
+Perimeter of ties, u_h {{{output(o_uh,m)}}}
+
+Torsion cracking moment, T_{cr} {{{span(o_Tcr)}}}  {{{ref(Equation 8.2.1.2(2))}}}
+
+Torsion considered if min ties, T*>0.25\Phi{}T_{cr} {{{span(o_torsionConsidered)}}}
+
+Area enclosed by ties, A_oh {{{output(o_Aoh,m<sup>2</sup>)}}}
+
+Area in shear flow path, A_o {{{span(o_Ao)}}}
+
+Torsion capacity, \Phi{}T_{us} {{{span(o_phiTus)}}} {{{ref(Equation 8.2.5.6)}}}
+
+Torsion check, T*/\Phi{}T_{us} {{{span(torsionCheck)}}}
+
+Min closed ties, (0.2y_{1}f_{sy.f})/(A_{sw}/s) {{{output(o_tiecheck)}}}
+
+
+* Export on save                                                   :noexport:
+;; Local Variables:
+;; eval: (add-hook 'after-save-hook 'org-html-export-to-html nil t)
+;; End:

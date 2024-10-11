@@ -13,26 +13,26 @@
 <script type="text/javascript" src="../static/general.js"></script>
 <link rel="icon" type="image/ico" href="../static/icon/favicon.svg" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script type="text/javascript" src="../static/AS3600Sec8-Beams.js" defer></script>
+<script type="text/javascript" src="../static/AS5100-5Sec8-Beams.js" defer></script>
 </head>
 <body>
 <div id="org-div-home-and-up"> <img src="../static/icon/logo.svg" /> <a href="../index.html"> Home </a> </div><div id="content" class="content">
 <h1 class="title">Beam design
 <br />
-<span class="subtitle">to AS3600-2018(+A2) Section 8</span>
+<span class="subtitle">to AS5100.5-2017(+A2) Section 8</span>
 </h1>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org094d3b8">Image</a></li>
-<li><a href="#org4d8d4b7">Beam parameters</a></li>
-<li><a href="#orgf974444">Material properties</a></li>
-<li><a href="#orgdfb063c">Loading</a></li>
-<li><a href="#orgc20b23f">Bending capacity</a></li>
-<li><a href="#org76df926">Minimum strength</a></li>
-<li><a href="#orgb159c46">Shear strength</a></li>
-<li><a href="#orgca0991d">Torsion</a></li>
+<li><a href="#org6897123">Image</a></li>
+<li><a href="#orga263d7f">Beam parameters</a></li>
+<li><a href="#org23d7b40">Material properties</a></li>
+<li><a href="#org45e55bf">Loading</a></li>
+<li><a href="#orgeeeaf9c">Bending capacity</a></li>
+<li><a href="#org12f1ad5">Minimum strength</a></li>
+<li><a href="#orgd5d218c">Shear strength</a></li>
+<li><a href="#org04f8208">Torsion</a></li>
 </ul>
 </div>
 </div>
@@ -40,18 +40,18 @@
 <button id='statusbutton' onclick='updatePage();'>▶ Run analysis</button>
 </p>
 
-<div id="outline-container-org094d3b8" class="outline-2">
-<h2 id="org094d3b8">Image</h2>
-<div class="outline-text-2" id="text-org094d3b8">
+<div id="outline-container-org6897123" class="outline-2">
+<h2 id="org6897123">Image</h2>
+<div class="outline-text-2" id="text-org6897123">
 <p>
 <div id="beamFigure"></div>
 </p>
 </div>
 </div>
 
-<div id="outline-container-org4d8d4b7" class="outline-2">
-<h2 id="org4d8d4b7">Beam parameters</h2>
-<div class="outline-text-2" id="text-org4d8d4b7">
+<div id="outline-container-orga263d7f" class="outline-2">
+<h2 id="orga263d7f">Beam parameters</h2>
+<div class="outline-text-2" id="text-orga263d7f">
 <p>
 Beam width <span id="i_B"></span>
 </p>
@@ -98,9 +98,9 @@ Area compression steel <span id="o_Asc"></span>
 </div>
 </div>
 
-<div id="outline-container-orgf974444" class="outline-2">
-<h2 id="orgf974444">Material properties</h2>
-<div class="outline-text-2" id="text-orgf974444">
+<div id="outline-container-org23d7b40" class="outline-2">
+<h2 id="org23d7b40">Material properties</h2>
+<div class="outline-text-2" id="text-org23d7b40">
 <p>
 Concrete strength, f'<sub>c</sub> <span id="i_fc"></span>
 </p>
@@ -110,11 +110,11 @@ Concrete ult. strain, &epsilon;<sub>cu</sub> <span id="i_ecu"></span>
 </p>
 
 <p>
-&alpha;<sub>2</sub> <span id="o_alpha2"></span>
+&alpha;<sub>2</sub> <span id="o_alpha2"></span> <span class="reference refpad">Equation 8.1.3(1)</span>
 </p>
 
 <p>
-&gamma; <span id="o_gamma"></span>
+&gamma; <span id="o_gamma"></span> <span class="reference refpad">Equation 8.1.3(2)</span>
 </p>
 
 <p>
@@ -135,9 +135,9 @@ Fitment steel strength, f<sub>sy.f</sub> <span class="inputspan"><input id="i_fs
 </div>
 </div>
 
-<div id="outline-container-orgdfb063c" class="outline-2">
-<h2 id="orgdfb063c">Loading</h2>
-<div class="outline-text-2" id="text-orgdfb063c">
+<div id="outline-container-org45e55bf" class="outline-2">
+<h2 id="org45e55bf">Loading</h2>
+<div class="outline-text-2" id="text-org45e55bf">
 <p>
 Applied moment, M* <span id="i_Mstar"></span>
 </p>
@@ -152,9 +152,9 @@ Applied torsion, T* <span id="i_Tstar"></span>
 </div>
 </div>
 
-<div id="outline-container-orgc20b23f" class="outline-2">
-<h2 id="orgc20b23f">Bending capacity</h2>
-<div class="outline-text-2" id="text-orgc20b23f">
+<div id="outline-container-orgeeeaf9c" class="outline-2">
+<h2 id="orgeeeaf9c">Bending capacity</h2>
+<div class="outline-text-2" id="text-orgeeeaf9c">
 <p>
 Neutral axis parameter, k<sub>u</sub> <span id="o_ku"></span>
 </p>
@@ -168,7 +168,7 @@ Moment capacity, M<sub>uo</sub> <span id="o_Muo"></span>
 </p>
 
 <p>
-Capacity reduction factor, &Phi; <span id="o_phi"></span>  <span class="reference refpad">Table 2.2.2</span>
+Capacity reduction factor, &Phi; <span id="o_phi"></span>  <span class="reference refpad">Table 2.3.2</span>
 </p>
 
 <p>
@@ -181,9 +181,9 @@ Moment check, M*/&Phi;M<sub>uo</sub> <span id="momentCheck"></span>
 </div>
 </div>
 
-<div id="outline-container-org76df926" class="outline-2">
-<h2 id="org76df926">Minimum strength</h2>
-<div class="outline-text-2" id="text-org76df926">
+<div id="outline-container-org12f1ad5" class="outline-2">
+<h2 id="org12f1ad5">Minimum strength</h2>
+<div class="outline-text-2" id="text-org12f1ad5">
 <p>
 Section modulus, Z <span id="o_Z"></span>
 </p>
@@ -202,9 +202,9 @@ Min strength check, M<sub>uo,min</sub>/M<sub>uo</sub> <span id="momentminCheck">
 </div>
 </div>
 
-<div id="outline-container-orgb159c46" class="outline-2">
-<h2 id="orgb159c46">Shear strength</h2>
-<div class="outline-text-2" id="text-orgb159c46">
+<div id="outline-container-orgd5d218c" class="outline-2">
+<h2 id="orgd5d218c">Shear strength</h2>
+<div class="outline-text-2" id="text-orgd5d218c">
 <p>
 Shear reo legs <span id="i_nlegs"></span>, angle &alpha;<sub>v</sub> <span id="i_alphav"></span>
 </p>
@@ -230,23 +230,23 @@ Min transv. reo required? <span id="o_Asvminreq"></span>
 </p>
 
 <p>
-Nominal max agg. size, d<sub>g</sub> <span class="inputspan"><input id="i_dg" class="right" type="number" value="20" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> mm</span> <span class="reference refpad">Section 8.2.4.2.1</span>
+Nominal max agg. size, d<sub>g</sub> <span class="inputspan"><input id="i_dg" class="right" type="number" value="20" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> mm</span>
 </p>
 
 <p>
-Aggregate size factor, k<sub>dg</sub> <span class="outputspan"><input id="o_kdg" class="right" type="number" value="0" readonly> </span> <span class="reference refpad">Equation 8.2.4.2(3)</span>
+Aggregate size factor, k<sub>dg</sub> <span class="outputspan"><input id="o_kdg" class="right" type="number" value="0" readonly> </span> <span class="reference refpad">Equation 8.2.4.2(2)</span>
 </p>
 
 <p>
-Longitudinal strain, &epsilon;<sub>x</sub> <span id="o_epsilonx"></span> <span class="reference refpad">Section 8.2.4.2.2</span>
+Longitudinal strain, &epsilon;<sub>x</sub> <span id="o_epsilonx"></span> <span class="reference refpad">Section 8.2.4.3(1)</span>
 </p>
 
 <p>
-Inclination of compr. strut, &theta;<sub>v</sub> <span id="o_thetav"></span> <span class="reference refpad">Equation 8.2.4.2(1)</span>
+Inclination of compr. strut, &theta;<sub>v</sub> <span id="o_thetav"></span> <span class="reference refpad">Equation 8.2.4.2</span>
 </p>
 
 <p>
-Shear factor, k<sub>v</sub> <span id="o_kv"></span> <span class="reference refpad">Equation 8.2.4.2.1</span>
+Shear factor, k<sub>v</sub> <span id="o_kv"></span> <span class="reference refpad">Equation 8.2.4.2(1)</span>
 </p>
 
 <p>
@@ -258,7 +258,7 @@ Shear capacity (steel), V<sub>us</sub> <span id="o_Vus"></span> <span class="ref
 </p>
 
 <p>
-Capacity reduction factor, &Phi; <span id="o_phiV"></span> <span class="reference refpad">Table 2.2.2</span>
+Capacity reduction factor, &Phi; <span id="o_phiV"></span> <span class="reference refpad">Table 2.3.2</span>
 </p>
 
 <p>
@@ -279,9 +279,9 @@ Web crushing check <span id="webCrushCheck"></span>
 </div>
 </div>
 
-<div id="outline-container-orgca0991d" class="outline-2">
-<h2 id="orgca0991d">Torsion</h2>
-<div class="outline-text-2" id="text-orgca0991d">
+<div id="outline-container-org04f8208" class="outline-2">
+<h2 id="org04f8208">Torsion</h2>
+<div class="outline-text-2" id="text-org04f8208">
 <p>
 Area of cross section, A<sub>cp</sub> <span id="o_Acp"></span>
 </p>
@@ -316,6 +316,10 @@ Torsion capacity, &Phi;T<sub>us</sub> <span id="o_phiTus"></span> <span class="r
 
 <p>
 Torsion check, T*/&Phi;T<sub>us</sub> <span id="torsionCheck"></span>
+</p>
+
+<p>
+Min closed ties, (0.2y<sub>1</sub>f<sub>sy.f</sub>)/(A<sub>sw</sub>/s) <span class="outputspan"><input id="o_tiecheck" class="right" type="number" value="0" readonly> </span>
 </p>
 </div>
 </div>
