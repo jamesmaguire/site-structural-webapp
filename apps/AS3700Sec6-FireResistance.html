@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2024-10-12 Sat 09:03 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Masonry fire resistance</title>
+<meta name="author" content="james" />
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" type="text/css" href="../static/post.css" />
+<link rel="stylesheet" type="text/css" href="../static/print.css" media="print" />
+<script type="text/javascript" src="../static/general.js"></script>
+<link rel="icon" type="image/ico" href="../static/icon/favicon.svg" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script type="text/javascript" src="../static/AS3700Sec6-FireResistance.js" defer></script>
+</head>
+<body>
+<div id="org-div-home-and-up"> <img src="../static/icon/logo.svg" /> <a href="../index.html"> Home </a> </div><div id="content" class="content">
+<h1 class="title">Masonry fire resistance
+<br />
+<span class="subtitle">to AS 3700-2011(+A1) Section 6</span>
+</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgc2e4735">Figure</a></li>
+<li><a href="#org8d8ae22">Wall properties</a></li>
+<li><a href="#orgff79a78">Structural adequacy</a></li>
+<li><a href="#orge6781de">Insulation</a></li>
+</ul>
+</div>
+</div>
+<p>
+<button id='statusbutton' onclick='updatePage();'>▶ Run analysis</button>
+</p>
+
+<div id="outline-container-orgc2e4735" class="outline-2">
+<h2 id="orgc2e4735">Figure</h2>
+<div class="outline-text-2" id="text-orgc2e4735">
+<p>
+<div id="wallFigure"></div>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org8d8ae22" class="outline-2">
+<h2 id="org8d8ae22">Wall properties</h2>
+<div class="outline-text-2" id="text-org8d8ae22">
+<p>
+Block thickness, t <span class="inputspan"><input id="i_t" class="right" type="number" value="190" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> mm</span> <span class="reference refpad">Clause 3.2.1</span>
+</p>
+
+<p>
+Wall height, H <span class="inputspan"><input id="i_H" class="right" type="number" value="2800" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> mm</span>
+</p>
+
+<p>
+Wall length, L <span class="inputspan"><input id="i_L" class="right" type="number" value="4000" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> mm</span>
+</p>
+
+<p>
+Lateral support left <input id="i_supportleft" type="checkbox" autocomplete="off"  oninput="updatePage()"></input>
+</p>
+
+<p>
+Lateral support right <input id="i_supportright" type="checkbox" autocomplete="off"  oninput="updatePage()"></input>
+</p>
+
+<p>
+Lateral support top <input id="i_supporttop" type="checkbox" autocomplete="off" checked oninput="updatePage()"></input>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgff79a78" class="outline-2">
+<h2 id="orgff79a78">Structural adequacy</h2>
+<div class="outline-text-2" id="text-orgff79a78">
+<p>
+Slenderness coefficient (fire), a<sub>vf</sub> <span class="outputspan"><input id="o_avf" class="right" type="number" value="0" readonly> </span> <span class="reference refpad">Clause 6.3.2.2</span>
+</p>
+
+<p>
+Slenderness coefficient, a<sub>h</sub> <span class="outputspan"><input id="o_ah" class="right" type="number" value="0" readonly> </span> <span class="reference refpad">Clause 6.3.2.2</span>
+</p>
+
+<p>
+Slenderness ratio, S<sub>rf</sub> <span class="outputspan"><input id="o_Srf" class="right" type="number" value="0" readonly> </span> <span class="reference refpad">Clause 6.3.2.2</span>
+</p>
+
+<p>
+<span class="reference">Table 6.1</span> - Maximum slenderness ratio of wall
+</p>
+<table id="AdequacyTable" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Fire resistance period</th>
+<th scope="col" class="org-right">30</th>
+<th scope="col" class="org-right">60</th>
+<th scope="col" class="org-right">90</th>
+<th scope="col" class="org-right">120</th>
+<th scope="col" class="org-right">180</th>
+<th scope="col" class="org-right">240</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Clay units</td>
+<td class="org-right">25.0</td>
+<td class="org-right">22.5</td>
+<td class="org-right">21.0</td>
+<td class="org-right">20.0</td>
+<td class="org-right">18.0</td>
+<td class="org-right">17.0</td>
+</tr>
+
+<tr>
+<td class="org-left">Calcium silicate units (&lt;45% aggregate)</td>
+<td class="org-right">20.5</td>
+<td class="org-right">19.0</td>
+<td class="org-right">18.0</td>
+<td class="org-right">17.5</td>
+<td class="org-right">16.5</td>
+<td class="org-right">15.5</td>
+</tr>
+
+<tr>
+<td class="org-left">Calcium silicate units (&gt;45% aggregate)</td>
+<td class="org-right">25.0</td>
+<td class="org-right">22.5</td>
+<td class="org-right">21.0</td>
+<td class="org-right">20.0</td>
+<td class="org-right">18.0</td>
+<td class="org-right">17.0</td>
+</tr>
+
+<tr>
+<td class="org-left">Concrete units (&lt;45% aggregate)</td>
+<td class="org-right">19.5</td>
+<td class="org-right">18.0</td>
+<td class="org-right">17.0</td>
+<td class="org-right">16.0</td>
+<td class="org-right">15.5</td>
+<td class="org-right">15.0</td>
+</tr>
+
+<tr>
+<td class="org-left">Concrete units (&gt;45% aggregate)</td>
+<td class="org-right">25.0</td>
+<td class="org-right">22.5</td>
+<td class="org-right">21.0</td>
+<td class="org-right">20.0</td>
+<td class="org-right">18.0</td>
+<td class="org-right">17.0</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left">Reinforced masonry</td>
+<td class="org-right">36.0</td>
+<td class="org-right">36.0</td>
+<td class="org-right">36.0</td>
+<td class="org-right">36.0</td>
+<td class="org-right">36.0</td>
+<td class="org-right">36.0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-orge6781de" class="outline-2">
+<h2 id="orge6781de">Insulation</h2>
+<div class="outline-text-2" id="text-orge6781de">
+<p>
+<span class="reference">Table 6.3</span> - Material thickness of wall (mm)
+</p>
+<table id="InsulationTable" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Fire resistance period</th>
+<th scope="col" class="org-right">30</th>
+<th scope="col" class="org-right">60</th>
+<th scope="col" class="org-right">90</th>
+<th scope="col" class="org-right">120</th>
+<th scope="col" class="org-right">180</th>
+<th scope="col" class="org-right">240</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Clay units</td>
+<td class="org-right">60</td>
+<td class="org-right">90</td>
+<td class="org-right">110</td>
+<td class="org-right">130</td>
+<td class="org-right">160</td>
+<td class="org-right">180</td>
+</tr>
+
+<tr>
+<td class="org-left">Calcium silicate</td>
+<td class="org-right">50</td>
+<td class="org-right">70</td>
+<td class="org-right">90</td>
+<td class="org-right">110</td>
+<td class="org-right">135</td>
+<td class="org-right">160</td>
+</tr>
+
+<tr>
+<td class="org-left">Concrete (Density &gt;1800kg/m<sup>3</sup>)</td>
+<td class="org-right">55</td>
+<td class="org-right">80</td>
+<td class="org-right">100</td>
+<td class="org-right">120</td>
+<td class="org-right">150</td>
+<td class="org-right">180</td>
+</tr>
+
+<tr>
+<td class="org-left">Concrete (Density &le;1800kg/m<sup>3</sup>)</td>
+<td class="org-right">55</td>
+<td class="org-right">75</td>
+<td class="org-right">90</td>
+<td class="org-right">110</td>
+<td class="org-right">135</td>
+<td class="org-right">160</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</body>
+</html>

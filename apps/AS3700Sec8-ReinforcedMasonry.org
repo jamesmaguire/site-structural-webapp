@@ -1,7 +1,7 @@
-#+title: Masonry structures
-#+subtitle: to AS 3700-2011(+A1)
+#+title: Reinforced masonry
+#+subtitle: to AS 3700-2011(+A1) Section 8
 #+setupfile: post.setup
-#+HTML_HEAD: <script type="text/javascript" src="../static/masonry.js" defer></script>
+#+HTML_HEAD: <script type="text/javascript" src="../static/AS3700Sec8-ReinforcedMasonry.js" defer></script>
 #+include: "../statusicon.org"
 
 * Figure

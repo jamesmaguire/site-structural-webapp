@@ -4,11 +4,17 @@
 [[file:./static/icon/logo.svg]]
 
 * Application index
+
 ** AS3600 Concrete Structures
 *** [[file:apps/AS3600Sec8-Beams.org][Section 8 / Beams]]
 *** [[file:apps/AS3600Sec9-2-IntegrityReo.org][Section 9.2 / Integrity reinforcement]]
+
 ** AS5100.5 Bridge Concrete
 *** [[file:apps/AS5100-5Sec8-Beams.org][Section 8 / Beams]]
+
+** AS3700 Masonry Structures
+*** [[file:apps/AS3700Sec6-FireResistance.org][Section 6 / Fire reisitance]]
+*** [[file:apps/AS3700Sec8-ReinforcedMasonry.org][Section 8 / Reinforced masonry]]
 
 ** Foundations and retaining
 *** [[file:apps/retaining-wall.org][Retaining wall]]
@@ -17,31 +23,35 @@
 *** [[file:apps/strip-footing.org][Strip footings]]
 *** [[file:apps/bored-piles.org][Bored piles]]
 *** [[file:apps/secant-pile-properties.org][Secant pile properties]]
+
 ** Reinforced concrete design
 *** TODO [[file:apps/rc-columns-rect.org][RC Column (rect)]]
 *** TODO [[file:apps/rc-columns-circle.org][RC Column (circle)]]
 *** [[file:apps/concrete-cover.org][Concrete cover]]
 *** [[file:apps/rc-wall.org][RC Wall]]
+
 ** Slab design
 *** [[file:apps/top-reo.org][Top reo]]
 *** [[file:apps/punching-shear.org][Punching shear]]
 *** [[file:apps/slab-design.org][Slab design]]
+
 ** Design actions
 *** [[file:apps/load-combinations.org][Load combinations]]
 *** [[file:apps/wind-loading.org][Wind loading]]
 *** [[file:apps/earthquake-loading.org][Earthquake loading]]
 *** [[file:apps/beam-formulas.org][Beam load formulas]]
+
 ** Structural steel
 *** [[file:apps/rebar-properties.org][Rebar properties]]
 *** [[file:apps/steel-sections.org][Steel sections]]
 *** TODO [[file:apps/steel-capacities.org][Steel capacities]]
-** Masonry
-*** [[file:apps/masonry.org][Masonry]]
+
 ** Other tools
 *** [[file:apps/sdof-oscillator.org][SDOF oscillator]]
 *** TODO [[file:apps/rates-columns.org][Columns steel rates]]
 * Blog apps
 *** [[file:blog/blast-loading.org][Blast loading of precast panels]]
+
 * Description
 This is a website that solves simple structural engineering design problems. There is no warranty of correctness of these applications and results should be checked by by an experienced engineer.
 
