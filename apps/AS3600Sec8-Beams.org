@@ -1,5 +1,5 @@
 #+title: Beam design
-#+subtitle: to AS3600-2018 Section 8
+#+subtitle: to AS3600-2018(+A2) Section 8
 
 #+setupfile: post.setup
 #+HTML_HEAD: <script type="text/javascript" src="../static/AS3600Sec8-Beams.js" defer></script>
