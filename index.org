@@ -7,6 +7,8 @@
 ** AS3600 Concrete Structures
 *** [[file:apps/AS3600Sec8-Beams.org][Section 8 / Beams]]
 *** [[file:apps/AS3600Sec9-2-IntegrityReo.org][Section 9.2 / Integrity reinforcement]]
+** AS5100.5 Bridge Concrete
+*** [[file:apps/AS5100-5Sec8-Beams.org][Section 8 / Beams]]
 
 ** Foundations and retaining
 *** [[file:apps/retaining-wall.org][Retaining wall]]

@@ -1,5 +1,5 @@
-#+title: Reinforced Concrete Beam
-#+subtitle: Based on AS3600 2018
+#+title: Beam design
+#+subtitle: to AS3600-2018 Section 8
 
 #+setupfile: post.setup
 #+HTML_HEAD: <script type="text/javascript" src="../static/AS3600Sec8-Beams.js" defer></script>
