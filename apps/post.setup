@@ -28,6 +28,10 @@
 
 #+macro: dropdown3 @@html:<select id="$1" autocomplete="off" oninput="updatePage()"><option value="$2">$2</option><option value="$3">$3</option><option value="$4">$4</option></select>@@
 
+#+macro: dropdown4 @@html:<select id="$1" autocomplete="off" oninput="updatePage()"><option value="$2">$2</option><option value="$3">$3</option><option value="$4">$4</option><option value="$5">$5</option></select>@@
+
+#+macro: dropdown5 @@html:<select id="$1" autocomplete="off" oninput="updatePage()"><option value="$2">$2</option><option value="$3">$3</option><option value="$4">$4</option><option value="$5">$5</option><option value="$6">$6</option></select>@@
+
 #+macro: output @@html:<span class="outputspan"><input id="$1" class="right" type="number" value="0" readonly> $2</span>@@
 
 #+macro: textoutput @@html:<span class="outputspan"><input id="$1" class="right" type="text" value="0" readonly></span>@@

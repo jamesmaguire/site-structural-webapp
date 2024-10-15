@@ -1,0 +1,56 @@
+#+title: Shrinkage
+#+subtitle: to AS3600-2018(+A2) Section 3.1.7
+
+#+setupfile: post.setup
+#+HTML_HEAD: <script type="text/javascript" src="../static/AS3600Sec3-Shrinkage.js" defer></script>
+#+include: "../statusicon.org"
+
+* Concrete properties
+
+Concrete strength, f'_c {{{input(i_fc,40,MPa)}}}
+
+Time after pour, t {{{input(i_t,56,days)}}}
+
+Gross area of cross section, A_g  {{{input(i_Ag,4790000,mm<sup>2</sup>)}}}
+
+Exposed perimeter of cross section, u_e {{{input(i_ue,42760,mm)}}}
+
+Hypothetical thickness, t_h {{{output(o_th,mm)}}}
+
+
+* Shrinkage strain
+
+Final autogenous shrinkage strain, \epsilon*_{cse} {{{output(o_ecsestar)}}} {{{ref(Equation 3.1.7.2(3))}}}
+
+Autogenous shrinkage strain, \epsilon_{cse} {{{output(o_ecse)}}} {{{ref(Equation 3.1.7.2(2))}}}
+
+Factor, \alpha_1 {{{output(o_alpha1)}}} {{{ref(Figure 3.1.7.2)}}}
+
+Shrinkage strain coefficient, k_1 {{{output(o_k1)}}} {{{ref(Figure 3.1.7.2)}}}
+
+Final drying shrinkage strain, \epsilon{}*_{csd.b} {{{input(i_ecsdbstar,0.000800)}}}
+
+Environment {{{dropdown5(i_env,Arid,Interior,Temperate inland,Tropical,Near coastal/coastal)}}}
+
+Shrinkage strain coefficient, k_4 {{{output(o_k4)}}} {{{ref(Section 3.1.7.2)}}}
+
+Basic drying shrinkage strain, \epsilon_{csd.b} {{{output(o_ecsdb)}}}
+
+Drying shrinkage strain, \epsilon_{csd} {{{output(o_ecsd)}}}
+
+Design shrinkage strain, \epsilon_{cs} {{{output(o_ecs)}}} {{{ref(Equation 3.1.7.2(1))}}}
+
+* Shrinkage
+
+Length considered {{{input(i_L,30,m)}}}
+
+Design shrinkage {{{output(o_dL,mm)}}}
+
+Design shrinkage range (\pm30%) {{{output(o_dLmin,mm)}}}-{{{output(o_dLmax,mm)}}}
+
+* TODO Graph
+
+* Export on save                                                   :noexport:
+;; Local Variables:
+;; eval: (add-hook 'after-save-hook 'org-html-export-to-html nil t)
+;; End:

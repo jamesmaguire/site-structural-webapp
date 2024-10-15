@@ -6,6 +6,7 @@
 * Application index
 
 ** AS3600 Concrete Structures
+*** [[file:apps/AS3600Sec3-Shrinkage.org][Section 3.1.7 / Shrinkage]]
 *** [[file:apps/AS3600Sec8-Beams.org][Section 8 / Beams]]
 *** [[file:apps/AS3600Sec9-2-IntegrityReo.org][Section 9.2 / Integrity reinforcement]]
 
@@ -14,7 +15,7 @@
 
 ** AS3700 Masonry Structures
 *** [[file:apps/AS3700Sec6-FireResistance.org][Section 6 / Fire reisitance]]
-*** [[file:apps/AS3700Sec8-ReinforcedMasonry.org][Section 8 / Reinforced masonry]]
+*** TODO [[file:apps/AS3700Sec8-ReinforcedMasonry.org][Section 8 / Reinforced masonry]]
 
 ** Foundations and retaining
 *** [[file:apps/retaining-wall.org][Retaining wall]]

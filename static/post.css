@@ -134,7 +134,7 @@ select {
 input {
   background: none;
   border: none;
-  max-width: 7ch;
+  max-width: 8ch;
 }
 .wideinput {
   max-width: 12ch;
