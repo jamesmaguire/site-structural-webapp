@@ -16,7 +16,7 @@ function updatePage() {
             +` ${N > Nstar ? greentick : redcross}`
             +`</td>`;
     }
-    const barlist = [4, 5, 6, 7, 8, 9, 10, 11, 12, 'Lx', 'Ly'];
+    const barlist = [1, 2, 3, 4, 5, 6, 7, 8, 'Lx', 'Ly'];
     const n12s = barlist.map(n => barformat(n, 12));
     const n16s = barlist.map(n => barformat(n, 16));
     const n20s = barlist.map(n => barformat(n, 20));
