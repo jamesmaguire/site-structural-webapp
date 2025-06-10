@@ -17,7 +17,6 @@ function drawFigure()
         supportright:i_supportright.checked,
         supportleft:i_supportleft.checked,
         supporttop:i_supporttop.checked,
-        reo: i_reo.checked,
         vbar: i_vbar.valueAsNumber,
         vspc: i_vspc.valueAsNumber,
         hbar: i_hbar.valueAsNumber,
@@ -91,21 +90,19 @@ function drawFigure()
     }
 
     // Reo
-    if (wall.reo) {
-        for (let i=1; i*wall.vspc<wall.L; i++) {
-            svgElemAppend(svg, 'path', {
-                class:'rebar',
-                d:`M${xmap(i*wall.vspc)},${ymap(90)}`
-                    +` L${xmap(i*wall.vspc)},${ymap(wall.H-90)}`
-            });
-        }
-        for (let i=1; i*wall.hspc<wall.H; i++) {
-            svgElemAppend(svg, 'path', {
-                class:'rebar',
-                d:`M${xmap(90)},${ymap(i*wall.hspc)}`
-                    +` L${xmap(wall.L-90)},${ymap(i*wall.hspc)}`
-            });
-        }
+    for (let i=1; i*wall.vspc<wall.L; i++) {
+        svgElemAppend(svg, 'path', {
+            class:'rebar',
+            d:`M${xmap(i*wall.vspc)},${ymap(90)}`
+                +` L${xmap(i*wall.vspc)},${ymap(wall.H-90)}`
+        });
+    }
+    for (let i=1; i*wall.hspc<wall.H; i++) {
+        svgElemAppend(svg, 'path', {
+            class:'rebar',
+            d:`M${xmap(90)},${ymap(i*wall.hspc)}`
+                +` L${xmap(wall.L-90)},${ymap(i*wall.hspc)}`
+        });
     }
 
 }
@@ -118,8 +115,6 @@ function runCalcs() {
         supportright:i_supportright.checked,
         supportleft:i_supportleft.checked,
         supporttop:i_supporttop.checked,
-        reo: i_reo.checked,
-        grout: i_grout.checked,
         vbar: i_vbar.valueAsNumber,
         vspc: i_vspc.valueAsNumber,
         hbar: i_hbar.valueAsNumber,
@@ -128,28 +123,15 @@ function runCalcs() {
         eccentricitytype: i_eccentricitytype.value
     };
     
-    if (wall.reo) {
-        showInput(i_vbar);
-        showInput(i_hbar);
-        showInput(i_fsy);
-        showInput(o_As);
-        i_grout.checked = true;
-    } else {
-        hideInput(i_vbar);
-        hideInput(i_hbar);
-        hideInput(i_fsy);
-        hideInput(o_As);
-    }
-
     // Design properties
     const fm = i_fm.valueAsNumber;
-    const Ab = 2*wall.tshell*1000;
+    const Ab = 2*wall.tshell*wall.L;
     const kc = i_densehollow.checked ? 1.4 : 1.2;
     const fcg = i_fcg.valueAsNumber;
-    const Ac = wall.t*1000; // Combined cross-sectional area
+    const Ac = wall.t*wall.L; // Combined cross-sectional area
     const Ag = Ac - Ab;
     const fsy = i_fsy.valueAsNumber;
-    const As = Math.PI*wall.vbar**2/4 * 1000/wall.vspc;
+    const As = Math.PI*wall.vbar**2/4 * (1+Math.floor(wall.L/wall.vspc));
     o_Ab.value = Ab.toFixed(0);
     o_kc.value = kc.toFixed(1);
     o_Ag.value = Ag.toFixed(0);
@@ -190,35 +172,63 @@ function runCalcs() {
     // Compression
     let phi, ks, Fu, k, Fo;
     const av = wall.supporttop ? 1.0 : 2.5; // Simplified
-    if (wall.reo) {
-        phi = 0.75;
-        const Sr = av*wall.H/wall.t; //Slenderness to 7.3.4.3 (simplified)
-        ks = Math.min(1.18-0.03*Sr, 1.0);
-        o_ks.value = ks.toFixed(1);
-        Fu = phi*ks*(fm*Ab + kc*Math.sqrt(fcg/1.3)*Ag + fsy*As)/1000;
-        hideInput(o_k);
-        showInput(o_ks);
-    } else {
-        phi = 0.5;
-        Fo = wall.grout ? phi*(fm*Ab + kc*Math.sqrt(fcg/1.3)*Ac) : phi*fm*Ab;
-        let Srs = av*wall.H/wall.t; //Slenderness to 7.3.3.4 (simplified)
-        if (wall.eccentricitytype === 'Concrete slab') {
-            k = Math.min(0.67 - 0.02*(Srs-14), 0.67);
-        } else if (wall.eccentricitytype === 'Framing/other') {
-            k = Math.min(0.67 - 0.025*(Srs-10), 0.67);
-        } else if (wall.eccentricitytype === 'Face supported') {
-            k = Math.min(0.67 - 0.002*(Srs-14), 0.67);
-        }
-        o_k.value = k.toFixed(2);
-        Fu = k*Fo/1000;
-        hideInput(o_ks);
-        showInput(o_k);
-    }
+    phi = 0.75;
+    const Sr = av*wall.H/wall.t; //Slenderness to 7.3.4.3 (simplified)
+    ks = Math.min(1.18-0.03*Sr, 1.0);
+    o_ks.value = ks.toFixed(1);
+    Fu = phi*ks*(fm*Ab + kc*Math.sqrt(fcg/1.3)*Ag + fsy*As)/1000;
 
     o_phi_rF.value = phi.toFixed(2);
     o_phiFu.value = Fu.toFixed(1);
     o_compressionratio.value = (i_Fd.valueAsNumber/Fu).toFixed(2);
     setPassFail(o_compressionratio);
+
+    // Out of plane bending
+    const d = i_d.valueAsNumber;
+    phi = 0.6;
+    o_phiM.value = phi.toFixed(2);
+    const Asd = Math.min(0.29*1.3*fm*wall.L*d/fsy, As);
+    o_Asd.value = Asd.toFixed(0);
+    const Mu = phi*fsy*Asd*d*(1-(0.6*fsy*Asd/(1.3*fm*wall.L*d)))/1000**2;
+    o_phiMu.value = Mu.toFixed(1);
+    o_oopbendingratio.value = (i_Md.valueAsNumber/Mu).toFixed(2);
+    setPassFail(o_oopbendingratio);
+
+    // In plane shear
+    let Vd = i_Vd.valueAsNumber;
+    phi = 0.6;
+    o_phiV.value = phi.toFixed(2);
+    o_HonL.value = (wall.H/wall.L).toFixed(2);
+    setPassFail(o_HonL, threshold=2.3);
+
+    const fvr = 1.5 - 0.5*(wall.H/wall.L);
+    const Ad = Ac;
+    const Ash = Math.PI*wall.hbar**2/4 * (1+Math.floor(wall.H/wall.hspc));
+    const As2 = wall.H/wall.L > 1 ? Ash*wall.L/wall.H : Math.min(Ash, As);
+    const phiVuip = phi * (fvr*Ad + 0.8*fsy*As2)/1000;
+    o_fvr.value = fvr.toFixed(2);
+    o_Ad.value = Ad.toFixed(0);
+    o_As2.value = As2.toFixed(0);
+    o_phiVuip.value = phiVuip.toFixed(0);
+    o_ipshearratio.value = (Vd/phiVuip).toFixed(2);
+    setPassFail(o_ipshearratio);
+
+    // Out of plan shear
+    Vd = i_Vd2.valueAsNumber;
+    const fvm = 0.35;
+    const bw = wall.t;
+    const fvs = 17.5;
+    const Ast = Math.min(As,0.02*bw*d);
+    const Asv = As;
+    const s = wall.hspc;
+    const phiVuop = Math.min(phi * (fvm*bw*d + fvs*Ast + fsy*Asv*d/s),
+                             4*phi*fvm*bw*d)/1000;
+    o_fvm.value = fvm.toFixed(2);
+    o_fvs.value = fvs.toFixed(1);
+    o_Ast.value = Ast.toFixed(0);
+    o_phiVuop.value = phiVuop.toFixed(0);
+    o_opshearratio.value = (Vd/phiVuop).toFixed(2);
+    setPassFail(o_opshearratio);
 
 }
 

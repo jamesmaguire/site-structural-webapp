@@ -14,7 +14,7 @@ Block thickness, t {{{input(i_t,190,mm)}}} {{{ref(Clause 3.2.1)}}}
 
 Wall height, H {{{input(i_H,2800,mm)}}}
 
-Wall length, L {{{input(i_L,4000,mm)}}}
+Wall length, L {{{input(i_L,1000,mm)}}}
 
 Lateral support left {{{checkbox(i_supportleft)}}}
 
@@ -22,15 +22,15 @@ Lateral support right {{{checkbox(i_supportright)}}}
 
 Lateral support top {{{checkbox(i_supporttop,checked)}}}
 
-Reinforced {{{checkbox(i_reo,false)}}}, Grouted {{{checkbox(i_grout)}}}
-
 Vertical reo {{{input-bar(i_vbar,16)}}} {{{input(i_vspc,400,mm)}}}
 
 Horizontal reo {{{input-bar(i_hbar,16)}}} {{{input(i_hspc,400,mm)}}}
 
+Effective depth, d {{{input(i_d,95,mm)}}}
+
 Steel strength, f_{sy} {{{input(i_fsy,500,MPa)}}}
 
-Steel area, A_s {{{output(o_As,mm<sup>2</sup>/m)}}}
+Steel area, A_s {{{output(o_As,mm<sup>2</sup>)}}}
 
 * FRL (structural adequacy)
 
@@ -44,12 +44,6 @@ Slenderness ratio, S_{rf} {{{output(o_Srf)}}} {{{ref(Clause 6.3.2.2)}}}
 #+attr_html: :id FRLtable
 | Fire resistance period                  |   30 |   60 |   90 |  120 |  180 |  240 |
 |-----------------------------------------+------+------+------+------+------+------|
-| Clay units                              | 25.0 | 22.5 | 21.0 | 20.0 | 18.0 | 17.0 |
-| Calcium silicate units (<45% aggregate) | 20.5 | 19.0 | 18.0 | 17.5 | 16.5 | 15.5 |
-| Calcium silicate units (>45% aggregate) | 25.0 | 22.5 | 21.0 | 20.0 | 18.0 | 17.0 |
-| Concrete units (<45% aggregate)         | 19.5 | 18.0 | 17.0 | 16.0 | 15.5 | 15.0 |
-| Concrete units (>45% aggregate)         | 25.0 | 22.5 | 21.0 | 20.0 | 18.0 | 17.0 |
-|-----------------------------------------+------+------+------+------+------+------|
 | Reinforced masonry                      | 36.0 | 36.0 | 36.0 | 36.0 | 36.0 | 36.0 |
 
 * Design properties
@@ -58,7 +52,7 @@ Masonry compressive strength, f'_m {{{input(i_fm,6.1,MPa)}}} {{{ref(Clause 3.3.2
 
 Face shell thickness {{{input(i_tshell,30,mm)}}}
 
-Bedded area, A_b {{{output(o_Ab,mm<sup>2</sup>/m)}}} {{{ref(Clause 4.5.4)}}}
+Bedded area, A_b {{{output(o_Ab,mm<sup>2</sup>)}}} {{{ref(Clause 4.5.4)}}}
 
 Hollow concrete with \rho{}>2000kg/m^3 {{{checkbox(i_densehollow)}}} {{{ref(Clause 7.3.2)}}}
 
@@ -66,13 +60,21 @@ Grout strength factor, k_c {{{output(o_kc)}}} {{{ref(Clause 7.3.2)}}}
 
 Grout compressive strength, f'_{cg} {{{input(i_fcg,20,MPa)}}} {{{ref(Clause 3.5)}}}
 
-Grout area, A_g {{{output(o_Ag,mm<sup>2</sup>/m)}}} {{{ref(Clause 4.5.7)}}}
+Grout area, A_g {{{output(o_Ag,mm<sup>2</sup>)}}} {{{ref(Clause 4.5.7)}}}
 
 Supporting concrete slab {{{dropdown3(i_eccentricitytype,Concrete slab,Framing/other,Face supported)}}} {{{ref(Clause 7.3.3.3)}}}
 
-* Compression
+* Loading
 
-Design load, F_d {{{input(i_Fd,100,kN/m)}}}
+Axial load, F_d {{{input(i_Fd,100,kN)}}}
+
+Bending (out-of-plane), M_d {{{input(i_Md,0,kNm)}}}
+
+Shear (in-plane), V_d {{{input(i_Vd,0,kN)}}}
+
+Shear (out-of-plane), V_d {{{input(i_Vd2,0,kN)}}}
+
+* Compression
 
 Capacity reduction factor, \Phi {{{output(o_phi_rF)}}} {{{ref(Clause 4.4)}}}
 
@@ -80,14 +82,54 @@ Reduction factor, k_s {{{output(o_ks)}}} {{{ref(Clause 8.5)}}}
 
 Reduction factor, k {{{output(o_k)}}} {{{ref(Clause 7.3.3.3)}}}
 
-Capacity, \Phi{}F_u {{{output(o_phiFu,kN/m)}}} {{{ref(Clasue 7.3.2)}}}
+Capacity, \Phi{}F_u {{{output(o_phiFu,kN)}}} {{{ref(Clasue 7.3.2)}}}
 
 Ratio, F_d/\Phi{}F_u {{{output(o_compressionratio)}}}
 
 * Bending
 ** Out-of-plane
+
+Design tensile steel, A_{sd} {{{output(o_Asd,mm<sup>2</sup>)}}} {{{ref(Clause 8.6)}}}
+
+Capacity reduction factor, \Phi {{{output(o_phiM)}}} {{{ref(Clause 4.4)}}}
+
+Capacity, \Phi{}M_u {{{output(o_phiMu,kNm)}}} {{{ref(Clause 8.6)}}}
+
+Ratio, M_d/\Phi{}M_u {{{output(o_oopbendingratio)}}}
+
 ** In-plane
 
+* Shear
+
+Capacity reduction factor, \Phi {{{output(o_phiV)}}} {{{ref(Clause 4.4)}}}
+
+** In-plane
+
+Long wall check, H/L {{{output(o_HonL)}}} {{{ref((if failing design to Clause 8.8))}}}
+
+Effective shear strength, f_{vr} {{{output(o_fvr,MPa)}}} {{{ref(Clause 8.7.2)}}}
+
+Design cross-sectional area, A_d {{{output(o_Ad,mm<sup>2</sup>)}}} {{{ref(Clause 4.5.6)}}}
+
+Design reinforcement area, A_s {{{output(o_As2,mm<sup>2</sup>)}}} {{{ref(Clause 8.7.2)}}}
+
+Capacity, \Phi{}V_u {{{output(o_phiVuip,kN)}}} {{{ref(Clause 8.7.2)}}}
+
+Ratio, V_d/\Phi{}V_u {{{output(o_ipshearratio)}}}
+
+** In-plane stability
+
+** Out-of-plane
+
+Characteristic shear strength, f'_{vm} {{{output(o_fvm,MPa)}}} {{{ref(Clause 8.8)}}}
+
+Design shear strength main reinfocement, f'_{vs} {{{output(o_fvs,MPa)}}} {{{ref(Clause 8.8)}}}
+
+Area of longitudinal steel in tension zone, A_{st} {{{output(o_Ast,mm<sup>2</sup>)}}} {{{ref(Clause 8.8)}}}
+
+Capacity, \Phi{}V_u {{{output(o_phiVuop,kN)}}} {{{ref(Clause 8.8)}}}
+
+Ratio, V_d/\Phi{}V_u {{{output(o_opshearratio)}}}
 
 * Export on save                                                   :noexport:
 ;; Local Variables:
