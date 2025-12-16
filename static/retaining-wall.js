@@ -29,7 +29,7 @@ function initPage()
     output('o_Pa', {units:'kN/m'});
     // output('o_Pp', {units:'kN/m'});
     output('o_Ma', {units:'kNm/m'});
-    output('o_Pstar', {units:'kNm/m'});
+    output('o_Pstar', {units:'kN/m'});
     output('o_Mstar', {units:'kNm/m'});
 
     // Wall bending
