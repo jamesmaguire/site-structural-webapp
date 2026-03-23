@@ -24,6 +24,7 @@
 *** [[file:apps/strip-footing.org][Strip footings]]
 *** [[file:apps/bored-piles.org][Bored piles]]
 *** [[file:apps/secant-pile-properties.org][Secant pile properties]]
+*** [[file:apps/soldier-pile.org][Soldier pile walls]]
 
 ** Reinforced concrete design
 *** TODO [[file:apps/rc-columns-rect.org][RC Column (rect)]]
@@ -40,7 +41,6 @@
 *** [[file:apps/load-combinations.org][Load combinations]]
 *** [[file:apps/wind-loading.org][Wind loading]]
 *** [[file:apps/earthquake-loading.org][Earthquake loading]]
-*** [[file:apps/beam-formulas.org][Beam load formulas]]
 
 ** Structural steel
 *** [[file:apps/rebar-properties.org][Rebar properties]]
@@ -48,6 +48,8 @@
 *** TODO [[file:apps/steel-capacities.org][Steel capacities]]
 
 ** Other tools
+*** TODO [[file:apps/staticsformulas.org][Statics formulas]]
+*** [[file:apps/beam-formulas.org][Beam load formulas]]
 *** [[file:apps/sdof-oscillator.org][SDOF oscillator]]
 *** TODO [[file:apps/rates-columns.org][Columns steel rates]]
 * Blog apps

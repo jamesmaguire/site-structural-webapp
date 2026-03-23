@@ -3,6 +3,7 @@
 #+options: toc:1 num:nil
 #+options: html-postamble:nil
 #+options: html-style:nil
+#+options: tex:t
 #+html_head: <link rel="stylesheet" type="text/css" href="../static/post.css" />
 #+html_head: <link rel="stylesheet" type="text/css" href="../static/print.css" media="print" />
 #+html_head: <script type="text/javascript" src="../static/general.js"></script>
