@@ -1,0 +1,58 @@
+#+title: Stair weight calculator
+
+#+setupfile: post.setup
+#+HTML_HEAD: <script type="text/javascript" src="../static/stair-weight.js" defer></script>
+#+include: "../statusicon.org"
+
+* Figure
+
+{{{div(stairFigure)}}}
+
+* Stair dimensions
+
+Plan Width, B {{{input(i_B,1000,mm)}}}
+
+Plan length, L {{{input(i_L,2500,mm)}}}
+
+Elevation change, H {{{input(i_H,1500,mm)}}}
+
+Number of risers {{{input(i_n,8)}}}
+
+Throat thickness, t {{{input(i_t,170,mm)}}}
+
+* Dimension checks
+(to Table 11.2.2a NCC 2022)
+
+Riser height, R {{{output(o_R,mm)}}} {{{ref(115 mm < R < 190 mm)}}}
+
+Going length, G {{{output(o_G,mm)}}} {{{ref(240 mm < G < 355 mm)}}}
+
+Slope relationship, 2R+G {{{output(o_sloperel,mm)}}} {{{ref(550 mm < 2R+G < 700 mm)}}}
+
+* Quantities + weight
+
+Throat volume {{{output(o_Vthroat,m<sup>3</sup>)}}}
+
+Tread volume {{{output(o_Vtread,m<sup>3</sup>)}}}
+
+Total volume {{{output(o_V,m<sup>3</sup>)}}}
+
+Concrete weight {{{input(i_density,25,kN/m<sup>3</sup>)}}}
+
+Self weight, SW {{{output(o_SW,kN)}}}, {{{output(o_SWkg,kg)}}}, {{{output(o_SWkPa,kPa)}}}
+
+* Loads
+** Total
+SDL {{{input(i_SDL,0,kPa)}}}, LL {{{input(i_LL,4,kPa)}}}
+
+SW+SDL {{{output(o_DL,kN)}}}, LL {{{output(o_LL,kN)}}}
+
+** Per landing
+SW+SDL {{{output(o_DLpl,kN)}}}, LL {{{output(o_LLpl,kN)}}}
+
+SW+SDL {{{output(o_DLplpm,kN/m)}}}, LL {{{output(o_LLplpm,kN/m)}}}
+
+* Export on save                                                   :noexport:
+;; Local Variables:
+;; eval: (add-hook 'after-save-hook 'org-html-export-to-html nil t)
+;; End:

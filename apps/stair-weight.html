@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-04-11 Sat 14:09 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Stair weight calculator</title>
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" type="text/css" href="../static/post.css" />
+<link rel="stylesheet" type="text/css" href="../static/print.css" media="print" />
+<script type="text/javascript" src="../static/general.js"></script>
+<link rel="icon" type="image/ico" href="../static/icon/favicon.svg" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script type="text/javascript" src="../static/stair-weight.js" defer></script>
+</head>
+<body>
+<div id="org-div-home-and-up"> <img src="../static/icon/logo.svg" /> <a href="../index.html"> Home </a> </div><div id="content" class="content">
+<h1 class="title">Stair weight calculator</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org85be616">Figure</a></li>
+<li><a href="#org40922f8">Stair dimensions</a></li>
+<li><a href="#org34d8a6d">Dimension checks</a></li>
+<li><a href="#org3b2ef61">Quantities + weight</a></li>
+<li><a href="#orgf05efe5">Loads</a></li>
+</ul>
+</div>
+</div>
+<p>
+<button id='statusbutton' onclick='updatePage();'>▶ Run analysis</button>
+</p>
+<div id="outline-container-org85be616" class="outline-2">
+<h2 id="org85be616">Figure</h2>
+<div class="outline-text-2" id="text-org85be616">
+<p>
+<div id="stairFigure"></div>
+</p>
+</div>
+</div>
+<div id="outline-container-org40922f8" class="outline-2">
+<h2 id="org40922f8">Stair dimensions</h2>
+<div class="outline-text-2" id="text-org40922f8">
+<p>
+Plan Width, B <span class="inputspan"><input id="i_B" class="right" type="number" value="1000" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> mm</span>
+</p>
+
+<p>
+Plan length, L <span class="inputspan"><input id="i_L" class="right" type="number" value="2500" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> mm</span>
+</p>
+
+<p>
+Elevation change, H <span class="inputspan"><input id="i_H" class="right" type="number" value="1500" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> mm</span>
+</p>
+
+<p>
+Number of risers <span class="inputspan"><input id="i_n" class="right" type="number" value="8" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> </span>
+</p>
+
+<p>
+Throat thickness, t <span class="inputspan"><input id="i_t" class="right" type="number" value="170" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> mm</span>
+</p>
+</div>
+</div>
+<div id="outline-container-org34d8a6d" class="outline-2">
+<h2 id="org34d8a6d">Dimension checks</h2>
+<div class="outline-text-2" id="text-org34d8a6d">
+<p>
+(to Table 11.2.2a NCC 2022)
+</p>
+
+<p>
+Riser height, R <span class="outputspan"><input id="o_R" class="right" type="number" value="0" readonly> mm</span> <span class="reference refpad">115 mm < R < 190 mm</span>
+</p>
+
+<p>
+Going length, G <span class="outputspan"><input id="o_G" class="right" type="number" value="0" readonly> mm</span> <span class="reference refpad">240 mm < G < 355 mm</span>
+</p>
+
+<p>
+Slope relationship, 2R+G <span class="outputspan"><input id="o_sloperel" class="right" type="number" value="0" readonly> mm</span> <span class="reference refpad">550 mm < 2R+G < 700 mm</span>
+</p>
+</div>
+</div>
+<div id="outline-container-org3b2ef61" class="outline-2">
+<h2 id="org3b2ef61">Quantities + weight</h2>
+<div class="outline-text-2" id="text-org3b2ef61">
+<p>
+Throat volume <span class="outputspan"><input id="o_Vthroat" class="right" type="number" value="0" readonly> m<sup>3</sup></span>
+</p>
+
+<p>
+Tread volume <span class="outputspan"><input id="o_Vtread" class="right" type="number" value="0" readonly> m<sup>3</sup></span>
+</p>
+
+<p>
+Total volume <span class="outputspan"><input id="o_V" class="right" type="number" value="0" readonly> m<sup>3</sup></span>
+</p>
+
+<p>
+Concrete weight <span class="inputspan"><input id="i_density" class="right" type="number" value="25" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> kN/m<sup>3</sup></span>
+</p>
+
+<p>
+Self weight, SW <span class="outputspan"><input id="o_SW" class="right" type="number" value="0" readonly> kN</span>, <span class="outputspan"><input id="o_SWkg" class="right" type="number" value="0" readonly> kg</span>, <span class="outputspan"><input id="o_SWkPa" class="right" type="number" value="0" readonly> kPa</span>
+</p>
+</div>
+</div>
+<div id="outline-container-orgf05efe5" class="outline-2">
+<h2 id="orgf05efe5">Loads</h2>
+<div class="outline-text-2" id="text-orgf05efe5">
+</div>
+<div id="outline-container-org8ab2af5" class="outline-3">
+<h3 id="org8ab2af5">Total</h3>
+<div class="outline-text-3" id="text-org8ab2af5">
+<p>
+SDL <span class="inputspan"><input id="i_SDL" class="right" type="number" value="0" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> kPa</span>, LL <span class="inputspan"><input id="i_LL" class="right" type="number" value="4" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> kPa</span>
+</p>
+
+<p>
+SW+SDL <span class="outputspan"><input id="o_DL" class="right" type="number" value="0" readonly> kN</span>, LL <span class="outputspan"><input id="o_LL" class="right" type="number" value="0" readonly> kN</span>
+</p>
+</div>
+</div>
+<div id="outline-container-org17d7e08" class="outline-3">
+<h3 id="org17d7e08">Per landing</h3>
+<div class="outline-text-3" id="text-org17d7e08">
+<p>
+SW+SDL <span class="outputspan"><input id="o_DLpl" class="right" type="number" value="0" readonly> kN</span>, LL <span class="outputspan"><input id="o_LLpl" class="right" type="number" value="0" readonly> kN</span>
+</p>
+
+<p>
+SW+SDL <span class="outputspan"><input id="o_DLplpm" class="right" type="number" value="0" readonly> kN/m</span>, LL <span class="outputspan"><input id="o_LLplpm" class="right" type="number" value="0" readonly> kN/m</span>
+</p>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

@@ -37,10 +37,11 @@
 *** [[file:apps/punching-shear.org][Punching shear]]
 *** [[file:apps/slab-design.org][Slab design]]
 
-** Design actions
+** Design action calculators
 *** [[file:apps/load-combinations.org][Load combinations]]
 *** [[file:apps/wind-loading.org][Wind loading]]
 *** [[file:apps/earthquake-loading.org][Earthquake loading]]
+*** [[file:apps/stair-weight.org][Stair weight calculator]]
 
 ** Structural steel
 *** [[file:apps/rebar-properties.org][Rebar properties]]
