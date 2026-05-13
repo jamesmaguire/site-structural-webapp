@@ -32,11 +32,11 @@ body {
 /*   padding-top: 0.5rem; */
 }
 .outline-3 {
+  margin-top: 0.5rem;
   margin-bottom: 1.5rem;
-}
-
-.outline-4 {
-    display: inline-block;
+  margin-left: 0.5rem;
+  padding-left: 1rem;
+  border-left: 1px solid #555;
 }
 
 h1 {
@@ -50,18 +50,21 @@ h1 {
   height: 5rem;
 }
 h2 {
+/*   text-transform: uppercase; */
   padding-bottom: 0.5rem;
 }
 h3 {
-  font-weight: normal;
+  color: #666;
+  font-weight: bold;
+  font-size: 100%;
   padding-bottom: 0.5rem;
 }
 h4 {
   padding: 0.4rem;
   margin: 0.4rem;
-  width: 22ch;
+  width: 40ch;
   border: 1px solid #d3d3d3;
-  text-align: center;
+  text-align: left;
 }
 h4:hover {
   background-color: #ddd5;
@@ -103,4 +106,13 @@ input {
 }
 .done {
   display: none;
+}
+
+#filterInput {
+  width: 55ch;
+  text-align: left;
+  padding: 0.4rem;
+  margin: 0.4rem;
+  width: 22ch;
+  border: 1px solid #d3d3d3;
 }

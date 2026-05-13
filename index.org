@@ -3,19 +3,21 @@
 
 [[file:./static/icon/logo.svg]]
 
-* Application index
+* Applications
+
+@@html:<div id="filterinput"><input type="text" id="filterInput" onkeyup="indexFilter()" placeholder="Filter"></div>@@
 
 ** AS3600 Concrete Structures
-*** [[file:apps/AS3600Sec3-Shrinkage.org][Section 3.1.7 / Shrinkage]]
-*** [[file:apps/AS3600Sec8-Beams.org][Section 8 / Beams]]
-*** [[file:apps/AS3600Sec9-2-IntegrityReo.org][Section 9.2 / Integrity reinforcement]]
+*** [[file:apps/AS3600Sec3-Shrinkage.org][AS3600 Cl l3.1.7 - Shrinkage]]
+*** [[file:apps/AS3600Sec8-Beams.org][AS3600 Sec 8 - Beams]]
+*** [[file:apps/AS3600Sec9-2-IntegrityReo.org][AS3600 Cl 9.2 - Integrity reinforcement]]
 
-** AS5100.5 Bridge Concrete
-*** [[file:apps/AS5100-5Sec8-Beams.org][Section 8 / Beams]]
+** AS5100 Bridges
+*** [[file:apps/AS5100-5Sec8-Beams.org][AS5100 Sec 8 - Beams]]
 
 ** AS3700 Masonry Structures
-*** [[file:apps/AS3700Sec6-FireResistance.org][Section 6 / Fire reisitance]]
-*** TODO [[file:apps/AS3700Sec8-ReinforcedMasonry.org][Section 8 / Reinforced masonry]]
+*** [[file:apps/AS3700Sec6-FireResistance.org][AS3700 Sec 6 - Fire reisitance]]
+*** TODO [[file:apps/AS3700Sec8-ReinforcedMasonry.org][AS3700 Sec 8 - Reinforced masonry]]
 
 ** Foundations and retaining
 *** [[file:apps/retaining-wall.org][Retaining wall]]
