@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-08-11 Tue 13:40 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Soldier Pile Wall Prelim Calculations</title>
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" type="text/css" href="../static/post.css" />
+<link rel="stylesheet" type="text/css" href="../static/print.css" media="print" />
+<script type="text/javascript" src="../static/general.js"></script>
+<link rel="icon" type="image/ico" href="../static/icon/favicon.svg" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script type="text/javascript" src="../static/soldier-pile.js" defer></script>
+</head>
+<body>
+<div id="org-div-home-and-up"> <img src="../static/icon/logo.svg" /> <a href="../index.html"> Home </a> </div><div id="content" class="content">
+<h1 class="title">Soldier Pile Wall Prelim Calculations</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgbc6ca8e">Figure</a></li>
+<li><a href="#org6792778">Wall properties</a></li>
+<li><a href="#org6e7798e">Free length calculator</a></li>
+</ul>
+</div>
+</div>
+<p>
+<button id='statusbutton' onclick='updatePage();'>▶ Run analysis</button>
+</p>
+<div id="outline-container-orgbc6ca8e" class="outline-2">
+<h2 id="orgbc6ca8e">Figure</h2>
+<div class="outline-text-2" id="text-orgbc6ca8e">
+<p>
+<div id="wallFigure"></div>
+</p>
+</div>
+</div>
+<div id="outline-container-org6792778" class="outline-2">
+<h2 id="org6792778">Wall properties</h2>
+<div class="outline-text-2" id="text-org6792778">
+<p>
+Pile diameter, D <span id="i_D"></span>
+</p>
+
+<p>
+Spacing <span id="i_spacing"></span>
+</p>
+
+<p>
+Concrete strength, f'<sub>c</sub> <span id="i_fc"></span>
+</p>
+
+<p>
+Stiffness, E<sub>c</sub> <span id="o_Ec"></span>
+</p>
+
+<p>
+Moment of inertia, I<sub>wall</sub> <span id="o_Iwall"></span>
+</p>
+
+<p>
+Moment of inertia, I<sub>pile</sub> <span id="o_Ipile"></span>
+</p>
+
+<p>
+EI per unit length <span id="o_EI"></span>
+</p>
+</div>
+</div>
+<div id="outline-container-org6e7798e" class="outline-2">
+<h2 id="org6e7798e">Free length calculator</h2>
+<div class="outline-text-2" id="text-org6e7798e">
+<p>
+NGL RL <span id="i_NGL"></span>
+</p>
+
+<p>
+Anchor RL <span id="i_RLAnchor"></span>
+</p>
+
+<p>
+BEL RL <span id="i_BEL"></span>
+</p>
+
+<p>
+Anchor angle <span id="i_theta"></span>
+</p>
+
+<p>
+Free length <span id="o_Lfree"></span>
+</p>
+</div>
+</div>
+</div>
+</body>
+</html>

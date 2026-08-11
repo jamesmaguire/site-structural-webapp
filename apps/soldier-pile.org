@@ -1,0 +1,42 @@
+#+title: Soldier Pile Wall Prelim Calculations
+
+#+setupfile: post.setup
+#+HTML_HEAD: <script type="text/javascript" src="../static/soldier-pile.js" defer></script>
+#+include: "../statusicon.org"
+
+* Figure
+
+{{{div(wallFigure)}}}
+
+* Wall properties
+
+Pile diameter, D {{{span(i_D)}}}
+
+Spacing {{{span(i_spacing)}}}
+
+Concrete strength, f'_c {{{span(i_fc)}}}
+
+Stiffness, E_c {{{span(o_Ec)}}}
+
+Moment of inertia, I_wall {{{span(o_Iwall)}}}
+
+Moment of inertia, I_pile {{{span(o_Ipile)}}}
+
+EI per unit length {{{span(o_EI)}}}
+
+* Free length calculator
+
+NGL RL {{{span(i_NGL)}}}
+
+Anchor RL {{{span(i_RLAnchor)}}}
+
+BEL RL {{{span(i_BEL)}}}
+
+Anchor angle {{{span(i_theta)}}}
+
+Free length {{{span(o_Lfree)}}}
+
+* Export on save                                                   :noexport:
+;; Local Variables:
+;; eval: (add-hook 'after-save-hook 'org-html-export-to-html nil t)
+;; End:
