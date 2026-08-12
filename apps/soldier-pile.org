@@ -6,7 +6,9 @@
 
 * Figure
 
-{{{div(wallFigure)}}}
+{{{div(wallElevation)}}}
+
+{{{div(wallSection)}}}
 
 * Wall properties
 

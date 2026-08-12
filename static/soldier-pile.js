@@ -74,26 +74,26 @@ function updatePage()
     s.Lfree = (s.RLAnchor-s.BEL)/
         ((1+Math.tan(radians(45))/Math.tan(radians(s.theta)))*Math.sin(radians(s.theta)));
     
-    console.log(s);
     writeOutputs(s);
     drawFigure(s);
     setStatusUptodate();
 }
 
 function drawFigure(s) {
-    wallFigure.innerHTML='';
     const svgNS = 'http://www.w3.org/2000/svg';
 
     const margin = {left:50, right:50, top:50, bottom:50},
           height = 500 - margin.top - margin.bottom,
           width = 500 - margin.left - margin.right;
 
-    const sf = Math.min(width/5, height/(s.NGL-s.BEL));
+    const sf = height/(1.5*(s.NGL-s.BEL));
 
     const xmap = n => margin.left + sf*n + width/2;
-    const ymap = n => margin.top  - sf*n;
+    const ymap = n => margin.top  - sf*n + sf*s.NGL;
 
-    const svg = svgElemAppend(wallFigure, 'svg', {
+    // WALL SECTION ------------------------------------------------------------
+    wallSection.innerHTML='';
+    let svg = svgElemAppend(wallSection, 'svg', {
         width: width + margin.left + margin.right,
         height: height + margin.top + margin.bottom,
         viewBox:`0 0 `
@@ -102,32 +102,47 @@ function drawFigure(s) {
         preserveAspectRatio:"xMidYMid",
     });
 
+    // Soil
+    const H = s.NGL - s.BEL;
+    let bfillpath = `M${xmap(0)} ${ymap(s.NGL)}`
+        + `L${xmap(-1.1*(s.NGL-s.BEL))} ${ymap(s.NGL)}`
+        + `L${xmap(-1.1*(s.NGL-s.BEL))} ${ymap(s.NGL-1.1*H)}`
+        + ` ${xmap(-1.1*(s.NGL-s.BEL))} ${ymap(s.NGL-1.5*H)}`
+        + `L${xmap(10)} ${ymap(s.NGL-1.5*H)}`
+        + `L${xmap(10)} ${ymap(s.NGL-H)}`
+        + `L${xmap(0)} ${ymap(s.NGL-H)}`
+        + `Z`;
+    svgElemAppend(svg, 'path', {
+        class: 'backfill',
+        d: bfillpath
+    });
+
     // NGL
     svgElemAppend(svg, 'line', {
         class:'concrete',
         x1:xmap(0), y1:ymap(s.NGL),
-        x2:xmap(-20), y2:ymap(s.NGL)
+        x2:xmap(-1.1*(s.NGL-s.BEL)), y2:ymap(s.NGL)
     });
 
     // BEL
     svgElemAppend(svg, 'line', {
         class:'concrete',
         x1:xmap(0), y1:ymap(s.BEL),
-        x2:xmap(20), y2:ymap(s.BEL)
-    });
-
-    // ZOI
-    svgElemAppend(svg, 'line', {
-        class:'concrete',
-        x1:xmap(0), y1:ymap(s.BEL),
-        x2:xmap(-s.NGL+s.BEL), y2:ymap(s.NGL)
+        x2:xmap(10), y2:ymap(s.BEL)
     });
 
     // Pile
     svgElemAppend(svg, 'rect', {
         class:'concrete',
-        x:xmap(0), y:ymap(s.NGL),
-        width:sf*s.D/1000, height:sf*(s.NGL-s.BEL)
+        x:xmap(-s.D/1000), y:ymap(s.NGL),
+        width:sf*s.D/1000, height:1.3*sf*(s.NGL-s.BEL)
+    });
+
+    // ZOI
+    svgElemAppend(svg, 'line', {
+        class:'concrete dashed',
+        x1:xmap(0), y1:ymap(s.BEL),
+        x2:xmap(-s.NGL+s.BEL), y2:ymap(s.NGL)
     });
 
     const radians = a => a*Math.PI/180;
@@ -136,15 +151,90 @@ function drawFigure(s) {
 
     // Anchor
     svgElemAppend(svg, 'line', {
-        class:'concrete',
+        class:'planrebar',
         x1:xmap(0), y1:ymap(s.RLAnchor),
         x2:xmap(-Lx), y2:ymap(s.RLAnchor-Ly)
     });
-    svgElemAppend(svg, 'line', {
+    const socketLen = 3;
+    const socketDia = 0.2;
+    svgElemAppend(svg, 'rect', {
         class:'concrete',
-        x1:xmap(-Lx), y1:ymap(s.RLAnchor-Ly),
-        x2:xmap(-1.5*Lx), y2:ymap(s.RLAnchor-1.5*Ly)
+        x:xmap(-Lx), y:ymap(s.RLAnchor-Ly),
+        width:sf*socketDia, height:sf*socketLen,
+        transform:`rotate(${90-s.theta}, ${xmap(-Lx)}, ${ymap(s.RLAnchor-Ly+socketDia/2)})`
+
     });
+    svgElemAppend(svg, 'rect', {
+        class:'rebar',
+        x:xmap(0), y:ymap(s.RLAnchor),
+        width:sf*socketDia, height:sf*s.D/4/1000,
+        transform:`rotate(${90-s.theta}, ${xmap(0)}, ${ymap(s.RLAnchor+socketDia/2)})`
+
+    });
+
+    // Capping beam
+    const cbH = 0.5;
+    const cbW = s.D/1000+0.125;
+    svgElemAppend(svg, 'rect', {
+        class:'concrete',
+        x:xmap(-0.025-s.D/1000), y:ymap(s.NGL),
+        width:sf*cbW, height:sf*cbH
+    });
+
+
+    // WALL ELEVATION  ---------------------------------------------------------
+    wallElevation.innerHTML='';
+    let svg2 = svgElemAppend(wallSection, 'svg', {
+        width: width + margin.left + margin.right,
+        height: height + margin.top + margin.bottom,
+        viewBox:`0 0 `
+            +`${width + margin.left + margin.top} `
+            +`${height + margin.top + margin.bottom}`,
+        preserveAspectRatio:"xMidYMid",
+    });
+
+    const npiles = 10;
+
+    // Soil
+    svgElemAppend(svg2, 'rect', {
+        class:'backfill',
+        x:xmap(-s.spacing/1000*npiles/2), y:ymap(s.NGL),
+        width:sf*(s.spacing/1000*npiles+s.D/1000), height:1.5*sf*(s.NGL-s.BEL)
+    });
+
+    // Pile
+    for (let i=0; i<npiles; i++) {
+        svgElemAppend(svg2, 'rect', {
+            class:'concrete',
+            x:xmap(-s.spacing/1000*(npiles-1)/2 + i*s.spacing/1000), y:ymap(s.NGL),
+            width:sf*s.D/1000, height:1.3*sf*(s.NGL-s.BEL)
+        });
+    }
+
+    // Anchors
+    for (let i=0; i<npiles; i++) {
+        svgElemAppend(svg2, 'circle', {
+            class:'planrebar',
+            r:sf*socketDia/2,
+            cx:xmap(-s.spacing/1000*(npiles-1)/2 + i*s.spacing/1000 + s.D/1000/2), cy:ymap(s.RLAnchor)
+        });
+    }
+
+    // BEL
+    svgElemAppend(svg2, 'line', {
+        class:'concrete dashed',
+        x1:xmap(-s.spacing/1000*npiles/2), y1:ymap(s.BEL),
+        x2:xmap(s.spacing/1000*npiles/2+s.D/1000), y2:ymap(s.BEL)
+    });
+
+    // Capping beam
+    svgElemAppend(svg2, 'rect', {
+        class:'concrete',
+        x:xmap(-s.spacing/1000*npiles/2), y:ymap(s.NGL),
+        width:sf*(s.spacing/1000*npiles+s.D/1000), height:sf*cbH
+    });
+
+
 
 }
 
