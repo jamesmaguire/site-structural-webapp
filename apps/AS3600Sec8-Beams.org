@@ -33,6 +33,26 @@ Area tensile steel {{{span(o_Ast)}}}
 
 Area compression steel {{{span(o_Asc)}}}
 
+* Post-tensioning
+
+Number of tendons {{{span(i_ntendons)}}}
+
+Strands per tendon {{{span(i_nstrands)}}}
+
+Chair height {{{span(i_chair)}}}
+
+Strand diameter {{{span(i_dstrand)}}}
+
+Strand breaking strength, f_{pb} {{{span(o_fpb)}}}
+
+Duct diameter {{{span(i_dduct)}}}
+
+Tendon at top of duct {{{checkbox(i_tendontop,checked)}}}
+
+Tendon depth, d_p {{{span(o_dp)}}}
+
+Area of strands, A_p {{{span(o_Ap)}}}
+
 * Material properties
 
 Concrete strength, f'_c {{{span(i_fc)}}}
@@ -48,6 +68,10 @@ Steel strength, f_{sy} {{{span(i_fsy)}}}
 Steel modulus, E_s {{{span(i_Es)}}}
 
 Steel ult. strain, \varepsilon_{su} {{{span(o_esu)}}}
+
+Prestress after losses, % of f_{pb} {{{span(i_fpepct)}}} {{{ref(65–75% typical)}}}
+
+Effective prestress, f_{pe} {{{span(o_fpe)}}}
 
 Fitment steel strength, f_{sy.f} {{{input(i_fsyf,500,MPa)}}}
 
@@ -65,6 +89,8 @@ Neutral axis parameter, k_u {{{span(o_ku)}}}
 
 Plastic neutral axis, d_n {{{span(o_dn)}}}
 
+Tendon stress at ultimate, f_p {{{span(o_fp)}}}
+
 Moment capacity, M_{uo} {{{span(o_Muo)}}}
 
 Capacity reduction factor, \Phi {{{span(o_phi)}}}  {{{ref(Table 2.2.2)}}}
@@ -78,6 +104,10 @@ Moment check, M*/\Phi{}M_{uo} {{{span(momentCheck)}}}
 Section modulus, Z {{{span(o_Z)}}}
 
 Concrete flex.ten. strength, f'_{ct.f} {{{span(o_fctf)}}} {{{ref(Section 3.1.1.3)}}}
+
+Effective prestress force, P_e {{{span(o_Pe)}}}
+
+Tendon eccentricity, e {{{span(o_e)}}}
 
 Minimum bending strength, M_{uo,min} {{{span(o_Muomin)}}} {{{ref(Equation 8.1.6.1(1))}}}
 

@@ -17,6 +17,16 @@ function initPage()
     output('o_Ast', {units:'mm<sup>2</sup>'});
     output('o_Asc', {units:'mm<sup>2</sup>'});
 
+    // Post-tensioning
+    input('i_ntendons', {initval:0});
+    input('i_nstrands', {initval:5});
+    dropdown('i_dstrand', ["12.7 mm", "15.2 mm"]);
+    input('i_chair', {initval:30, units:'mm'});
+    input('i_dduct', {initval:20, units:'mm'});
+    output('o_fpb', {units:'MPa'});
+    output('o_dp', {units:'mm'});
+    output('o_Ap', {units:'mm<sup>2</sup>'});
+
     // Material properties
     input('i_fc', {initval:40, units:'MPa'});
     output('i_ecu');
@@ -24,6 +34,8 @@ function initPage()
     output('o_gamma');
     input('i_fsy', {initval:500, units:'MPa'});
     input('i_Es', {initval:200, units:'GPa'});
+    input('i_fpepct', {initval:65, units:'%'});
+    output('o_fpe', {units:'MPa'});
     output('o_esu');
 
     // Loading
@@ -33,6 +45,7 @@ function initPage()
     // Bending capacity
     output('o_ku');
     output('o_dn', {units:'mm'});
+    output('o_fp', {units:'MPa'});
     output('o_Muo', {units:'kNm'});
     output('o_phi');
     output('o_phiMuo', {units:'kNm'});
@@ -41,6 +54,8 @@ function initPage()
     // Min strength
     output('o_Z', {units:'mm<sup>3</sup>'});
     output('o_fctf', {units:'MPa'});
+    output('o_Pe', {units:'kN'});
+    output('o_e', {units:'mm'});
     output('o_Muomin', {units:'kNm'});
     output('momentminCheck');
 
@@ -98,6 +113,12 @@ function drawFigure()
         nbc:i_nbc.valueAsNumber,
         nbt:i_nbt.valueAsNumber,
         nbe:i_nbe.valueAsNumber,
+        ntendons:i_ntendons.valueAsNumber,
+        nstrands:i_nstrands.valueAsNumber,
+        dstrand:Number(i_dstrand.value.split(" ")[0]),
+        chair:i_chair.valueAsNumber,
+        dduct:i_dduct.valueAsNumber,
+        tendontop:i_tendontop.checked,
     };
 
     const margin = {left:50, right:50, top:50, bottom:50},
@@ -182,6 +203,38 @@ function drawFigure()
         });
     }
 
+    // Post-tensioned tendons
+    if (beam.ntendons > 0 && beam.nstrands > 0) {
+        const ductW = 70; // ducts drawn as 70 mm wide rectangles
+        const gap = (beam.B - beam.ntendons*ductW)/(beam.ntendons + 1);
+        for (let t = 0; t < beam.ntendons; t++) {
+            const xc = gap + ductW/2 + t*(ductW + gap);
+
+            // Duct (rectangle), underside at chair height above soffit
+            svgElemAppend(svg, 'rect', {
+                class:'duct',
+                x:xmap(xc - ductW/2),
+                y:ymap(beam.chair + beam.dduct),
+                width:sf*ductW,
+                height:sf*beam.dduct,
+            });
+
+            // Strands side by side, centred in the duct
+            const ys = beam.tendontop
+                ? beam.chair + beam.dduct - beam.dstrand/2 // top of duct
+                : beam.chair + beam.dstrand/2;             // bottom of duct
+            for (let s = 0; s < beam.nstrands; s++) {
+                svgElemAppend(svg, 'circle', {
+                    class:'rebar',
+                    cx:xmap(xc - beam.nstrands*beam.dstrand/2
+                            + beam.dstrand/2 + s*beam.dstrand),
+                    cy:ymap(ys),
+                    r:sf*beam.dstrand/2,
+                });
+            }
+        }
+    }
+
 }
 
 function runCalcs() {
@@ -197,6 +250,12 @@ function runCalcs() {
         dbs:i_dbs.valueAsNumber,
         dbspc:i_dbspc.valueAsNumber,
         c:i_c.valueAsNumber,
+        ntendons:i_ntendons.valueAsNumber,
+        nstrands:i_nstrands.valueAsNumber,
+        dstrand:Number(i_dstrand.value.split(" ")[0]),
+        chair:i_chair.valueAsNumber,
+        dduct:i_dduct.valueAsNumber,
+        tendontop:i_tendontop.checked,
     };
 
     // Beam parameters
@@ -208,6 +267,15 @@ function runCalcs() {
     o_a.value = beam.a;
     o_Ast.value = (beam.Ast).toFixed(0);
     o_Asc.value = (beam.Asc).toFixed(0);
+
+    // Post-tensioning
+    const Astrand = xlookup(beam.dstrand, [12.7, 15.2], [98.7, 140]); // AS/NZS 4672
+    beam.Ap = beam.ntendons*beam.nstrands*Astrand;
+    beam.dp = beam.tendontop
+        ? beam.D - beam.chair - beam.dduct + beam.dstrand/2 // strand at top of duct
+        : beam.D - beam.chair - beam.dstrand/2;             // strand at bottom of duct
+    o_Ap.value = beam.Ap.toFixed(0);
+    o_dp.value = beam.dp.toFixed(1);
 
     // Material properties
     let concrete = {
@@ -225,6 +293,12 @@ function runCalcs() {
         Es:i_Es.valueAsNumber,
         fsyf:i_fsyf.valueAsNumber,
     };
+    steel.fpb = xlookup(beam.dstrand, [12.7, 15.2], [1870, 1790]); // AS 3600
+    steel.fpe = i_fpepct.valueAsNumber/100*steel.fpb;
+    o_fpe.value = steel.fpe.toFixed(0);
+    o_fpb.value = steel.fpb.toFixed(0);
+    steel.fpy = {"12.7":1533, "15.2":1468}[beam.dstrand];
+    steel.epy = steel.fpy/(steel.Es*1000);
     steel.esu = steel.fsy/(steel.Es*1000);
     o_esu.value = steel.esu;
 
@@ -236,6 +310,9 @@ function runCalcs() {
     let phi = bendingPhi(ku);
     o_ku.value = (ku).toFixed(3);
     o_dn.value = (dn).toFixed(1);
+    o_fp.value = beam.Ap > 0
+        ? (-steel.Es*1000*tendonStrain(ku, beam, concrete, steel)).toFixed(0)
+        : 0;
     o_Muo.value = Muo.toPrecision(3);
     o_phi.value = phi.toFixed(2);
     o_phiMuo.value = (phi*Muo).toPrecision(3);
@@ -246,11 +323,15 @@ function runCalcs() {
         setPassFail(o_ku, 0.36);
     }
 
-    beam.Z = beam.B * beam.d**2 / 6;
+    beam.Z = beam.B * beam.D**2 / 6;
     concrete.fctf = 0.6*Math.sqrt(concrete.fc);
-    let Muomin = 1.2*beam.Z*concrete.fctf/1000**2;
+    const Pe = beam.Ap*steel.fpe/1000; // effective prestress force, kN
+    const ep = beam.Ap > 0 ? beam.dp - beam.D/2 : 0; // tendon eccentricity, +ve below centroid
+    const Muomin = 1.2*(beam.Z*concrete.fctf + Pe*(beam.D/6 + ep)*1000)/1000**2;
     o_Z.value = (beam.Z).toPrecision(3);
     o_fctf.value = (concrete.fctf).toPrecision(3);
+    o_Pe.value = Pe.toFixed(0);
+    o_e.value = ep.toFixed(1);
     o_Muomin.value = (Muomin).toFixed(0);
     momentminCheck.value = (Muomin/Muo).toFixed(2);
     setPassFail(momentminCheck);
@@ -424,7 +505,7 @@ function barCoords(beam) {
 
 function determineku(beam, concrete, steel) {
     let incr = 0.1;
-    let steps = 10;
+    let steps = 100; // wide enough to capture prestressed sections with ku > 1
     let ku = 0;
     for (let iteration=0; iteration<4; iteration++) {
         for (let testku=ku+incr; testku<ku+(incr*steps); testku+=incr) {
@@ -450,7 +531,8 @@ function sumCSFforces(ku, beam, concrete, steel, debug=false) {
         let y = beam.D - bars[i].y;
         barF += A*steel.Es*steelStrain(ku, concrete.ecu, steel.esu, beam.d, y);
     }
-    return Cc+barF;
+    let Fp = tendonForce(ku, beam, concrete, steel);
+    return Cc+barF+Fp;
 }
 
 function steelStrain(ku, ecu, esu, d, y) {
@@ -474,8 +556,24 @@ function momentCapacity(beam, concrete, steel, ku) {
         let barF = A*steel.Es*steelStrain(ku, concrete.ecu, steel.esu, beam.d, y);
         barM += y*barF;
     }
-    let Muo = -(Cc*(concrete.gamma*ku*beam.d/2) + barM)/1000;
+    let Fp = tendonForce(ku, beam, concrete, steel);
+    let Muo = -(Cc*(concrete.gamma*ku*beam.d/2) + barM + beam.dp*Fp)/1000;
     return Muo;
+}
+
+// Tendon strain at ultimate, from strain compatibility.
+// Pre-strain from effective prestress (tension = negative) plus the
+// geometric strain at depth beam.dp, clipped at the yield strain (fpy).
+function tendonStrain(ku, beam, concrete, steel) {
+    let e = (concrete.ecu/(ku*beam.d))*(ku*beam.d - beam.dp)
+            - steel.fpe/(steel.Es*1000);
+    return Math.max(-steel.epy, Math.min(steel.epy, e));
+}
+
+// Tendon force at ultimate (kN, negative = tension). Zero if no tendons.
+function tendonForce(ku, beam, concrete, steel) {
+    if (beam.Ap === 0) {return 0;}
+    return beam.Ap*steel.Es*tendonStrain(ku, beam, concrete, steel);
 }
 
 function bendingPhi(ku) {

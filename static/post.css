@@ -363,6 +363,11 @@ svg text {
   stroke-width: 4;
   fill: none;
 }
+.duct {
+  stroke: black;
+  stroke-width: 1;
+  fill: none;
+}
 .planrebar {
   stroke: black;
   stroke-width: 4;
