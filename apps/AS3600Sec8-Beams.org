@@ -45,6 +45,10 @@ Strand diameter {{{span(i_dstrand)}}}
 
 Strand breaking strength, f_{pb} {{{span(o_fpb)}}}
 
+Prestress after losses, % of f_{pb} {{{span(i_fpepct)}}} {{{ref(65–75% typical)}}}
+
+Effective prestress, f_{pe} {{{span(o_fpe)}}}
+
 Duct diameter {{{span(i_dduct)}}}
 
 Tendon at top of duct {{{checkbox(i_tendontop,checked)}}}
@@ -52,6 +56,10 @@ Tendon at top of duct {{{checkbox(i_tendontop,checked)}}}
 Tendon depth, d_p {{{span(o_dp)}}}
 
 Area of strands, A_p {{{span(o_Ap)}}}
+
+Tendon stress factor, k_1 {{{span(o_k1)}}}
+
+Tendon stress factor, k_2 {{{span(o_k2)}}}
 
 * Material properties
 
@@ -69,10 +77,6 @@ Steel modulus, E_s {{{span(i_Es)}}}
 
 Steel ult. strain, \varepsilon_{su} {{{span(o_esu)}}}
 
-Prestress after losses, % of f_{pb} {{{span(i_fpepct)}}} {{{ref(65–75% typical)}}}
-
-Effective prestress, f_{pe} {{{span(o_fpe)}}}
-
 Fitment steel strength, f_{sy.f} {{{input(i_fsyf,500,MPa)}}}
 
 * Loading
@@ -89,7 +93,7 @@ Neutral axis parameter, k_u {{{span(o_ku)}}}
 
 Plastic neutral axis, d_n {{{span(o_dn)}}}
 
-Tendon stress at ultimate, f_p {{{span(o_fp)}}}
+Tendon stress at ultimate, f_p {{{span(o_fp)}}} {{{ref(Clause 8.1.7)}}}
 
 Moment capacity, M_{uo} {{{span(o_Muo)}}}
 

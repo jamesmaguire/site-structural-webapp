@@ -45,6 +45,8 @@ function initPage()
     // Bending capacity
     output('o_ku');
     output('o_dn', {units:'mm'});
+    output('o_k1');
+    output('o_k2');
     output('o_fp', {units:'MPa'});
     output('o_Muo', {units:'kNm'});
     output('o_phi');
@@ -298,8 +300,29 @@ function runCalcs() {
     o_fpe.value = steel.fpe.toFixed(0);
     o_fpb.value = steel.fpb.toFixed(0);
     steel.fpy = {"12.7":1533, "15.2":1468}[beam.dstrand];
-    steel.epy = steel.fpy/(steel.Es*1000);
     steel.esu = steel.fsy/(steel.Es*1000);
+
+    // Tendon stress at ultimate, Cl 8.1.7 (bonded tendons):
+    // sigmapu = fpb*(1 - k1*k2/gamma)
+    // k1 = 0.4 generally, or 0.28 if fpy/fpb >= 0.9
+    // k2 = (Apt*fpb + (Ast - Asc)*fsy)/(bef*dp*fc)
+    steel.k1 = steel.fpy/steel.fpb >= 0.9 ? 0.28 : 0.4;
+    steel.k2 = beam.Ap > 0
+        ? (beam.Ap*steel.fpb + (beam.Ast - beam.Asc)*steel.fsy)
+            /(beam.B*beam.dp*concrete.fc)
+        : 0;
+    steel.sigmapu = Math.min(steel.fpb,
+        Math.max(0, steel.fpb*(1 - steel.k1*steel.k2/concrete.gamma)));
+    o_k1.value = steel.k1;
+    o_k2.value = steel.k2.toFixed(3);
+
+    // Clause 8.1.7 applies only where the effective tendon stress
+    // is not less than 0.5fpb
+    if (beam.Ap > 0 && steel.fpe < 0.5*steel.fpb) {
+        i_fpepct.parentElement.classList.add('FAIL');
+    } else {
+        i_fpepct.parentElement.classList.remove('FAIL');
+    }
     o_esu.value = steel.esu;
 
     // Bending
@@ -310,9 +333,7 @@ function runCalcs() {
     let phi = bendingPhi(ku);
     o_ku.value = (ku).toFixed(3);
     o_dn.value = (dn).toFixed(1);
-    o_fp.value = beam.Ap > 0
-        ? (-steel.Es*1000*tendonStrain(ku, beam, concrete, steel)).toFixed(0)
-        : 0;
+    o_fp.value = beam.Ap > 0 ? steel.sigmapu.toFixed(0) : 0;
     o_Muo.value = Muo.toPrecision(3);
     o_phi.value = phi.toFixed(2);
     o_phiMuo.value = (phi*Muo).toPrecision(3);
@@ -476,7 +497,7 @@ function barCoords(beam) {
     // Top bars
     a = beam.c + beam.dbs + beam.dbc/2;
     if (beam.nbc === 1) {
-        bars.push({x:beam.B/2, y:beam.D-a, db:beam.dbt, mult:1});
+        bars.push({x:beam.B/2, y:beam.D-a, db:beam.dbc, mult:1});
     } else if (Number.isInteger(beam.nbc)) {
         for (i=0; i < beam.nbc; i++) {
             barspc = (beam.B - 2*a)/(beam.nbc-1);
@@ -531,7 +552,7 @@ function sumCSFforces(ku, beam, concrete, steel, debug=false) {
         let y = beam.D - bars[i].y;
         barF += A*steel.Es*steelStrain(ku, concrete.ecu, steel.esu, beam.d, y);
     }
-    let Fp = tendonForce(ku, beam, concrete, steel);
+    let Fp = tendonForce(beam, steel);
     return Cc+barF+Fp;
 }
 
@@ -556,24 +577,16 @@ function momentCapacity(beam, concrete, steel, ku) {
         let barF = A*steel.Es*steelStrain(ku, concrete.ecu, steel.esu, beam.d, y);
         barM += y*barF;
     }
-    let Fp = tendonForce(ku, beam, concrete, steel);
+    let Fp = tendonForce(beam, steel);
     let Muo = -(Cc*(concrete.gamma*ku*beam.d/2) + barM + beam.dp*Fp)/1000;
     return Muo;
 }
 
-// Tendon strain at ultimate, from strain compatibility.
-// Pre-strain from effective prestress (tension = negative) plus the
-// geometric strain at depth beam.dp, clipped at the yield strain (fpy).
-function tendonStrain(ku, beam, concrete, steel) {
-    let e = (concrete.ecu/(ku*beam.d))*(ku*beam.d - beam.dp)
-            - steel.fpe/(steel.Es*1000);
-    return Math.max(-steel.epy, Math.min(steel.epy, e));
-}
-
-// Tendon force at ultimate (kN, negative = tension). Zero if no tendons.
-function tendonForce(ku, beam, concrete, steel) {
+// Tendon force at ultimate (kN, negative = tension), using the Cl 8.1.7
+// bonded tendon stress sigmapu. Zero if no tendons.
+function tendonForce(beam, steel) {
     if (beam.Ap === 0) {return 0;}
-    return beam.Ap*steel.Es*tendonStrain(ku, beam, concrete, steel);
+    return -beam.Ap*steel.sigmapu/1000;
 }
 
 function bendingPhi(ku) {

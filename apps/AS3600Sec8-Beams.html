@@ -3,11 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-11-13 Fri 16:28 -->
+<!-- 2026-11-13 Fri 21:45 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Beam design</title>
-<meta name="author" content="James" />
 <meta name="generator" content="Org Mode" />
 <link rel="stylesheet" type="text/css" href="../static/post.css" />
 <link rel="stylesheet" type="text/css" href="../static/print.css" media="print" />
@@ -26,32 +25,32 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org93c7022">Image</a></li>
-<li><a href="#org00cd3cc">Beam parameters</a></li>
-<li><a href="#org6711663">Post-tensioning</a></li>
-<li><a href="#orgcd436a7">Material properties</a></li>
-<li><a href="#org9c39a91">Loading</a></li>
-<li><a href="#orgdca957d">Bending capacity</a></li>
-<li><a href="#org169b748">Minimum strength</a></li>
-<li><a href="#orgdbb0a7e">Shear strength</a></li>
-<li><a href="#orge6e8237">Torsion</a></li>
+<li><a href="#orgac92fa2">Image</a></li>
+<li><a href="#orgcd7b23d">Beam parameters</a></li>
+<li><a href="#org8882df2">Post-tensioning</a></li>
+<li><a href="#orge0f30c4">Material properties</a></li>
+<li><a href="#orgacc542d">Loading</a></li>
+<li><a href="#org8d09226">Bending capacity</a></li>
+<li><a href="#org670054c">Minimum strength</a></li>
+<li><a href="#orgc875358">Shear strength</a></li>
+<li><a href="#orgdfdf9b7">Torsion</a></li>
 </ul>
 </div>
 </div>
 <p>
 <button id='statusbutton' onclick='updatePage();'>▶ Run analysis</button>
 </p>
-<div id="outline-container-org93c7022" class="outline-2">
-<h2 id="org93c7022">Image</h2>
-<div class="outline-text-2" id="text-org93c7022">
+<div id="outline-container-orgac92fa2" class="outline-2">
+<h2 id="orgac92fa2">Image</h2>
+<div class="outline-text-2" id="text-orgac92fa2">
 <p>
 <div id="beamFigure"></div>
 </p>
 </div>
 </div>
-<div id="outline-container-org00cd3cc" class="outline-2">
-<h2 id="org00cd3cc">Beam parameters</h2>
-<div class="outline-text-2" id="text-org00cd3cc">
+<div id="outline-container-orgcd7b23d" class="outline-2">
+<h2 id="orgcd7b23d">Beam parameters</h2>
+<div class="outline-text-2" id="text-orgcd7b23d">
 <p>
 Beam width <span id="i_B"></span>
 </p>
@@ -97,9 +96,9 @@ Area compression steel <span id="o_Asc"></span>
 </p>
 </div>
 </div>
-<div id="outline-container-org6711663" class="outline-2">
-<h2 id="org6711663">Post-tensioning</h2>
-<div class="outline-text-2" id="text-org6711663">
+<div id="outline-container-org8882df2" class="outline-2">
+<h2 id="org8882df2">Post-tensioning</h2>
+<div class="outline-text-2" id="text-org8882df2">
 <p>
 Number of tendons <span id="i_ntendons"></span>
 </p>
@@ -121,6 +120,14 @@ Strand breaking strength, f<sub>pb</sub> <span id="o_fpb"></span>
 </p>
 
 <p>
+Prestress after losses, % of f<sub>pb</sub> <span id="i_fpepct"></span> <span class="reference refpad">65–75% typical</span>
+</p>
+
+<p>
+Effective prestress, f<sub>pe</sub> <span id="o_fpe"></span>
+</p>
+
+<p>
 Duct diameter <span id="i_dduct"></span>
 </p>
 
@@ -135,11 +142,19 @@ Tendon depth, d<sub>p</sub> <span id="o_dp"></span>
 <p>
 Area of strands, A<sub>p</sub> <span id="o_Ap"></span>
 </p>
+
+<p>
+Tendon stress factor, k<sub>1</sub> <span id="o_k1"></span>
+</p>
+
+<p>
+Tendon stress factor, k<sub>2</sub> <span id="o_k2"></span>
+</p>
 </div>
 </div>
-<div id="outline-container-orgcd436a7" class="outline-2">
-<h2 id="orgcd436a7">Material properties</h2>
-<div class="outline-text-2" id="text-orgcd436a7">
+<div id="outline-container-orge0f30c4" class="outline-2">
+<h2 id="orge0f30c4">Material properties</h2>
+<div class="outline-text-2" id="text-orge0f30c4">
 <p>
 Concrete strength, f'<sub>c</sub> <span id="i_fc"></span>
 </p>
@@ -169,21 +184,13 @@ Steel ult. strain, &epsilon;<sub>su</sub> <span id="o_esu"></span>
 </p>
 
 <p>
-Prestress after losses, % of f<sub>pb</sub> <span id="i_fpepct"></span> <span class="reference refpad">65–75% typical</span>
-</p>
-
-<p>
-Effective prestress, f<sub>pe</sub> <span id="o_fpe"></span>
-</p>
-
-<p>
 Fitment steel strength, f<sub>sy.f</sub> <span class="inputspan"><input id="i_fsyf" class="right" type="number" value="500" onkeypress="eventHandler(event)" autocomplete="off" onblur="updatePage()"> MPa</span>
 </p>
 </div>
 </div>
-<div id="outline-container-org9c39a91" class="outline-2">
-<h2 id="org9c39a91">Loading</h2>
-<div class="outline-text-2" id="text-org9c39a91">
+<div id="outline-container-orgacc542d" class="outline-2">
+<h2 id="orgacc542d">Loading</h2>
+<div class="outline-text-2" id="text-orgacc542d">
 <p>
 Applied moment, M* <span id="i_Mstar"></span>
 </p>
@@ -197,9 +204,9 @@ Applied torsion, T* <span id="i_Tstar"></span>
 </p>
 </div>
 </div>
-<div id="outline-container-orgdca957d" class="outline-2">
-<h2 id="orgdca957d">Bending capacity</h2>
-<div class="outline-text-2" id="text-orgdca957d">
+<div id="outline-container-org8d09226" class="outline-2">
+<h2 id="org8d09226">Bending capacity</h2>
+<div class="outline-text-2" id="text-org8d09226">
 <p>
 Neutral axis parameter, k<sub>u</sub> <span id="o_ku"></span>
 </p>
@@ -209,7 +216,7 @@ Plastic neutral axis, d<sub>n</sub> <span id="o_dn"></span>
 </p>
 
 <p>
-Tendon stress at ultimate, f<sub>p</sub> <span id="o_fp"></span>
+Tendon stress at ultimate, f<sub>p</sub> <span id="o_fp"></span> <span class="reference refpad">Clause 8.1.7</span>
 </p>
 
 <p>
@@ -229,9 +236,9 @@ Moment check, M*/&Phi;M<sub>uo</sub> <span id="momentCheck"></span>
 </p>
 </div>
 </div>
-<div id="outline-container-org169b748" class="outline-2">
-<h2 id="org169b748">Minimum strength</h2>
-<div class="outline-text-2" id="text-org169b748">
+<div id="outline-container-org670054c" class="outline-2">
+<h2 id="org670054c">Minimum strength</h2>
+<div class="outline-text-2" id="text-org670054c">
 <p>
 Section modulus, Z <span id="o_Z"></span>
 </p>
@@ -257,9 +264,9 @@ Min strength check, M<sub>uo,min</sub>/M<sub>uo</sub> <span id="momentminCheck">
 </p>
 </div>
 </div>
-<div id="outline-container-orgdbb0a7e" class="outline-2">
-<h2 id="orgdbb0a7e">Shear strength</h2>
-<div class="outline-text-2" id="text-orgdbb0a7e">
+<div id="outline-container-orgc875358" class="outline-2">
+<h2 id="orgc875358">Shear strength</h2>
+<div class="outline-text-2" id="text-orgc875358">
 <p>
 Shear reo legs <span id="i_nlegs"></span>, angle &alpha;<sub>v</sub> <span id="i_alphav"></span>
 </p>
@@ -333,9 +340,9 @@ Web crushing check <span id="webCrushCheck"></span>
 </p>
 </div>
 </div>
-<div id="outline-container-orge6e8237" class="outline-2">
-<h2 id="orge6e8237">Torsion</h2>
-<div class="outline-text-2" id="text-orge6e8237">
+<div id="outline-container-orgdfdf9b7" class="outline-2">
+<h2 id="orgdfdf9b7">Torsion</h2>
+<div class="outline-text-2" id="text-orgdfdf9b7">
 <p>
 Area of cross section, A<sub>cp</sub> <span id="o_Acp"></span>
 </p>
