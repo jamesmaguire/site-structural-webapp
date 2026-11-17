@@ -77,6 +77,8 @@ Steel modulus, E_s {{{span(i_Es)}}}
 
 Steel ult. strain, \varepsilon_{su} {{{span(o_esu)}}}
 
+Strand ult. strain, \varepsilon_{pu} {{{span(o_epu)}}}
+
 Fitment steel strength, f_{sy.f} {{{input(i_fsyf,500,MPa)}}}
 
 * Loading

@@ -37,6 +37,7 @@ function initPage()
     input('i_fpepct', {initval:65, units:'%'});
     output('o_fpe', {units:'MPa'});
     output('o_esu');
+    output('o_epu');
 
     // Loading
     input('i_Mstar', {initval:50, units:'kNm'});
