@@ -1,0 +1,45 @@
+#+title: Strut and Tie
+#+subtitle: to AS3600-2018(+A2) Section 7
+
+#+setupfile: post.setup
+#+HTML_HEAD: <script type="text/javascript" src="../static/AS3600Sec7-strutandtie.js" defer></script>
+#+include: "../statusicon.org"
+
+* Figure
+
+{{{div(elementElevation)}}}
+
+* Concrete geometry
+
+Element depth, D {{{span(i_D)}}}
+
+Element width, W {{{span(i_W)}}}
+
+Pile spacing, s {{{span(i_spacing)}}}
+
+Pile diameter, D_p {{{span(i_Dp)}}}
+
+* Loading
+
+Design load, P {{{span(i_P)}}}
+
+Load length, L_l {{{span(i_Ll)}}}
+
+Strut angle, \theta {{{span(o_theta)}}}
+
+Pile load, P_p {{{span(o_Pp)}}}
+
+Strut compression, C* {{{span(o_Cstar)}}}
+
+Strut tension, T* {{{span(o_Tstar)}}}
+
+* Design
+
+Concrete strength, f'_c {{{span(i_fc)}}}
+
+Tie reinforcement {{{span(i_nb)}}} {{{span(i_db)}}}
+
+* Export on save                                                   :noexport:
+;; Local Variables:
+;; eval: (add-hook 'after-save-hook 'org-html-export-to-html nil t)
+;; End:
